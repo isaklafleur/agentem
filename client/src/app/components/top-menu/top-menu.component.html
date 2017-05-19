@@ -1,0 +1,36 @@
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse <!--fixed-top-->">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+    aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  <a class="navbar-brand" href="#">AgenteImovel</a>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <button on-mouseover="over()" md-button color="accent" [mdMenuTriggerFor]="menuBuy">Buy</button>
+        <md-menu #menuBuy="mdMenu" [overlapTrigger]="false">
+          <button md-menu-item>Item 1</button>
+          <button md-menu-item>Item 2</button>
+        </md-menu>
+      </li>
+      <li class="nav-item">
+        <button md-button color="accent" [mdMenuTriggerFor]="menuSell">Sell</button>
+        <md-menu #menuSell="mdMenu" [overlapTrigger]="false">
+          <button md-menu-item>Item 1</button>
+          <button md-menu-item>Item 2</button>
+        </md-menu>
+      </li>
+            <li class="nav-item">
+        <button md-button color="accent" [mdMenuTriggerFor]="menuRent">Rent</button>
+        <md-menu #menuRent="mdMenu" [overlapTrigger]="false">
+          <button md-menu-item>Item 1</button>
+          <button md-menu-item>Item 2</button>
+        </md-menu>
+      </li>
+    </ul>
+      <li class="nav-item">
+        <button md-raised-button color="accent" >Sign In</button>
+      </li>
+  </div>
+</nav>
