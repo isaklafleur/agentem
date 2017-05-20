@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MdMenuModule, MdMenuTrigger} from '@angular/material';
 
 @Component({
   selector: 'app-top-menu',
@@ -7,12 +6,9 @@ import { MdMenuModule, MdMenuTrigger} from '@angular/material';
   styleUrls: ['./top-menu.component.css']
 })
 export class TopMenuComponent implements OnInit {
-  @ViewChild(MdMenuTrigger) trigger: MdMenuTrigger;
+
   constructor() { }
 
   ngOnInit() {
-  }
-  over() {
-    this.trigger.openMenu();
   }
 }
