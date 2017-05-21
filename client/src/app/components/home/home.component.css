@@ -4,7 +4,7 @@
   background-image: url('/assets/house.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-   background-position: center; 
+  background-position: center; 
 }
 .nopadding {
    padding: 0 !important;

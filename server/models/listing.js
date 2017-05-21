@@ -26,7 +26,8 @@ const listingSchema = new Schema({
   streetNumbre: Number,
   city: String,
   zip: String,
-  userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+  userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+  uploadToken: Number,
 });
 
 const Listing = mongoose.model('Listing', listingSchema);

@@ -11,23 +11,29 @@ import { HomeRightComponent } from './components/home/home-right/home-right.comp
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { MaterialModule } from '@angular/material';
 import 'hammerjs';
-import { AppComponent } from './app.component';
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
+import { PropertyFormComponent } from './components/panel/property-form/property-form.component';
+import {  FileUploadModule } from 'ng2-file-upload';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    HomeRightComponent
-    TopMenuComponent
+    HomeRightComponent,
+    TopMenuComponent,
+    PropertyFormComponent,
+   
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(routes) 
+    RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     MaterialModule,
+    NgbModule.forRoot(),
+    FileUploadModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,7 +2,69 @@ var express = require('express');
 var router  = express.Router();
 const Listing = require('../models/listing');
 const mongoose = require('mongoose');
-const upload = require('../config/multer');
+var crypto = require("crypto");
+//const upload = require('../config/multer');
+
+var multer = require('multer');
+
+var DIR = './public/uploads/';
+ 
+var upload = multer({dest: DIR});
+
+
+var storage = multer.diskStorage({
+        destination: function(req, file, cb) {
+                cb(null, DIR)
+        },
+        filename: function(req, file, cb) {
+                crypto.pseudoRandomBytes(16, function(err, raw) {
+                        cb(null, raw.toString('hex') + Date.now() + '.' + file.originalname);
+                });
+        }
+});
+
+var upload = multer({ storage: storage });
+
+router.options('/api'); // enable pre-flight request for DELETE request
+router.get('/api', function(req, res) {
+        res.end('file catcher example');
+});
+
+router.post('/api', upload.any(), function(req, res, next) {
+        // req.body contains the text fields
+
+        if(req.body.newListing) {
+          console.log("1");
+          let property = JSON.parse(req.body.property);
+          console.log('property: ', property);
+          console.log("2");
+        
+          property.uploadToken = req.body.token;
+          
+          console.log("3");
+          property.photos = [req.files[0].filename];
+          console.log("4");
+          console.log('property: ', JSON.stringify(property));
+          const listing = new Listing(property);
+          listing.save(err=>{
+            if(err) {
+              console.log(err);
+              res.status(500).json({error: err})
+            } else {
+              console.log("save ok")
+              res.status(200).json({message: "Listing saved"})
+            }
+          })
+        } else {
+          Listing.findOneAndUpdate({"uploadToken":req.body.token}, {$push:{photos:req.files[0].filename}}, err=>{
+            if(err) {
+              res.status(500).json({error: err})
+            } else {
+              res.status(200).json({message: "Photo saved"})
+            }
+          })
+        }
+});
 
 
 router.get('/', (req, res, next) => {
