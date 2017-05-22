@@ -1,24 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import '~https://fonts.googleapis.com/icon?family=Material+Icons';
 @import '~https://fonts.googleapis.com/icon?family=Roboto';
-@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
-*:focus {
-    outline: 0 !important;
-}
+	body,
+	html {
+		height: 100%;
+	}
 
-body {
-  font-family: Roboto;
-  padding-top: 70px;
-}
+	@media (min-width: 576px) {
+		#left {
+			position: fixed;
+			top: 56px;
+			bottom: 0;
+		}
+		#margintop {
+			margin-top: 50px !important;
+		}
+	}
 
-body, html {
-    height: 100%;
-}
 
-#left {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-}
+	#left {
+		background-image: url('https://s-media-cache-ak0.pinimg.com/originals/ed/6c/3b/ed6c3b66df752368991ef86f11999069.jpg');
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+	}

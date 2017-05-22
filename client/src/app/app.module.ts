@@ -17,6 +17,7 @@ import 'hammerjs';
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
 import { PropertyFormComponent } from './components/panel/property-form/property-form.component';
 import {  FileUploadModule } from 'ng2-file-upload';
+import { GoogleMapsComponent } from './components/google-maps/google-maps.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import {  FileUploadModule } from 'ng2-file-upload';
     HomeRightComponent,
     TopMenuComponent,
     PropertyFormComponent,
+    GoogleMapsComponent,
   ],
   imports: [
     BrowserModule,
