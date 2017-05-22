@@ -11,16 +11,16 @@ import {MdDialog, MdDialogRef} from '@angular/material';
 })
 export class HomeRightComponent implements OnInit {
 
-  constructor(private modalService: NgbModal, public dialog: MdDialog,  public dialog2: MdDialog) { }
+  constructor(private modalService: NgbModal, public dialog: MdDialog) { }
 
   openDialog() {
     let dialogRef = this.dialog.open(PropertyFormComponent, {width:"80%", height:"100%", position:"right"});
     dialogRef.afterClosed().subscribe(result => {
       if( result === "submitted") {
         console.log("form ok")
-      //  let dialogResult = this.dialog2.open(DialogResultExampleDialog, {width:"10%", height:"10%"})
-         const modalRef = this.modalService.open(PropertyFormComponent, { size:"lg", windowClass: 'dark-modal' });
-    modalRef.componentInstance.name = 'World';
+     
+      //   const modalRef = this.modalService.open(DialogResultExampleDialog, { size:"lg", windowClass: 'dark-modal' });
+    //modalRef.componentInstance.name = 'World';
       }
     });
   }
@@ -36,15 +36,3 @@ export class HomeRightComponent implements OnInit {
 
 
 
-@Component({
-  selector: 'dialog-result-example-dialog',
-  template: `<h1 md-dialog-title>Listing saved</h1>
-<div md-dialog-content>Listing has been created</div>
-<div md-dialog-actions>
-  <button md-button (click)="dialogRef.close('Option 1')">Ok</button>
-</div>
-`,
-})
-export class DialogResultExampleDialog {
-  constructor(public dialogRef: MdDialogRef<DialogResultExampleDialog>) {}
-}

@@ -21,6 +21,7 @@ export class PropertyFormComponent implements OnInit {
   filesSent: number = 0;
   loginForm: any;
   submittedInvalid: boolean = false;
+  submitError: string;
 
   showFile(item, index) {
     readURL(item, index);
@@ -36,7 +37,7 @@ export class PropertyFormComponent implements OnInit {
     this.hasBaseDropZoneOver = e;
   }
 
-  constructor( public dialogRef: MdDialogRef<PropertyFormComponent>) { }
+  constructor( public dialogRef: MdDialogRef<PropertyFormComponent>, public dialog: MdDialog) { }
 
   ngOnInit() { 
      this.uploader.onBuildItemForm = (item, form) => {
@@ -51,10 +52,20 @@ export class PropertyFormComponent implements OnInit {
   }
   doSubmit(formValid) {
     if(!formValid) {
+      this.submitError = 'Please fill out the form';
       this.submittedInvalid = true;
+      
     } else {
-    //  this.uploader.uploadAll();
-      this.dialogRef.close("submitted");
+      if(this.uploader.queue.length===0) {
+        this.submitError = 'Please upload photos';
+        this.submittedInvalid = true;    
+      } else { 
+        this.uploader.uploadAll();
+        let dialogResult = this.dialog.open(DialogResultExampleDialog, {width:"30%", height:"16%"})
+        dialogResult.afterClosed().subscribe(result => {
+          this.dialogRef.close("submitted")
+        });
+      }
     }
     //this.uploader.getNotUploadedItems().length
   }
@@ -71,4 +82,17 @@ function readURL(input, index) {
       $('#fileImage'+index).attr('src', "##")
       reader.readAsDataURL(input._file);
     }
+}
+
+@Component({
+  selector: 'dialog-result-example-dialog',
+  template: `
+<div md-dialog-content>Listing has been created...</div>
+`,
+})
+export class DialogResultExampleDialog implements OnInit{
+  constructor(public dialogRef: MdDialogRef<DialogResultExampleDialog>) {}
+  ngOnInit() { 
+     setTimeout( ()=>this.dialogRef.close("submitted"), 1000);
+  }
 }

@@ -6,6 +6,7 @@ const listingSchema = new Schema({
   photos: Array,
   price: Number,
   condo: Number,
+  description: String,
   propertyType: {
         type: String,
         enum : ['appartment','house', 'villa'],
