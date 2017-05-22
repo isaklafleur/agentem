@@ -9,13 +9,13 @@ import 'hammerjs';
 import { routes } from './routes';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
-import { HomeRightComponent } from './components/home/home-right/home-right.component';
+import { HomeRightComponent} from './components/home/home-right/home-right.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '@angular/material';
 import 'hammerjs';
 
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
-import { PropertyFormComponent } from './components/panel/property-form/property-form.component';
+import { PropertyFormComponent,  DialogResultExampleDialog  } from './components/panel/property-form/property-form.component';
 import {  FileUploadModule } from 'ng2-file-upload';
 import { GoogleMapsComponent } from './components/google-maps/google-maps.component';
 
@@ -27,8 +27,10 @@ import { GoogleMapsComponent } from './components/google-maps/google-maps.compon
     HomeRightComponent,
     TopMenuComponent,
     PropertyFormComponent,
+    DialogResultExampleDialog
     GoogleMapsComponent,
   ],
+  entryComponents: [DialogResultExampleDialog],
   imports: [
     BrowserModule,
     FormsModule,

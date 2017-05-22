@@ -10,13 +10,18 @@ import {MdDialog, MdDialogRef} from '@angular/material';
   styleUrls: ['./home-right.component.css']
 })
 export class HomeRightComponent implements OnInit {
-  selectedOption: string;
+
   constructor(private modalService: NgbModal, public dialog: MdDialog) { }
 
   openDialog() {
     let dialogRef = this.dialog.open(PropertyFormComponent, {width:"80%", height:"100%", position:"right"});
     dialogRef.afterClosed().subscribe(result => {
-      this.selectedOption = result;
+      if( result === "submitted") {
+        console.log("form ok")
+     
+      //   const modalRef = this.modalService.open(DialogResultExampleDialog, { size:"lg", windowClass: 'dark-modal' });
+    //modalRef.componentInstance.name = 'World';
+      }
     });
   }
 
@@ -27,5 +32,7 @@ export class HomeRightComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }
+
+
+

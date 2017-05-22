@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, Output, ViewChild, ElementRef,EventEmitter, AfterViewInit } from '@angular/core';
 import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {MdRadioModule} from '@angular/material';
 import {MdDialog, MdDialogRef, MdInputModule} from '@angular/material';
@@ -15,9 +15,13 @@ const URL = 'http://localhost:3000/api/listings';
 export class PropertyFormComponent implements OnInit {  
   @Input() name;
   @ViewChild('selectElem') el:ElementRef; 
+
   newProperty: any = {};
   token: number = Date.now();
   filesSent: number = 0;
+  loginForm: any;
+  submittedInvalid: boolean = false;
+  submitError: string;
 
   showFile(item, index) {
     readURL(item, index);
@@ -33,10 +37,11 @@ export class PropertyFormComponent implements OnInit {
     this.hasBaseDropZoneOver = e;
   }
 
-  constructor(/*public activeModal: NgbActiveModal,*/ public dialogRef: MdDialogRef<PropertyFormComponent>) { }
+  constructor( public dialogRef: MdDialogRef<PropertyFormComponent>, public dialog: MdDialog) { }
 
   ngOnInit() { 
      this.uploader.onBuildItemForm = (item, form) => {
+       console.log("onBuildItemForm");
         form.append("token", this.token);
         if(this.filesSent===0) {
           form.append("newListing", true)
@@ -45,7 +50,25 @@ export class PropertyFormComponent implements OnInit {
         this.filesSent++;
       };
   }
-
+  doSubmit(formValid) {
+    if(!formValid) {
+      this.submitError = 'Please fill out the form';
+      this.submittedInvalid = true;
+      
+    } else {
+      if(this.uploader.queue.length===0) {
+        this.submitError = 'Please upload photos';
+        this.submittedInvalid = true;    
+      } else { 
+        this.uploader.uploadAll();
+        let dialogResult = this.dialog.open(DialogResultExampleDialog, {width:"30%", height:"16%"})
+        dialogResult.afterClosed().subscribe(result => {
+          this.dialogRef.close("submitted")
+        });
+      }
+    }
+    //this.uploader.getNotUploadedItems().length
+  }
 }
 function readURL(input, index) {
 
@@ -59,4 +82,17 @@ function readURL(input, index) {
       $('#fileImage'+index).attr('src', "##")
       reader.readAsDataURL(input._file);
     }
+}
+
+@Component({
+  selector: 'dialog-result-example-dialog',
+  template: `
+<div md-dialog-content>Listing has been created...</div>
+`,
+})
+export class DialogResultExampleDialog implements OnInit{
+  constructor(public dialogRef: MdDialogRef<DialogResultExampleDialog>) {}
+  ngOnInit() { 
+     setTimeout( ()=>this.dialogRef.close("submitted"), 1000);
+  }
 }
