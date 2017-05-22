@@ -16,8 +16,10 @@ import 'hammerjs';
 
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
 import { PropertyFormComponent,  DialogResultExampleDialog  } from './components/panel/property-form/property-form.component';
-import {  FileUploadModule } from 'ng2-file-upload';
-import { GoogleMapsComponent } from './components/google-maps/google-maps.component';
+import { FileUploadModule } from 'ng2-file-upload';
+import { SearchComponent } from './components/search/search.component';
+import { GoogleMapsComponent } from './components/search/google-maps/google-maps.component';
+import { FilterListComponent } from './components/search/filter-list/filter-list.component';
 
 
 @NgModule({
@@ -27,8 +29,10 @@ import { GoogleMapsComponent } from './components/google-maps/google-maps.compon
     HomeRightComponent,
     TopMenuComponent,
     PropertyFormComponent,
-    DialogResultExampleDialog
+    DialogResultExampleDialog,
     GoogleMapsComponent,
+    SearchComponent,
+    FilterListComponent,
   ],
   entryComponents: [DialogResultExampleDialog],
   imports: [
