@@ -1,6 +1,7 @@
-.left-container {
-  height: 100%;
-  width: inherit;
+#left {
+    position: fixed;
+    top: 0;
+    bottom: 0;
   background-image: url('/assets/house.jpg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -10,7 +11,7 @@
    padding: 0 !important;
    margin: 0 !important;
 }
-
 .border {
   border: 1px solid black;
+   background-position: center; 
 }
