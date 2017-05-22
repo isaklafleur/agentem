@@ -1,0 +1,26 @@
+<div class="container-fluid">
+
+  <md-card *ngFor="let listing of listings" class="list-card">
+    <md-card-header>
+      <div md-card-avatar class="property-{{listing.propertyType}}"></div>
+      <md-card-title>{{listing.name}}</md-card-title>
+      <md-card-subtitle>{{listing.city}}</md-card-subtitle>
+    </md-card-header>
+<!--    <div class="property-photo">-->
+    <img  md-card-image [src]="listing.photos[0]">
+    <h2 class="photo-text"> 
+      {{listing.listingType}} | {{listing.propertyType}} 
+       <br>R$ {{listing.price}}
+      </h2>
+   <!-- </div>-->
+    <md-card-content>
+     <!-- <div  md-card-image class="dupa" style="width:100%;height:200px;" [style.background-image]="'url(' + listing.photos[0] + ')'">">{{listing.photos[0]}}</div>-->
+
+   
+    <!--  <md-card-actions>
+    <button md-button>LIKE</button>
+    <button md-button>SHARE</button>
+  </md-card-actions>-->
+    </md-card-content>
+  </md-card>
+</div>

@@ -18,6 +18,7 @@ import { TopMenuComponent } from './components/top-menu/top-menu.component';
 import { PropertyFormComponent,  DialogResultExampleDialog  } from './components/panel/property-form/property-form.component';
 import {  FileUploadModule } from 'ng2-file-upload';
 import { GoogleMapsComponent } from './components/google-maps/google-maps.component';
+import { ListComponent } from './components/list/list.component';
 
 
 @NgModule({
@@ -27,8 +28,9 @@ import { GoogleMapsComponent } from './components/google-maps/google-maps.compon
     HomeRightComponent,
     TopMenuComponent,
     PropertyFormComponent,
-    DialogResultExampleDialog
+    DialogResultExampleDialog,
     GoogleMapsComponent,
+    ListComponent,
   ],
   entryComponents: [DialogResultExampleDialog],
   imports: [

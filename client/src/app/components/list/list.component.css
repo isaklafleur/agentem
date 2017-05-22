@@ -1,0 +1,41 @@
+.list-card {
+  width:47%;
+  float:left;
+  margin:1%;
+
+}
+  
+/*  white-space: pre;*/
+
+.property-villa {
+  background-image: url('/assets/villa.svg');
+  background-size: cover;
+}
+.property-house {
+  background-image: url('/assets/house.svg');
+  background-size: cover;
+}
+
+.property-appartment {
+  background-image: url('/assets/apartment.svg');
+  background-size: cover;
+}
+
+.property-photo {
+ 
+   border:1px solid black;
+
+}
+.photo-text {
+     position: absolute; 
+   top: 203px; 
+   left: 0px; 
+   width: 100%; 
+   color: white;
+
+   font: bold 20px Helvetica, Sans-Serif; 
+   letter-spacing: -1px;  
+   background: rgb(0, 0, 0); /* fallback color */
+   background: rgba(0, 0, 0, 0.7);
+   padding: 10px; 
+}

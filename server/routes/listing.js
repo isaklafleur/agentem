@@ -65,15 +65,13 @@ router.post('/', upload.any(), function(req, res, next) {
 router.get('/', (req, res, next) => {
   Listing.find((err, listingList) => {
     if (err) {
-      res.json(err);
+      res.status(500).json(err);
       return;
     }
     listingList.forEach(listing=>{
-      if(listing.image.split('/')[1]==="uploads") {
-        listing.image = "http://localhost:3000"+listing.image;
-      }
+      listing.photos = listing.photos.map(photo=>"http://localhost:3000/uploads/"+photo)
     });
-    res.json(listingList);
+    res.status(200).json(listingList);
   });
 });
 
