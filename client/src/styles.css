@@ -4,10 +4,15 @@
 @import '~https://fonts.googleapis.com/icon?family=Material+Icons';
 @import '~https://fonts.googleapis.com/icon?family=Roboto';
 
+	* {
+		outline: none !important
+	}
+	
 	body,
 	html {
 		height: 100%;
 	}
+
 
 	@media (min-width: 576px) {
 		#left {

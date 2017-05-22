@@ -1,49 +1,27 @@
 <div class="container-fluid h-100" id="margintop" style="margin-top: 50px;">
   <div class="row h-100">
     <div class="col-sm-6 col-12 text-white py-2 d-flex align-items-center justify-content-center" id="left">
-      <form>
-        <div class="form-group">
-          <label for="exampleInputSearch">Search</label>
-          <input type="email" class="form-control" id="exampleInputSearch" placeholder="Email">
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <div class="input-group">
-            <div class="input-group-addon">$</div>
-            <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
-          </div>
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
+      <md-card>
+        <form class="example-form">
+          <md-select color="primary" [(ngModel)]="selectedValue" name="typeOfSearch">
+            <md-option *ngFor="let type of typeOffer" [value]="type.value">
+              {{ type.viewValue }}
+            </md-option>
+          </md-select><br><br>
+          <md-input-container>
+            <input #searchBox (click)="this.searchBox.value = ''" mdInput placeholder="Search by Street, Neighborhood, City.." value="Copacabana, Rio de Janeiro, RJ">
+          </md-input-container>
+          <button md-raised-button color="primary">Search</button>
+        </form><br>
+<button md-button (click)="openDialog()">Launch dialog</button>
+      </md-card>
+
     </div>
+
     <div class="col-sm-6 col-12 offset-0 offset-sm-6 py-2">
-      <div class="album text-muted">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="card">
-                <img src="http://www.clipartbest.com/cliparts/xTg/KrE/xTgKrEoEc.jpeg" alt="Card image cap">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content
-                  is a little bit longer.</p>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card">
-                <img src="http://www.clipartbest.com/cliparts/xTg/KrE/xTgKrEoEc.jpeg" alt="Card image cap">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content
-                  is a little bit longer.</p>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card">
-                <img src="http://www.clipartbest.com/cliparts/xTg/KrE/xTgKrEoEc.jpeg" alt="Card image cap">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content
-                  is a little bit longer.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
+      <app-home-right></app-home-right>
+
     </div>
   </div>
 </div>
