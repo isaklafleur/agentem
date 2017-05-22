@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {MdRadioModule} from '@angular/material';
-import {MdDialog, MdDialogRef} from '@angular/material';
+import {MdDialog, MdDialogRef, MdInputModule} from '@angular/material';
 import { FileUploader, FileSelectDirective} from 'ng2-file-upload';
 declare var $:any;
 
-const URL = 'http://localhost:3000/api/listings/api';
+const URL = 'http://localhost:3000/api/listings';
 
 @Component({
   selector: 'app-property-form',
@@ -39,10 +39,8 @@ export class PropertyFormComponent implements OnInit {
      this.uploader.onBuildItemForm = (item, form) => {
         form.append("token", this.token);
         if(this.filesSent===0) {
-          console.log('this.newProperty: ', this.newProperty);
           form.append("newListing", true)
           form.append("property", JSON.stringify(this.newProperty));
-          
         }
         this.filesSent++;
       };

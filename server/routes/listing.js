@@ -27,31 +27,26 @@ var upload = multer({ storage: storage });
 
 router.options('/api'); // enable pre-flight request for DELETE request
 router.get('/api', function(req, res) {
-        res.end('file catcher example');
+      res.end('file catcher example');
 });
 
-router.post('/api', upload.any(), function(req, res, next) {
+router.post('/', upload.any(), function(req, res, next) {
         // req.body contains the text fields
 
         if(req.body.newListing) {
-          console.log("1");
+
           let property = JSON.parse(req.body.property);
-          console.log('property: ', property);
-          console.log("2");
         
           property.uploadToken = req.body.token;
           
-          console.log("3");
           property.photos = [req.files[0].filename];
-          console.log("4");
-          console.log('property: ', JSON.stringify(property));
+
           const listing = new Listing(property);
           listing.save(err=>{
             if(err) {
               console.log(err);
               res.status(500).json({error: err})
             } else {
-              console.log("save ok")
               res.status(200).json({message: "Listing saved"})
             }
           })
@@ -79,21 +74,6 @@ router.get('/', (req, res, next) => {
       }
     })
     res.json(listingList);
-  });
-});
-
-router.post('/', upload.single('file'), function(req, res) {
-
-  const listing = new Listing(req.body);
-
-  listing.save((err) => {
-    if (err) {
-      return res.send(err);
-    }
-
-    return res.json({
-      message: 'New Listing created!',
-    });
   });
 });
 
