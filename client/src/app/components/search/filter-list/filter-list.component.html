@@ -1,0 +1,31 @@
+<md-card>
+  <form class="example-form">
+    <md-input-container>
+      <input #searchBox (click)="this.searchBox.value = ''" mdInput placeholder="Search by Street, Neighborhood, City.." value="Copacabana, Rio de Janeiro, RJ">
+    </md-input-container>
+    <template #beds>
+      <md-slider min="1" max="5" step="1" value="1" thumbLabel tickInterval="1"></md-slider>
+    </template>
+    <button type="button" class="btn btn-secondary" placement="bottom" [ngbPopover]="priceRange"
+      popoverTitle="Popover on bottom">Any Price
+    </button>
+    <template #beds>
+      <md-slider min="0" max="50000000" step="10000" value="1"></md-slider>
+    </template>
+    <button type="button" class="btn btn-secondary" placement="bottom" [ngbPopover]="beds">All Beds
+    </button>
+
+    <button md-raised-button color="primary">Search</button>
+  </form>
+</md-card>
+
+
+<li class="nav-item" *ngFor="let option of topMenuOptions; let i = index">
+  <template #submenus>
+    some submenues {{i}}
+  </template>
+  <!-- assuming "option.name" is a string -->
+  <button type="button" class="btn btn-secondary" href="#" popoverTitle="{{option.name}}" [ngbPopover]="submenus" placement="bottom"
+    triggers="mouseenter:mouseleave">menu nr. {{i}}
+    </button>
+</li>
