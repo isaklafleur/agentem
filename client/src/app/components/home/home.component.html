@@ -1,24 +1,27 @@
-<div class="container-fluid h-100">
+<div class="container-fluid h-100" id="margintop" style="margin-top: 50px;">
   <div class="row h-100">
-    <div class="col-sm-6 col-2 py-2 d-flex align-items-center justify-content-center" id="left">
-      <h1 class="hidden-xs-down"></h1>
-      <form class="form-inline">
-        <label class="mr-sm-2" for="inlineFormCustomSelect"></label>
-        <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
-    <option selected value="buy">Buy</option>
-    <option value="rent">Rent</option>
-    <option value="newDevelopment">New Development</option>
-  </select>
-        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-          <div class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
-          <input class="form-control" type="text" placeholder="Search by City or Street">
-        </div>
+    <div class="col-sm-6 col-12 text-white py-2 d-flex align-items-center justify-content-center" id="left">
+      <md-card>
+        <form class="example-form">
+          <md-select color="primary" [(ngModel)]="selectedValue" name="typeOfSearch">
+            <md-option *ngFor="let type of typeOffer" [value]="type.value">
+              {{ type.viewValue }}
+            </md-option>
+          </md-select><br><br>
+          <md-input-container>
+            <input #searchBox (click)="this.searchBox.value = ''" mdInput placeholder="Search by Street, Neighborhood, City.." value="Copacabana, Rio de Janeiro, RJ">
+          </md-input-container>
+          <button md-raised-button color="primary">Search</button>
+        </form><br>
+<button md-button (click)="openDialog()">Launch dialog</button>
+      </md-card>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
     </div>
-    <div class="col offset-2 offset-sm-6 py-2">
+
+    <div class="col-sm-6 col-12 offset-0 offset-sm-6 py-2">
+
       <app-home-right></app-home-right>
+
     </div>
   </div>
 </div>

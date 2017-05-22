@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MdSelectModule } from '@angular/material';
+import { MdInputModule, MdSelectModule } from '@angular/material';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
     {value: 'rent', viewValue: 'Rent'},
     {value: 'new-dev', viewValue: 'New Development'}
   ];
-
+  selectedValue: String = this.typeOffer[0].value;
   constructor() { }
 
 
