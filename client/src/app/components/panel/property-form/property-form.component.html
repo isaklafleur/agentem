@@ -1,0 +1,183 @@
+<div class="modal-header">
+  <h4 class="modal-title">Create listing</h4>
+  <button type="button" class="close" aria-label="Close" (click)="dialogRef.close('Option 1')"> <!--(click)="activeModal.dismiss('Cross click')">-->
+        <span aria-hidden="true">&times;</span>
+      </button>
+</div>
+
+<div class='containter'>
+  <div class='row'>
+
+    <div class="col-md-6">
+
+      <div class="modal-body">
+        <form>
+          <h4 class="modal-title">Listing information</h4>
+          <md-input-container>
+            <input mdInput placeholder="Name" name="propertyName" [(ngModel)]="newProperty.name" required>
+            <md-error>Name can't be empty</md-error>
+          </md-input-container>
+
+<!--
+
+<md-input-container>
+  <input placeholder="Email address"
+    #email="ngModel"
+    name="email"
+    type="text"
+    fullWidth={true}
+    [(ngModel)]="model.email"
+    required
+    email
+    dividerColor="accent"
+    dividerColor="{{ !email.valid ? 'warn' : 'primary' }}" />
+    <md-hint [hidden]="email.pristine || email.valid">
+        <span [hidden]="email.errors?.required || !email.errors?.email">
+            This doesn't appear to be a valid email address.
+        </span>
+        <span [hidden]="!email.errors?.required">Email address is required.</span>
+    </md-hint>
+</md-input-container>
+
+-->
+
+
+          <div class="form-group">
+            <label>Listing type: </label><br>
+            <md-radio-group class="example-radio-group" name="propertyTypes" [(ngModel)]="newProperty.listingType">
+              <md-radio-button class="example-radio-button" value='rental'>
+                Rental
+              </md-radio-button>
+              <md-radio-button class="example-radio-button" value='sale'>
+                For Sale
+              </md-radio-button>
+              <md-radio-button class="example-radio-button" value='new'>
+                New construction
+              </md-radio-button>
+            </md-radio-group>
+          </div>
+          <md-input-container>
+            <input mdInput placeholder="Price" name="price" [(ngModel)]="newProperty.price">
+          </md-input-container>
+
+          <table cellspacing="0">
+            <tr>
+              <td>
+                <md-input-container>
+                  <input mdInput placeholder="City" name="city" [(ngModel)]="newProperty.city">
+                </md-input-container>
+              </td>
+              <td>
+                <md-input-container class="example-full-width">
+                  <input mdInput #postalCode maxlength="5" size="8" placeholder="Zip">
+                  <md-hint align="end">{{postalCode.value.length}} / 5</md-hint>
+                </md-input-container>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <md-input-container>
+                  <input mdInput placeholder="Street" name="street" [(ngModel)]="newProperty.street">
+                </md-input-container>
+              </td>
+              <td>
+                <md-input-container>
+                  <input mdInput placeholder="Number" size="8" name="streetNumber" [(ngModel)]="newProperty.streetNumber">
+                </md-input-container>
+              </td>
+            </tr>
+          </table>
+          <button md-raised-button class="background-primary-color white-text"
+                        (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                    <span class="glyphicon glyphicon-upload"></span> Submit
+          </button>
+
+        </form>
+      </div>
+
+    </div>
+
+
+    <div class="col-md-6">
+      <div class="container modal-body">
+        <div class="row">
+          <div class="col-md-12">
+
+            <h4 class="modal-title">Drag files</h4>
+
+            <div ng2FileDrop style="height: 100px" [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)"
+              [uploader]="uploader" class="well my-drop-zone">
+            </div>
+
+            <input #selectElem type="file" id="fileUpload" name="fileUpload" class="inputfile" ng2FileSelect [uploader]="uploader" multiple
+            />
+            <label for="fileUpload" class="btn btn-primary" >Choose files...</label>
+           <!-- class="btn btn-primary"-->
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12" style="margin-bottom: 40px">
+            <table class="table">
+              <tbody>
+                <tr *ngFor="let item of uploader.queue; let i = index">
+                  <img src="#" class="file-image" id="fileImage{{i}}">{{showFile(item, i)}}
+
+                  <td *ngIf="uploader.isHTML5">
+                    <div class="progress" style="margin-bottom: 0;">
+                      <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                    </div>
+                  </td>
+                  <td class="text-center">
+                    <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                    <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                    <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                  </td>
+                  <td nowrap>
+
+                    <button type="button" md-raised-button (click)="item.remove()">
+                            <span class="glyphicon glyphicon-trash"></span> Remove
+                        </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <div>
+                <div>
+                    Queue progress:
+                    <div class="progress" style="">
+                        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+                    </div>
+                </div>
+
+  <!--              <button type="button" class="btn btn-success btn-s"
+                        (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                    <span class="glyphicon glyphicon-upload"></span> Upload all
+                </button>
+                <button type="button" class="btn btn-warning btn-s"
+                        (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+                    <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+                </button>
+                <button type="button" class="btn btn-danger btn-s"
+                        (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+                    <span class="glyphicon glyphicon-trash"></span> Remove all
+                </button>-->
+
+            </div>
+ 
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button md-raised-button (click)="dialogRef.close('Option 1')">Close</button>
+</div>
