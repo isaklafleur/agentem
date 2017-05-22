@@ -5,9 +5,10 @@ const listingSchema = new Schema({
   name: String,
   photos: Array,
   price: Number,
+  condo: Number,
   propertyType: {
         type: String,
-        enum : ['appartment','house'],
+        enum : ['appartment','house', 'villa'],
         default: 'appartment'
   },
   listingType: {
@@ -21,11 +22,12 @@ const listingSchema = new Schema({
   bedrooms: Number,
   suites: Number,
   parking: Number,
-  neighborhood: String,
+  neighbourhood: String,
   street: String,
-  streetNumbre: Number,
+  streetNumber: String,
   city: String,
   zip: String,
+  brokerId: String, 
   userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   uploadToken: Number,
 });

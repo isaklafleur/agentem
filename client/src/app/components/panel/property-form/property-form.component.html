@@ -1,5 +1,6 @@
 <div class="modal-header">
-  <h4 class="modal-title">Create listing</h4>
+  
+  <h4 class="modal-title" style="margin-top:30px">Create listing</h4>
   <button type="button" class="close" aria-label="Close" (click)="dialogRef.close('Option 1')"> <!--(click)="activeModal.dismiss('Cross click')">-->
         <span aria-hidden="true">&times;</span>
       </button>
@@ -8,17 +9,17 @@
 <div class='containter'>
   <div class='row'>
 
-    <div class="col-md-6">
+    <div class="col-md-7">
 
       <div class="modal-body">
-        <form>
-          <h4 class="modal-title">Listing information</h4>
-          <md-input-container>
+        <form #myForm="ngForm">
+   <!--       <h4 class="modal-title">Listing information</h4>-->
+          <md-input-container class="fullWidth">
             <input mdInput placeholder="Name" name="propertyName" [(ngModel)]="newProperty.name" required>
-            <md-error>Name can't be empty</md-error>
+            <md-error>Please enter the listing name</md-error>
           </md-input-container>
 
-<!--
+          <!--
 
 <md-input-container>
   <input placeholder="Email address"
@@ -43,22 +44,134 @@
 
 
           <div class="form-group">
-            <label>Listing type: </label><br>
-            <md-radio-group class="example-radio-group" name="propertyTypes" [(ngModel)]="newProperty.listingType">
-              <md-radio-button class="example-radio-button" value='rental'>
-                Rental
-              </md-radio-button>
-              <md-radio-button class="example-radio-button" value='sale'>
-                For Sale
-              </md-radio-button>
-              <md-radio-button class="example-radio-button" value='new'>
-                New construction
-              </md-radio-button>
-            </md-radio-group>
+
+
+
+
+            
+
+  <md-select placeholder="Listing type" required style="width:40%; margin-top:3%" [(ngModel)]="newProperty.listingType" name="listingTypes">
+    <md-option value='rental'>
+      Rental
+    </md-option>
+    <md-option value='sale'>
+      Sale
+    </md-option>
+    <md-option value='new'>
+      New construction
+    </md-option>
+  </md-select>
+
+
+ <!--         
+    <label>Listing type: </label><br>
+     <md-radio-group class="example-radio-group" name="listingTypes" [(ngModel)]="newProperty.listingType">
+              <table class="fullWidth">
+                <tr>
+                  <td class="td33">
+                    <md-radio-button class="example-radio-button" value='rental'>
+                      Rental
+                    </md-radio-button>
+                  </td>
+
+                  <td class="td33">
+                    <md-radio-button class="example-radio-button" value='sale'>
+                      For Sale
+                    </md-radio-button>
+                  </td>
+
+                  <td class="td33">
+                    <md-radio-button class="example-radio-button" value='new'>
+                      New 
+                    </md-radio-button>
+                  </td>
+                </tr>
+              </table>
+            </md-radio-group>-->
+
+
+
+<!--          </div>
+
+          <div class="form-group">-->
+
+          <md-select style="width:40%" required placeholder="Property type" [(ngModel)]="newProperty.propertyType" name="propertyTypes">
+            <md-option value='appartment'>
+              Appartment &nbsp; &nbsp; &nbsp; 
+            </md-option>
+            <md-option value='house'>
+              House
+            </md-option>
+            <md-option value='villa'>
+              Villa
+            </md-option>
+          </md-select>
+
+<!--
+            <label>Property type: </label><br>
+            <md-radio-group class="example-radio-group" name="propertyTypes" [(ngModel)]="newProperty.propertyType">
+              <table class="fullWidth">
+                <tr>
+                  <td class="td33">
+                    <md-radio-button class="example-radio-button" value='appartment'>
+                      Appartment
+                    </md-radio-button>
+                  </td>
+
+                  <td class="td33">
+                    <md-radio-button class="example-radio-button" value='house'>
+                      House
+                    </md-radio-button>
+                  </td>
+
+                  <td class="td33">
+                    <md-radio-button class="example-radio-button" value='villa'>
+                      Villa
+                    </md-radio-button>
+                  </td>
+                </tr>
+              </table>
+            </md-radio-group>-->
+
           </div>
-          <md-input-container>
-            <input mdInput placeholder="Price" name="price" [(ngModel)]="newProperty.price">
+
+
+          $ <md-input-container>
+           <input mdInput price="ngModel" pattern="\d+" placeholder="Price" size="15" name="price" [(ngModel)]="newProperty.price" required>
+            <md-error>Please enter correct price</md-error>
           </md-input-container>
+          
+          $ <md-input-container>
+            <input mdInput placeholder="Condo" pattern="\d+" size="15" name="condo" [(ngModel)]="newProperty.condo">
+            <md-error>Please enter correct price</md-error>
+          </md-input-container>
+          <br>
+          <md-input-container>
+            <input mdInput placeholder="Square meters" size="14" required name="size" [(ngModel)]="newProperty.size">
+            <md-error>Please enter correct size</md-error>
+          </md-input-container>
+
+          <md-input-container>
+            <input mdInput placeholder="Suites" pattern="\d+" size="10"  name="suites" [(ngModel)]="newProperty.suites">
+            <md-error>Please enter number</md-error>
+          </md-input-container>
+
+          <md-input-container>
+            <input mdInput placeholder="Bedrooms" pattern="\d+" size="10" name="bedrooms" [(ngModel)]="newProperty.bedrooms">
+            <md-error>Please enter number</md-error>
+          </md-input-container>
+
+          <md-input-container>
+            <input mdInput placeholder="Parking spots" pattern="\d+" size="10" name="parking" [(ngModel)]="newProperty.parking">
+            <md-error>Please enter number</md-error>
+          </md-input-container>
+          
+          <br>
+
+          <md-input-container>
+            <input mdInput placeholder="Broker ID" size="10" name="broker" [(ngModel)]="newProperty.brokerId">
+          </md-input-container>
+
 
           <table cellspacing="0">
             <tr>
@@ -69,10 +182,15 @@
               </td>
               <td>
                 <md-input-container class="example-full-width">
-                  <input mdInput #postalCode maxlength="5" size="8" placeholder="Zip">
-                  <md-hint align="end">{{postalCode.value.length}} / 5</md-hint>
+                  <input mdInput #postalCode maxlength="8" size="8" placeholder="Zip">
+                  <md-hint align="end">{{postalCode.value.length}} / 8</md-hint>
                 </md-input-container>
               </td>
+              <td>
+                <md-input-container>
+                  <input mdInput placeholder="Neighbourhood" name="neighbourhood" [(ngModel)]="newProperty.neighbourhood">
+                </md-input-container>
+              </td>         
             </tr>
             <tr>
               <td>
@@ -87,18 +205,13 @@
               </td>
             </tr>
           </table>
-          <button md-raised-button class="background-primary-color white-text"
-                        (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
-                    <span class="glyphicon glyphicon-upload"></span> Submit
-          </button>
-
         </form>
       </div>
 
     </div>
 
 
-    <div class="col-md-6">
+    <div class="col-md-5">
       <div class="container modal-body">
         <div class="row">
           <div class="col-md-12">
@@ -111,8 +224,8 @@
 
             <input #selectElem type="file" id="fileUpload" name="fileUpload" class="inputfile" ng2FileSelect [uploader]="uploader" multiple
             />
-            <label for="fileUpload" class="btn btn-primary" >Choose files...</label>
-           <!-- class="btn btn-primary"-->
+            <label for="fileUpload" class="btn btn-primary">Choose files...</label>
+            <!-- class="btn btn-primary"-->
           </div>
         </div>
 
@@ -142,16 +255,16 @@
                 </tr>
               </tbody>
             </table>
-            
-            <div>
-                <div>
-                    Queue progress:
-                    <div class="progress" style="">
-                        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
-                    </div>
-                </div>
 
-  <!--              <button type="button" class="btn btn-success btn-s"
+            <div>
+              <div>
+                Queue progress:
+                <div class="progress" style="">
+                  <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+                </div>
+              </div>
+
+              <!--              <button type="button" class="btn btn-success btn-s"
                         (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
                     <span class="glyphicon glyphicon-upload"></span> Upload all
                 </button>
@@ -165,7 +278,7 @@
                 </button>-->
 
             </div>
- 
+
           </div>
 
         </div>
@@ -177,7 +290,13 @@
 
   </div>
 </div>
-
+<!-- [disabled]="!myForm.form.valid" -->
 <div class="modal-footer">
+            <span [hidden]="!submittedInvalid || myForm.form.valid" style="color:red"> Please fill out the form
+            </span>
+            
+            <button md-raised-button class="background-primary-color white-text" (click)="doSubmit(myForm.form.valid)" >
+                    <span class="glyphicon glyphicon-upload"></span> Submit
+          </button>
   <button md-raised-button (click)="dialogRef.close('Option 1')">Close</button>
 </div>

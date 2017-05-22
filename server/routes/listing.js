@@ -72,7 +72,7 @@ router.get('/', (req, res, next) => {
       if(listing.image.split('/')[1]==="uploads") {
         listing.image = "http://localhost:3000"+listing.image;
       }
-    })
+    });
     res.json(listingList);
   });
 });

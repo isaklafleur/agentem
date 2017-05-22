@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, Output, ViewChild, ElementRef,EventEmitter, AfterViewInit } from '@angular/core';
 import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {MdRadioModule} from '@angular/material';
 import {MdDialog, MdDialogRef, MdInputModule} from '@angular/material';
@@ -15,9 +15,12 @@ const URL = 'http://localhost:3000/api/listings';
 export class PropertyFormComponent implements OnInit {  
   @Input() name;
   @ViewChild('selectElem') el:ElementRef; 
+
   newProperty: any = {};
   token: number = Date.now();
   filesSent: number = 0;
+  loginForm: any;
+  submittedInvalid: boolean = false;
 
   showFile(item, index) {
     readURL(item, index);
@@ -33,10 +36,11 @@ export class PropertyFormComponent implements OnInit {
     this.hasBaseDropZoneOver = e;
   }
 
-  constructor(/*public activeModal: NgbActiveModal,*/ public dialogRef: MdDialogRef<PropertyFormComponent>) { }
+  constructor( public dialogRef: MdDialogRef<PropertyFormComponent>) { }
 
   ngOnInit() { 
      this.uploader.onBuildItemForm = (item, form) => {
+       console.log("onBuildItemForm");
         form.append("token", this.token);
         if(this.filesSent===0) {
           form.append("newListing", true)
@@ -45,7 +49,15 @@ export class PropertyFormComponent implements OnInit {
         this.filesSent++;
       };
   }
-
+  doSubmit(formValid) {
+    if(!formValid) {
+      this.submittedInvalid = true;
+    } else {
+    //  this.uploader.uploadAll();
+      this.dialogRef.close("submitted");
+    }
+    //this.uploader.getNotUploadedItems().length
+  }
 }
 function readURL(input, index) {
 
