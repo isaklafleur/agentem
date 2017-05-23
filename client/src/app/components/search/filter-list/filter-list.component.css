@@ -45,7 +45,7 @@ example-radio-group {
   top: 74px;
   right: 0;
   left: 0;
-  z-index: 1030;
+  z-index: 990;
   margin-top: 0;
   margin-bottom: 100px !important;
 }
