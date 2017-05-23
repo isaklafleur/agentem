@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MdSliderModule, MdRadioModule, MdButtonModule, MdInputModule, MdCheckboxModule } from '@angular/material';
+import { MdRadioModule, MdButtonModule, MdInputModule, MdCheckboxModule } from '@angular/material';
+declare var $: any;
 
 @Component({
   selector: 'app-filter-list',
@@ -14,9 +15,13 @@ newSearch: any = {};
 
   ngOnInit() {
     this.newSearch.propertyType = {};
+    $(window).click((event) => {
+      
+
+    });
   }
   submitForm(myForm) {
-    console.log(myForm);
-    console.log(this.newSearch)
+    // console.log(myForm);
+    // console.log(this.newSearch)
   }
 }
