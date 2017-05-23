@@ -95,3 +95,15 @@
     pointer-events : none;
     color: white;
 }
+
+.search-results {
+			height: 100%;
+			overflow: scroll;
+     
+		}
+
+
+.loader {
+  text-align: center;
+  width:100%;
+}

@@ -8,7 +8,8 @@ mongoose.connect(`mongodb://localhost:${portDB}/${databaseName}`);
 
 
 var lineReader = require('readline').createInterface({
-  input: require('fs').createReadStream('./sample.csv')
+  //input: require('fs').createReadStream('./sample.csv')
+  input: require('fs').createReadStream('./SampleDataRio.csv')
 });
 
 lineReader.on('line', function (line) {

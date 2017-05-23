@@ -4,3 +4,7 @@
     .dark-modal .close {
       color: white;   
     }
+    body::-webkit-scrollbar { 
+    display: none; 
+		overflow: hidden;
+}

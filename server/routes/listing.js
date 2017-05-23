@@ -63,7 +63,7 @@ router.post('/', upload.any(), function(req, res, next) {
 
 
 router.get('/', (req, res, next) => {
-  Listing.find((err, listingList) => {
+  Listing.find().skip(+req.query.offset).limit(+req.query.limit).exec((err, listingList) => {
     if (err) {
       res.status(500).json(err);
       return;
