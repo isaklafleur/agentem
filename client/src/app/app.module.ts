@@ -48,7 +48,9 @@ import { FilterListComponent } from './components/search/filter-list/filter-list
     MaterialModule,
     NgbModule.forRoot(),
     FileUploadModule,
-    AgmCoreModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBoio8nEHTzRvPgWo3ObzLRxDubIQebLrM'
+    }),
     InfiniteScrollModule,
   ],
   providers: [],
