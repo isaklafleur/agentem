@@ -17,7 +17,7 @@ import 'hammerjs';
 import { routes } from './routes';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
-import { HomeRightComponent} from './components/home/home-right/home-right.component';
+
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
 import { PropertyFormComponent,  DialogResultExampleDialog  } from './components/panel/property-form/property-form.component';
 import { GoogleMapsComponent } from './components/search/google-maps/google-maps.component';
@@ -29,7 +29,6 @@ import { FilterListComponent } from './components/search/filter-list/filter-list
   declarations: [
     AppComponent,
     HomeComponent,
-    HomeRightComponent,
     TopMenuComponent,
     PropertyFormComponent,
     DialogResultExampleDialog,

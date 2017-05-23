@@ -97,12 +97,14 @@
 }
 
 .search-results {
-			height: 100%;
-			overflow: scroll;
-     
-		}
+    height: 110vh;
+    overflow: scroll;
+    	overflow-x:hidden;
+  }
 
-
+.md-card {
+  height:1000px;
+}
 .loader {
   text-align: center;
   width:100%;
