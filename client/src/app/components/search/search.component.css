@@ -1,0 +1,23 @@
+.jumbotron {
+  width: 80%
+}
+
+md-input-container {
+  width: 300px;
+}
+body,
+html {
+  height: 100%;
+}
+
+@media (min-width: 576px) {
+  #left {
+    position: fixed;
+    top: 56px;
+    bottom: 0;
+  }
+}
+
+#left {
+
+}

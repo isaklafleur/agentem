@@ -1,4 +1,4 @@
-<md-card>
+<md-card id="filterSearchCard">
   <form (ngSubmit)="submitForm(myForm)" #myForm="ngForm" class="example-form">
     <md-input-container>
       <input #addressSearchBox [(ngModel)]="newSearch.address" id="addressSearchBox" name="address" (click)="this.addressSearchBox.value = ''" mdInput placeholder="Search by Street, Neighborhood, City.."

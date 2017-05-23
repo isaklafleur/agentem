@@ -39,3 +39,13 @@ example-radio-group {
   /* Support for IE. */
   font-feature-settings: 'liga';
 }
+
+#filterSearchCard {
+  position: fixed;;
+  top: 74px;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  margin-top: 0;
+  margin-bottom: 100px !important;
+}
