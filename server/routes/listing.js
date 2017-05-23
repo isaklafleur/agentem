@@ -69,7 +69,9 @@ router.get('/', (req, res, next) => {
       return;
     }
     listingList.forEach(listing=>{
-      listing.photos = listing.photos.map(photo=>"http://localhost:3000/uploads/"+photo)
+      listing.photos = listing.photos.map(photo=>{
+          return photo.split(":")[0]==="https" ? photo : "http://localhost:3000/uploads/"+photo;
+      });
     });
     res.status(200).json(listingList);
   });

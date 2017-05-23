@@ -5,21 +5,28 @@
         value="Copacabana, Rio de Janeiro, RJ">
     </md-input-container>
     
-    <ng-template #priceRange>
-  <table class="example-full-width" cellspacing="0"><tr>
+    <ng-template #priceRange><div  (click)="$event.stopPropagation()">
+  <table class="example-full-width" cellspacing="0" ><tr>
     <td><md-input-container class="example-full-width">
-      <input mdInput placeholder="Min Price" [(ngModel)]="newSearch.minPrice" name="minPrice">
+      <input mdInput placeholder="Min Price" [(ngModel)]="newSearch.minPrice" pattern="\d+" name="minPrice">
+      <md-error>Please enter number</md-error>
     </md-input-container></td> 
     <td><md-input-container class="example-full-width">
-      <input mdInput placeholder="Max Price" [(ngModel)]="newSearch.maxPrice" name="maxPrice">
+      <input mdInput placeholder="Max Price" [(ngModel)]="newSearch.maxPrice" pattern="\d+" name="maxPrice">
+      <md-error>Please enter number</md-error>
     </md-input-container></td>
   </tr></table>
+  </div>
     </ng-template>
 
-    <button type="button" class="btn btn-secondary" placement="bottom" [ngbPopover]="priceRange">Any Price
+
+    <button type="button" class="btn btn-secondary" placement="bottom" #p1="ngbPopover" (document:click)="p1.close()"  (click)="$event.stopPropagation();p2.close();p3.close()" [ngbPopover]="priceRange">Any Price
     </button>
+   
+   
+   
     <ng-template #beds>
-      <md-radio-group class="example-radio-group" name="bedrooms" [(ngModel)]="newSearch.bedrooms">
+      <md-radio-group class="example-radio-group" name="bedrooms" (click)="$event.stopPropagation()" [(ngModel)]="newSearch.bedrooms">
         <md-radio-button class="example-radio-button" value="0">
           Studio+
         </md-radio-button>
@@ -37,17 +44,17 @@
         </md-radio-button>
       </md-radio-group>
     </ng-template>
-    <button type="button" class="btn btn-secondary" placement="bottom" [ngbPopover]="beds">All Beds
+    <button type="button" class="btn btn-secondary" placement="bottom"  #p2="ngbPopover" (document:click)="p2.close()"  (click)="$event.stopPropagation();p1.close();p3.close()"  [ngbPopover]="beds">All Beds
     </button>
     <ng-template #propertyType>
-    <section class="example-section">
+    <section class="example-section" (click)="$event.stopPropagation()">
       <md-checkbox class="example-margin" name="apartment" [(ngModel)]="newSearch.propertyType.apartment">Apartment</md-checkbox>
       <md-checkbox class="example-margin" name="house" [(ngModel)]="newSearch.propertyType.house">House</md-checkbox>
       <md-checkbox class="example-margin" name="villa" [(ngModel)]="newSearch.propertyType.villa">Villa</md-checkbox>
     </section>
 
     </ng-template>
-    <button type="button" class="btn btn-secondary" placement="bottom" [ngbPopover]="propertyType">All Home Types
+    <button type="button" class="btn btn-secondary" placement="bottom" #p3="ngbPopover" (document:click)="p3.close()"  (click)="$event.stopPropagation();p1.close();p2.close()" [ngbPopover]="propertyType">All Home Types
     </button>
 
     <button md-raised-button color="primary">Search</button>

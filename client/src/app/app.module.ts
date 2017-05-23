@@ -8,6 +8,9 @@ import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FileUploadModule } from 'ng2-file-upload';
 import { AgmCoreModule } from '@agm/core';
+
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import 'hammerjs';
 
 // Custom Components
@@ -46,8 +49,11 @@ import { FilterListComponent } from './components/search/filter-list/filter-list
     NgbModule.forRoot(),
     FileUploadModule,
     AgmCoreModule.forRoot(),
+    InfiniteScrollModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+platformBrowserDynamic().bootstrapModule(AppModule);
