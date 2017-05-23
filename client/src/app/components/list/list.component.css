@@ -1,10 +1,37 @@
 .list-card {
-  width:47%;
+  min-width:210px;
+  width:48%;
   float:left;
   margin:1%;
 
 }
-  
+
+.photo-text {
+   position: absolute; 
+   top: 69%; 
+   left: 0px; 
+   width: 100%; 
+   color: white;
+
+   font: bold 20px Helvetica, Sans-Serif; 
+   letter-spacing: -1px;  
+   background: rgb(0, 0, 0); /* fallback color */
+   background: rgba(0, 0, 0, 0.7);
+   padding: 10px; 
+}
+
+	@media (max-width: 1024px) {
+		.list-card {
+      width: 100%;
+		}
+    .photo-text {
+      top: 75%;
+    }  
+	}
+
+.no-break {
+   white-space: pre;
+}
 /*  white-space: pre;*/
 
 .property-villa {
@@ -16,26 +43,54 @@
   background-size: cover;
 }
 
-.property-appartment {
+.property-apartment {
   background-image: url('/assets/apartment.svg');
   background-size: cover;
 }
 
-.property-photo {
- 
-   border:1px solid black;
+
+@keyframes pulse_animation {
+	0% { transform: scale(1); }
+	50% { transform: scale(1.1); }
+	100% { transform: scale(1); }
+}
+@keyframes pulse_animation_opacity {
+	0% {  opacity: 0.5; }
+	50% { opacity: 0.8; }
+	100% { opacity: 0.5; }
+}
+
+.heart {
+  position: absolute;
+  top: 32%;
+  left: 80%;
+}
+
+.icon-stack:hover {
+  /*transform: scale(1.3);*/
+  	animation-name: pulse_animation;
+	animation-duration: 1000ms;
+/*	transform-origin:70% 70%;*/
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+.icon-stack {
+  transition:all 0.3s ease;
+}
+.icon-a {
+    color: white;
+    opacity: 0.5;
 
 }
-.photo-text {
-     position: absolute; 
-   top: 203px; 
-   left: 0px; 
-   width: 100%; 
-   color: white;
-
-   font: bold 20px Helvetica, Sans-Serif; 
-   letter-spacing: -1px;  
-   background: rgb(0, 0, 0); /* fallback color */
-   background: rgba(0, 0, 0, 0.7);
-   padding: 10px; 
+.icon-a:hover {
+   	animation-name: pulse_animation_opacity;
+	animation-duration: 1000ms;
+/*	transform-origin:70% 70%;*/
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+    /*opacity: 0.8;*/
+}
+.icon-b {
+    pointer-events : none;
+    color: "#FFF";
 }

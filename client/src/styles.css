@@ -11,7 +11,7 @@
 	body,
 	html {
 		height: 100%;
-
+		background-color:lightgrey;
 	}
 
 
@@ -41,3 +41,4 @@ background: -webkit-linear-gradient(top, #a9e4f7 0%,#0fb4e7 100%); /* Chrome10-2
 background: linear-gradient(to bottom, #a9e4f7 0%,#0fb4e7 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a9e4f7', endColorstr='#0fb4e7',GradientType=0 ); /* IE6-9 */
 	}
+
