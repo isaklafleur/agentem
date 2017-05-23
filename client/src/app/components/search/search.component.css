@@ -16,8 +16,15 @@ html {
     top: 56px;
     bottom: 0;
   }
+  #wrap1 {
+    height: 400px;
+    border: solid 1px red;
+  }
+    #wrap2 {
+    margin: 0;
+  }
 }
 
-#left {
-
-}
+  #wrap2 {
+    margin: auto;
+  }
