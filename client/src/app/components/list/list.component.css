@@ -77,13 +77,14 @@
 .icon-stack {
   transition:all 0.3s ease;
 }
+
 .icon-a {
     color: white;
-    opacity: 0.5;
-
+    opacity: 0.3;
 }
+
 .icon-a:hover {
-   	animation-name: pulse_animation_opacity;
+  animation-name: pulse_animation_opacity;
 	animation-duration: 1000ms;
 /*	transform-origin:70% 70%;*/
 	animation-iteration-count: infinite;
@@ -92,5 +93,5 @@
 }
 .icon-b {
     pointer-events : none;
-    color: "#FFF";
+    color: white;
 }

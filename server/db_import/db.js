@@ -29,46 +29,46 @@ lineReader.on('line', function (line) {
     case 1: r.listingType = "rental"; break;
     case 2: r.listingType = "new"; break;
   }
-// ptype_id, 4
-// st_name, 5
-r.streetName = l[5];
-// st_no, 6
-r.streetNumber = l[6];
-// cep, 7
-r.zip = l[7];
-// neigh, 8
-r.neighbourhood = l[8];
-// city, 9
-r.city = l[9];
-// state, 10
-r.state = l[10];
-// area, 11
-r.size = l[11];
-// price, 12
-r.price = l[12];
-// pricesqm, 13
-r.priceSqm = l[13];
-// bed, 14
-r.bedrooms = l[14];
-// bath, 15
-r.bathrooms = l[15];
-// suite, 16
-r.suites = l[16];
-// parking, 17
-r.parking = l[17];
-// image_count, 18
-// latitude, 19
-// longitude, 20
-r.location = {
-  type: 'Point',
-  coordinates: [l[20], l[19]]
-};
+  // ptype_id, 4
+  // st_name, 5
+  r.streetName = l[5];
+  // st_no, 6
+  r.streetNumber = l[6];
+  // cep, 7
+  r.zip = l[7];
+  // neigh, 8
+  r.neighbourhood = l[8];
+  // city, 9
+  r.city = l[9];
+  // state, 10
+  r.state = l[10];
+  // area, 11
+  r.size = l[11];
+  // price, 12
+  r.price = l[12];
+  // pricesqm, 13
+  r.priceSqm = l[13];
+  // bed, 14
+  r.bedrooms = l[14];
+  // bath, 15
+  r.bathrooms = l[15];
+  // suite, 16
+  r.suites = l[16];
+  // parking, 17
+  r.parking = l[17];
+  // image_count, 18
+  // latitude, 19
+  // longitude, 20
+  r.location = {
+    type: 'Point',
+    coordinates: [l[20], l[19]]
+  };
 
-// accuracy, 21
-r.accuracy = l[21];
-// image_name 22
+  // accuracy, 21
+  r.accuracy = l[21];
+  // image_name 22
 
-r.photos = [l[22]];
+  r.photos = ["https://media.agenteimovel.com.br/images/"+l[22]];
 
  let listing = new Listing(r);
 

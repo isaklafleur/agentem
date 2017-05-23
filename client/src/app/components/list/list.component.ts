@@ -15,6 +15,7 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit() {
+
       this.listingService.getList()
       .subscribe((listings) => {
         this.listings = listings;
@@ -25,5 +26,9 @@ export class ListComponent implements OnInit {
     $("#heart"+index+" i:nth-child(1)").css("color", "red").css("opacity", 1).css("animation", "none");
     $('#heart'+index).css("animation", "none");
   }
+
+  onScroll () {
+	    console.log('scrolled!!')
+	}
 
 }
