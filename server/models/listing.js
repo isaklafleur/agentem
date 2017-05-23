@@ -9,8 +9,8 @@ const listingSchema = new Schema({
   description: String,
   propertyType: {
         type: String,
-        enum : ['appartment','house', 'villa'],
-        default: 'appartment'
+        enum : ['apartment','house', 'villa'],
+        default: 'apartment'
   },
   listingType: {
         type: String,
