@@ -8,10 +8,10 @@ export class ListingService {
 
 
   constructor( private http: Http ) { }
-  getList() {
+  getList(limit, offset) {
     // let headers = new Headers({ 'Authorization': 'JWT ' + this.SessionService.token });
     // let options = new RequestOptions({ headers: headers });
-    return this.http.get(`${this.BASE_URL}`)//, options)
+    return this.http.get(`${this.BASE_URL}?limit=${limit}&offset=${offset}`)//, options)
       .map((res) => res.json());
   }
 
