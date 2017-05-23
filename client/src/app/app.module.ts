@@ -20,6 +20,10 @@ import {  FileUploadModule } from 'ng2-file-upload';
 import { GoogleMapsComponent } from './components/google-maps/google-maps.component';
 import { ListComponent } from './components/list/list.component';
 
+import { FileUploadModule } from 'ng2-file-upload';
+import { SearchComponent } from './components/search/search.component';
+import { GoogleMapsComponent } from './components/search/google-maps/google-maps.component';
+import { FilterListComponent } from './components/search/filter-list/filter-list.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +35,8 @@ import { ListComponent } from './components/list/list.component';
     DialogResultExampleDialog,
     GoogleMapsComponent,
     ListComponent,
+    SearchComponent,
+    FilterListComponent,
   ],
   entryComponents: [DialogResultExampleDialog],
   imports: [
