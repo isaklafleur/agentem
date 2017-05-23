@@ -1,18 +1,53 @@
-<md-card>
-  <form class="example-form">
+<md-card id="filterSearchCard">
+  <form (ngSubmit)="submitForm(myForm)" #myForm="ngForm" class="example-form">
     <md-input-container>
-      <input #searchBox (click)="this.searchBox.value = ''" mdInput placeholder="Search by Street, Neighborhood, City.." value="Copacabana, Rio de Janeiro, RJ">
+      <input #addressSearchBox [(ngModel)]="newSearch.address" id="addressSearchBox" name="address" (click)="this.addressSearchBox.value = ''" mdInput placeholder="Search by Street, Neighborhood, City.."
+        value="Copacabana, Rio de Janeiro, RJ">
     </md-input-container>
-    <template #beds>
-      <md-slider min="1" max="5" step="1" value="1" thumbLabel tickInterval="1"></md-slider>
-    </template>
-    <button type="button" class="btn btn-secondary" placement="bottom" [ngbPopover]="priceRange"
-      popoverTitle="Popover on bottom">Any Price
+    
+    <ng-template #priceRange>
+  <table class="example-full-width" cellspacing="0"><tr>
+    <td><md-input-container class="example-full-width">
+      <input mdInput placeholder="Min Price" [(ngModel)]="newSearch.minPrice" name="minPrice">
+    </md-input-container></td> 
+    <td><md-input-container class="example-full-width">
+      <input mdInput placeholder="Max Price" [(ngModel)]="newSearch.maxPrice" name="maxPrice">
+    </md-input-container></td>
+  </tr></table>
+    </ng-template>
+
+    <button type="button" class="btn btn-secondary" placement="bottom" [ngbPopover]="priceRange">Any Price
     </button>
-    <template #beds>
-      <md-slider min="0" max="50000000" step="10000" value="1"></md-slider>
-    </template>
+    <ng-template #beds>
+      <md-radio-group class="example-radio-group" name="bedrooms" [(ngModel)]="newSearch.bedrooms">
+        <md-radio-button class="example-radio-button" value="0">
+          Studio+
+        </md-radio-button>
+        <md-radio-button class="example-radio-button" value="1">
+          1+
+        </md-radio-button>
+        <md-radio-button class="example-radio-button" value="2">
+          2+
+        </md-radio-button>
+        <md-radio-button class="example-radio-button" value="3">
+          3+
+        </md-radio-button>
+        <md-radio-button class="example-radio-button" value="4">
+          4+
+        </md-radio-button>
+      </md-radio-group>
+    </ng-template>
     <button type="button" class="btn btn-secondary" placement="bottom" [ngbPopover]="beds">All Beds
+    </button>
+    <ng-template #propertyType>
+    <section class="example-section">
+      <md-checkbox class="example-margin" name="apartment" [(ngModel)]="newSearch.propertyType.apartment">Apartment</md-checkbox>
+      <md-checkbox class="example-margin" name="house" [(ngModel)]="newSearch.propertyType.house">House</md-checkbox>
+      <md-checkbox class="example-margin" name="villa" [(ngModel)]="newSearch.propertyType.villa">Villa</md-checkbox>
+    </section>
+
+    </ng-template>
+    <button type="button" class="btn btn-secondary" placement="bottom" [ngbPopover]="propertyType">All Home Types
     </button>
 
     <button md-raised-button color="primary">Search</button>
@@ -20,12 +55,12 @@
 </md-card>
 
 
-<li class="nav-item" *ngFor="let option of topMenuOptions; let i = index">
+<!--<li class="nav-item" *ngFor="let option of topMenuOptions; let i = index">
   <template #submenus>
     some submenues {{i}}
   </template>
-  <!-- assuming "option.name" is a string -->
+  // assuming "option.name" is a string
   <button type="button" class="btn btn-secondary" href="#" popoverTitle="{{option.name}}" [ngbPopover]="submenus" placement="bottom"
     triggers="mouseenter:mouseleave">menu nr. {{i}}
     </button>
-</li>
+</li>-->

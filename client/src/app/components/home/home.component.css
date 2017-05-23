@@ -5,7 +5,37 @@
 md-input-container {
   width: 300px;
 }
-
 .no-padding {
   padding: 0;
+}
+body,
+html {
+  height: 100%;
+}
+
+@media (min-width: 576px) {
+  #left {
+    position: fixed;
+    top: 56px;
+    bottom: 0;
+  }
+}
+
+#left {
+  /*		background-image: url('https://s-media-cache-ak0.pinimg.com/originals/ed/6c/3b/ed6c3b66df752368991ef86f11999069.jpg');
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+*/
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a9e4f7+0,0fb4e7+100;Ble+3D+%235 */
+  background: #a9e4f7;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #a9e4f7 0%, #0fb4e7 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #a9e4f7 0%, #0fb4e7 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #a9e4f7 0%, #0fb4e7 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a9e4f7', endColorstr='#0fb4e7', GradientType=0);
+  /* IE6-9 */
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MdSliderModule, MdRadioModule, MdButtonModule, MdInputModule, MdCheckboxModule } from '@angular/material';
 
 @Component({
   selector: 'app-filter-list',
@@ -6,11 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./filter-list.component.css']
 })
 export class FilterListComponent implements OnInit {
-  topMenuOptions = ['test1', 'test2', 'test3'];
-  beds = ['Studio+', '1+', '2+', '3+', '4+'];
+//   topMenuOptions = ['test1', 'test2', 'test3'];
+newSearch: any = {};
+
   constructor() { }
 
   ngOnInit() {
+    this.newSearch.propertyType = {};
   }
-
+  submitForm(myForm) {
+    console.log(myForm);
+    console.log(this.newSearch)
+  }
 }

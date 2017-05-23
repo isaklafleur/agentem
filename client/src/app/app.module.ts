@@ -4,19 +4,19 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule, Routes } from '@angular/router';
+import { MaterialModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FileUploadModule } from 'ng2-file-upload';
+import { AgmCoreModule } from '@agm/core';
 import 'hammerjs';
 
+// Custom Components
 import { routes } from './routes';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { HomeRightComponent} from './components/home/home-right/home-right.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from '@angular/material';
-import 'hammerjs';
-
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
 import { PropertyFormComponent,  DialogResultExampleDialog  } from './components/panel/property-form/property-form.component';
-import {  FileUploadModule } from 'ng2-file-upload';
 import { GoogleMapsComponent } from './components/search/google-maps/google-maps.component';
 import { ListComponent } from './components/list/list.component';
 import { SearchComponent } from './components/search/search.component';
@@ -44,7 +44,8 @@ import { FilterListComponent } from './components/search/filter-list/filter-list
     BrowserAnimationsModule,
     MaterialModule,
     NgbModule.forRoot(),
-    FileUploadModule
+    FileUploadModule,
+    AgmCoreModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
