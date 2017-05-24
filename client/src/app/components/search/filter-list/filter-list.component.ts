@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MdRadioModule, MdButtonModule, MdInputModule, MdCheckboxModule } from '@angular/material';
 import { ListingService } from '../../../services/listing.service';
-import {FormControl} from '@angular/forms';
+import {FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 
 declare var $: any;
@@ -16,21 +16,22 @@ export class FilterListComponent implements OnInit {
   newSearch: any = {};
   maxPriceControl = new FormControl();
   minPriceControl = new FormControl();
+  public searchControl: FormControl;
 
   constructor(private listingService: ListingService) { }
-  
+
   ngOnInit() {
     this.newSearch = this.listingService.filter;
     this.newSearch.propertyType = {};
 
-    
+
     this.minPriceControl.valueChanges
       .debounceTime(1000)
       .subscribe(newValue => this.listingService.update());
     this.maxPriceControl.valueChanges
       .debounceTime(1000)
       .subscribe(newValue => this.listingService.update());
-    
+
     $(window).click((event) => {
 
     });

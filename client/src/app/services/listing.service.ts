@@ -4,8 +4,8 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ListingService {
-  BASE_URL: string = 'http://localhost:3000/api/listings';
-  listings: any[]=[];
+  BASE_URL = 'http://localhost:3000/api/listings';
+  listings: any[] = [];
   filter: any = {};
 
   constructor( private http: Http ) { }
@@ -16,10 +16,9 @@ export class ListingService {
       .map((res) => res.json()).subscribe((listings) => {
           this.listings = this.listings.concat(listings);
           callback(listings);
-        });;
+        });
   }
 
-        
   get(id) {
     // let headers = new Headers({ 'Authorization': 'JWT ' + this.SessionService.token });
     // let options = new RequestOptions({ headers: headers });
@@ -30,5 +29,4 @@ export class ListingService {
   update() {
     console.log(this.filter);
   }
-
 }
