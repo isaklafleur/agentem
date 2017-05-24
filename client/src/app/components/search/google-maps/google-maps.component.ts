@@ -16,10 +16,6 @@ export class GoogleMapsComponent implements OnInit {
 constructor(private listingService: ListingService ) { }
 
   ngOnInit() {
-    setTimeout(()=>{
-      console.log(this.listingService.listings);
-    },2000)
-    console.log("init MAPS<<<");
     
   }
 
