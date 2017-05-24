@@ -5,7 +5,7 @@
 		    (scrolled)="onScroll()"
 		    [scrollWindow]="false">
 		
-  <md-card *ngFor="let listing of listings; let i = index" class="list-card">
+  <md-card *ngFor="let listing of listingService.listings; let i = index" class="list-card">
     <md-card-header>
       <div md-card-avatar class="property-{{listing.propertyType}}"></div>
       <md-card-title><span class="no-break"> {{listing.name}}</span></md-card-title>
