@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 export class ListingService {
   BASE_URL: string = 'http://localhost:3000/api/listings';
   listings: any[]=[];
+  filter: any = {};
 
   constructor( private http: Http ) { }
   getList(limit, offset, callback) {
@@ -25,4 +26,9 @@ export class ListingService {
     return this.http.get(`${this.BASE_URL}/${id}`)//, options)
       .map((res) => res.json());
   }
+
+  update() {
+    console.log(this.filter);
+  }
+
 }
