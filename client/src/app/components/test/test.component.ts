@@ -1,34 +1,89 @@
+import { Component, NgModule, NgZone, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { BrowserModule } from "@angular/platform-browser";
+import { AgmCoreModule, MapsAPILoader } from '@agm/core';
+import {} from '@types/googlemaps';
 
-import {Component, OnInit}   from '@angular/core';
-import {FormControl} from '@angular/forms';
-import {Observable}  from 'rxjs/Observable';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/throttleTime';
-import 'rxjs/add/observable/fromEvent';
+
+
 
 @Component({
   selector: 'app-test',
-  template: `<p>&nbsp;<p>&nbsp;<p>&nbsp;<p>&nbsp;<input type=text [value]="firstName" [formControl]="firstNameControl">
-    <br>{{firstName}}
-    <footer>Angular version: {{angularVersion}}</footer>`
+  styles: [`
+    .sebm-google-map-container {
+       height: 300px;
+     }
+  `],
+  template: `
+    <div class="container">
+      <h1>Angular 2 + Google Maps Places Autocomplete</h1>
+      <div class="form-group">
+        <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+      </div>
+      <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+        <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+      </agm-map>
+    </div>
+  `
 })
 export class TestComponent implements OnInit {
-  angularVersion   = '2.0.0-rc.5';
-  firstName        = 'Name';
-  firstNameControl = new FormControl();
-  constructor() { console.clear();  }
+  
+  public latitude: number;
+  public longitude: number;
+  public searchControl: FormControl;
+  public zoom: number;
+  
+  @ViewChild("search")
+  public searchElementRef: ElementRef;
+  
+  constructor(
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone
+  ) {}
+  
   ngOnInit() {
-    // debounce keystroke events
-    this.firstNameControl.valueChanges
-      .debounceTime(1000)
-      .subscribe(newValue => this.firstName = newValue);
-    // throttle resize events
-    Observable.fromEvent(window, 'resize')
-      .throttleTime(200)
-      .subscribe(e => {
-        console.log('resize event', e);
-        this.firstName += '*';
+    //set google maps defaults
+    this.zoom = 4;
+    this.latitude = 39.8282;
+    this.longitude = -98.5795;
+    
+    //create search FormControl
+    this.searchControl = new FormControl();
+    
+    //set current position
+    this.setCurrentPosition();
+    
+    //load Places Autocomplete
+    this.mapsAPILoader.load().then(() => {
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ["address"]
       });
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          //get the place result
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+  
+          //verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+          
+          //set latitude, longitude and zoom
+          this.latitude = place.geometry.location.lat();
+          this.longitude = place.geometry.location.lng();
+          this.zoom = 12;
+        });
+      });
+    });
   }
-  ngDoCheck() { console.log('change detection'); }
-} 
+  
+  private setCurrentPosition() {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+        this.zoom = 12;
+      });
+    }
+  }
+}
