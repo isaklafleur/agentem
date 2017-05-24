@@ -28,13 +28,13 @@ export class FilterListComponent implements OnInit {
       .debounceTime(1000)
       .subscribe(newValue => {
         if(newValue)
-          this.listingService.update()
+          this.listingService.updateFilter()
         });
     this.maxPriceControl.valueChanges
       .debounceTime(1000)
       .subscribe(newValue => {
         if(newValue)
-          this.listingService.update()
+          this.listingService.updateFilter()
         });
     
   }
