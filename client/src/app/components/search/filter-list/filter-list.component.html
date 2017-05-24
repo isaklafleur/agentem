@@ -1,7 +1,7 @@
 <md-card id="filterSearchCard">
   <form (ngSubmit)="submitForm(myForm)" #myForm="ngForm" class="example-form">
     <md-input-container>
-      <input #addressSearchBox [(ngModel)]="newSearch.address" id="addressSearchBox" name="address" (click)="this.addressSearchBox.value = ''" mdInput placeholder="Search by Street, Neighborhood or City"
+      <input type="text" autocorrect="off" autocapitalize="off" spellcheck="off" #addressSearchBox [(ngModel)]="newSearch.address" id="addressSearchBox" name="address" (click)="this.addressSearchBox.value = ''" mdInput placeholder="Search by Street, Neighborhood or City"
         value="Copacabana, Rio de Janeiro, RJ">
     </md-input-container>
 <!-- <input  placeholder="Min Price" [formControl]="minPriceControl"  name="minPrice1">-->
@@ -22,7 +22,6 @@
     <button md-raised-button placement="bottom" #p1="ngbPopover" (document:click)="p1.close()"  (click)="$event.stopPropagation();p2.close();p3.close()" [ngbPopover]="priceRange">Any Price <i class="material-icons">expand_more</i>
 
     </button>
-   
    
     <ng-template #beds>
       <md-radio-group class="example-radio-group" name="bedrooms" (change)="listingService.update()" (click)="$event.stopPropagation()" [(ngModel)]="newSearch.bedrooms">
@@ -51,7 +50,6 @@
       <md-checkbox class="example-margin" name="house" (change)="listingService.update()" [(ngModel)]="newSearch.propertyType.house">House</md-checkbox>
       <md-checkbox class="example-margin" name="villa" (change)="listingService.update()" [(ngModel)]="newSearch.propertyType.villa">Villa</md-checkbox>
     </section>
-
 
     </ng-template>
     <button md-raised-button placement="bottom" #p3="ngbPopover" (document:click)="p3.close()"  (click)="$event.stopPropagation();p1.close();p2.close()" [ngbPopover]="propertyType">All Home Types <i class="material-icons">expand_more</i>

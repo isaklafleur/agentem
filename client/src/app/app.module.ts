@@ -7,7 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FileUploadModule } from 'ng2-file-upload';
-import { AgmCoreModule } from '@agm/core';
+import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
@@ -55,6 +55,7 @@ import { TestComponent } from './components/test/test.component';
     NgbModule.forRoot(),
     FileUploadModule,
     AgmCoreModule.forRoot({
+      libraries: ['places'],
       apiKey: 'AIzaSyBoio8nEHTzRvPgWo3ObzLRxDubIQebLrM'
     }),
     ReactiveFormsModule,

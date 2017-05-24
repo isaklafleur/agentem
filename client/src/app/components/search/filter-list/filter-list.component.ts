@@ -16,11 +16,13 @@ export class FilterListComponent implements OnInit {
   newSearch: any = {};
   maxPriceControl = new FormControl();
   minPriceControl = new FormControl();
+
   constructor(private listingService: ListingService) { }
   
   ngOnInit() {
     this.newSearch = this.listingService.filter;
     this.newSearch.propertyType = {};
+
     
     this.minPriceControl.valueChanges
       .debounceTime(1000)
@@ -28,6 +30,10 @@ export class FilterListComponent implements OnInit {
     this.maxPriceControl.valueChanges
       .debounceTime(1000)
       .subscribe(newValue => this.listingService.update());
+    
+    $(window).click((event) => {
+
+    });
   }
   submitForm(myForm) {
     this.listingService.update();
