@@ -26,21 +26,22 @@ export class FilterListComponent implements OnInit {
     
     this.minPriceControl.valueChanges
       .debounceTime(1000)
-      .subscribe(newValue => this.listingService.update());
+      .subscribe(newValue => {
+        if(newValue)
+          this.listingService.update()
+        });
     this.maxPriceControl.valueChanges
       .debounceTime(1000)
-      .subscribe(newValue => this.listingService.update());
+      .subscribe(newValue => {
+        if(newValue)
+          this.listingService.update()
+        });
     
-    $(window).click((event) => {
-
-    });
   }
   submitForm(myForm) {
-    this.listingService.update();
+  //  this.listingService.update();
     // console.log(myForm);
     // console.log(this.newSearch)
   }
-  maxPriceChange(event) {
-    console.log('change');
-  }
+
 }
