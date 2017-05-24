@@ -1,0 +1,25 @@
+<div class="container-fluid h-100" id="margintop" style="margin-top:74px;">
+  <div class="row h-100">
+    <div class="col-sm-6 col-12 text-white py-2 d-flex align-items-center justify-content-center" id="left">
+      <md-card>
+        <form class="example-form">
+          <md-select color="primary" [(ngModel)]="selectedValue" name="typeOfSearch">
+            <md-option *ngFor="let type of typeOffer" [value]="type.value">
+              {{ type.viewValue }}
+            </md-option>
+          </md-select><br><br>
+          <md-input-container>
+            <input #searchBox (click)="this.searchBox.value = ''" mdInput placeholder="Search by Street, Neighborhood, City.." value="Copacabana, Rio de Janeiro, RJ">
+          </md-input-container>
+          <button md-raised-button color="primary">Search</button>
+        </form><br>
+        <button md-button (click)="openDialog()">Launch dialog</button>
+      </md-card>
+
+    </div>
+
+    <div class="no-padding col-sm-6 col-12 offset-0 offset-sm-6 py-2">
+      <app-home-right></app-home-right>
+    </div>
+  </div>
+</div>

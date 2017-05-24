@@ -1,0 +1,42 @@
+		<div class="search-results"
+         infiniteScroll
+		    [infiniteScrollDistance]="2"
+		    [infiniteScrollThrottle]="500"
+		    (scrolled)="onScroll()"
+		    [scrollWindow]="false">
+		
+  <md-card *ngFor="let listing of listingService.listings; let i = index" class="list-card">
+    <md-card-header>
+      <div md-card-avatar class="property-{{listing.propertyType}}"></div>
+      <md-card-title><span class="no-break"> {{listing.name}}</span></md-card-title>
+      <md-card-subtitle><span class="no-break">{{listing.city}}</span></md-card-subtitle>
+    </md-card-header>
+
+
+      <img md-card-image   [src]="listing.photos[0]">
+
+      <h2 class="photo-text">
+        {{listing.listingType}} | {{listing.propertyType}}
+        <br>R$ {{listing.price}}
+      </h2>
+      <div class="heart">
+        <span class="fa-stack icon-stack" id="heart{{i}}" (click)="clickHeart(i)">
+          <i class="fa fa-2x fa-heart fa-stack-1x icon-a"></i>
+          <i class="fa fa-2x fa-heart-o fa-stack-1x icon-b"></i>
+        </span>
+      </div>
+
+
+
+      <md-card-content>
+
+      </md-card-content>
+  </md-card>
+  <div [hidden]="!isLoading" class="loader">
+    <p>&nbsp;
+      <p>
+    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+    <p>
+  </div>
+ <!-- <p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right<p>right-->
+  </div>
