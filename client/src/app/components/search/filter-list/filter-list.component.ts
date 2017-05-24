@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MdRadioModule, MdButtonModule, MdInputModule, MdCheckboxModule } from '@angular/material';
+import { ListingService } from '../../../services/listing.service';
+
 declare var $: any;
 
 @Component({
@@ -11,9 +13,10 @@ export class FilterListComponent implements OnInit {
 //   topMenuOptions = ['test1', 'test2', 'test3'];
 newSearch: any = {};
 
-  constructor() { }
+  constructor(private listingService: ListingService) { }
 
   ngOnInit() {
+    this.newSearch = this.listingService.filter;
     this.newSearch.propertyType = {};
     $(window).click((event) => {
       
@@ -21,6 +24,7 @@ newSearch: any = {};
     });
   }
   submitForm(myForm) {
+    this.listingService.update();
     // console.log(myForm);
     // console.log(this.newSearch)
   }
