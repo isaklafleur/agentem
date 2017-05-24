@@ -1,3 +1,9 @@
-<agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+<!--<div *ngFor="let listing of listingService.listings" >
+  lat={{listing.location.coordinates[1]}} <br>
+  lng={{listing.location.coordinates[0]}} <p>
+</div>  -->
+
+<agm-map [latitude]="lat" [longitude]="lng" >
+  <agm-marker  *ngFor="let listing of listingService.listings" 
+        [latitude]="listing.location.coordinates[1]" [longitude]="listing.location.coordinates[0]"></agm-marker>
 </agm-map>

@@ -99,6 +99,7 @@
 .search-results {
 			height: 100vh;
 			overflow: scroll;
+      overflow-x:hidden;
      
 		}
 

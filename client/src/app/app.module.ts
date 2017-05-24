@@ -25,6 +25,9 @@ import { ListComponent } from './components/list/list.component';
 import { SearchComponent } from './components/search/search.component';
 import { FilterListComponent } from './components/search/filter-list/filter-list.component';
 
+//services
+import { ListingService } from './services/listing.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,9 +56,7 @@ import { FilterListComponent } from './components/search/filter-list/filter-list
     }),
     InfiniteScrollModule,
   ],
-  providers: [],
+  providers: [ListingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-// platformBrowserDynamic().bootstrapModule(AppModule);
