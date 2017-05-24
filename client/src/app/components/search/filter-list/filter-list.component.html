@@ -4,15 +4,15 @@
       <input #addressSearchBox [(ngModel)]="newSearch.address" id="addressSearchBox" name="address" (click)="this.addressSearchBox.value = ''" mdInput placeholder="Search by Street, Neighborhood or City"
         value="Copacabana, Rio de Janeiro, RJ">
     </md-input-container>
-
+<!-- <input  placeholder="Min Price" [formControl]="minPriceControl"  name="minPrice1">-->
     <ng-template #priceRange><div  (click)="$event.stopPropagation()">
   <table class="example-full-width" cellspacing="0" ><tr>
     <td><md-input-container class="example-full-width">
-      <input mdInput placeholder="Min Price" [(ngModel)]="newSearch.minPrice" pattern="\d+" name="minPrice">
+      <input mdInput placeholder="Min Price" [(ngModel)]="newSearch.minPrice" [formControl]="minPriceControl" pattern="\d+" name="minPrice">
       <md-error>Please enter number</md-error>
     </md-input-container></td> 
     <td><md-input-container class="example-full-width">
-      <input mdInput placeholder="Max Price" [(ngModel)]="newSearch.maxPrice" pattern="\d+" name="maxPrice">
+      <input mdInput placeholder="Max Price" [(ngModel)]="newSearch.maxPrice" [formControl]="maxPriceControl" pattern="\d+" name="maxPrice">
       <md-error>Please enter number</md-error>
     </md-input-container></td>
   </tr></table>
@@ -25,7 +25,7 @@
    
    
     <ng-template #beds>
-      <md-radio-group class="example-radio-group" name="bedrooms" (click)="$event.stopPropagation()" [(ngModel)]="newSearch.bedrooms">
+      <md-radio-group class="example-radio-group" name="bedrooms" (change)="listingService.update()" (click)="$event.stopPropagation()" [(ngModel)]="newSearch.bedrooms">
         <md-radio-button class="example-radio-button" value="0">
           Studio+
         </md-radio-button>
@@ -47,9 +47,9 @@
     </button>
     <ng-template #propertyType>
     <section class="example-section" (click)="$event.stopPropagation()">
-      <md-checkbox class="example-margin" name="apartment" [(ngModel)]="newSearch.propertyType.apartment">Apartment</md-checkbox>
-      <md-checkbox class="example-margin" name="house" [(ngModel)]="newSearch.propertyType.house">House</md-checkbox>
-      <md-checkbox class="example-margin" name="villa" [(ngModel)]="newSearch.propertyType.villa">Villa</md-checkbox>
+      <md-checkbox class="example-margin" name="apartment" (change)="listingService.update()" [(ngModel)]="newSearch.propertyType.apartment">Apartment</md-checkbox>
+      <md-checkbox class="example-margin" name="house" (change)="listingService.update()" [(ngModel)]="newSearch.propertyType.house">House</md-checkbox>
+      <md-checkbox class="example-margin" name="villa" (change)="listingService.update()" [(ngModel)]="newSearch.propertyType.villa">Villa</md-checkbox>
     </section>
 
 

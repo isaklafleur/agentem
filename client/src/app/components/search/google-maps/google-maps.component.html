@@ -1,8 +1,3 @@
-<!--<div *ngFor="let listing of listingService.listings" >
-  lat={{listing.location.coordinates[1]}} <br>
-  lng={{listing.location.coordinates[0]}} <p>
-</div>  -->
-
 <agm-map [latitude]="listingService?.listings[0]?.location.coordinates[1]" [longitude]="listingService?.listings[0]?.location.coordinates[0]" >
   <agm-marker  *ngFor="let listing of listingService.listings" 
         [latitude]="listing.location.coordinates[1]" [longitude]="listing.location.coordinates[0]"></agm-marker>

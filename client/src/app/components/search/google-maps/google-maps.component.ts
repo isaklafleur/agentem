@@ -9,10 +9,7 @@ import { ListingService } from '../../../services/listing.service';
 })
 
 export class GoogleMapsComponent implements OnInit {
-  lat1: number = 51.678418;
-  lng1: number = 7.809007;
-  lat2: number = 51.678428;
-  lng2: number = 7.809017;
+
 constructor(private listingService: ListingService ) { }
 
   ngOnInit() {

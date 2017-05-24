@@ -24,9 +24,11 @@ import { GoogleMapsComponent } from './components/search/google-maps/google-maps
 import { ListComponent } from './components/list/list.component';
 import { SearchComponent } from './components/search/search.component';
 import { FilterListComponent } from './components/search/filter-list/filter-list.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 //services
 import { ListingService } from './services/listing.service';
+import { TestComponent } from './components/test/test.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { ListingService } from './services/listing.service';
     ListComponent,
     SearchComponent,
     FilterListComponent,
+    TestComponent,
   ],
   entryComponents: [DialogResultExampleDialog],
   imports: [
@@ -54,6 +57,7 @@ import { ListingService } from './services/listing.service';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBoio8nEHTzRvPgWo3ObzLRxDubIQebLrM'
     }),
+    ReactiveFormsModule,
     InfiniteScrollModule,
   ],
   providers: [ListingService],
