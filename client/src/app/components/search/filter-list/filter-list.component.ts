@@ -10,7 +10,6 @@ declare var $: any;
   styleUrls: ['./filter-list.component.css']
 })
 export class FilterListComponent implements OnInit {
-//   topMenuOptions = ['test1', 'test2', 'test3'];
 newSearch: any = {};
 
   constructor(private listingService: ListingService) { }
@@ -19,7 +18,6 @@ newSearch: any = {};
     this.newSearch = this.listingService.filter;
     this.newSearch.propertyType = {};
     $(window).click((event) => {
-      
 
     });
   }
