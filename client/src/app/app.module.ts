@@ -58,4 +58,4 @@ import { FilterListComponent } from './components/search/filter-list/filter-list
 })
 export class AppModule { }
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+// platformBrowserDynamic().bootstrapModule(AppModule);
