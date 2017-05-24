@@ -60,3 +60,5 @@ import { ListingService } from './services/listing.service';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+//platformBrowserDynamic().bootstrapModule(AppModule);
