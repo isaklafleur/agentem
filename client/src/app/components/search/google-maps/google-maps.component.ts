@@ -11,7 +11,7 @@ import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 })
 
 export class GoogleMapsComponent implements OnInit {
-  lat1= 51.678418;
+  lat1 = 51.678418;
   lng1 = 7.809007;
   lat2 = 51.678428;
   lng2 = 7.809017;
