@@ -27,21 +27,20 @@ export class ListComponent implements OnInit {
   }
 
   onScroll () {
-    if(this.isLoading || this.isEndResults) return;
-      this.offset+=this.limit;
+    if (this.isLoading || this.isEndResults) return;
+      this.offset += this.limit;
       this.isLoading = true;
 
 
-      this.listingService.getList(this.limit, this.offset, (newListings)=>{
+      this.listingService.getList(this.limit, this.offset, (newListings) => {
        // this.listings = this.listings.concat(newListings)
-        if(newListings.length===0) {
+        if (newListings.length === 0) {
             this.isEndResults = true;
             this.isLoading = false;
           } else {
-            //this.listings = this.listings.concat(listings);
+            // this.listings = this.listings.concat(listings);
             this.isLoading = false;
          }
       })
-	}
-
+    }
 }
