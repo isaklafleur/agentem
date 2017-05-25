@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MdDialog, MdDialogRef, MdInputModule } from '@angular/material';
-
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-auth-signin',
@@ -8,41 +9,52 @@ import { MdDialog, MdDialogRef, MdInputModule } from '@angular/material';
   styleUrls: ['./auth-signin.component.css']
 })
 export class AuthSigninComponent implements OnInit {
-  public email: string;
-  public password: string;
-  submitError: string;
-  submittedInvalid = false;
+  newUser = {
+    username: '',
+    password: ''
+  };
 
-  step1InputEmail = true;
+  user: any;
+  error: string;
 
-  // "Signup Route - new email"
-  step2InputNewPassword = false;
-  step3SuccessSignUp = false;
+  signupDialog = true;
+  loginDialog = false;
 
-  // "Login Route existing email"
-  step2InputExistingPassword = false;
-  step3SuccessLogin = false;
-
-  constructor(public dialogRef: MdDialogRef<AuthSigninComponent>, public dialog: MdDialog) { }
+  constructor(
+    public dialogRef: MdDialogRef<AuthSigninComponent>,
+    public dialog: MdDialog,
+    private session: AuthService,
+    private router: Router) { }
 
   ngOnInit() {
   }
 
+  signup() {
+    this.session.signup(this.newUser)
+    .subscribe(result => {
+      if (result === true) {
+        // login successful
+        console.log('result ok: ', result);
+        this.router.navigate(['/dashboard']);
+      } else {
+        console.log('result not ok: ', result);
+      }
+    });
+  }
+  login() {
+    this.session.login(this.user)
+    .subscribe(result => {
+      if (result === true) {
+        // login successful
+        this.router.navigate(['/dashboard']);
+      } else {
+        // login failed
+        this.error = 'Username or password is incorrect';
+      }
+    });
+  }
+
   submitForm(myForm) {
     // console.log(this.email);
-  }
-  doSubmitEmail() {
-    // check if email is in the database
-
-    // if email does not exist in the database
-    // unhide second dialog and hide the first one
-    this.step1InputEmail = false;
-    this.step2InputNewPassword = true;
-
-    // if email exist open unhide dialog to ask for password
-
-  }
-  doSubmitPassword() {
-    // 
   }
 }

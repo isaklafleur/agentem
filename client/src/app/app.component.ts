@@ -7,6 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   ngOnInit() {
-    console.log('init APP<<<');
+    // console.log('init APP<<<');
   }
 }

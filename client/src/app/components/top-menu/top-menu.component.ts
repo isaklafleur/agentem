@@ -26,6 +26,6 @@ export class TopMenuComponent implements OnInit {
         console.log('form ok');
       }
     })
-    console.log('test');
+    // console.log('test');
   }
 }

@@ -13,6 +13,10 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import 'hammerjs';
 
+// Services
+import { ListingService } from './services/listing.service';
+import { AuthService } from './services/auth.service';
+
 // Custom Components
 import { routes } from './routes';
 import { AppComponent } from './app.component';
@@ -27,10 +31,8 @@ import { FilterListComponent } from './components/search/filter-list/filter-list
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthSigninComponent } from './components/auth-signin/auth-signin.component';
 import { TestComponent } from './components/test/test.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
-// Services
-import { ListingService } from './services/listing.service';
-import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { AuthService } from './services/auth.service';
     FilterListComponent,
     TestComponent,
     AuthSigninComponent,
+    DashboardComponent,
   ],
   entryComponents: [DialogCreateNewPropertyComponent, AuthSigninComponent],
   imports: [

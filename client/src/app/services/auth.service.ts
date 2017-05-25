@@ -4,7 +4,6 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Router, CanActivate } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
-const jwtDecode =  require('jwt-decode');
 
 @Injectable()
 export class AuthService implements CanActivate {
@@ -31,7 +30,6 @@ export class AuthService implements CanActivate {
     if (localStorage.getItem('token')) {
       // logged in so return true\
       this.token = localStorage.getItem('token');
-      this.user = jwtDecode(this.token).user;
       this.isAuth = true;
       return true;
     }
@@ -54,7 +52,7 @@ export class AuthService implements CanActivate {
       if (token) {
         // set token property
         this.token = token;
-        this.user = jwtDecode(token).user;
+
         // store username and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('token', token );
 
@@ -79,7 +77,6 @@ export class AuthService implements CanActivate {
             if (token) {
               // set token property
               this.token = token;
-              this.user = jwtDecode(token).user;
 
               this.isAuth = true;
               // store username and jwt token in local storage to keep user logged in between page refreshes

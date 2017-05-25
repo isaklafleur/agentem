@@ -30,6 +30,9 @@
           "sourceMaps": true,
           "trace": true,
           "webRoot": "${workspaceRoot}/client/",
+          "sourceMapPathOverrides": {
+            "webpack:///./*": "${webRoot}/*"
+            },
           "userDataDir": "${workspaceRoot}/.vscode/chrome"
         },
     {
