@@ -25,10 +25,12 @@ import { ListComponent } from './components/list/list.component';
 import { SearchComponent } from './components/search/search.component';
 import { FilterListComponent } from './components/search/filter-list/filter-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthSigninComponent } from './components/auth-signin/auth-signin.component';
+import { TestComponent } from './components/test/test.component';
 
 // Services
 import { ListingService } from './services/listing.service';
-import { TestComponent } from './components/test/test.component';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -43,8 +45,9 @@ import { TestComponent } from './components/test/test.component';
     SearchComponent,
     FilterListComponent,
     TestComponent,
+    AuthSigninComponent,
   ],
-  entryComponents: [DialogResultExampleDialog],
+  entryComponents: [DialogResultExampleDialog, AuthSigninComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -61,7 +64,7 @@ import { TestComponent } from './components/test/test.component';
     ReactiveFormsModule,
     InfiniteScrollModule,
   ],
-  providers: [ListingService],
+  providers: [ListingService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

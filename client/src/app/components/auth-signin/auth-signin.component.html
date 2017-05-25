@@ -1,0 +1,21 @@
+<div class="container-fluid" *ngIf="step1InputEmail">
+  <h3>Sign in or register to save your favorite homes</h3>
+  <form (ngSubmit)="submitForm(myForm)" #myForm="ngForm" class="form-group" novalidate>
+    <md-input-container>
+      <input type="email" class="form-control" name="email" [(ngModel)]="email" #myEmailaddress required mdInput placeholder="Enter email address">
+    </md-input-container><br>
+    <button type="submit" (click)="doSubmitEmail()" md-raised-button color="primary">Submit</button>
+  </form>
+</div>
+
+<div class="container" *ngIf="step2InputNewPassword">
+  <h3>Create a password</h3>
+  <form (ngSubmit)="submitForm(myForm)" #myForm="ngForm" class="form-group" novalidate>
+    <md-input-container>
+      <input type="password" class="form-control" name="password" [(ngModel)]="password" #myPassword required mdInput placeholder="Enter Password , 5-50 Characters">
+    </md-input-container>
+    <button type="submit" (click)="doSubmit()" md-raised-button color="primary">Submit</button>
+
+    <a routerLink="/#">Do this later</a> <!-- "Login" the user and send link to request user to generate a new password--> 
+  </form>
+</div>

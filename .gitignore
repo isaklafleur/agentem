@@ -1,7 +1,6 @@
 # Visual Studio Debugger files
 .vscode
-launch.json
-
+.vscode/launch.json
 # Logs
 logs
 *.log
