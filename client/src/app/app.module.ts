@@ -26,7 +26,7 @@ import { SearchComponent } from './components/search/search.component';
 import { FilterListComponent } from './components/search/filter-list/filter-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
-//services
+// Services
 import { ListingService } from './services/listing.service';
 import { TestComponent } from './components/test/test.component';
 

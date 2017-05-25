@@ -1,6 +1,7 @@
 import { Component, OnInit, NgZone, ViewChild, ElementRef } from '@angular/core';
 import { MdRadioModule, MdButtonModule, MdInputModule, MdCheckboxModule } from '@angular/material';
 import { ListingService } from '../../../services/listing.service';
+import { GoogleSearchService } from '../../../services/google-search.service';
 import {FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import 'rxjs/add/operator/debounceTime';
@@ -26,7 +27,12 @@ export class FilterListComponent implements OnInit {
   @ViewChild('addressSearchBox')
   public searchElementRef: ElementRef;
 
-  constructor(private listingService: ListingService, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) { }
+  constructor(
+    private googlesearchService: GoogleSearchService,
+    private listingService: ListingService,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone,
+    ) { }
 
   ngOnInit() {
 
@@ -41,16 +47,18 @@ export class FilterListComponent implements OnInit {
     this.minPriceControl.valueChanges
       .debounceTime(1000)
       .subscribe(newValue => {
-        if(newValue)
+        if (newValue) {
           this.listingService.updateFilter()
-        });
+        }
+      });
     this.maxPriceControl.valueChanges
       .debounceTime(1000)
 
       .subscribe(newValue => {
-        if(newValue)
+        if (newValue) {
           this.listingService.updateFilter()
-        });
+        }
+      });
 
     // load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
@@ -75,7 +83,7 @@ export class FilterListComponent implements OnInit {
           console.log('lon: ', this.longitude);
           this.newSearch.coordinates.lng = this.longitude;
           this.newSearch.coordinates.lat = this.latitude;
-          this.listingService.update();
+          this.listingService.updateFilter();
         });
       });
     });
