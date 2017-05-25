@@ -20,6 +20,7 @@ export class FilterListComponent implements OnInit {
   minPriceControl = new FormControl();
   public searchControl: FormControl;
   public zoom: number;
+  RADIUS: number = 10;
 
   @ViewChild('addressSearchBox')
   public searchElementRef: ElementRef;
@@ -31,7 +32,7 @@ export class FilterListComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-
+    this.listingService.getNew();
     // create search FormControl
     this.searchControl = new FormControl();
 
@@ -73,11 +74,14 @@ export class FilterListComponent implements OnInit {
           // set latitude, longitude and zoom
           this.newSearch.coordinates.latitude = place.geometry.location.lat();
           this.newSearch.coordinates.longitude = place.geometry.location.lng();
+          this.newSearch.coordinates.radius = this.RADIUS;
           this.zoom = 12;
 
           console.log('lat: ', this.newSearch.coordinates.latitude);
           console.log('lon: ', this.newSearch.coordinates.longitude);
           this.listingService.updateFilter();
+          this.newSearch.coordinates.longitude = "";
+          this.newSearch.coordinates.latitude = "";
         });
       });
     });

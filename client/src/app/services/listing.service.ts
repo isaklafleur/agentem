@@ -7,7 +7,7 @@ export class ListingService {
   BASE_URL = 'http://localhost:3000/api/listings';
   listings: any[] = [];
   filter: any = {};
-  limit = 6;
+  limit = 50;
   offset = 0;
   isLoading = true;
 
@@ -23,9 +23,9 @@ export class ListingService {
     query += this.filter.propertyType && this.filter.propertyType.house ? '&house=true' : '';
     query += this.filter.propertyType && this.filter.propertyType.apartment ? '&apartment=true' : '';
     query += this.filter.propertyType && this.filter.propertyType.villa ? '&villa=true' : '';
-    query += this.filter.coordiantes && this.filter.coordinates.latitude ? '&latitude=' + this.filter.coordiantes.latitude : '';
-    query += this.filter.coordiantes && this.filter.coordinates.longitude ? '&longitude=' + this.filter.coordiantes.longitude : '';
-    
+    query += this.filter.coordinates && this.filter.coordinates.latitude ? '&latitude=' + this.filter.coordinates.latitude : '';
+    query += this.filter.coordinates && this.filter.coordinates.longitude ? '&longitude=' + this.filter.coordinates.longitude : '';
+    query += this.filter.coordinates && this.filter.coordinates.latitude ? '&radius=' + this.filter.coordinates.radius : '';
     console.log(query);
     return query;
   }
@@ -48,6 +48,7 @@ export class ListingService {
 
   getNew() {
     this.offset = 0;
+    this.listings = [];
     this.getList(() => {});
   }
 
@@ -60,11 +61,11 @@ export class ListingService {
   // from filter
   updateFilter() {
 
-    if (!isNaN(this.filter.maxPrice) && !isNaN(this.filter.minPrice) && ( +this.filter.maxPrice < +this.filter.minPrice)) {
-      return;
-    }
-    if ((this.filter.maxPrice && !isNaN(this.filter.maxPrice)) || (this.filter.minPrice && !isNaN(this.filter.minPrice)) ) {
-      this.getList(() => {});
-    }
+    // if (!isNaN(this.filter.maxPrice) && !isNaN(this.filter.minPrice) && ( +this.filter.maxPrice < +this.filter.minPrice)) {
+    //   return;
+    // }
+   // if ((this.filter.maxPrice && !isNaN(this.filter.maxPrice)) || (this.filter.minPrice && !isNaN(this.filter.minPrice)) ) {
+      this.getNew();
+   // }
   }
 }

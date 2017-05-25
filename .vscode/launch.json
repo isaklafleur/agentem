@@ -2,13 +2,26 @@
   // Use IntelliSense to learn about possible Node.js debug attributes.
   // Hover to view descriptions of existing attributes.
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-  "version": "0.2.0",
+ "version": "0.2.0",
   "configurations": [
-
+        {
+          "name": "Client",
+          "type": "chrome",
+          "request": "launch",
+          "url": "http://localhost:4200",
+          "runtimeArgs": [
+            "--user-data-dir",
+            "--remote-debugging-port=9222"
+          ],
+          "sourceMaps": true,
+          "trace": true,
+          "webRoot": "${workspaceRoot}/client/",
+          "userDataDir": "${workspaceRoot}/.vscode/chrome"
+        },
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
+      "name": "Server",
       "program": "${workspaceRoot}/server/bin/www",
       "outFiles": [
         "${workspaceRoot}/out/**/*.js"

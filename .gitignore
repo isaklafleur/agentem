@@ -1,3 +1,7 @@
+# Visual Studio Debugger files
+.vscode
+launch.json
+
 # Logs
 logs
 *.log
@@ -58,3 +62,4 @@ typings/
 .env
 
 server/public/uploads
+.vscode
