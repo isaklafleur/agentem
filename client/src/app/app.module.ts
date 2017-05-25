@@ -13,6 +13,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import 'hammerjs';
 
+ import { NguiMapModule} from '@ngui/map';
+
 // Custom Components
 import { routes } from './routes';
 import { AppComponent } from './app.component';
@@ -29,6 +31,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 // Services
 import { ListingService } from './services/listing.service';
 import { TestComponent } from './components/test/test.component';
+//Pipes
+import {LargeNumberPipe } from './pipes/large_number.pipe';
+
 
 @NgModule({
   declarations: [
@@ -43,6 +48,7 @@ import { TestComponent } from './components/test/test.component';
     SearchComponent,
     FilterListComponent,
     TestComponent,
+    LargeNumberPipe,
   ],
   entryComponents: [DialogResultExampleDialog],
   imports: [
@@ -55,11 +61,12 @@ import { TestComponent } from './components/test/test.component';
     NgbModule.forRoot(),
     FileUploadModule,
     AgmCoreModule.forRoot({
-      libraries: ['places'],
+      libraries: ['places', 'drawing'],
       apiKey: 'AIzaSyBoio8nEHTzRvPgWo3ObzLRxDubIQebLrM'
     }),
     ReactiveFormsModule,
     InfiniteScrollModule,
+    NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyBoio8nEHTzRvPgWo3ObzLRxDubIQebLrM&libraries=visualization,places,drawing'})
   ],
   providers: [ListingService],
   bootstrap: [AppComponent]

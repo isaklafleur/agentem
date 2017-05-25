@@ -49,7 +49,6 @@ export class FilterListComponent implements OnInit {
       });
     this.maxPriceControl.valueChanges
       .debounceTime(1000)
-
       .subscribe(newValue => {
         if (newValue) {
           this.listingService.updateFilter()
