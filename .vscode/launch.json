@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch Chrome against localhost, with sourcemaps",
+      "name": "Launch Angular Client",
       "type": "chrome",
       "request": "launch",
       "url": "http://localhost:4200",
@@ -21,7 +21,7 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Server",
+      "name": "Launch Express Server",
       "program": "${workspaceRoot}/server/bin/www",
       "outFiles": [
         "${workspaceRoot}/out/**/*.js"
