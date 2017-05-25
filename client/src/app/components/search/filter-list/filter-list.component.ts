@@ -74,6 +74,7 @@ export class FilterListComponent implements OnInit {
           this.newSearch.coordinates.latitude = place.geometry.location.lat();
           this.newSearch.coordinates.longitude = place.geometry.location.lng();
           this.zoom = 12;
+
           console.log('lat: ', this.newSearch.coordinates.latitude);
           console.log('lon: ', this.newSearch.coordinates.longitude);
           this.listingService.updateFilter();
