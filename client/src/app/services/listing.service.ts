@@ -19,9 +19,9 @@ export class ListingService {
     query+=this.filter.maxPrice && !isNaN(this.filter.maxPrice) ? "&maxPrice="+this.filter.maxPrice : "";
     query+=this.filter.minPrice && !isNaN(this.filter.minPrice) ? "&minPrice="+this.filter.minPrice : "";
     query+=this.filter.bedrooms ? "&bedrooms="+this.filter.bedrooms : "";
-    query+=this.filter.propertyType.house ? "&house=true" : "";
-    query+=this.filter.propertyType.apartment ? "&apartment=true" : "";
-    query+=this.filter.propertyType.villa ? "&villa=true" : "";
+    query+=this.filter.propertyType && this.filter.propertyType.house ? "&house=true" : "";
+    query+=this.filter.propertyType && this.filter.propertyType.apartment ? "&apartment=true" : "";
+    query+=this.filter.propertyType && this.filter.propertyType.villa ? "&villa=true" : "";
     console.log(query);
     return query;
   }

@@ -75,7 +75,7 @@ export class FilterListComponent implements OnInit {
           console.log('lon: ', this.longitude);
           this.newSearch.coordinates.lng = this.longitude;
           this.newSearch.coordinates.lat = this.latitude;
-          this.listingService.update();
+          this.listingService.updateFilter();
         });
       });
     });
