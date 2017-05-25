@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema   = mongoose.Schema;
 
-const listingSchema = new Schema({
+const ListingSchema = new Schema({
   name: String,
   photos: Array,
   price: Number,
@@ -37,7 +37,7 @@ const listingSchema = new Schema({
   accuracy: String,
   uploadToken: Number,
 });
-
-const Listing = mongoose.model('Listing', listingSchema);
+ListingSchema.index({ location: '2dsphere' });
+const Listing = mongoose.model('Listing', ListingSchema);
 
 module.exports = Listing;
