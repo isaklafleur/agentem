@@ -64,6 +64,17 @@ router.post('/', upload.any(), function(req, res, next) {
 
 router.get('/', (req, res, next) => {
 
+//latitude=-22.917499
+//longitude=-43.174357799999996
+//radians 0.00126294518
+
+
+// "location" : {
+//         $geoWithin : {
+//             $centerSphere : [[-43.174357799999996, -22.917499], 0.00126294518 ]
+//         }
+//     }
+
   let query = "{";
 
   query+= req.query.minPrice ? `"price":{"$gte":${req.query.minPrice}},` : "";
@@ -81,6 +92,13 @@ router.get('/', (req, res, next) => {
   query = query[query.length-1]==="," ? query.substr(0, query.length-1) : query;
   query+= "}";
   query = JSON.parse(query);
+  if(req.query.longitude) {
+    query.location = {
+        $geoWithin : {
+            $centerSphere : [[req.query.longitude, req.query.latitude], req.query.radius/6371 ]
+        }
+    }
+  }
 
 //  query = {bedrooms:{$gte:2}};
  // Listing.find().count(query).exec((err,res)=>console.log("count: ", res));
