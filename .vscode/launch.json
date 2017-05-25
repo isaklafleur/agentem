@@ -5,9 +5,23 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Launch Chrome against localhost, with sourcemaps",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:4200",
+      "runtimeArgs": [
+        "--user-data-dir",
+        "--remote-debugging-port=9222"
+        ],
+        "sourceMaps": true,
+        "trace": true,
+        "webRoot": "${workspaceRoot}/client/",
+        "userDataDir": "${workspaceRoot}/.vscode/chrome"
+    },
+    {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
+      "name": "Launch Server",
       "program": "${workspaceRoot}/server/bin/www",
       "outFiles": [
         "${workspaceRoot}/out/**/*.js"
