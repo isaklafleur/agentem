@@ -22,6 +22,8 @@ export class ListingService {
     query += this.filter.propertyType && this.filter.propertyType.house ? '&house=true' : '';
     query += this.filter.propertyType && this.filter.propertyType.apartment ? '&apartment=true' : '';
     query += this.filter.propertyType && this.filter.propertyType.villa ? '&villa=true' : '';
+    query += this.filter.coordiantes && this.filter.coordinates.latitude ? '&latitude=' + this.filter.coordiantes.latitude : '';
+    query += this.filter.coordiantes && this.filter.coordinates.longitude ? '&longitude=' + this.filter.coordiantes.longitude : '';
     console.log(query);
     return query;
   }

@@ -1,7 +1,6 @@
 import { Component, OnInit, NgZone, ViewChild, ElementRef } from '@angular/core';
 import { MdRadioModule, MdButtonModule, MdInputModule, MdCheckboxModule } from '@angular/material';
 import { ListingService } from '../../../services/listing.service';
-import { GoogleSearchService } from '../../../services/google-search.service';
 import {FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import 'rxjs/add/operator/debounceTime';
@@ -20,15 +19,12 @@ export class FilterListComponent implements OnInit {
   maxPriceControl = new FormControl();
   minPriceControl = new FormControl();
   public searchControl: FormControl;
-  public latitude: number;
-  public longitude: number;
   public zoom: number;
 
   @ViewChild('addressSearchBox')
   public searchElementRef: ElementRef;
 
   constructor(
-    private googlesearchService: GoogleSearchService,
     private listingService: ListingService,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
@@ -40,9 +36,8 @@ export class FilterListComponent implements OnInit {
     this.searchControl = new FormControl();
 
     this.newSearch = this.listingService.filter;
-    this.newSearch.propertyType = {};
-    this.newSearch.coordinates = {};
-
+    this.newSearch.coordinates = {}
+    this.newSearch.propertyType = {}
 
     this.minPriceControl.valueChanges
       .debounceTime(1000)
@@ -76,13 +71,11 @@ export class FilterListComponent implements OnInit {
           }
 
           // set latitude, longitude and zoom
-          this.latitude = place.geometry.location.lat();
-          this.longitude = place.geometry.location.lng();
+          this.newSearch.coordinates.latitude = place.geometry.location.lat();
+          this.newSearch.coordinates.longitude = place.geometry.location.lng();
           this.zoom = 12;
-          console.log('lat: ', this.latitude);
-          console.log('lon: ', this.longitude);
-          this.newSearch.coordinates.lng = this.longitude;
-          this.newSearch.coordinates.lat = this.latitude;
+          console.log('lat: ', this.newSearch.coordinates.latitude);
+          console.log('lon: ', this.newSearch.coordinates.longitude);
           this.listingService.updateFilter();
         });
       });
@@ -92,8 +85,8 @@ export class FilterListComponent implements OnInit {
   private setCurrentPosition() {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
-        this.latitude = position.coords.latitude;
-        this.longitude = position.coords.longitude;
+        this.newSearch.coordinates.latitude = position.coords.latitude;
+        this.newSearch.coordinates.longitude = position.coords.longitude;
         this.zoom = 19;
       });
     }
