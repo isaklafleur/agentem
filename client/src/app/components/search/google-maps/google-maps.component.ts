@@ -15,7 +15,7 @@ export class GoogleMapsComponent implements OnInit {
   lng1 = 7.809007;
   lat2 = 51.678428;
   lng2 = 7.809017;
-  zoom = 12;
+  zoom = 13;
 
   toThousand(x) {
     let addK = '';
