@@ -24,7 +24,7 @@
     </button>
    
     <ng-template #beds>
-      <md-radio-group class="example-radio-group" name="bedrooms" (change)="listingService.update()" (click)="$event.stopPropagation()" [(ngModel)]="newSearch.bedrooms">
+      <md-radio-group class="example-radio-group" name="bedrooms" (change)="listingService.updateFilter()" (click)="$event.stopPropagation()" [(ngModel)]="newSearch.bedrooms">
         <md-radio-button class="example-radio-button" value="0">
           Studio+
         </md-radio-button>
@@ -46,9 +46,9 @@
     </button>
     <ng-template #propertyType>
     <section class="example-section" (click)="$event.stopPropagation()">
-      <md-checkbox class="example-margin" name="apartment" (change)="listingService.update()" [(ngModel)]="newSearch.propertyType.apartment">Apartment</md-checkbox>
-      <md-checkbox class="example-margin" name="house" (change)="listingService.update()" [(ngModel)]="newSearch.propertyType.house">House</md-checkbox>
-      <md-checkbox class="example-margin" name="villa" (change)="listingService.update()" [(ngModel)]="newSearch.propertyType.villa">Villa</md-checkbox>
+      <md-checkbox class="example-margin" name="apartment" (change)="listingService.updateFilter()" [(ngModel)]="newSearch.propertyType.apartment">Apartment</md-checkbox>
+      <md-checkbox class="example-margin" name="house" (change)="listingService.updateFilter()" [(ngModel)]="newSearch.propertyType.house">House</md-checkbox>
+      <md-checkbox class="example-margin" name="villa" (change)="listingService.updateFilter()" [(ngModel)]="newSearch.propertyType.villa">Villa</md-checkbox>
     </section>
 
     </ng-template>
@@ -58,14 +58,3 @@
       <button md-raised-button color="primary">Search <i class="material-icons">search</i></button>
   </form>
 </md-card>
-
-
-<!--<li class="nav-item" *ngFor="let option of topMenuOptions; let i = index">
-  <template #submenus>
-    some submenues {{i}}
-  </template>
-  // assuming "option.name" is a string
-  <button type="button" class="btn btn-secondary" href="#" popoverTitle="{{option.name}}" [ngbPopover]="submenus" placement="bottom"
-    triggers="mouseenter:mouseleave">menu nr. {{i}}
-    </button>
-</li>-->

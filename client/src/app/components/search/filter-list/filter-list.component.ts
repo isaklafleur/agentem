@@ -40,14 +40,18 @@ export class FilterListComponent implements OnInit {
 
     this.minPriceControl.valueChanges
       .debounceTime(1000)
-      .subscribe(newValue => this.listingService.update());
+      .subscribe(newValue => {
+        if(newValue)
+          this.listingService.updateFilter()
+        });
     this.maxPriceControl.valueChanges
       .debounceTime(1000)
-      .subscribe(newValue => this.listingService.update());
 
-    $(window).click((event) => {
+      .subscribe(newValue => {
+        if(newValue)
+          this.listingService.updateFilter()
+        });
 
-    });
     // load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
       const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
@@ -88,11 +92,8 @@ export class FilterListComponent implements OnInit {
   }
 
   submitForm(myForm) {
-    this.listingService.update();
+  //  this.listingService.update();
     // console.log(myForm);
     // console.log(this.newSearch)
-  }
-  maxPriceChange(event) {
-    // console.log('change');
   }
 }

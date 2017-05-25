@@ -9,17 +9,15 @@ declare var $:any;
   providers: [  ]
 })
 export class ListComponent implements OnInit {
-  limit:number = 6;
-  offset:number = 0;
-  isLoading: boolean = false;
+
+
   isEndResults: boolean = false;
   
   constructor(private listingService: ListingService) { 
   }
 
   ngOnInit() {
-      this.listingService.getList(this.limit, this.offset, (listings)=>{
-      });
+      this.listingService.getNew();
   }
   clickHeart(index) {
     $("#heart"+index+" i:nth-child(1)").css("color", "red").css("opacity", 1).css("animation", "none");
@@ -27,20 +25,19 @@ export class ListComponent implements OnInit {
   }
 
   onScroll () {
-    if (this.isLoading || this.isEndResults) return;
-      this.offset += this.limit;
-      this.isLoading = true;
+
+    if(this.listingService.isLoading || this.isEndResults) return;
 
 
-      this.listingService.getList(this.limit, this.offset, (newListings) => {
+
+      this.listingService.getMore( (newListings)=>{
+
+
        // this.listings = this.listings.concat(newListings)
         if (newListings.length === 0) {
             this.isEndResults = true;
-            this.isLoading = false;
-          } else {
-            // this.listings = this.listings.concat(listings);
-            this.isLoading = false;
-         }
+           
+          }
       })
     }
 }
