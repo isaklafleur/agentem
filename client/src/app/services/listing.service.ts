@@ -4,8 +4,8 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ListingService {
-  BASE_URL: string = 'http://localhost:3000/api/listings';
-  listings: any[]=[];
+  BASE_URL = 'http://localhost:3000/api/listings';
+  listings: any[] = [];
   filter: any = {};
   limit: number = 6;
   offset: number = 0;
@@ -36,7 +36,6 @@ export class ListingService {
           this.isLoading = false;
           callback(listings);
         });
-       
   }
   getMore(callback) {
     this.offset+=this.limit;
@@ -47,7 +46,7 @@ export class ListingService {
     this.offset=0;
     this.getList(()=>{});
   }
-        
+
   get(id) {
     // let headers = new Headers({ 'Authorization': 'JWT ' + this.SessionService.token });
     // let options = new RequestOptions({ headers: headers });
@@ -63,5 +62,4 @@ export class ListingService {
       this.getList(()=>{});
     }
   }
-
 }

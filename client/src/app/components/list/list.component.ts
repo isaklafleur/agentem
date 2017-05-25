@@ -25,20 +25,19 @@ export class ListComponent implements OnInit {
   }
 
   onScroll () {
+
     if(this.listingService.isLoading || this.isEndResults) return;
 
 
 
       this.listingService.getMore( (newListings)=>{
+
+
        // this.listings = this.listings.concat(newListings)
-        if(newListings.length===0) {
+        if (newListings.length === 0) {
             this.isEndResults = true;
            
-          } else {
-            //this.listings = this.listings.concat(listings);
-          
-         }
+          }
       })
-	}
-
+    }
 }
