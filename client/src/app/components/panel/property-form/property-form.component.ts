@@ -61,7 +61,7 @@ export class PropertyFormComponent implements OnInit {
         this.submittedInvalid = true;
       } else {
         this.uploader.uploadAll();
-        let dialogResult = this.dialog.open(DialogResultExampleDialog, {width: '30%', height: '16%'})
+        const dialogResult = this.dialog.open(DialogCreateNewPropertyComponent, {width: '30%', height: '16%'})
         dialogResult.afterClosed().subscribe(result => {
           this.dialogRef.close('submitted')
         });
@@ -85,13 +85,13 @@ function readURL(input, index) {
 }
 
 @Component({
-  selector: 'dialog-result-example-dialog',
+  selector: 'app-dialog-result-example-dialog',
   template: `
 <div md-dialog-content>Listing has been created...</div>
 `,
 })
-export class DialogResultExampleDialog implements OnInit {
-  constructor(public dialogRef: MdDialogRef<DialogResultExampleDialog>) {}
+export class DialogCreateNewPropertyComponent implements OnInit {
+  constructor(public dialogRef: MdDialogRef<DialogCreateNewPropertyComponent>) {}
   ngOnInit() {
      setTimeout( () => this.dialogRef.close('submitted'), 1000);
   }

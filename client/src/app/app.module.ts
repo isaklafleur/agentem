@@ -19,7 +19,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { HomeRightComponent} from './components/home/home-right/home-right.component';
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
-import { PropertyFormComponent,  DialogResultExampleDialog  } from './components/panel/property-form/property-form.component';
+import { PropertyFormComponent,  DialogCreateNewPropertyComponent  } from './components/panel/property-form/property-form.component';
 import { GoogleMapsComponent } from './components/search/google-maps/google-maps.component';
 import { ListComponent } from './components/list/list.component';
 import { SearchComponent } from './components/search/search.component';
@@ -39,7 +39,7 @@ import { AuthService } from './services/auth.service';
     HomeRightComponent,
     TopMenuComponent,
     PropertyFormComponent,
-    DialogResultExampleDialog,
+    DialogCreateNewPropertyComponent,
     GoogleMapsComponent,
     ListComponent,
     SearchComponent,
@@ -47,7 +47,7 @@ import { AuthService } from './services/auth.service';
     TestComponent,
     AuthSigninComponent,
   ],
-  entryComponents: [DialogResultExampleDialog, AuthSigninComponent],
+  entryComponents: [DialogCreateNewPropertyComponent, AuthSigninComponent],
   imports: [
     BrowserModule,
     FormsModule,

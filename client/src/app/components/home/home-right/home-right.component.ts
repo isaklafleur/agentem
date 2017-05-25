@@ -19,7 +19,7 @@ export class HomeRightComponent implements OnInit {
       if (result === 'submitted') {
         console.log('form ok')
 
-      //   const modalRef = this.modalService.open(DialogResultExampleDialog, { size:"lg", windowClass: 'dark-modal' });
+      //   const modalRef = this.modalService.open(DialogCreateNewPropertyComponent, { size:"lg", windowClass: 'dark-modal' });
     // modalRef.componentInstance.name = 'World';
       }
     });
