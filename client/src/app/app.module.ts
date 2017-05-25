@@ -33,6 +33,7 @@ import { ListingService } from './services/listing.service';
 import { TestComponent } from './components/test/test.component';
 //Pipes
 import {LargeNumberPipe } from './pipes/large_number.pipe';
+import { MapComponent } from './components/search/map/map.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import {LargeNumberPipe } from './pipes/large_number.pipe';
     FilterListComponent,
     TestComponent,
     LargeNumberPipe,
+    MapComponent,
   ],
   entryComponents: [DialogResultExampleDialog],
   imports: [
