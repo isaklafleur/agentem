@@ -23,8 +23,8 @@ export class ListingService {
     query += this.filter.propertyType && this.filter.propertyType.house ? '&house=true' : '';
     query += this.filter.propertyType && this.filter.propertyType.apartment ? '&apartment=true' : '';
     query += this.filter.propertyType && this.filter.propertyType.villa ? '&villa=true' : '';
-    query += this.filter.coordiantes && this.filter.coordinates.latitude ? '&latitude=' + this.filter.coordiantes.latitude : '';
-    query += this.filter.coordiantes && this.filter.coordinates.longitude ? '&longitude=' + this.filter.coordiantes.longitude : '';
+    query += this.filter.coordinates && this.filter.coordinates.latitude ? '&latitude=' + this.filter.coordinates.latitude : '';
+    query += this.filter.coordinates && this.filter.coordinates.longitude ? '&longitude=' + this.filter.coordinates.longitude : '';
     
     console.log(query);
     return query;
@@ -60,11 +60,11 @@ export class ListingService {
   // from filter
   updateFilter() {
 
-    if (!isNaN(this.filter.maxPrice) && !isNaN(this.filter.minPrice) && ( +this.filter.maxPrice < +this.filter.minPrice)) {
-      return;
-    }
-    if ((this.filter.maxPrice && !isNaN(this.filter.maxPrice)) || (this.filter.minPrice && !isNaN(this.filter.minPrice)) ) {
+    // if (!isNaN(this.filter.maxPrice) && !isNaN(this.filter.minPrice) && ( +this.filter.maxPrice < +this.filter.minPrice)) {
+    //   return;
+    // }
+   // if ((this.filter.maxPrice && !isNaN(this.filter.maxPrice)) || (this.filter.minPrice && !isNaN(this.filter.minPrice)) ) {
       this.getList(() => {});
-    }
+   // }
   }
 }
