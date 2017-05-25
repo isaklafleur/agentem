@@ -22,6 +22,7 @@
       "type": "node",
       "request": "launch",
       "name": "Server",
+      "name": "Launch Express Server",
       "program": "${workspaceRoot}/server/bin/www",
       "outFiles": [
         "${workspaceRoot}/out/**/*.js"
