@@ -17,7 +17,6 @@ import 'hammerjs';
 import { ListingService } from './services/listing.service';
 import { AuthService } from './services/auth.service';
 
-
 // Custom Components
 import { routes } from './routes';
 import { AppComponent } from './app.component';
