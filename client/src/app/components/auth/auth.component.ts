@@ -4,24 +4,23 @@ import { MdDialog, MdDialogRef, MdInputModule } from '@angular/material';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-auth-signin',
-  templateUrl: './auth-signin.component.html',
-  styleUrls: ['./auth-signin.component.css']
+  selector: 'app-auth',
+  templateUrl: './auth.component.html',
+  styleUrls: ['./auth.component.css']
 })
-export class AuthSigninComponent implements OnInit {
-  newUser = {
+export class AuthComponent implements OnInit {
+  user = {
     username: '',
     password: ''
   };
 
-  user: any;
   error: string;
 
-  signupDialog = true;
-  loginDialog = false;
+  signupDialog = false;
+  loginDialog = true;
 
   constructor(
-    public dialogRef: MdDialogRef<AuthSigninComponent>,
+    public dialogRef: MdDialogRef<AuthComponent>,
     public dialog: MdDialog,
     private session: AuthService,
     private router: Router) { }
@@ -30,7 +29,7 @@ export class AuthSigninComponent implements OnInit {
   }
 
   signup() {
-    this.session.signup(this.newUser)
+    this.session.signup(this.user)
     .subscribe(result => {
       if (result === true) {
         // login successful
@@ -52,6 +51,16 @@ export class AuthSigninComponent implements OnInit {
         this.error = 'Username or password is incorrect';
       }
     });
+  }
+
+  DisplayLoginDialog() {
+    this.signupDialog = false;
+    this.loginDialog = true;
+  }
+
+  DisplaySignupDialog() {
+    this.signupDialog = true;
+    this.loginDialog = false;
   }
 
   submitForm(myForm) {

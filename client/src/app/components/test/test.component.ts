@@ -1,41 +1,18 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 //noinspection TypeScriptCheckImport
 import { DrawingManager } from '@ngui/map';
+import { MdInputModule } from '@angular/material';
+
 
 let templateStr: string = `
-  <p>a<p>a<p>a<p>a<p>a
-  <h1>Drawing Manager</h1>
-  <ngui-map 
-    #map 
-    zoom="13" 
-    center="Rio de Janeiro, Brazil"
-    (mapReady$)="onMapReady($event)"
-  >
-    <drawing-manager
-      #drawing
-      [drawingMode]="'polygon'"
-      [drawingControl]="true"
-      [drawingControlOptions]="{
-        position: 2,
-        drawingModes: ['polygon']
-       }"
-      [polygonOptions]="{
-        strokeColor: 'red',
-        fillColor: 'red',
-        strokeWeight: 2,
-        editable: true,
-        zIndex: 1
-      }"
-      ></drawing-manager>
-  </ngui-map>
-  selectedOverlay: {{selectedOverlay}} <br/>
-  <button (click)="deleteSelectedOverlay()">Delete Selected Overlay</button>
-  <code>
-    <br/><b>HTML</b>
-
-    <br/><b>deleteSelectedOverlay function</b>
-
-  </code>
+<h1>sdsd</h1>
+<h1>sdsd</h1>
+<h1>sdsd</h1>
+<h1>sdsd</h1>
+<h1>sdsd</h1>
+<md-input-container class="example-full-width">
+      <input mdInput placeholder="City">
+    </md-input-container>
 `;
 @Component({
   selector: 'app-test',

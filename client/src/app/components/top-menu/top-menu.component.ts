@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {MdDialog, MdDialogRef} from '@angular/material';
-import { AuthSigninComponent } from '../auth-signin/auth-signin.component';
+import { AuthComponent } from '../auth/auth.component';
 
 @Component({
   selector: 'app-top-menu',
@@ -17,7 +17,7 @@ export class TopMenuComponent implements OnInit {
   }
 
   openDialog() {
-   const dialogRef = this.dialog.open(AuthSigninComponent, {
+   const dialogRef = this.dialog.open(AuthComponent, {
      height: '400px',
      width: '600px',
     });

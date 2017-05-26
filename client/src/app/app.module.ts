@@ -17,6 +17,10 @@ import 'hammerjs';
 import { ListingService } from './services/listing.service';
 import { AuthService } from './services/auth.service';
 
+// Pipes
+import { LargeNumberPipe } from './pipes/large_number.pipe';
+import { MapComponent } from './components/search/map/map.component';
+
 // Custom Components
 import { routes } from './routes';
 import { AppComponent } from './app.component';
@@ -29,13 +33,10 @@ import { ListComponent } from './components/list/list.component';
 import { SearchComponent } from './components/search/search.component';
 import { FilterListComponent } from './components/search/filter-list/filter-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthSigninComponent } from './components/auth-signin/auth-signin.component';
 import { TestComponent } from './components/test/test.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AuthComponent } from './components/auth/auth.component';
 
-// Pipes
-import {LargeNumberPipe } from './pipes/large_number.pipe';
-import { MapComponent } from './components/search/map/map.component';
 
 @NgModule({
   declarations: [
@@ -50,12 +51,13 @@ import { MapComponent } from './components/search/map/map.component';
     SearchComponent,
     FilterListComponent,
     TestComponent,
-    AuthSigninComponent,
+    AuthComponent,
     DashboardComponent,
     LargeNumberPipe,
     MapComponent,
+    AuthComponent,
   ],
-  entryComponents: [DialogCreateNewPropertyComponent, AuthSigninComponent],
+  entryComponents: [DialogCreateNewPropertyComponent, AuthComponent],
   imports: [
     BrowserModule,
     FormsModule,
