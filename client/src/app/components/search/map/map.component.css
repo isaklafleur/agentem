@@ -9,6 +9,7 @@
 
 .over {
   background-color: red;
+  z-index: 2000;
 }
 
 .list-card-small {

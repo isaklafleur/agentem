@@ -1,7 +1,7 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { DrawingManager } from '@ngui/map';
 import { ListingService } from '../../../services/listing.service';
-declare var $:any;
+declare var $: any;
 
 
 @Component({
@@ -40,55 +40,55 @@ export class MapComponent implements OnInit {
     // console.log('markerTop: ', markerTop);
     // let markerLeft = (event.target as any).offsetParent.offsetLeft;
     // console.log('markerLeft: ', markerLeft);
-    
 
 
-   //marker.nativeElement.offsetLeft;
-   //console.log('marker.nativeElement.offsetLeft: ', marker.nativeElement.offsetLeft);
-   
-   // var target = event.target || event.srcElement || event.currentTarget;
+
+    //marker.nativeElement.offsetLeft;
+    //console.log('marker.nativeElement.offsetLeft: ', marker.nativeElement.offsetLeft);
+
+    // var target = event.target || event.srcElement || event.currentTarget;
     //console.log(target);
   }
 
   markerMouseOver(event, i) {
-    this.showMapDetails[i]=!this.showMapDetails[i];
-  
+    this.showMapDetails[i] = !this.showMapDetails[i];
 
-    setTimeout(()=>{
 
-        let mapWidth = this.mapElement.elementRef.nativeElement.clientWidth;
+    setTimeout(() => {
 
-    let mapHeight =  this.mapElement.elementRef.nativeElement.clientHeight;
-    console.log('mapHeight: ', mapHeight);
+      let mapWidth = this.mapElement.elementRef.nativeElement.clientWidth;
 
-   
-    let markerTop = (event.target as any).offsetParent.offsetTop;
-    console.log('markerTop: ', markerTop);
+      let mapHeight = this.mapElement.elementRef.nativeElement.clientHeight;
+ 
 
-    let markerLeft = (event.target as any).offsetParent.offsetLeft;
 
-      let offset = $('#markerDetails'+i).offset();
-      let markerWidth = $('#markerDetails'+i).width();
+      let markerTop = (event.target as any).offsetParent.offsetTop;
 
-      let markerHeight = $('#markerDetails'+i).height();      
 
-      $('#markerDetails'+i).offset({left:offset.left-markerWidth/2+20});
+      let markerLeft = (event.target as any).offsetParent.offsetLeft;
 
-      if(mapHeight-markerTop < 166) {
-        $("#markerDetails"+i).offset({top:offset.top - 166});
+      let offset = $('#markerDetails' + i).offset();
+      let markerWidth = $('#markerDetails' + i).width();
+
+      let markerHeight = $('#markerDetails' + i).height();
+
+   //   $('#markerDetails' + i).offset({ left: offset.left - markerWidth / 2 + 20 });
+
+      if (mapHeight - markerTop < 166) {
+        $("#markerDetails" + i).offset({ top: offset.top - 180 });
       }
 
 
-      this.hideDetails = false; 
-      
+      this.hideDetails = false;
+
     })
-      
-    
+
+
   }
 
-moveImg() {
-  
-}
+  moveImg() {
+
+  }
 
   ngOnInit() {
 
@@ -96,7 +96,7 @@ moveImg() {
 
       google.maps.event.addListener(dm, 'polygoncomplete', (polygon) => {
         this.isPolygon = true;
-        
+
         this.getPolygonRemovePosition(polygon);
         this.getPolygonAndUpdate(polygon);
 
@@ -143,7 +143,7 @@ moveImg() {
   }
 
   onMapReady(map) {
-    $("#test").offset({top:500, left:800});
+    $("#test").offset({ top: 500, left: 800 });
     this.map = map;
     this.getBounds();
     console.log(this.bounds);
@@ -168,7 +168,7 @@ moveImg() {
 
   getPolygonRemovePosition(polygon) {
     let coordinates = polygon.getPath().getArray()
-    this.polygonRemovePosition = [coordinates[0].lat(), coordinates[0].lng()] 
+    this.polygonRemovePosition = [coordinates[0].lat(), coordinates[0].lng()]
   }
 
   getPolygonAndUpdate(polygon) {
@@ -193,7 +193,7 @@ moveImg() {
       this.selectedOverlay.setMap(null);
       delete this.selectedOverlay;
 
-      delete this.listingService.filter.polygon 
+      delete this.listingService.filter.polygon
 
       this.isPolygon = false;
       this.listingService.updateFilter();
