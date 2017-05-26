@@ -1,0 +1,38 @@
+<ngui-map 
+  #map 
+  zoom="13" 
+  center="Rio de Janeiro, Brazil"
+  (mapReady$)="onMapReady($event)"
+  style="height:100%"
+>
+  <drawing-manager
+    #drawing
+    [drawingMode]="'polygon'"
+    [drawingControl]="true"
+    [drawingControlOptions]="{
+      position: 2,
+      drawingModes: ['polygon']
+      }"
+    [polygonOptions]="{
+      strokeColor: 'red',
+      fillColor: 'red',
+      strokeWeight: 2,
+      editable: true,
+      zIndex: 1
+    }"
+    ></drawing-manager>
+
+    <custom-marker *ngFor="let listing of listingService?.listings"  
+      [position]="[listing.location.coordinates[1], listing.location.coordinates[0]]">
+      <div class="custom-icon">{{toThousand(listing.price)}}</div>
+    </custom-marker>
+
+</ngui-map>
+<!--
+<button (click)="deleteSelectedOverlay()">Delete Selected Overlay</button>
+<code>
+  <br/><b>HTML</b>
+
+  <br/><b>deleteSelectedOverlay function</b>
+
+</code>-->

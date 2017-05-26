@@ -8,7 +8,7 @@ import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FileUploadModule } from 'ng2-file-upload';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
-
+import { NguiMapModule} from '@ngui/map';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import 'hammerjs';
@@ -16,6 +16,7 @@ import 'hammerjs';
 // Services
 import { ListingService } from './services/listing.service';
 import { AuthService } from './services/auth.service';
+
 
 // Custom Components
 import { routes } from './routes';
@@ -33,6 +34,9 @@ import { AuthSigninComponent } from './components/auth-signin/auth-signin.compon
 import { TestComponent } from './components/test/test.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
+//Pipes
+import {LargeNumberPipe } from './pipes/large_number.pipe';
+import { MapComponent } from './components/search/map/map.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +53,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     TestComponent,
     AuthSigninComponent,
     DashboardComponent,
+    LargeNumberPipe,
+    MapComponent,
   ],
   entryComponents: [DialogCreateNewPropertyComponent, AuthSigninComponent],
   imports: [
@@ -61,11 +67,12 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     NgbModule.forRoot(),
     FileUploadModule,
     AgmCoreModule.forRoot({
-      libraries: ['places'],
+      libraries: ['places', 'drawing'],
       apiKey: 'AIzaSyBoio8nEHTzRvPgWo3ObzLRxDubIQebLrM'
     }),
     ReactiveFormsModule,
     InfiniteScrollModule,
+    NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyBoio8nEHTzRvPgWo3ObzLRxDubIQebLrM&libraries=visualization,places,drawing'})
   ],
   providers: [ListingService, AuthService],
   bootstrap: [AppComponent]
