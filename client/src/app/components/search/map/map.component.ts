@@ -15,9 +15,9 @@ export class MapComponent implements OnInit {
   DEBOUNCE_TIME: number = 1000;
   lastDebounce: number = Date.now();
   bounds: any;
-  
+
   @ViewChild(DrawingManager) drawingManager: DrawingManager;
- 
+
   constructor(private listingService: ListingService) { }
 
   ngOnInit() {
@@ -25,20 +25,20 @@ export class MapComponent implements OnInit {
     this.drawingManager['initialized$'].subscribe(dm => {
 
       google.maps.event.addListener(dm, 'polygoncomplete', (polygon) => {
-  
+
         this.getPolygonAndUpdate(polygon);
-  
-        google.maps.event.addListener(polygon.getPath(), 'insert_at',  ()=>{
+
+        google.maps.event.addListener(polygon.getPath(), 'insert_at', () => {
           this.getPolygonAndUpdate(polygon);
         });
 
-        google.maps.event.addListener(polygon.getPath(), 'set_at',  ()=> {
+        google.maps.event.addListener(polygon.getPath(), 'set_at', () => {
           this.getPolygonAndUpdate(polygon);
         });
-        google.maps.event.addListener(polygon.getPath(), 'remove_at',  ()=> {
+        google.maps.event.addListener(polygon.getPath(), 'remove_at', () => {
           this.getPolygonAndUpdate(polygon);
         });
-       
+
       });
 
       google.maps.event.addListener(dm, 'overlaycomplete', event => {
@@ -49,7 +49,7 @@ export class MapComponent implements OnInit {
 
           dm.setDrawingMode(null);
           google.maps.event.addListener(event.overlay, 'click', e => {
-        
+
             this.selectedOverlay = event.overlay;
             this.selectedOverlay.setEditable(true);
           });
@@ -58,7 +58,7 @@ export class MapComponent implements OnInit {
       });
     });
   }
-  
+
   toThousand(x) {
     let addK = '';
     if (x > 9999) {
@@ -66,17 +66,17 @@ export class MapComponent implements OnInit {
       addK = 'K';
     }
     x = x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-    x = x.substr(0, x.length-2);
-    return  x + addK;
+    x = x.substr(0, x.length - 2);
+    return x + addK;
   }
 
- onMapReady(map) {
+  onMapReady(map) {
     this.map = map;
     this.getBounds();
     console.log(this.bounds);
     this.listingService.updateFilter();
-    map.addListener('bounds_changed', ()=>{
-      if(Date.now()-this.lastDebounce>this.DEBOUNCE_TIME) {
+    map.addListener('bounds_changed', () => {
+      if (Date.now() - this.lastDebounce > this.DEBOUNCE_TIME) {
         this.getBounds();
         this.listingService.updateFilter();
         this.lastDebounce = Date.now();
@@ -86,32 +86,28 @@ export class MapComponent implements OnInit {
   }
   getBounds() {
     this.listingService.filter.bounds = {
-     latNE : this.map.getBounds().getNorthEast().lat(),
-     lngNE : this.map.getBounds().getNorthEast().lng(),
-     latSW : this.map.getBounds().getSouthWest().lat(),
-     lngSW : this.map.getBounds().getSouthWest().lng(),
+      latNE: this.map.getBounds().getNorthEast().lat(),
+      lngNE: this.map.getBounds().getNorthEast().lng(),
+      latSW: this.map.getBounds().getSouthWest().lat(),
+      lngSW: this.map.getBounds().getSouthWest().lng(),
     }
   }
-  
+
 
   getPolygonAndUpdate(polygon) {
-        let coordinates = (polygon.getPath().getArray());
+    //  let coordinates = (polygon.getPath().getArray());
 
-        let len = polygon.getPath().getLength();
-        let htmlStr = "";
+    let len = polygon.getPath().getLength();
 
-        this.listingService.filter.polygon = [];
+    this.listingService.filter.polygon = [];
 
-        for (let i = 0; i < len; i++) {
-          let latLng = polygon.getPath().getAt(i).toUrlValue(20).split(",");
-          this.listingService.filter.polygon.push([latLng[1], latLng[0]]);
-          
-         // console.log( "new google.maps.LatLng(" + polygon.getPath().getAt(i).toUrlValue(20) + "), ");
+    for (let i = 0; i < len; i++) {
+      let latLng = polygon.getPath().getAt(i).toUrlValue(20).split(",");
+      this.listingService.filter.polygon.push([latLng[1], latLng[0]]);
 
-          //Use this one instead if you want to get rid of the wrap > new google.maps.LatLng(),
-          //htmlStr += "" + myPolygon.getPath().getAt(i).toUrlValue(5);
-        }
-        this.listingService.updateFilter();
+      //Use this one instead if you want to get rid of the wrap > new google.maps.LatLng(),
+    }
+    this.listingService.updateFilter();
 
   }
 
@@ -130,4 +126,4 @@ export class MapComponent implements OnInit {
 
 
 
- 
+

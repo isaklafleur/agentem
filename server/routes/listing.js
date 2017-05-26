@@ -99,25 +99,40 @@ router.get('/', (req, res, next) => {
         }
     }
   }
+  var queryBounds;
   if(req.query.bounds) {
     let bounds = JSON.parse(req.query.bounds)
 
-    query.location = {
-      $geoWithin: {
-         $polygon: [ [bounds.lngSW, bounds.latSW],[bounds.lngSW, bounds.latNE], [bounds.lngNE, bounds.latNE], [bounds.lngNE, bounds.latSW]   ]
+    queryBounds = { location : {
+        $geoWithin: {
+          $polygon: [ [bounds.lngSW, bounds.latSW],[bounds.lngSW, bounds.latNE], [bounds.lngNE, bounds.latNE], [bounds.lngNE, bounds.latSW]   ]
+        }
       }
-    }
+    };
+  }
+  var queryPolygon;
+  if(req.query.polygon) {
+    queryPolygon = { location : {
+        $geoWithin: {
+          $polygon: JSON.parse(req.query.polygon)
+        }
+      }
+    };
   }
 
-  if(req.query.polygon) {
-    let polygon = JSON.parse(req.query.polygon)
-    console.log(polygon);
-    query.location = {
-      $geoWithin: {
-         $polygon: polygon
-      }
-    }
+  if(queryBounds || queryPolygon) {
+    query.$and = [];
+    if(queryBounds) query.$and.push(queryBounds); 
+    if(queryPolygon) query.$and.push(queryPolygon);
   }
+
+   // query.location = query.location ? {$and:[ { location: query.location }, {location: queryPolygon} ]} : queryPolygon;
+    
+    console.log(query);
+
+  
+
+
 
 //  query = {bedrooms:{$gte:2}};
   Listing.find().count(query).exec((err,count)=>{
