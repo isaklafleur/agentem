@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MdDialog, MdDialogRef, MdInputModule } from '@angular/material';
+import { AlertService } from '../../services/alert.service';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class AuthComponent implements OnInit {
     username: '',
     password: ''
   };
+  loading = false;
 
   error: string;
 
@@ -23,35 +25,36 @@ export class AuthComponent implements OnInit {
     public dialogRef: MdDialogRef<AuthComponent>,
     public dialog: MdDialog,
     private session: AuthService,
+    private alertService: AlertService,
     private router: Router) { }
 
   ngOnInit() {
   }
 
   signup() {
-    console.log('user Object Signup: ', this.user);
     this.session.signup(this.user)
     .subscribe(result => {
       if (result === true) {
         // login successful
         console.log('result ok: ', result);
+        this.dialogRef.close('Option 1');
         this.router.navigate(['/dashboard']);
-      } else {
-        console.log('result not ok: ', result);
       }
+    }, (error) => {
+      this.error =  JSON.parse(error._body).message;
     });
   }
+
   login() {
-    console.log('user Object Login: ', this.user);
     this.session.login(this.user)
     .subscribe(result => {
       if (result === true) {
         // login successful
+        this.dialogRef.close('Option 1');
         this.router.navigate(['/dashboard']);
-      } else {
-        // login failed
-        this.error = 'Username or password is incorrect';
       }
+    }, (error) => {
+      this.error = JSON.parse(error._body).message;
     });
   }
 

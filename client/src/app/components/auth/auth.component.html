@@ -1,3 +1,4 @@
+<!--Sign Up Form-->
 <div *ngIf="signupDialog">
   <div class="modal-header">
     <h4 class="modal-title">Sign Up</h4>
@@ -29,6 +30,7 @@
   </div>
 </div>
 
+<!--Login Form-->
 <div *ngIf="loginDialog">
   <div class="modal-header">
     <h4 class="modal-title">Sign In</h4>
@@ -49,11 +51,12 @@
               <input mdInput type="password" placeholder="Password" [(ngModel)]="user.password" name="password">
             </md-input-container><br>
             <button md-raised-button color="accent" (click)="login()">Sign In</button>
+              <p>{{ error }}</p>
+
           </form><br>
         </div>
       </div>
     </div>
           New user? Welcome! <button md-raised-button color="primary" (click)="DisplaySignupDialog()">Sign Up</button>
   </div>
-
 </div>

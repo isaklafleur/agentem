@@ -12,4 +12,7 @@ export const routes: Routes = [
   { path: 'search',  component: SearchComponent },
   { path: 'test',  component: TestComponent },
   { path: 'dashboard',  component: DashboardComponent, canActivate: [AuthService]},
+
+  // otherwise redirect to home
+  { path: '**', redirectTo: '' }
 ];
