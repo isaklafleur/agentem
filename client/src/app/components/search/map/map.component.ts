@@ -55,16 +55,9 @@ export class MapComponent implements OnInit {
 
 
     setTimeout(() => {
-
       let mapWidth = this.mapElement.elementRef.nativeElement.clientWidth;
-
       let mapHeight = this.mapElement.elementRef.nativeElement.clientHeight;
- 
-
-
       let markerTop = (event.target as any).offsetParent.offsetTop;
-
-
       let markerLeft = (event.target as any).offsetParent.offsetLeft;
 
       let offset = $('#markerDetails' + i).offset();
@@ -75,7 +68,7 @@ export class MapComponent implements OnInit {
    //   $('#markerDetails' + i).offset({ left: offset.left - markerWidth / 2 + 20 });
 
       if (mapHeight - markerTop < 166) {
-        $("#markerDetails" + i).offset({ top: offset.top - 180 });
+        $("#markerDetails" + i).offset({ top: offset.top - 215 });
       }
 
 
