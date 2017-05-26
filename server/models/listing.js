@@ -1,5 +1,6 @@
-const mongoose = require("mongoose");
-const Schema   = mongoose.Schema;
+const mongoose = require('mongoose');
+
+const Schema = mongoose.Schema;
 
 const ListingSchema = new Schema({
   name: String,
@@ -9,14 +10,14 @@ const ListingSchema = new Schema({
   condo: Number,
   description: String,
   propertyType: {
-        type: String,
-        enum : ['apartment','house', 'villa'],
-        default: 'apartment'
+    type: String,
+    enum: ['apartment', 'house', 'villa'],
+    default: 'apartment',
   },
   listingType: {
-        type: String,
-        enum : ['rental','sale', 'new'],
-        default: 'sale'
+    type: String,
+    enum: ['rental', 'sale', 'new'],
+    default: 'sale',
   },
   deliveryDate: Date,
   stageOfWork: String,
@@ -31,8 +32,8 @@ const ListingSchema = new Schema({
   city: String,
   state: String,
   zip: String,
-  brokerId: String, 
-  userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+  brokerId: String,
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   location: { type: { type: String }, coordinates: [Number] },
   accuracy: String,
   uploadToken: Number,

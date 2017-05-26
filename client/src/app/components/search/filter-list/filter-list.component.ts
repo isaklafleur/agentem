@@ -24,7 +24,7 @@ export class FilterListComponent implements OnInit {
   minPriceControl = new FormControl();
   public searchControl: FormControl;
   public zoom: number;
-  RADIUS: number = 10;
+  RADIUS = 10;
 
   @ViewChild('addressSearchBox')
   public searchElementRef: ElementRef;
