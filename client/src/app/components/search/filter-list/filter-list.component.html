@@ -1,10 +1,14 @@
 <md-card id="filterSearchCard">
   <form  #myForm="ngForm" class="example-form">
     <md-input-container>
-      <input [formControl]="searchControl" type="text" autocorrect="off" autocapitalize="off" spellcheck="off" #addressSearchBox [(ngModel)]="newSearch.address" id="addressSearchBox" name="address" (click)="this.addressSearchBox.value = ''" mdInput placeholder="Search by Street, Neighborhood or City"
-        value="Copacabana, Rio de Janeiro, RJ">
+<!--      <input [formControl]="searchControl" type="text" autocorrect="off" autocapitalize="off" spellcheck="off" #addressSearchBox [(ngModel)]="newSearch.address" id="addressSearchBox" name="address" (click)="this.addressSearchBox.value = ''" mdInput placeholder="Search by Street, Neighborhood or City"
+        value="Copacabana, Rio de Janeiro, RJ">-->
+        <input places-auto-complete type="text" autocorrect="off" autocapitalize="off" spellcheck="off" #addressSearchBox [(ngModel)]="newSearch.address" id="addressSearchBox" name="address" (click)="this.addressSearchBox.value = ''" mdInput placeholder="Search by Street, Neighborhood or City"
+          (place_changed)="placeChanged($event)"
+          [types]="['geocode']" />
+
     </md-input-container>
-<!-- <input  placeholder="Min Price" [formControl]="minPriceControl"  name="minPrice1">-->
+
     <ng-template #priceRange><div  (click)="$event.stopPropagation()">
   <table class="example-full-width" cellspacing="0" ><tr>
     <td><md-input-container class="example-full-width">
@@ -56,5 +60,7 @@
     </button>
 
       <button md-raised-button color="primary">Search <i class="material-icons">search</i></button>
+      Found: {{listingService.listingCount}}
   </form>
+    
 </md-card>

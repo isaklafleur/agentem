@@ -10,6 +10,7 @@ export class ListingService {
   limit = 50;
   offset = 0;
   isLoading = true;
+  listingCount: number;
 
   constructor( private http: Http ) { }
 
@@ -24,8 +25,16 @@ export class ListingService {
     query += this.filter.propertyType && this.filter.propertyType.apartment ? '&apartment=true' : '';
     query += this.filter.propertyType && this.filter.propertyType.villa ? '&villa=true' : '';
     query += this.filter.coordinates && this.filter.coordinates.latitude ? '&latitude=' + this.filter.coordinates.latitude : '';
-    query += this.filter.coordinates && this.filter.coordinates.longitude ? '&longitude=' + this.filter.coordinates.longitude : '';
-    query += this.filter.coordinates && this.filter.coordinates.latitude ? '&radius=' + this.filter.coordinates.radius : '';
+ //   query += this.filter.coordinates && this.filter.coordinates.longitude ? '&longitude=' + this.filter.coordinates.longitude : '';
+  //  query += this.filter.coordinates && this.filter.coordinates.latitude ? '&radius=' + this.filter.coordinates.radius : '';
+    if(this.filter.bounds) {
+      query += "&bounds=" + encodeURI(JSON.stringify(this.filter.bounds));
+    }
+
+    if(this.filter.polygon) {
+      query += "&polygon=" + encodeURI(JSON.stringify(this.filter.polygon));
+    }
+
     console.log(query);
     return query;
   }
@@ -35,10 +44,11 @@ export class ListingService {
     // let options = new RequestOptions({ headers: headers });
     this.isLoading = true;
     this.http.get(`${this.BASE_URL}${this.getQuery()}`)// , options)
-      .map((res) => res.json()).subscribe((listings) => {
-          this.listings = this.listings.concat(listings);
+      .map((res) => res.json()).subscribe((res) => {
+          this.listings = this.listings.concat(res.listings);
+          this.listingCount = res.count;
           this.isLoading = false;
-          callback(listings);
+          callback(res.listings);
         });
   }
   getMore(callback) {

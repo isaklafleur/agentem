@@ -99,21 +99,58 @@ router.get('/', (req, res, next) => {
         }
     }
   }
+  var queryBounds;
+  if(req.query.bounds) {
+    let bounds = JSON.parse(req.query.bounds)
+
+    queryBounds = { location : {
+        $geoWithin: {
+          $polygon: [ [bounds.lngSW, bounds.latSW],[bounds.lngSW, bounds.latNE], [bounds.lngNE, bounds.latNE], [bounds.lngNE, bounds.latSW]   ]
+        }
+      }
+    };
+  }
+  var queryPolygon;
+  if(req.query.polygon) {
+    queryPolygon = { location : {
+        $geoWithin: {
+          $polygon: JSON.parse(req.query.polygon)
+        }
+      }
+    };
+  }
+
+  if(queryBounds || queryPolygon) {
+    query.$and = [];
+    if(queryBounds) query.$and.push(queryBounds); 
+    if(queryPolygon) query.$and.push(queryPolygon);
+  }
+
+   // query.location = query.location ? {$and:[ { location: query.location }, {location: queryPolygon} ]} : queryPolygon;
+    
+    console.log(query);
+
+  
+
+
 
 //  query = {bedrooms:{$gte:2}};
- // Listing.find().count(query).exec((err,res)=>console.log("count: ", res));
-  Listing.find(query).skip(+req.query.offset).limit(+req.query.limit).exec((err, listingList) => {
-    if (err) {
-      res.status(500).json(err);
-      return;
-    }
-    listingList.forEach(listing=>{
-      listing.photos = listing.photos.map(photo=>{
-          return photo.split(":")[0]==="https" ? photo : "http://localhost:3000/uploads/"+photo;
+  Listing.find().count(query).exec((err,count)=>{
+    Listing.find(query).skip(+req.query.offset).limit(+req.query.limit).exec((err, listingList) => {
+      if (err) {
+        res.status(500).json(err);
+        return;
+      }
+      listingList.forEach(listing=>{
+        listing.photos = listing.photos.map(photo=>{
+            return photo.split(":")[0]==="https" ? photo : "http://localhost:3000/uploads/"+photo;
+        });
       });
+      res.status(200).json({listings:listingList, count:count});
     });
-    res.status(200).json(listingList);
+
   });
+
 });
 
 router.get('/:id', (req, res) => {

@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ListingService } from '../../../services/listing.service';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
+import {} from '@types/googlemaps';
 
 @Component({
   selector: 'app-google-maps',
@@ -16,19 +17,28 @@ export class GoogleMapsComponent implements OnInit {
   lat2 = 51.678428;
   lng2 = 7.809017;
   zoom = 13;
+  @ViewChild('map')
+  public mapRef: ElementRef;
 
   toThousand(x) {
     let addK = '';
     if (x > 9999) {
       x = (x / 1000).toFixed(1)
-      addK = 'k';
+      addK = 'K';
     }
-    return  x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + addK;
+    x = x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    x = x.substr(0, x.length-2);
+    return  x + addK;
   }
 
-constructor(private listingService: ListingService ) { }
+constructor(
+    private listingService: ListingService,
+    private mapsAPILoader: MapsAPILoader,
+    ) { }
 
   ngOnInit() {
+
+
   }
 
 }
