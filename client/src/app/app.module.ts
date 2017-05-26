@@ -33,7 +33,7 @@ import { AuthSigninComponent } from './components/auth-signin/auth-signin.compon
 import { TestComponent } from './components/test/test.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
-//Pipes
+// Pipes
 import {LargeNumberPipe } from './pipes/large_number.pipe';
 import { MapComponent } from './components/search/map/map.component';
 
@@ -71,7 +71,9 @@ import { MapComponent } from './components/search/map/map.component';
     }),
     ReactiveFormsModule,
     InfiniteScrollModule,
-    NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyBoio8nEHTzRvPgWo3ObzLRxDubIQebLrM&libraries=visualization,places,drawing'})
+    NguiMapModule.forRoot({
+      apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyBoio8nEHTzRvPgWo3ObzLRxDubIQebLrM&libraries=visualization,places,drawing'
+    })
   ],
   providers: [ListingService, AuthService],
   bootstrap: [AppComponent]
