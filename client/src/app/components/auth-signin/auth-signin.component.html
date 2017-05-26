@@ -4,10 +4,12 @@
       <form>
         <div class="form-group">
           <label for="InputUsername">username</label>
+
           <input type="text" class="form-control" id="InputUsername" placeholder="username" [(ngModel)]="newUser.username" name="username">
         </div>
         <div class="form-group">
-          <label for="InputPassword">Password</label>
+          ASDSADSA
+          <label for="InputPassword">PasswordSADASDAS</label>
           <input type="password" class="form-control" id="InputPassword" placeholder="Password" [(ngModel)]="newUser.password" name="password">
         </div>
         <button type="submit" class="btn btn-default btn-primary" (click)="signup()">Signup</button>
@@ -15,6 +17,9 @@
     </div>
   </div>
 </div>
+                <md-input-container>
+                  <input mdInput placeholder="Neighbourhood" name="neighbourhood" >
+                </md-input-container>
 
 
 <div class="col-md-3 col-md-offset-4" *ngIf="loginDialog">
@@ -26,7 +31,7 @@
           <input type="email" class="form-control" id="InputUsername" placeholder="username" [(ngModel)]="user.username" name="username">
         </div>
         <div class="form-group">
-          <label for="InputPassword">Password</label>
+          <label for="InputPassword">PasswordASDASD</label>
           <input type="password" class="form-control" id="InputPassword" placeholder="Password" [(ngModel)]="user.password" name="password">
         </div>
         <button type="submit" class="btn btn-default btn-primary" (click)="login()">Login</button>

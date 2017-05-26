@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MdDialog, MdDialogRef, MdInputModule } from '@angular/material';
+import { MdDialog, MdDialogRef } from '@angular/material';
 import { AuthService } from '../../services/auth.service';
 
 @Component({

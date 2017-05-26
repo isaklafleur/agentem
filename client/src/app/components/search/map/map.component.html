@@ -1,31 +1,66 @@
-<ngui-map 
-  #map 
-  zoom="13" 
-  center="Rio de Janeiro, Brazil"
-  (mapReady$)="onMapReady($event)"
-  style="height:100%"
->
-  <drawing-manager
-    #drawing
-    [drawingMode]="'polygon'"
-    [drawingControl]="true"
-    [drawingControlOptions]="{
+<ngui-map #map zoom="13" center="Rio de Janeiro, Brazil" (mapReady$)="onMapReady($event)" style="height:100%">
+  <drawing-manager #drawing [drawingMode]="'polygon'" [drawingControl]="true" [drawingControlOptions]="{
       position: 2,
       drawingModes: ['polygon']
-      }"
-    [polygonOptions]="{
+      }" [polygonOptions]="{
       strokeColor: 'red',
       fillColor: 'red',
       strokeWeight: 2,
       editable: true,
       zIndex: 1
-    }"
-    ></drawing-manager>
+    }"></drawing-manager>
+ 
+  <custom-marker  (click)="getElement($event)" *ngFor="let listing of listingService?.listings; let i=index" [position]="[listing.location.coordinates[1], listing.location.coordinates[0]]">
 
-    <custom-marker *ngFor="let listing of listingService?.listings"  
-      [position]="[listing.location.coordinates[1], listing.location.coordinates[0]]">
-      <div class="custom-icon">{{toThousand(listing.price)}}</div>
-    </custom-marker>
+    <div>
+      <span [class.over]="showMapDetails[i]" 
+        (mouseover)="markerMouseOver($event, i)" 
+        (mouseout)="showMapDetails[i]=!showMapDetails[i];hideDetails=true"
+        class="custom-icon"
+        >
+        {{toThousand(listing.price)}}
+        
+      </span>
+    </div>
+    <img #markerDetails id="markerDetails{{i}}" style="z-index: 1000" [src]="listing.photos[0]" [hidden]="hideDetails" *ngIf="showMapDetails[i]" class="list-card-small">
+<!--
+    <md-card *ngIf="showMapDetails[i]" class="list-card-small">
+      <md-card-header>
+        <div md-card-avatar class="property-{{listing.propertyType}}"></div>
+        <md-card-title><span class="no-break"> {{listing.name}}</span></md-card-title>
+        <md-card-subtitle><span class="no-break">{{listing.city}}</span></md-card-subtitle>
+      </md-card-header>
+
+
+      <img md-card-image [src]="listing.photos[0]">
+
+      <h2 class="photo-text">
+        {{listing.listingType}} | {{listing.propertyType}}
+        <br>R$ {{listing.price | largeNumber}}
+      </h2>
+      <div class="heart">
+        <span class="fa-stack icon-stack" id="heart{{i}}" (click)="clickHeart(i)">
+          <i class="fa fa-2x fa-heart fa-stack-1x icon-a"></i>
+          <i class="fa fa-2x fa-heart-o fa-stack-1x icon-b"></i>
+        </span>
+      </div>
+
+
+
+      <md-card-content>
+
+      </md-card-content>
+    </md-card>
+-->
+
+
+  </custom-marker>
+
+  <custom-marker *ngIf="isPolygon" [position]="polygonRemovePosition">
+    <span (click)="deleteSelectedOverlay()" class="fa-stack fa-lg" style="z-index: 100">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-close fa-stack-1x" style="color:white"></i>
+      </span> </custom-marker>
 
 </ngui-map>
 <!--
@@ -36,3 +71,9 @@
   <br/><b>deleteSelectedOverlay function</b>
 
 </code>-->
+
+
+ <div style="position:absolute;z-index:1000;display:none; background-color:red" id="test">HERE!!
+
+
+ </div>

@@ -4,4 +4,17 @@
   border-radius: 4px;
   color:white;
   padding: 1px 3px ;
+  cursor: pointer;
+}
+
+.over {
+  background-color: red;
+}
+
+.list-card-small {
+  position:absolute;
+  width:200px;
+  float:left;
+  margin:1%;
+
 }

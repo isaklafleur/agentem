@@ -37,6 +37,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {LargeNumberPipe } from './pipes/large_number.pipe';
 import { MapComponent } from './components/search/map/map.component';
 
+import {GetEleDirective} from "./directives/ref.directive";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +56,7 @@ import { MapComponent } from './components/search/map/map.component';
     DashboardComponent,
     LargeNumberPipe,
     MapComponent,
+    GetEleDirective,
   ],
   entryComponents: [DialogCreateNewPropertyComponent, AuthSigninComponent],
   imports: [
@@ -77,3 +80,6 @@ import { MapComponent } from './components/search/map/map.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+

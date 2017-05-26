@@ -60,7 +60,11 @@
     </button>
 
       <button md-raised-button color="primary">Search <i class="material-icons">search</i></button>
-      Found: {{listingService.listingCount}}
+      Found: {{listingService.listingCount}} matches
+      <div  *ngIf="listingService.isLoading" style="float:right">
+        <i class="fa fa-cog fa-spin fa-2x fa-fw spin-cog"></i>
+      </div>
+
   </form>
     
 </md-card>
