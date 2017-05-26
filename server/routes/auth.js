@@ -13,9 +13,11 @@ const User = require('../models/user');
 const bcryptSalt = 10;
 
 router.post('/login', (req, res) => {
+  let username;
+  let password;
   if (req.body.username && req.body.password) {
-    const username = req.body.username;
-    const password = req.body.password;
+    username = req.body.username;
+    password = req.body.password;
   }
 
   if (username === '' || password === '') {
@@ -32,11 +34,9 @@ router.post('/login', (req, res) => {
         if (!isMatch) {
           res.status(401).json({ message: 'passwords did not match' });
         } else {
-          console.log('user', user);
-          const payload = { id: user._id, user: user.username };
+          const payload = { id: user._id };
           const token = jwt.sign(payload, jwtOptions.secretOrKey);
-          console.log(token);
-          res.json({ message: 'ok', token, user });
+          res.json({ message: 'ok', token });
         }
       });
     }

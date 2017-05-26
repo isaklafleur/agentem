@@ -12,18 +12,21 @@
         <div class="modal-body">
       <form #myForm="ngForm">
           <md-input-container>
-            <input mdInput type="email"placeholder="Email" [(ngModel)]="user.username" name="username">
+            <input mdInput type="email" placeholder="Email" [(ngModel)]="user.username" name="username" required>
+             <md-error>Please enter a valid email</md-error>
           </md-input-container>
+
           <md-input-container>
-          <input mdInput type="password" placeholder="Password" [(ngModel)]="user.password" name="password">
+          <input mdInput type="password" placeholder="Password" [(ngModel)]="user.password" name="password" minlength="5">
+          <md-error>Password must be at least 5 characters long.</md-error>
           </md-input-container><br>
-        <button type="submit" class="btn btn-default btn-primary" (click)="signup()">Signup</button>
-      </form>
+        <button type="submit" md-raised-button color="accent" (click)="signup()">Sign Up</button>
+      </form><br>
         </div>
       </div>
     </div>
+          Already have an an account? <button md-raised-button color="primary" (click)="DisplayLoginDialog()">Login</button>
   </div>
-      Already have an an account? <button md-raised-button color="primary" (click)="DisplayLoginDialog()">Login</button>
 </div>
 
 <div *ngIf="loginDialog">
@@ -39,7 +42,7 @@
       <div class="col-md-7">
         <div class="modal-body">
           <form #myForm="ngForm">
-            <md-input-container class="example-full-width">
+            <md-input-container>
               <input mdInput type="email" placeholder="Email" [(ngModel)]="user.username" name="username">
             </md-input-container>
             <md-input-container>
@@ -50,7 +53,7 @@
         </div>
       </div>
     </div>
-            <h5>new user?</h5> <button md-raised-button color="primary" (click)="DisplaySignupDialog()">Sign Up</button>
+          New user? Welcome! <button md-raised-button color="primary" (click)="DisplaySignupDialog()">Sign Up</button>
   </div>
 
 </div>

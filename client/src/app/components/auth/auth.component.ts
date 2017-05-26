@@ -29,6 +29,7 @@ export class AuthComponent implements OnInit {
   }
 
   signup() {
+    console.log('user Object Signup: ', this.user);
     this.session.signup(this.user)
     .subscribe(result => {
       if (result === true) {
@@ -41,6 +42,7 @@ export class AuthComponent implements OnInit {
     });
   }
   login() {
+    console.log('user Object Login: ', this.user);
     this.session.login(this.user)
     .subscribe(result => {
       if (result === true) {
