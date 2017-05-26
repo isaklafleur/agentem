@@ -26,6 +26,7 @@
     "@angular/platform-server": "^4.1.3",
     "@angular/router": "^4.1.3",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.26",
+    "@ngui/map": "^0.18.1",
     "@types/googlemaps": "^3.26.11",
     "bootstrap": "^4.0.0-alpha.6",
     "core-js": "^2.4.1",
