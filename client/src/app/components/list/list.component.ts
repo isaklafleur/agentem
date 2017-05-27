@@ -29,16 +29,9 @@ export class ListComponent implements OnInit {
   onScroll () {
     console.log("scroll");
     if(this.listingService.isLoading || this.isEndResults) return;
-
-
-
       this.listingService.getMore( (newListings)=>{
-
-
-       // this.listings = this.listings.concat(newListings)
         if (newListings.length === 0) {
             this.isEndResults = true;
-           
           }
       })
     }
