@@ -1,31 +1,52 @@
-<ngui-map 
-  #map 
-  zoom="13" 
-  center="Rio de Janeiro, Brazil"
-  (mapReady$)="onMapReady($event)"
-  style="height:100%"
->
-  <drawing-manager
-    #drawing
-    [drawingMode]="'polygon'"
-    [drawingControl]="true"
-    [drawingControlOptions]="{
+<ngui-map #map zoom="13" center="Rio de Janeiro, Brazil" (mouseover)="listingService.listHoverItem=-1" (mapReady$)="onMapReady($event)"
+  style="height:100%">
+  <drawing-manager #drawing [drawingMode]="'polygon'" [drawingControl]="true" [drawingControlOptions]="{
       position: 2,
       drawingModes: ['polygon']
-      }"
-    [polygonOptions]="{
+      }" [polygonOptions]="{
       strokeColor: 'red',
       fillColor: 'red',
       strokeWeight: 2,
       editable: true,
       zIndex: 1
-    }"
-    ></drawing-manager>
+    }"></drawing-manager>
+  <custom-marker (click)="getElement($event)" *ngFor="let listing of listingService?.listings; let i=index" [position]="[listing.location.coordinates[1], listing.location.coordinates[0]]">
+    <div>
+      <span [class.over]="showMapDetails[i] || listingService.listHoverItem===i" (mouseover)="markerMouseOver($event, i)" (mouseout)="showMapDetails[i]=!showMapDetails[i];hideDetails=true"
+        class="custom-icon">
+        {{toThousand(listing.price)}}
+        
+      </span>
+    </div>
+    <div #markerDetails id="markerDetails{{i}}" style="z-index: 1000; margin:0 -80px" *ngIf="(showMapDetails[i] || listingService.listHoverItem===i)"
+      class="card list-card">
 
-    <custom-marker *ngFor="let listing of listingService?.listings"  
-      [position]="[listing.location.coordinates[1], listing.location.coordinates[0]]">
-      <div class="custom-icon">{{toThousand(listing.price)}}</div>
-    </custom-marker>
+
+
+
+      <img class="photo" [src]="listing.photos[0]" alt="Card image">
+      <h4 class=" photo-text">R$ {{listing.price | largeNumber}}</h4>
+      <div class="photo-description">
+        <!--card-img-overlay-->
+        <div style="float:left; padding:5px">
+          <img style="height:20px" src="/assets/{{listing.propertyType}}.svg"> {{listing.listingType}} <br>
+
+        </div>
+        <div style="float:right;padding:5px">
+          <img src="/assets/bed.svg" style="width:19px;margin-bottom:8px"> {{listing.bedrooms}} <img src="/assets/bath.svg"
+            style="width:19px;margin-bottom:8px"> {{listing.bathrooms}}
+        </div>
+
+      </div>
+    </div>
+
+  </custom-marker>
+
+  <custom-marker *ngIf="isPolygon" [position]="polygonRemovePosition">
+    <span (click)="deleteSelectedOverlay()" class="fa-stack fa-lg" style="z-index: 100">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-close fa-stack-1x" style="color:white"></i>
+      </span> </custom-marker>
 
 </ngui-map>
 <!--
@@ -36,3 +57,9 @@
   <br/><b>deleteSelectedOverlay function</b>
 
 </code>-->
+
+
+<div style="position:absolute;z-index:1000;display:none; background-color:red" id="test">HERE!!
+
+
+</div>

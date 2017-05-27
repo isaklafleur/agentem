@@ -16,7 +16,7 @@ html {
 @media (min-width: 576px) {
   #left {
     position: fixed;
-    top: 56px;
+    top: 50px;
     bottom: 0;
   }
 }

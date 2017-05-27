@@ -40,6 +40,8 @@ import { AuthComponent } from './components/auth/auth.component';
 import { AlertComponent } from './directives/alert/alert.component';
 
 
+import {GetEleDirective} from "./directives/ref.directive";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +59,11 @@ import { AlertComponent } from './directives/alert/alert.component';
     DashboardComponent,
     LargeNumberPipe,
     MapComponent,
+<<<<<<< HEAD
     AlertComponent,
+=======
+    GetEleDirective,
+>>>>>>> dev-darek
   ],
   entryComponents: [DialogCreateNewPropertyComponent, AuthComponent],
   imports: [
@@ -83,3 +89,6 @@ import { AlertComponent } from './directives/alert/alert.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+
