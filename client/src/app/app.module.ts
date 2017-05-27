@@ -16,6 +16,11 @@ import 'hammerjs';
 // Services
 import { ListingService } from './services/listing.service';
 import { AuthService } from './services/auth.service';
+import { AlertService } from './services/alert.service';
+
+// Pipes
+import { LargeNumberPipe } from './pipes/large_number.pipe';
+import { MapComponent } from './components/search/map/map.component';
 
 // Custom Components
 import { routes } from './routes';
@@ -29,13 +34,11 @@ import { ListComponent } from './components/list/list.component';
 import { SearchComponent } from './components/search/search.component';
 import { FilterListComponent } from './components/search/filter-list/filter-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthSigninComponent } from './components/auth-signin/auth-signin.component';
 import { TestComponent } from './components/test/test.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AuthComponent } from './components/auth/auth.component';
+import { AlertComponent } from './directives/alert/alert.component';
 
-//Pipes
-import {LargeNumberPipe } from './pipes/large_number.pipe';
-import { MapComponent } from './components/search/map/map.component';
 
 @NgModule({
   declarations: [
@@ -50,12 +53,13 @@ import { MapComponent } from './components/search/map/map.component';
     SearchComponent,
     FilterListComponent,
     TestComponent,
-    AuthSigninComponent,
+    AuthComponent,
     DashboardComponent,
     LargeNumberPipe,
     MapComponent,
+    AlertComponent,
   ],
-  entryComponents: [DialogCreateNewPropertyComponent, AuthSigninComponent],
+  entryComponents: [DialogCreateNewPropertyComponent, AuthComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -71,9 +75,11 @@ import { MapComponent } from './components/search/map/map.component';
     }),
     ReactiveFormsModule,
     InfiniteScrollModule,
-    NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyBoio8nEHTzRvPgWo3ObzLRxDubIQebLrM&libraries=visualization,places,drawing'})
+    NguiMapModule.forRoot({
+      apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyBoio8nEHTzRvPgWo3ObzLRxDubIQebLrM&libraries=visualization,places,drawing'
+    })
   ],
-  providers: [ListingService, AuthService],
+  providers: [ListingService, AuthService, AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

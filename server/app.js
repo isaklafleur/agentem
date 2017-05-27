@@ -8,7 +8,7 @@ const cors = require('cors');
 const portDB = require('./config/db').portDB;
 const databaseName = require('./config/db').databaseName;
 const mongoose = require('mongoose');
-
+mongoose.Promise = require('bluebird');
 const listingRoutes = require('./routes/listing');
 const authRoutes = require('./routes/auth');
 
@@ -51,7 +51,7 @@ app.use((req, res, next) => {
 });
 
 // error handler
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

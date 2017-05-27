@@ -8,8 +8,9 @@ import { Observable } from 'rxjs/Rx';
 @Injectable()
 export class AuthService implements CanActivate {
   public token: string;
-  public isAuth: boolean;
-  public user: string;
+/*  public isAuth: boolean;
+  public user: string;*/
+  isAuth: EventEmitter<any> = new EventEmitter();
 
   BASE_URL = 'http://localhost:3000';
 
@@ -20,22 +21,22 @@ export class AuthService implements CanActivate {
       // set token if saved in local storage
       this.token = localStorage.getItem('token');
       if (this.token != null) {
-        this.isAuth = true;
+        this.isAuth.emit(true);
       } else {
-        this.isAuth = false;
+        this.isAuth.emit(false);
       }
   }
 
   canActivate(): Observable<boolean> | Promise<boolean> | boolean {
     if (localStorage.getItem('token')) {
       // logged in so return true\
-      this.token = localStorage.getItem('token');
-      this.isAuth = true;
+/*      this.token = localStorage.getItem('token');
+      this.isAuth = true;*/
       return true;
     }
     // not logged in so redirect to login page
-    this.router.navigate(['/login']);
-    this.isAuth = false;
+    this.router.navigate(['/']);
+    this.isAuth.emit(true);
     return false;
   }
 
@@ -48,15 +49,14 @@ export class AuthService implements CanActivate {
     .map((response) => response.json())
     .map((response) => {
       const token = response.token;
-      const user = response.user;
+/*      const user = response.user;*/
       if (token) {
         // set token property
         this.token = token;
 
         // store username and jwt token in local storage to keep user logged in between page refreshes
-        localStorage.setItem('token', token );
-
-        this.isAuth = true;
+        localStorage.setItem('token', token);
+        this.isAuth.emit(true);
         // return true to indicate successful login
         return true;
       } else {
@@ -72,16 +72,15 @@ export class AuthService implements CanActivate {
         .map((response: Response) => {
             // login successful if there's a jwt token in the response
             const token = response.json() && response.json().token;
-            const user = response.json() && response.json().user;
+/*            const user = response.json() && response.json().user;*/
 
             if (token) {
               // set token property
               this.token = token;
-
-              this.isAuth = true;
+              this.isAuth.emit(true);
               // store username and jwt token in local storage to keep user logged in between page refreshes
               localStorage.setItem('token', token );
-              localStorage.setItem('user', JSON.stringify(user) );
+/*              localStorage.setItem('user', JSON.stringify(user) );*/
               // return true to indicate successful login
               return true;
             } else {
@@ -94,10 +93,10 @@ export class AuthService implements CanActivate {
   logout() {
       // clear token remove user from local storage to log user out
       this.token = null;
-      this.user = null;
-      this.isAuth = false;
+      /*this.user = null;*/
+      this.isAuth.emit(false);
       localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      this.router.navigate(['/login']);
+/*      localStorage.removeItem('user');*/
+      this.router.navigate(['/']);
   }
 }
