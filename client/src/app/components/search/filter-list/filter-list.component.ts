@@ -17,7 +17,7 @@ export class FilterListComponent implements OnInit {
 //   topMenuOptions = ['test1', 'test2', 'test3'];
   autocomplete: any;
   address: any = {};
-  center: any;
+
 
   newSearch: any = {};
   maxPriceControl = new FormControl();
@@ -97,20 +97,22 @@ export class FilterListComponent implements OnInit {
     this.autocomplete = autocomplete;
   }
   placeChanged(place) {
-  // set latitude, longitude and zoom
-    this.newSearch.coordinates.latitude = place.geometry.location.lat();
-    this.newSearch.coordinates.longitude = place.geometry.location.lng();
-    this.newSearch.coordinates.radius = this.RADIUS;
-    this.zoom = 12;
+    if(place.name) {
+    // set latitude, longitude and zoom
+      this.newSearch.coordinates.latitude = place.geometry.location.lat();
+      this.newSearch.coordinates.longitude = place.geometry.location.lng();
+      this.newSearch.coordinates.radius = this.RADIUS;
+      this.zoom = 12;
 
-    this.listingService.updateFilter();
-    this.newSearch.coordinates.longitude = "";
-    this.newSearch.coordinates.latitude = "";
+      this.listingService.updateFilter();
+      this.newSearch.coordinates.longitude = "";
+      this.newSearch.coordinates.latitude = "";
 
-    this.center = place.geometry.location;
-    for (let i = 0; i < place.address_components.length; i++) {
-      let addressType = place.address_components[i].types[0];
-      this.address[addressType] = place.address_components[i].long_name;
+      this.listingService.center = place.geometry.location;
+      for (let i = 0; i < place.address_components.length; i++) {
+        let addressType = place.address_components[i].types[0];
+        this.address[addressType] = place.address_components[i].long_name;
+      }
     }
     this.ref.detectChanges();
   }
