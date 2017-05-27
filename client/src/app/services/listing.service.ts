@@ -12,6 +12,7 @@ export class ListingService {
   isLoading = true;
   listingCount: number;
   addressComponents: string[] = [];
+  zoom: number = 13;
   center: any = "Rio de Janeiro, Brazil";
 
   constructor( private http: Http ) { }
@@ -86,5 +87,33 @@ export class ListingService {
    // if ((this.filter.maxPrice && !isNaN(this.filter.maxPrice)) || (this.filter.minPrice && !isNaN(this.filter.minPrice)) ) {
       this.getNew();
    // }
+  }
+
+  readSearchPlace(place) {
+    this.addressComponents = [];
+    this.filter.street = "";
+    this.filter.neighbourhood = "";
+    this.filter.city = "";
+    let newZoom = 13;
+    place.address_components.forEach(component=>{
+      switch(component.types[0]) {
+        case "route": 
+          this.filter.street = component.long_name; 
+          newZoom = 15;
+          this.addressComponents.unshift(component.long_name); 
+          break;
+        case "sublocality_level_1": 
+          this.filter.neighbourhood = component.long_name; 
+          this.addressComponents.unshift(component.long_name);
+          newZoom = newZoom<14 ? 14 : newZoom;
+          break;
+        case "locality": 
+          this.filter.city = component.long_name; 
+          this.addressComponents.unshift(component.long_name);
+          break;
+      }
+    })
+    this.zoom = newZoom;
+    this.center = place.geometry.location;
   }
 }

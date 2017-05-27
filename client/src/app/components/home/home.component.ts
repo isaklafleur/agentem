@@ -15,16 +15,13 @@ export class HomeComponent implements OnInit {
     {value: 'new-dev', viewValue: 'New Development'}
   ];
   selectedValue: String = this.typeOffer[0].value;
+
   constructor(private listingService:ListingService, private router:Router) { }
-
-
- placeChanged(place) {
-    if(place.name) {
-      console.log('place: ', place);
-      
-      this.listingService.center = place.geometry.location;
-      this.router.navigate(['/search']);
   
+  placeChanged(place) {
+    if(place.name) {
+      this.listingService.readSearchPlace(place);
+      this.router.navigate(['/search']);
     }
   }
 

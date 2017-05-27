@@ -1,4 +1,4 @@
-<ngui-map #map zoom="13" [center]="listingService.center" (mouseover)="listingService.listHoverItem=-1" (mapReady$)="onMapReady($event)"
+<ngui-map #map [zoom]="listingService.zoom" [center]="listingService.center" (mouseover)="listingService.listHoverItem=-1" (mapReady$)="onMapReady($event)"
   style="height:100%">
   <drawing-manager #drawing [drawingMode]="'polygon'" [drawingControl]="true" [drawingControlOptions]="{
       position: 2,
