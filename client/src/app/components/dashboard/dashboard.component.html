@@ -24,7 +24,7 @@
     <md-option value="real_estate_pro">Real Estate Pro</md-option>
     <md-option value="renter_rentee">Renter/Rentee</md-option>
   </md-select><br><br>
-        <button md-raised-button color="accent" (click)="saveProfile()">Save Profile</button> <!-- Should be disabled, only enabled when user start to edit something -->
+        <button md-raised-button color="accent" (click)="saveProfile(myForm)">Save Profile</button> <!-- Should be disabled, only enabled when user start to edit something -->
         <button md-raised-button color="accent" (click)="cancel()">Cancel</button> <!-- Should only be displayed if user start changing anything. -->
         <md-error>{{ error }}</md-error>
 
@@ -34,6 +34,7 @@
     <md-tab label="My Listings">
       <!--<i class="fa fa-files-o" aria-hidden="true"></i>-->
       <h5>My Listings</h5>
+      <button md-raised-button color="primary" (click)="openDialog()">Add a new Listing!</button>
     </md-tab>
 
     <md-tab label="Favorites">

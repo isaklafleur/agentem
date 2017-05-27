@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { MdDialog, MdDialogRef, MdInputModule } from '@angular/material';
 
-import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-auth',
@@ -25,14 +25,14 @@ export class AuthComponent implements OnInit {
   constructor(
     public dialogRef: MdDialogRef<AuthComponent>,
     public dialog: MdDialog,
-    private session: AuthService,
+    private userservice: UserService,
     private router: Router) { }
 
   ngOnInit() {
   }
 
   signup() {
-    this.session.signup(this.user)
+    this.userservice.signup(this.user)
     .subscribe(result => {
       if (result === true) {
         // login successful
@@ -46,7 +46,7 @@ export class AuthComponent implements OnInit {
   }
 
   login() {
-    this.session.login(this.user)
+    this.userservice.login(this.user)
     .subscribe(result => {
       if (result === true) {
         // login successful
