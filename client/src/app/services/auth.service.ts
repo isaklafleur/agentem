@@ -11,6 +11,7 @@ export class AuthService implements CanActivate {
 /*  public isAuth: boolean;
   public user: string;*/
   isAuth: EventEmitter<any> = new EventEmitter();
+  activeUser: Object = {};
 
   BASE_URL = 'http://localhost:3000';
 
@@ -72,14 +73,14 @@ export class AuthService implements CanActivate {
         .map((response: Response) => {
             // login successful if there's a jwt token in the response
             const token = response.json() && response.json().token;
-/*            const user = response.json() && response.json().user;*/
-
+            this.activeUser = response.json() && response.json().payload.id;
+            console.log('activeuser: ', this.activeUser);
             if (token) {
               // set token property
               this.token = token;
               this.isAuth.emit(true);
               // store username and jwt token in local storage to keep user logged in between page refreshes
-              localStorage.setItem('token', token );
+              localStorage.setItem('token', token);
 /*              localStorage.setItem('user', JSON.stringify(user) );*/
               // return true to indicate successful login
               return true;
@@ -93,7 +94,7 @@ export class AuthService implements CanActivate {
   logout() {
       // clear token remove user from local storage to log user out
       this.token = null;
-      /*this.user = null;*/
+      this.activeUser = null;
       this.isAuth.emit(false);
       localStorage.removeItem('token');
 /*      localStorage.removeItem('user');*/
