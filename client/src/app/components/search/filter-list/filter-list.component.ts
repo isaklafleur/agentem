@@ -34,7 +34,7 @@ export class FilterListComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.listingService.getNew();
+  //  this.listingService.getNew();
     // create search FormControl
     this.searchControl = new FormControl();
 
