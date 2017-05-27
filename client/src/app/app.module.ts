@@ -59,11 +59,8 @@ import {GetEleDirective} from "./directives/ref.directive";
     DashboardComponent,
     LargeNumberPipe,
     MapComponent,
-<<<<<<< HEAD
     AlertComponent,
-=======
     GetEleDirective,
->>>>>>> dev-darek
   ],
   entryComponents: [DialogCreateNewPropertyComponent, AuthComponent],
   imports: [
