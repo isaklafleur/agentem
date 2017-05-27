@@ -1,6 +1,10 @@
 import { Component, OnInit, Input, Output, ViewChild, ElementRef, EventEmitter, AfterViewInit } from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+<<<<<<< HEAD
 import { MdDialog, MdDialogRef, MdInputModule, MdRadioModule } from '@angular/material';
+=======
+import { MdRadioModule, MdDialog, MdDialogRef} from '@angular/material';
+>>>>>>> dev-darek
 import { FileUploader, FileSelectDirective } from 'ng2-file-upload';
 declare var $: any;
 
