@@ -10,8 +10,21 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./top-menu.component.css']
 })
 export class TopMenuComponent implements OnInit {
+  isAuth: boolean;
 
-  constructor(public dialog: MdDialog, public auth: AuthService) { }
+  constructor(public dialog: MdDialog, public auth: AuthService) {
+    this.auth.isAuth
+        .subscribe((isAuth: boolean) => {
+        // user will be false if logged out
+        // or user object if logged in.
+          this.isAuth = isAuth;
+        });
+    if (this.auth.token) {
+      this.isAuth = true;
+    } else {
+      this.isAuth = false;
+    }
+  }
 
   ngOnInit() {
   }

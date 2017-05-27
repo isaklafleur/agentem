@@ -13,8 +13,7 @@
         <div class="modal-body">
       <form #myForm="ngForm">
           <md-input-container>
-            <input mdInput type="email" placeholder="Email" [(ngModel)]="user.username" name="username" required>
-             <md-error>Please enter a valid email</md-error>
+            <input mdInput type="email" placeholder="Email" [(ngModel)]="user.username" name="username" autofocus required>
           </md-input-container>
 
           <md-input-container>
@@ -22,6 +21,7 @@
           <md-error>Password must be at least 5 characters long.</md-error>
           </md-input-container><br>
         <button type="submit" md-raised-button color="accent" (click)="signup()">Sign Up</button>
+        <md-error>{{ error }}</md-error>
       </form><br>
         </div>
       </div>
@@ -45,13 +45,13 @@
         <div class="modal-body">
           <form #myForm="ngForm">
             <md-input-container>
-              <input mdInput type="email" placeholder="Email" [(ngModel)]="user.username" name="username">
+              <input mdInput type="email" placeholder="Email" [(ngModel)]="user.username" name="username" autofocus>
             </md-input-container>
             <md-input-container>
               <input mdInput type="password" placeholder="Password" [(ngModel)]="user.password" name="password">
             </md-input-container><br>
             <button md-raised-button color="accent" (click)="login()">Sign In</button>
-              <p>{{ error }}</p>
+            <md-error>{{ error }}</md-error>
 
           </form><br>
         </div>
