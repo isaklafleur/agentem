@@ -1,6 +1,6 @@
 .list-card {
   min-width:205px;
-  
+  cursor:pointer;
   width:32%;
   float:left;
   border-radius: 8px 8px 0 0;

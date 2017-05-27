@@ -1,8 +1,12 @@
 <div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500" (scrolled)="onScroll()"
   [scrollWindow]="true">
 
-  <div *ngFor="let listing of listingService.listings; let i = index" class="list-card  card" (mouseover)="listingService.listHoverItem=i"
-    (mouseout)="listingService.listHoverItem=-1">
+  <div *ngFor="let listing of listingService.listings; let i = index" 
+    class="list-card  card" 
+    (mouseover)="listingService.listHoverItem=i"
+    (mouseout)="listingService.listHoverItem=-1"
+    (click)="openDetails(i)"
+    >
     <!--    <md-card-header>
       <div md-card-avatar class="property-{{listing.propertyType}}"></div>
       <md-card-title><span class="no-break"> {{listing.name}}</span></md-card-title>
