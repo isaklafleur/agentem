@@ -16,9 +16,11 @@ export class ListingService {
   constructor( private http: Http ) { }
 
   getQuery() {
+    console.log(this.filter);
 
     let query = `?limit=${this.limit}&offset=${this.offset}`;
 
+    query += this.filter.typesBRN ? '&typesBRN=' + this.filter.typesBRN : '';
     query += this.filter.maxPrice && !isNaN(this.filter.maxPrice) ? '&maxPrice=' + this.filter.maxPrice : '';
     query += this.filter.minPrice && !isNaN(this.filter.minPrice) ? '&minPrice=' + this.filter.minPrice : '';
     query += this.filter.bedrooms ? '&bedrooms=' + this.filter.bedrooms : '';

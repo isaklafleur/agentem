@@ -16,7 +16,6 @@ import 'hammerjs';
 // Services
 import { ListingService } from './services/listing.service';
 import { AuthService } from './services/auth.service';
-import { AlertService } from './services/alert.service';
 
 // Pipes
 import { LargeNumberPipe } from './pipes/large_number.pipe';
@@ -37,10 +36,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TestComponent } from './components/test/test.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AuthComponent } from './components/auth/auth.component';
-import { AlertComponent } from './directives/alert/alert.component';
 
 
-import {GetEleDirective} from "./directives/ref.directive";
+import {GetEleDirective} from './directives/ref.directive';
 
 @NgModule({
   declarations: [
@@ -59,7 +57,6 @@ import {GetEleDirective} from "./directives/ref.directive";
     DashboardComponent,
     LargeNumberPipe,
     MapComponent,
-    AlertComponent,
     GetEleDirective,
   ],
   entryComponents: [DialogCreateNewPropertyComponent, AuthComponent],
@@ -82,7 +79,7 @@ import {GetEleDirective} from "./directives/ref.directive";
       apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyBoio8nEHTzRvPgWo3ObzLRxDubIQebLrM&libraries=visualization,places,drawing'
     })
   ],
-  providers: [ListingService, AuthService, AlertService],
+  providers: [ListingService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

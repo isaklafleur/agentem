@@ -14,11 +14,8 @@ declare var $: any;
   styleUrls: ['./filter-list.component.css']
 })
 export class FilterListComponent implements OnInit {
-//   topMenuOptions = ['test1', 'test2', 'test3'];
   autocomplete: any;
   address: any = {};
-
-
   newSearch: any = {};
   maxPriceControl = new FormControl();
   minPriceControl = new FormControl();

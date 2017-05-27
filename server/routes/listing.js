@@ -76,7 +76,7 @@ router.get('/', (req, res, next) => {
 //     }
 
   let query = "{";
-
+  query+= req.query.typesBRN ? `"listingType":"${req.query.typesBRN}",` : "";
   query+= req.query.minPrice ? `"price":{"$gte":${req.query.minPrice}},` : "";
   query+= req.query.maxPrice ? `"price":{"$lte":${req.query.maxPrice}},` : "";
   query+= req.query.bedrooms ? `"bedrooms":{"$gte":${req.query.bedrooms}},` : "";
