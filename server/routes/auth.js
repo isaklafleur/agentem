@@ -27,12 +27,12 @@ router.post('/login', (req, res) => {
 
   User.findOne({ username }, (err, user) => {
     if (!user) {
-      res.status(401).json({ message: 'no such user found' });
+      res.status(401).json({ message: 'No such user found in the database' });
     } else {
       bcrypt.compare(password, user.password, (err, isMatch) => {
         console.log(isMatch);
         if (!isMatch) {
-          res.status(401).json({ message: 'passwords did not match' });
+          res.status(401).json({ message: 'Password did not match' });
         } else {
           const payload = { id: user._id };
           const token = jwt.sign(payload, jwtOptions.secretOrKey);
@@ -48,7 +48,7 @@ router.post('/signup', (req, res) => {
   const password = req.body.password;
 
   if (!username || !password) {
-    res.status(400).json({ message: 'Provide username and password' });
+    res.status(400).json({ message: 'Please provide username and password' });
     return;
   }
 
