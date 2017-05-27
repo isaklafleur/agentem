@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-<<<<<<< HEAD:client/src/app/components/auth/auth.component.ts
+
 import { MdDialog, MdDialogRef, MdInputModule } from '@angular/material';
 import { AlertService } from '../../services/alert.service';
-=======
-import { MdDialog, MdDialogRef } from '@angular/material';
->>>>>>> dev-darek:client/src/app/components/auth-signin/auth-signin.component.ts
+
 import { AuthService } from '../../services/auth.service';
 
 @Component({
