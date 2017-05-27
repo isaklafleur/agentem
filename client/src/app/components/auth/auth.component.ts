@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { MdDialog, MdDialogRef, MdInputModule } from '@angular/material';
-import { AlertService } from '../../services/alert.service';
 
 import { AuthService } from '../../services/auth.service';
 
@@ -27,7 +26,6 @@ export class AuthComponent implements OnInit {
     public dialogRef: MdDialogRef<AuthComponent>,
     public dialog: MdDialog,
     private session: AuthService,
-    private alertService: AlertService,
     private router: Router) { }
 
   ngOnInit() {
