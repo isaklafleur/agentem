@@ -28,7 +28,7 @@ lineReader.on('line', function (line) {
 
   // ptype_id, 4
   // st_name, 5
-  r.streetName = l[5];
+  r.street = l[5];
   // st_no, 6
   r.streetNumber = l[6];
   // cep, 7
