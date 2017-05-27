@@ -17,7 +17,7 @@ export class ListingService {
   constructor( private http: Http ) { }
 
   getQuery() {
-    console.log(this.filter);
+    // console.log(this.filter);
 
     let query = `?limit=${this.limit}&offset=${this.offset}`;
 

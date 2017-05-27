@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {MdTabsModule} from '@angular/material';
+import { MdTabsModule, MdInputModule, MdSelectModule } from '@angular/material';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,6 +8,7 @@ import {MdTabsModule} from '@angular/material';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  user = {};
   constructor() { }
 
   ngOnInit() {

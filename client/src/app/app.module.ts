@@ -16,6 +16,7 @@ import 'hammerjs';
 // Services
 import { ListingService } from './services/listing.service';
 import { AuthService } from './services/auth.service';
+import { UserService } from './services/user.service';
 
 // Pipes
 import { LargeNumberPipe } from './pipes/large_number.pipe';
@@ -77,7 +78,7 @@ import {GetEleDirective} from './directives/ref.directive';
       apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyBoio8nEHTzRvPgWo3ObzLRxDubIQebLrM&libraries=visualization,places,drawing'
     })
   ],
-  providers: [ListingService, AuthService],
+  providers: [ListingService, AuthService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

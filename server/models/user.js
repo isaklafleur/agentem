@@ -7,9 +7,11 @@ const userSchema = new Schema({
   password: String,
   role: {
     type: String,
-    enum: ['user', 'broker'],
+    enum: ['home_seller', 'both_buyer_and_seller', 'renter', 'home_owner', 'renter_rentee', 'real_estate_pro'],
   },
-  name: String,
+  fullName: String,
+  phoneNumber: Number,
+  location: String,
 });
 
 const User = mongoose.model('User', userSchema);
