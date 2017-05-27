@@ -37,6 +37,7 @@ const ListingSchema = new Schema({
   location: { type: { type: String }, coordinates: [Number] },
   accuracy: String,
   uploadToken: Number,
+  manual: Boolean
 });
 ListingSchema.index({ location: '2dsphere' });
 //ListingSchema.index({ 'city': 'text' });

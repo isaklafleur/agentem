@@ -40,7 +40,7 @@ router.post('/', upload.any(), function(req, res, next) {
           property.uploadToken = req.body.token;
           
           property.photos = [req.files[0].filename];
-
+          property.manual = true;
           const listing = new Listing(property);
           listing.save(err=>{
             if(err) {

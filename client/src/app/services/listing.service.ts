@@ -94,6 +94,8 @@ export class ListingService {
     this.filter.street = "";
     this.filter.neighbourhood = "";
     this.filter.city = "";
+    this.filter.address="";
+    
     let newZoom = 13;
     place.address_components.forEach(component=>{
       switch(component.types[0]) {
