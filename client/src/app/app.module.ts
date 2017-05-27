@@ -28,7 +28,6 @@ import { HomeComponent } from './components/home/home.component';
 import { HomeRightComponent} from './components/home/home-right/home-right.component';
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
 import { PropertyFormComponent,  DialogCreateNewPropertyComponent  } from './components/panel/property-form/property-form.component';
-import { GoogleMapsComponent } from './components/search/google-maps/google-maps.component';
 import { ListComponent } from './components/list/list.component';
 import { SearchComponent } from './components/search/search.component';
 import { FilterListComponent } from './components/search/filter-list/filter-list.component';
@@ -48,7 +47,6 @@ import {GetEleDirective} from './directives/ref.directive';
     TopMenuComponent,
     PropertyFormComponent,
     DialogCreateNewPropertyComponent,
-    GoogleMapsComponent,
     ListComponent,
     SearchComponent,
     FilterListComponent,

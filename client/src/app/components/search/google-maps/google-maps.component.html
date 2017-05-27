@@ -1,4 +1,0 @@
-<agm-map #map [zoom]="zoom" [latitude]="listingService?.listings[0]?.location.coordinates[1]" [longitude]="listingService?.listings[0]?.location.coordinates[0]" >
-  <agm-marker  *ngFor="let listing of listingService.listings" 
-        [latitude]="listing.location.coordinates[1]" [label]="toThousand(listing.price)" [longitude]="listing.location.coordinates[0]"></agm-marker>
-</agm-map>
