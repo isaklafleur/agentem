@@ -16,6 +16,7 @@ import 'hammerjs';
 // Services
 import { ListingService } from './services/listing.service';
 import { AuthService } from './services/auth.service';
+import { UserService } from './services/user.service';
 
 // Pipes
 import { LargeNumberPipe } from './pipes/large_number.pipe';
@@ -28,7 +29,6 @@ import { HomeComponent } from './components/home/home.component';
 import { HomeRightComponent} from './components/home/home-right/home-right.component';
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
 import { PropertyFormComponent,  DialogCreateNewPropertyComponent  } from './components/panel/property-form/property-form.component';
-import { GoogleMapsComponent } from './components/search/google-maps/google-maps.component';
 import { ListComponent } from './components/list/list.component';
 import { SearchComponent } from './components/search/search.component';
 import { FilterListComponent } from './components/search/filter-list/filter-list.component';
@@ -48,7 +48,6 @@ import {GetEleDirective} from './directives/ref.directive';
     TopMenuComponent,
     PropertyFormComponent,
     DialogCreateNewPropertyComponent,
-    GoogleMapsComponent,
     ListComponent,
     SearchComponent,
     FilterListComponent,
@@ -79,7 +78,7 @@ import {GetEleDirective} from './directives/ref.directive';
       apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyBoio8nEHTzRvPgWo3ObzLRxDubIQebLrM&libraries=visualization,places,drawing'
     })
   ],
-  providers: [ListingService, AuthService],
+  providers: [ListingService, AuthService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
