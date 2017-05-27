@@ -63,48 +63,31 @@ export class FilterListComponent implements OnInit {
   }
   placeChanged(place) {
     if(place.name) {
-    // set latitude, longitude and zoom
-      this.newSearch.coordinates.latitude = place.geometry.location.lat();
-      this.newSearch.coordinates.longitude = place.geometry.location.lng();
-      this.newSearch.coordinates.radius = this.RADIUS;
-      this.zoom = 12;
-      this.listingService.addressComponents = [];
-      this.newSearch.street = "";
-      this.newSearch.neighbourhood = "";
-      this.newSearch.city = "";
-
-      place.address_components.forEach(component=>{
-        switch(component.types[0]) {
-          case "route": 
-            this.newSearch.street = component.long_name; 
-            this.listingService.addressComponents.unshift(component.long_name); 
-            break;
-          case "sublocality_level_1": 
-            this.newSearch.neighbourhood = component.long_name; 
-            this.listingService.addressComponents.unshift(component.long_name);
-            break;
-          case "locality": 
-            this.newSearch.city = component.long_name; 
-            this.listingService.addressComponents.unshift(component.long_name);
-            
-            
-            break;
-        }
-      })
-      console.log('this.listingService.addressComponents: ', this.listingService.addressComponents);
+      this.listingService.readSearchPlace(place);
 
       this.listingService.updateFilter();
-      this.newSearch.coordinates.longitude = "";
-      this.newSearch.coordinates.latitude = "";
-
-      this.listingService.center = place.geometry.location;
-      for (let i = 0; i < place.address_components.length; i++) {
-        let addressType = place.address_components[i].types[0];
-        this.address[addressType] = place.address_components[i].long_name;
-      }
     }
     this.ref.detectChanges();
   }
+
+breadCrumbs(level) {
+  if(level<this.listingService.addressComponents.length-1) {
+    switch(level) {
+      case 0: 
+        this.newSearch.street="";
+        this.newSearch.neighbourhood="";
+        this.listingService.addressComponents.splice(1);
+        this.listingService.zoom = 13;
+        break;
+      case 1: 
+        this.newSearch.street="";
+        this.listingService.addressComponents.splice(2);
+        this.listingService.zoom = 14;
+        break;
+    }
+    this.listingService.updateFilter();
+  }
+}
 
   private setCurrentPosition() {
     if ('geolocation' in navigator) {
