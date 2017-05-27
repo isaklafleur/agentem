@@ -90,21 +90,25 @@
       [ngbPopover]="propertyType">All Home Types <i class="material-icons">expand_more</i>
     </button>
 
-    <button md-raised-button color="primary">Search <i class="material-icons">search</i></button> Found: {{listingService.listingCount}}
-    matches
-    <br>
-    <span *ngFor="let component of listingService.addressComponents; let j = index; let isLast = last">
-    <a  href="#"
-      (click)="$event.preventDefault(); breadCrumbs(j)"
-    >
-      {{component}}
-      </a>
-      <i class='fa fa-caret-right' *ngIf="!isLast"></i>
-    </span>
-    
-    
+    Found: {{listingService.listingCount}} matches
     <div *ngIf="listingService.isLoading" style="float:right; padding-top:10px">
       <i class="fa fa-cog fa-spin fa-2x fa-fw spin-cog"></i>
     </div>
+
+    <div *ngIf="listingService.addressComponents.length" style="padding-bottom:5px">
+      <span *ngFor="let component of listingService.addressComponents; let j = index; let isLast = last"
+        style = "font-size:smaller; margin-bottom:50px"
+      >
+      <a  href="#"
+        (click)="$event.preventDefault(); breadCrumbs(j)"
+      >
+        {{component}}
+        </a>
+        <i class='fa fa-caret-right' *ngIf="!isLast"></i>
+      </span>
+    </div>
+    
+    
+
   </form>
 </div>
