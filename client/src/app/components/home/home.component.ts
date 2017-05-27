@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
 
  placeChanged(place) {
     if(place.name) {
+      console.log('place: ', place);
       
       this.listingService.center = place.geometry.location;
       this.router.navigate(['/search']);

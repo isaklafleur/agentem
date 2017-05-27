@@ -59,38 +59,6 @@ export class FilterListComponent implements OnInit {
           this.listingService.updateFilter()
         }
       });
-
-
-
-    // load Places Autocomplete
-    // this.mapsAPILoader.load().then(() => {
-    //   const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-    //     types: ['address']
-    //   });
-    //   autocomplete.addListener('place_changed', () => {
-    //     this.ngZone.run(() => {
-    //       // get the place result
-    //       const place: google.maps.places.PlaceResult = autocomplete.getPlace();
-
-    //       // verify result
-    //       if (place.geometry === undefined || place.geometry === null) {
-    //         return;
-    //       }
-
-    //       // set latitude, longitude and zoom
-    //       this.newSearch.coordinates.latitude = place.geometry.location.lat();
-    //       this.newSearch.coordinates.longitude = place.geometry.location.lng();
-    //       this.newSearch.coordinates.radius = this.RADIUS;
-    //       this.zoom = 12;
-
-    //       console.log('lat: ', this.newSearch.coordinates.latitude);
-    //       console.log('lon: ', this.newSearch.coordinates.longitude);
-    //       this.listingService.updateFilter();
-    //       this.newSearch.coordinates.longitude = "";
-    //       this.newSearch.coordinates.latitude = "";
-    //     });
-    //   });
-    // });
   }
 
   initialized(autocomplete: any) {
@@ -103,6 +71,30 @@ export class FilterListComponent implements OnInit {
       this.newSearch.coordinates.longitude = place.geometry.location.lng();
       this.newSearch.coordinates.radius = this.RADIUS;
       this.zoom = 12;
+      this.listingService.addressComponents = [];
+      this.newSearch.street = "";
+      this.newSearch.neighbourhood = "";
+      this.newSearch.city = "";
+
+      place.address_components.forEach(component=>{
+        switch(component.types[0]) {
+          case "route": 
+            this.newSearch.street = component.long_name; 
+            this.listingService.addressComponents.unshift(component.long_name); 
+            break;
+          case "sublocality_level_1": 
+            this.newSearch.neighbourhood = component.long_name; 
+            this.listingService.addressComponents.unshift(component.long_name);
+            break;
+          case "locality": 
+            this.newSearch.city = component.long_name; 
+            this.listingService.addressComponents.unshift(component.long_name);
+            
+            
+            break;
+        }
+      })
+      console.log('this.listingService.addressComponents: ', this.listingService.addressComponents);
 
       this.listingService.updateFilter();
       this.newSearch.coordinates.longitude = "";

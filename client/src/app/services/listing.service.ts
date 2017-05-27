@@ -11,6 +11,7 @@ export class ListingService {
   offset = 0;
   isLoading = true;
   listingCount: number;
+  addressComponents: string[] = [];
   center: any = "Rio de Janeiro, Brazil";
 
   constructor( private http: Http ) { }
@@ -22,10 +23,15 @@ export class ListingService {
     query += this.filter.maxPrice && !isNaN(this.filter.maxPrice) ? '&maxPrice=' + this.filter.maxPrice : '';
     query += this.filter.minPrice && !isNaN(this.filter.minPrice) ? '&minPrice=' + this.filter.minPrice : '';
     query += this.filter.bedrooms ? '&bedrooms=' + this.filter.bedrooms : '';
+
+    query += this.filter.street ? '&street=' + this.filter.street : '';
+    query += this.filter.neighbourhood ? '&neighbourhood=' + this.filter.neighbourhood : '';
+    query += this.filter.city ? '&city=' + this.filter.city : '';
+
     query += this.filter.propertyType && this.filter.propertyType.house ? '&house=true' : '';
     query += this.filter.propertyType && this.filter.propertyType.apartment ? '&apartment=true' : '';
     query += this.filter.propertyType && this.filter.propertyType.villa ? '&villa=true' : '';
-    query += this.filter.coordinates && this.filter.coordinates.latitude ? '&latitude=' + this.filter.coordinates.latitude : '';
+ //   query += this.filter.coordinates && this.filter.coordinates.latitude ? '&latitude=' + this.filter.coordinates.latitude : '';
  //   query += this.filter.coordinates && this.filter.coordinates.longitude ? '&longitude=' + this.filter.coordinates.longitude : '';
   //  query += this.filter.coordinates && this.filter.coordinates.latitude ? '&radius=' + this.filter.coordinates.radius : '';
     if(this.filter.bounds) {

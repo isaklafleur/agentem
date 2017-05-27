@@ -39,6 +39,9 @@ const ListingSchema = new Schema({
   uploadToken: Number,
 });
 ListingSchema.index({ location: '2dsphere' });
+//ListingSchema.index({ 'city': 'text' });
+//ListingSchema.index({ 'neighbourhood': 'text' });
+//ListingSchema.index({ 'street': 'text' });
 const Listing = mongoose.model('Listing', ListingSchema);
 
 module.exports = Listing;

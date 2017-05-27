@@ -80,6 +80,7 @@ router.get('/', (req, res, next) => {
   query+= req.query.minPrice ? `"price":{"$gte":${req.query.minPrice}},` : "";
   query+= req.query.maxPrice ? `"price":{"$lte":${req.query.maxPrice}},` : "";
   query+= req.query.bedrooms ? `"bedrooms":{"$gte":${req.query.bedrooms}},` : "";
+
   if(req.query.house || req.query.apartment || req.query.villa) {
     query+= `"$or":[`;
     query+= req.query.house ? `{"propertyType":"house"},` : "";
@@ -126,13 +127,20 @@ router.get('/', (req, res, next) => {
     if(queryPolygon) query.$and.push(queryPolygon);
   }
 
+
+  if(req.query.city) {
+    query.city = { $regex : req.query.city, $options : "-i" }
+  }
+  if(req.query.neighbourhood) {
+    query.neighbourhood = { $regex : req.query.neighbourhood, $options : "-i" }
+  }
+  if(req.query.street) {
+    query.street = { $regex : req.query.street, $options : "-i" }
+  }
+
    // query.location = query.location ? {$and:[ { location: query.location }, {location: queryPolygon} ]} : queryPolygon;
     
     console.log(query);
-
-  
-
-
 
 //  query = {bedrooms:{$gte:2}};
   Listing.find().count(query).exec((err,count)=>{
