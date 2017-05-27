@@ -7,10 +7,13 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const portDB = require('./config/db').portDB;
 const databaseName = require('./config/db').databaseName;
+const passport = require('./config/passport');
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
+
 const listingRoutes = require('./routes/listing');
 const authRoutes = require('./routes/auth');
+const userRoutes = require('./routes/user');
 
 const fs = require('fs');
 
@@ -41,7 +44,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/listings', listingRoutes);
+app.use('/api/users', /*passport.authenticate('jwt', { session: false }),*/ userRoutes);
 app.use('/', authRoutes);
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

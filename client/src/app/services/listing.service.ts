@@ -12,7 +12,7 @@ export class ListingService {
   isLoading = true;
   listingCount: number;
   addressComponents: string[] = [];
-  zoom: number = 13;
+  zoom = 13;
   center: any = "Rio de Janeiro, Brazil";
 
   constructor( private http: Http ) { }

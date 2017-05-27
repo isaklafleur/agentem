@@ -4,14 +4,14 @@ import { PropertyFormComponent } from './components/panel/property-form/property
 import { SearchComponent } from './components/search/search.component';
 import { TestComponent } from './components/test/test.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { AuthService } from './services/auth.service';
+import { UserService } from './services/user.service';
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home',  component: HomeComponent },
   { path: 'panel/form',  component: PropertyFormComponent },
   { path: 'search',  component: SearchComponent },
   { path: 'test',  component: TestComponent },
-  { path: 'dashboard',  component: DashboardComponent, canActivate: [AuthService]},
+  { path: 'dashboard',  component: DashboardComponent, canActivate: [UserService]},
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
