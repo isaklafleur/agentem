@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MdInputModule, MdSelectModule } from '@angular/material';
+import { ListingService } from '../../services/listing.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -13,8 +15,17 @@ export class HomeComponent implements OnInit {
     {value: 'new-dev', viewValue: 'New Development'}
   ];
   selectedValue: String = this.typeOffer[0].value;
-  constructor() { }
+  constructor(private listingService:ListingService, private router:Router) { }
 
+
+ placeChanged(place) {
+    if(place.name) {
+      
+      this.listingService.center = place.geometry.location;
+      this.router.navigate(['/search']);
+  
+    }
+  }
 
   ngOnInit() {
   }

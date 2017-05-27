@@ -11,6 +11,7 @@ export class ListingService {
   offset = 0;
   isLoading = true;
   listingCount: number;
+  center: any = "Rio de Janeiro, Brazil";
 
   constructor( private http: Http ) { }
 

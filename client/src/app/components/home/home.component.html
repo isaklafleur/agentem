@@ -1,19 +1,25 @@
 <div class="container-fluid h-100" id="margintop" style="margin-top:50px;">
   <div class="row h-100">
     <div class="col-sm-6 col-12 text-white py-2 d-flex align-items-center justify-content-center" id="left">
-      <md-card>
+      <md-card style="background-color: rgba(255, 255, 255, 0.8);">
         <form class="example-form">
           <md-select color="primary" [(ngModel)]="selectedValue" name="typeOfSearch">
             <md-option *ngFor="let type of typeOffer" [value]="type.value">
               {{ type.viewValue }}
             </md-option>
           </md-select><br><br>
-          <md-input-container>
-            <input #searchBox (click)="this.searchBox.value = ''" mdInput placeholder="Search by Street, Neighborhood, City.." value="Copacabana, Rio de Janeiro, RJ">
+          <md-input-container style="background-color: rgba(255, 255, 255, 1 );">
+           <!-- <input #searchBox (click)="this.searchBox.value = ''" mdInput placeholder="Search by Street, Neighborhood, City.." value="Copacabana, Rio de Janeiro, RJ">-->
+
+          <input places-auto-complete type="text" autocorrect="off" autocapitalize="off" spellcheck="off" #addressSearchBox 
+              id="addressSearchBox" name="address" (click)="this.addressSearchBox.value = ''" mdInput placeholder="Search by Street, Neighborhood or City"
+              (place_changed)="placeChanged($event)" 
+              [types]="['geocode']" />
+
+
           </md-input-container>
           <button md-raised-button color="primary">Search</button>
-        </form><br>
-        <button md-button (click)="openDialog()">Launch dialog</button>
+        </form>
       </md-card>
 
     </div>
