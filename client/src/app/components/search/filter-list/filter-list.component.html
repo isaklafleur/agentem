@@ -6,7 +6,9 @@
       <input places-auto-complete type="text" autocorrect="off" autocapitalize="off" spellcheck="off" #addressSearchBox [(ngModel)]="newSearch.address"
         id="addressSearchBox" name="address" (click)="this.addressSearchBox.value = ''" mdInput placeholder="Search by Street, Neighborhood or City"
         (place_changed)="placeChanged($event)" 
-        [types]="['geocode']" />
+        [types]="['geocode']" 
+        [componentRestrictions]='{country: "br"}'
+        />
 
     </md-input-container>
 
@@ -90,6 +92,8 @@
 
     <button md-raised-button color="primary">Search <i class="material-icons">search</i></button> Found: {{listingService.listingCount}}
     matches
+    <br>
+    {{listingService.addressComponents.join(" > ")}}
     <div *ngIf="listingService.isLoading" style="float:right; padding-top:10px">
       <i class="fa fa-cog fa-spin fa-2x fa-fw spin-cog"></i>
     </div>

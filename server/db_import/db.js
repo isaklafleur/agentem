@@ -25,11 +25,7 @@ lineReader.on('line', function (line) {
     case "Casa": r.propertyType = 'house'; break;
     default: r.propertyType = 'villa';
   }
-  switch (Math.floor(Math.random()*3)) {
-    case 0: r.listingType = "sale"; break;
-    case 1: r.listingType = "rental"; break;
-    case 2: r.listingType = "new"; break;
-  }
+
   // ptype_id, 4
   // st_name, 5
   r.streetName = l[5];
@@ -48,6 +44,15 @@ lineReader.on('line', function (line) {
   // price, 12
   r.price = l[12];
   // pricesqm, 13
+  if(r.price < 100000) {
+    r.listingType = 'rental'
+  } else {
+    switch (Math.floor(Math.random()*2)) {
+      case 0: r.listingType = "sale"; break;
+      case 1: r.listingType = "new"; break;
+    }
+  }
+
   r.priceSqm = l[13];
   // bed, 14
   r.bedrooms = l[14];
