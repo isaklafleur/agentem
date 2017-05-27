@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {MdDialog, MdDialogRef} from '@angular/material';
 import { AuthComponent } from '../auth/auth.component';
-import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-top-menu',
@@ -12,14 +12,14 @@ import { AuthService } from '../../services/auth.service';
 export class TopMenuComponent implements OnInit {
   isAuth: boolean;
 
-  constructor(public dialog: MdDialog, public auth: AuthService) {
-    this.auth.isAuth
+  constructor(public dialog: MdDialog, public userservice: UserService) {
+    this.userservice.isAuth
         .subscribe((isAuth: boolean) => {
         // user will be false if logged out
         // or user object if logged in.
           this.isAuth = isAuth;
         });
-    if (this.auth.token) {
+    if (this.userservice.token) {
       this.isAuth = true;
     } else {
       this.isAuth = false;
@@ -30,7 +30,7 @@ export class TopMenuComponent implements OnInit {
   }
 
   logout() {
-    this.auth.logout();
+    this.userservice.logout();
   }
 
   openDialog() {

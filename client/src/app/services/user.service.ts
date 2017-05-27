@@ -6,11 +6,11 @@ import { Router, CanActivate } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 
 @Injectable()
-export class AuthService implements CanActivate {
+export class UserService implements CanActivate {
+  user: any;
   public token: string;
-/*  public isAuth: boolean;
-  public user: string;*/
   isAuth: EventEmitter<any> = new EventEmitter();
+  activeUserId = '';
 
   BASE_URL = 'http://localhost:3000';
 
@@ -72,14 +72,14 @@ export class AuthService implements CanActivate {
         .map((response: Response) => {
             // login successful if there's a jwt token in the response
             const token = response.json() && response.json().token;
-/*            const user = response.json() && response.json().user;*/
-
+            this.activeUserId = response.json() && response.json().payload.id;
+            console.log('activeUserId: ', this.activeUserId);
             if (token) {
               // set token property
               this.token = token;
               this.isAuth.emit(true);
               // store username and jwt token in local storage to keep user logged in between page refreshes
-              localStorage.setItem('token', token );
+              localStorage.setItem('token', token);
 /*              localStorage.setItem('user', JSON.stringify(user) );*/
               // return true to indicate successful login
               return true;
@@ -93,10 +93,19 @@ export class AuthService implements CanActivate {
   logout() {
       // clear token remove user from local storage to log user out
       this.token = null;
-      /*this.user = null;*/
+      this.activeUserId = null;
       this.isAuth.emit(false);
       localStorage.removeItem('token');
 /*      localStorage.removeItem('user');*/
       this.router.navigate(['/']);
+  }
+
+    getUser(id) {
+/*    let headers = new Headers({ 'Authorization': 'JWT ' + this.userservice.token });
+    let options = new RequestOptions({ headers: headers });*/
+    return this.http.get(`${this.BASE_URL}/api/users/${id}`/*, options*/)
+      .map((res) => res.json()).subscribe((user) => {
+        this.user = user;
+      });
   }
 }

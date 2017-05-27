@@ -12,13 +12,13 @@ export class ListingService {
   isLoading = true;
   listingCount: number;
   addressComponents: string[] = [];
-  zoom: number = 13;
+  zoom = 13;
   center: any = "Rio de Janeiro, Brazil";
 
   constructor( private http: Http ) { }
 
   getQuery() {
-    console.log(this.filter);
+    // console.log(this.filter);
 
     let query = `?limit=${this.limit}&offset=${this.offset}`;
 
