@@ -1,42 +1,39 @@
-		<div class="search-results"
-         infiniteScroll
-		    [infiniteScrollDistance]="2"
-		    [infiniteScrollThrottle]="500"
-		    (scrolled)="onScroll()"
-		    [scrollWindow]="false">
-		
-  <div *ngFor="let listing of listingService.listings; let i = index" class="list-card  card"
-    (mouseover)="listingService.listHoverItem=i"
-    (mouseout)="listingService.listHoverItem=-1"  
-  >
-<!--    <md-card-header>
+<div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500" (scrolled)="onScroll()"
+  [scrollWindow]="true">
+
+  <div *ngFor="let listing of listingService.listings; let i = index" class="list-card  card" (mouseover)="listingService.listHoverItem=i"
+    (mouseout)="listingService.listHoverItem=-1">
+    <!--    <md-card-header>
       <div md-card-avatar class="property-{{listing.propertyType}}"></div>
       <md-card-title><span class="no-break"> {{listing.name}}</span></md-card-title>
       <md-card-subtitle><span class="no-break">{{listing.city}}</span></md-card-subtitle>
     </md-card-header>
 -->
 
+<!--    <a href="#" (click)="$event.preventDefault();openDetails(i)">-->
+      <img class="photo" [src]="listing.photos[0]" alt="Card image">
+      <h4 class=" photo-text">R$ {{listing.price | largeNumber}}</h4>
+      <div class="photo-description">
+        <!--card-img-overlay-->
+        <div style="float:left; padding:5px">
+          <img style="height:20px" src="/assets/{{listing.propertyType}}.svg"> {{listing.listingType}} <br>
 
-  <img class="photo" [src]="listing.photos[0]" alt="Card image">
-  <h4 class=" photo-text">R$ {{listing.price | largeNumber}}</h4>
-  <div class="photo-description"> <!--card-img-overlay-->
-    <div style="float:left; padding:5px">
-    <img style="height:20px" src="/assets/{{listing.propertyType}}.svg"> {{listing.listingType}}  <br>
-      
-    </div>
-    <div style="float:right;padding:5px">
-        <img src="/assets/bed.svg" style="width:19px;margin-bottom:8px"> {{listing.bedrooms}} <img src="/assets/bath.svg" style="width:19px;margin-bottom:8px"> {{listing.bathrooms}}
+        </div>
+        <div style="float:right;padding:5px">
+          <img src="/assets/bed.svg" style="width:19px;margin-bottom:8px"> {{listing.bedrooms}} <img src="/assets/bath.svg"
+            style="width:19px;margin-bottom:8px"> {{listing.bathrooms}}
+        </div>
+        <div class="heart">
+          <span class="fa-stack icon-stack" id="heart{{i}}" (click)="clickHeart(i)">
+              <i class="fa fa-lg fa-heart fa-stack-1x icon-a"></i>
+              <i class="fa fa-lg fa-heart-o fa-stack-1x icon-b"></i>
+          </span>
+        </div>
       </div>
-      <div class="heart">
-        <span class="fa-stack icon-stack" id="heart{{i}}" (click)="clickHeart(i)">
-          <i class="fa fa-lg fa-heart fa-stack-1x icon-a"></i>
-          <i class="fa fa-lg fa-heart-o fa-stack-1x icon-b"></i>
-      </span>
-
+ <!--   </a>-->
   </div>
-</div>
-   
-<!--
+
+  <!--
       <h2 class="photo-text">
         {{listing.listingType}} | {{listing.propertyType}}
         <br>R$ {{listing.price | largeNumber}}
@@ -55,7 +52,7 @@
   <div [hidden]="!listingService.isLoading" class="loader">
     <p>&nbsp;
       <p>
-    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-    <p>
+        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+        <p>
   </div>
-  </div>
+</div>

@@ -85,6 +85,7 @@ export class ListingService {
     //   return;
     // }
    // if ((this.filter.maxPrice && !isNaN(this.filter.maxPrice)) || (this.filter.minPrice && !isNaN(this.filter.minPrice)) ) {
+     console.log("Loading <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<,")
       this.getNew();
    // }
   }
@@ -94,6 +95,8 @@ export class ListingService {
     this.filter.street = "";
     this.filter.neighbourhood = "";
     this.filter.city = "";
+    this.filter.address="";
+    
     let newZoom = 13;
     place.address_components.forEach(component=>{
       switch(component.types[0]) {

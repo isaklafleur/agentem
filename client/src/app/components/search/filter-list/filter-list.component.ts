@@ -34,7 +34,7 @@ export class FilterListComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.listingService.getNew();
+  //  this.listingService.getNew();
     // create search FormControl
     this.searchControl = new FormControl();
 
@@ -56,6 +56,10 @@ export class FilterListComponent implements OnInit {
           this.listingService.updateFilter()
         }
       });
+
+      if(this.listingService.addressComponents.length) {
+        this.adjustMargin();
+      }
   }
 
   initialized(autocomplete: any) {
@@ -66,6 +70,7 @@ export class FilterListComponent implements OnInit {
       this.listingService.readSearchPlace(place);
 
       this.listingService.updateFilter();
+      this.adjustMargin();
     }
     this.ref.detectChanges();
   }
@@ -103,5 +108,9 @@ breadCrumbs(level) {
   //  this.listingService.update();
     // console.log(myForm);
     // console.log(this.newSearch)
+  }
+  adjustMargin() {
+    $("#search-listings").css('margin-top',"140px");
+    $("#left").css('margin-top',"84px");
   }
 }
