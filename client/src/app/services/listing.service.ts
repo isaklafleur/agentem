@@ -14,6 +14,7 @@ export class ListingService {
   addressComponents: string[] = [];
   zoom = 13;
   center: any = "Rio de Janeiro, Brazil";
+  detailsIndex: number;
 
   constructor( private http: Http ) { }
 

@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ListingService } from '../../services/listing.service';
+import { MdDialog } from '@angular/material';
+import { DetailsComponent } from './details/details.component'
 declare var $:any;
 
 @Component({
@@ -13,7 +15,7 @@ export class ListComponent implements OnInit {
 
   isEndResults: boolean = false;
   
-  constructor(private listingService: ListingService) { 
+  constructor(private listingService: ListingService, public dialog: MdDialog) { 
   }
 
   ngOnInit() {
@@ -21,13 +23,18 @@ export class ListComponent implements OnInit {
       this.listingService.getNew();
     }
   }
-  clickHeart(index) {
-    $("#heart"+index+" i:nth-child(1)").css("color", "#ff4081").css("opacity", 1).css("animation", "none");
-    $('#heart'+index).css("animation", "none");
-  }
 
+  openDetails(i) {
+    this.listingService.detailsIndex = i;
+    const dialogRef = this.dialog.open(DetailsComponent, {width: '80%', height: '100%', position:"right"});
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'submitted') {
+        console.log('form ok')
+      }
+    });
+  }
+ 
   onScroll () {
-    console.log("scroll");
     if(this.listingService.isLoading || this.isEndResults) return;
       this.listingService.getMore( (newListings)=>{
         if (newListings.length === 0) {
@@ -35,4 +42,8 @@ export class ListComponent implements OnInit {
           }
       })
     }
+  clickHeart(index) {
+    $("#heart"+index+" i:nth-child(1)").css("color", "#ff4081").css("opacity", 1).css("animation", "none");
+    $('#heart'+index).css("animation", "none");
+  }
 }
