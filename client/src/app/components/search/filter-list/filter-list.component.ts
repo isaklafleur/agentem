@@ -79,13 +79,13 @@ breadCrumbs(level) {
   if(level<this.listingService.addressComponents.length-1) {
     switch(level) {
       case 0: 
-        this.newSearch.street="";
-        this.newSearch.neighbourhood="";
+        this.newSearch.street='';
+        this.newSearch.neighbourhood='';
         this.listingService.addressComponents.splice(1);
         this.listingService.zoom = 13;
         break;
       case 1: 
-        this.newSearch.street="";
+        this.newSearch.street='';
         this.listingService.addressComponents.splice(2);
         this.listingService.zoom = 14;
         break;
@@ -110,7 +110,7 @@ breadCrumbs(level) {
     // console.log(this.newSearch)
   }
   adjustMargin() {
-    $("#search-listings").css('margin-top',"140px");
-    $("#left").css('margin-top',"84px");
+    $('#search-listings').css('margin-top', '170px');
+    $('#left').css('margin-top', '100px');
   }
 }
