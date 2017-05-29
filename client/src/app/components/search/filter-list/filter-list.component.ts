@@ -56,7 +56,6 @@ export class FilterListComponent implements OnInit {
           this.listingService.updateFilter()
         }
       });
-
       if (this.listingService.addressComponents.length) {
         this.adjustMargin();
       }
