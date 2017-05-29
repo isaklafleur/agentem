@@ -1,0 +1,5 @@
+{
+  "globalDependencies": {
+    "slick-carousel": "registry:dt/slick-carousel#1.6.0+20161119044246"
+  }
+}

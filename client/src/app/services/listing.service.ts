@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-
+declare var $:any;
 @Injectable()
 export class ListingService {
   BASE_URL = 'http://localhost:3000/api/listings';
@@ -14,6 +14,7 @@ export class ListingService {
   addressComponents: string[] = [];
   zoom = 13;
   center: any = "Rio de Janeiro, Brazil";
+  detailsIndex: number;
 
   constructor( private http: Http ) { }
 
@@ -45,7 +46,6 @@ export class ListingService {
       query += "&polygon=" + encodeURI(JSON.stringify(this.filter.polygon));
     }
 
-    console.log(query);
     return query;
   }
 
@@ -53,11 +53,15 @@ export class ListingService {
     // let headers = new Headers({ 'Authorization': 'JWT ' + this.SessionService.token });
     // let options = new RequestOptions({ headers: headers });
     this.isLoading = true;
+
     this.http.get(`${this.BASE_URL}${this.getQuery()}`)// , options)
       .map((res) => res.json()).subscribe((res) => {
+
           this.listings = this.listings.concat(res.listings);
           this.listingCount = res.count;
           this.isLoading = false;
+
+          $("#left").trigger("click")
           callback(res.listings);
         });
   }
@@ -85,7 +89,6 @@ export class ListingService {
     //   return;
     // }
    // if ((this.filter.maxPrice && !isNaN(this.filter.maxPrice)) || (this.filter.minPrice && !isNaN(this.filter.minPrice)) ) {
-     console.log("Loading <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<,")
       this.getNew();
    // }
   }

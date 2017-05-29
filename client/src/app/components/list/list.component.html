@@ -1,8 +1,12 @@
 <div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500" (scrolled)="onScroll()"
   [scrollWindow]="true">
 
-  <div *ngFor="let listing of listingService.listings; let i = index" class="list-card  card" (mouseover)="listingService.listHoverItem=i"
-    (mouseout)="listingService.listHoverItem=-1">
+  <div *ngFor="let listing of listingService.listings; let i = index" 
+    class="list-card  card" 
+    (mouseover)="listingService.listHoverItem=i"
+    (mouseout)="listingService.listHoverItem=-1"
+    (click)="openDetails(i)"
+    >
     <!--    <md-card-header>
       <div md-card-avatar class="property-{{listing.propertyType}}"></div>
       <md-card-title><span class="no-break"> {{listing.name}}</span></md-card-title>
@@ -24,7 +28,7 @@
             style="width:19px;margin-bottom:8px"> {{listing.bathrooms}}
         </div>
         <div class="heart">
-          <span class="fa-stack icon-stack" id="heart{{i}}" (click)="clickHeart(i)">
+          <span class="fa-stack icon-stack" id="heart{{i}}" (click)="clickHeart($event, i)">
               <i class="fa fa-lg fa-heart fa-stack-1x icon-a"></i>
               <i class="fa fa-lg fa-heart-o fa-stack-1x icon-b"></i>
           </span>

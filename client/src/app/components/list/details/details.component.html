@@ -1,0 +1,17 @@
+<p>&nbsp;<p>
+<div class="modal-header">
+  <h4 class="modal-title" >Listing details</h4>
+  <button type="button" class="close" aria-label="Close" (click)="dialogRef.close('Option 1')"> <!--(click)="activeModal.dismiss('Cross click')">-->
+        <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<!--<app-carousel [photos]="listing.photos"></app-carousel>-->
+<div style="height:300px;width:400px; margin:auto">
+<ngb-carousel>
+  <ng-template ngbSlide *ngFor="let photo of listing.photos">
+    <img style="width:100%;" [src]="photo" alt="Random first slide">
+ 
+  </ng-template>
+</ngb-carousel>
+</div>

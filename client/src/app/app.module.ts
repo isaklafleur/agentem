@@ -41,6 +41,10 @@ import { MouseWheelDirective } from './directives/mouse_wheel.directive';
 import {GetEleDirective} from './directives/ref.directive';
 
 import { routes } from './routes';
+import { DetailsComponent } from './components/list/details/details.component';
+import { CarouselComponent } from './components/list/details/carousel/carousel.component';
+
+
 
 @NgModule({
   declarations: [
@@ -59,9 +63,11 @@ import { routes } from './routes';
     LargeNumberPipe,
     MapComponent,
     GetEleDirective,
-    MouseWheelDirective
+    MouseWheelDirective,
+    DetailsComponent,
+    CarouselComponent
   ],
-  entryComponents: [DialogCreateNewPropertyComponent, AuthComponent],
+  entryComponents: [DialogCreateNewPropertyComponent, AuthComponent, DetailsComponent],
   imports: [
     BrowserModule,
     FormsModule,

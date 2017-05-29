@@ -60,5 +60,5 @@ typings/
 # dotenv environment variables file
 .env
 
-server/public/uploads
+server/public
 .vscode

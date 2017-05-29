@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, ViewChild, ElementRef, EventEmitter, AfterViewInit } from '@angular/core';
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+//import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { MdDialog, MdDialogRef, MdInputModule, MdRadioModule } from '@angular/material';
 
