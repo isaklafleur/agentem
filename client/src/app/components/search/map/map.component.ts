@@ -66,7 +66,12 @@ export class MapComponent implements OnInit {
   ngOnInit() {
 
     this.drawingManager['initialized$'].subscribe(dm => {
-
+      dm.setOptions({
+        drawingControlOptions: {
+          position: google.maps.ControlPosition.TOP_RIGHT,
+          drawingModes: ['polygon']
+        }
+      });
       google.maps.event.addListener(dm, 'polygoncomplete', (polygon) => {
         this.isPolygon = true;
 
