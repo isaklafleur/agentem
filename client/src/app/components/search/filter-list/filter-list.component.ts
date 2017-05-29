@@ -57,7 +57,7 @@ export class FilterListComponent implements OnInit {
         }
       });
 
-      if(this.listingService.addressComponents.length) {
+      if (this.listingService.addressComponents.length) {
         this.adjustMargin();
       }
   }
@@ -66,7 +66,7 @@ export class FilterListComponent implements OnInit {
     this.autocomplete = autocomplete;
   }
   placeChanged(place) {
-    if(place.name) {
+    if (place.name) {
       this.listingService.readSearchPlace(place);
 
       this.listingService.updateFilter();
@@ -76,16 +76,16 @@ export class FilterListComponent implements OnInit {
   }
 
 breadCrumbs(level) {
-  if(level<this.listingService.addressComponents.length-1) {
-    switch(level) {
-      case 0: 
-        this.newSearch.street='';
-        this.newSearch.neighbourhood='';
+  if (level < this.listingService.addressComponents.length - 1) {
+    switch (level) {
+      case 0:
+        this.newSearch.street = '';
+        this.newSearch.neighbourhood = '';
         this.listingService.addressComponents.splice(1);
         this.listingService.zoom = 13;
         break;
-      case 1: 
-        this.newSearch.street='';
+      case 1:
+        this.newSearch.street = '';
         this.listingService.addressComponents.splice(2);
         this.listingService.zoom = 14;
         break;
