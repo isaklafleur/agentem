@@ -9,8 +9,7 @@
             </md-option>
           </md-select><br><br>
           <md-input-container>
-           <!-- <input #searchBox (click)="this.searchBox.value = ''" mdInput placeholder="Search by Street, Neighborhood, City.." value="Copacabana, Rio de Janeiro, RJ">-->
-
+  
           <input places-auto-complete type="text" autocorrect="off" autocapitalize="off" spellcheck="off" #addressSearchBox 
               id="addressSearchBox" name="address" (click)="this.addressSearchBox.value = ''" mdInput placeholder="Search by Street, Neighborhood or City"
               (place_changed)="placeChanged($event)" 

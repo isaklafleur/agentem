@@ -4,8 +4,6 @@
     <md-tab label="My Profile">
       <div class="main">
       <form #myForm="ngForm" novalidate>
-        <p>Email: xxxxx@xxxxx.com <a href="#">Edit</a></p>
-        <p>Password: ******** <a href="#">Edit</a></p>
         <md-input-container>
           <input mdInput type="text" placeholder="Your Full Name" [(ngModel)]="userProfile.fullName" name="fullName">
         </md-input-container><br>
@@ -23,7 +21,6 @@
     <md-option value="other">Other/Just Looking</md-option>
   </md-select><br><br>
         <button [disabled]="!myForm.dirty" md-raised-button color="accent" (click)="saveProfile(myForm.form.valid)">Save Profile</button>
-        <button *ngIf="myForm.dirty" md-raised-button color="accent" routerLink="/dashboard">Cancel</button>
               <div class="alert alert-danger" role="alert" [hidden]="!submittedInvalid || (myForm.form.valid)">{{submitError}}</div>
               <div class="alert alert-success" role="alert" *ngIf="submitSuccess">{{submitSuccess}}</div>
 
