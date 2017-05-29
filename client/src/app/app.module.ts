@@ -42,6 +42,9 @@ import {GetEleDirective} from './directives/ref.directive';
 
 import { routes } from './routes';
 import { DetailsComponent } from './components/list/details/details.component';
+import { CarouselComponent } from './components/list/details/carousel/carousel.component';
+
+
 
 @NgModule({
   declarations: [
@@ -61,7 +64,8 @@ import { DetailsComponent } from './components/list/details/details.component';
     MapComponent,
     GetEleDirective,
     MouseWheelDirective,
-    DetailsComponent
+    DetailsComponent,
+    CarouselComponent
   ],
   entryComponents: [DialogCreateNewPropertyComponent, AuthComponent, DetailsComponent],
   imports: [

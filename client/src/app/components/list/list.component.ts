@@ -42,7 +42,8 @@ export class ListComponent implements OnInit {
           }
       })
     }
-  clickHeart(index) {
+  clickHeart($event, index) {
+    $event.stopPropagation();
     $("#heart"+index+" i:nth-child(1)").css("color", "#ff4081").css("opacity", 1).css("animation", "none");
     $('#heart'+index).css("animation", "none");
   }
