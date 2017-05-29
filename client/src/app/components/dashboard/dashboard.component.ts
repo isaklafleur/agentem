@@ -45,7 +45,14 @@ export class DashboardComponent implements OnInit {
     this.userProfile = this.userservice.getUser(this.userservice.activeUserId).subscribe((user) => {
         this.userProfile = user;
         this.userservice.user = this.userProfile;
+        if(this.userservice.favoriteAfterLogin)
+          this.userservice.saveFavorite(this.userservice.favoriteAfterLogin)
       });
     // console.log('userProfile: ', this.userProfile)
+  }
+
+  deleteFavorite($event, listing) {
+    $event.stopPropagation();
+    this.userservice.deleteFavorite(listing);
   }
 }

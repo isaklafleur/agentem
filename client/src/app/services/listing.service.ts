@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { UserService } from "./user.service";
 declare var $:any;
 @Injectable()
 export class ListingService {
@@ -16,9 +17,8 @@ export class ListingService {
   center: any = "Rio de Janeiro, Brazil";
   detailsIndex: number;
 
-  constructor( private http: Http ) { }
+  constructor( private http: Http, private userService: UserService ) { }
 
-  
   getList( callback) {
     // let headers = new Headers({ 'Authorization': 'JWT ' + this.SessionService.token });
     // let options = new RequestOptions({ headers: headers });
@@ -30,7 +30,7 @@ export class ListingService {
           this.listings = this.listings.concat(res.listings);
           this.listingCount = res.count;
           this.isLoading = false;
-
+          this.mapFavorites();
           $("#left").trigger("click")
           callback(res.listings);
         });
@@ -92,6 +92,15 @@ export class ListingService {
     this.zoom = newZoom;
     this.center = place.geometry.location;
     console.log('place.geometry.location: ', place.geometry.location);
+  }
+
+  mapFavorites() {
+    if(this.userService.user) {
+      this.userService.user.favorites.forEach(fav=>{
+        let favListing = this.listings.find(listing=>listing._id===fav._id)
+        if(favListing)  favListing.isFavorite = true;
+      })
+    }
   }
 
   getQuery() {

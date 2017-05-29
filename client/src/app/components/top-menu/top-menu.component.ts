@@ -13,6 +13,7 @@ export class TopMenuComponent implements OnInit {
   isAuth: boolean;
 
   constructor(public dialog: MdDialog, public userservice: UserService) {
+    this.userservice.doSignIn$.subscribe(item => this.openDialog());
     this.userservice.isAuth
         .subscribe((isAuth: boolean) => {
         // user will be false if logged out

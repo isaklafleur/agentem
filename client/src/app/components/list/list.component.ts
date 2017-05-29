@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ListingService } from '../../services/listing.service';
+import { UserService } from '../../services/user.service';
 import { MdDialog } from '@angular/material';
 import { DetailsComponent } from './details/details.component'
 declare var $:any;
@@ -15,7 +16,7 @@ export class ListComponent implements OnInit {
 
   isEndResults: boolean = false;
   
-  constructor(private listingService: ListingService, public dialog: MdDialog) { 
+  constructor(private listingService: ListingService, private userService:UserService, public dialog: MdDialog) { 
   }
 
   ngOnInit() {
@@ -42,9 +43,15 @@ export class ListComponent implements OnInit {
           }
       })
     }
-  clickHeart($event, index) {
+  clickHeart($event, listing) {
     $event.stopPropagation();
-    $("#heart"+index+" i:nth-child(1)").css("color", "#ff4081").css("opacity", 1).css("animation", "none");
-    $('#heart'+index).css("animation", "none");
+    if(listing.isFavorite) {
+      listing.isFavorite = false;
+      this.userService.deleteFavorite(listing)
+    } else {
+      listing.isFavorite = true;
+      this.userService.saveFavorite(listing)
+    }
+   // this.listingService.mapFavorites();
   }
 }

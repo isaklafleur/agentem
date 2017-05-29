@@ -11,13 +11,15 @@ export class UserService implements CanActivate {
   public token: string;
   isAuth: EventEmitter<any> = new EventEmitter();
   activeUserId = '';
-
+  favoriteAfterLogin: string;
+  public doSignIn$: EventEmitter<any>; 
   BASE_URL = 'http://localhost:3000';
 
   constructor(
     private router: Router,
     private http: Http
   ) {
+      this.doSignIn$ = new EventEmitter();
       // set token if saved in local storage
       this.token = localStorage.getItem('token');
       if (this.token != null) {
@@ -73,13 +75,14 @@ export class UserService implements CanActivate {
             // login successful if there's a jwt token in the response
             const token = response.json() && response.json().token;
             this.activeUserId = response.json() && response.json().payload.id;
-            console.log('activeUserId: ', this.activeUserId);
+
             if (token) {
               // set token property
               this.token = token;
               this.isAuth.emit(true);
               // store username and jwt token in local storage to keep user logged in between page refreshes
               localStorage.setItem('token', token);
+
 /*              localStorage.setItem('user', JSON.stringify(user) );*/
               // return true to indicate successful login
               return true;
@@ -100,7 +103,7 @@ export class UserService implements CanActivate {
       this.router.navigate(['/']);
   }
 
-    getUser(id) {
+  getUser(id) {
 /*    let headers = new Headers({ 'Authorization': 'JWT ' + this.userservice.token });
     let options = new RequestOptions({ headers: headers });*/
     return this.http.get(`${this.BASE_URL}/api/users/${id}`/*, options*/)
@@ -109,8 +112,26 @@ export class UserService implements CanActivate {
   updateUser() {
     /* let headers = new Headers({ 'Authorization': 'JWT ' + this.userservice.token });
     let options = new RequestOptions({ headers: headers });*/
-    console.log('this.user', this.user)
     return this.http.post(`${this.BASE_URL}/api/users/${this.user._id}`, this.user/*, options*/)
       .map((res) => res.json());
+  }
+  saveFavorite(listing) {
+    if(!this.user) {
+      this.favoriteAfterLogin = listing;
+      this.doSignIn$.emit(true);
+    } else {
+    this.user.favorites.push(listing);
+      this.http.put(`${this.BASE_URL}/api/users/${this.user._id}/favorite/${listing._id}`, true)
+        .map((res) => res.json()).subscribe(res=>{
+          console.log("Favorite saved");
+        })
+    }
+  }
+  deleteFavorite(listing) {
+    this.user.favorites = this.user.favorites.filter(fav=>fav._id!==listing._id);
+    this.http.delete(`${this.BASE_URL}/api/users/${this.user._id}/favorite/${listing._id}`)
+      .map((res) => res.json()).subscribe(res=>{
+        console.log("Favorite deleted");
+      })
   }
 }

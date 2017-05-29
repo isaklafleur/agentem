@@ -21,7 +21,7 @@ router.get('/:id', (req, res) => {
     return;
   }
 
-  User.findById(req.params.id, (err, user) => {
+  User.findById(req.params.id).populate('favorites').exec((err, user) => {
     if (err) {
       res.json(err);
       return;
@@ -53,5 +53,26 @@ router.post('/:id', (req, res) => {
         // res.status(200).json(user);
   });
 });
+
+router.put("/:userId/favorite/:listingId", (req,res)=>{
+  User.findOneAndUpdate({"_id":req.params.userId}, {$addToSet:{favorites:req.params.listingId}}, err=>{
+    if (err) {
+      res.status(400).json({error:err});
+      return;
+    }
+    res.status(200).json({ message: 'ok' });
+  })
+})
+
+router.delete("/:userId/favorite/:listingId", (req,res)=>{
+  User.findOneAndUpdate({"_id":req.params.userId}, {$pull:{favorites:req.params.listingId}}, err=>{
+    if (err) {
+      res.status(400).json({error:err});
+      return;
+    }
+    res.status(200).json({ message: 'ok' });
+  })
+})
+
 
 module.exports = router;

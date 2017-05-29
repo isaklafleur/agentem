@@ -98,15 +98,12 @@
     color: black;
     opacity: 0.3;
 }
+.icon-a-selected {
+  color:#ff4081;
+  opacity: 1;
 
-/*.icon-a:hover {
-  animation-name: pulse_animation_opacity;
-	animation-duration: 1000ms;
+}
 
-	animation-iteration-count: infinite;
-	animation-timing-function: linear;
-
-}*/
 .icon-b {
     pointer-events : none;
     color: white;
