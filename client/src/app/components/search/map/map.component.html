@@ -1,7 +1,6 @@
 <ngui-map #map [zoom]="listingService.zoom" [center]="listingService.center" (mouseover)="listingService.listHoverItem=-1" (mapReady$)="onMapReady($event)"
   style="height:100%">
   <drawing-manager #drawing  [drawingControl]="true" [drawingControlOptions]="{
-      position: 2,
       drawingModes: ['polygon']
       }" [polygonOptions]="{
       strokeColor: 'red',
