@@ -104,8 +104,13 @@ export class UserService implements CanActivate {
 /*    let headers = new Headers({ 'Authorization': 'JWT ' + this.userservice.token });
     let options = new RequestOptions({ headers: headers });*/
     return this.http.get(`${this.BASE_URL}/api/users/${id}`/*, options*/)
-      .map((res) => res.json()).subscribe((user) => {
-        this.user = user;
-      });
+      .map((res) => res.json());
+  }
+  updateUser() {
+    /* let headers = new Headers({ 'Authorization': 'JWT ' + this.userservice.token });
+    let options = new RequestOptions({ headers: headers });*/
+    console.log('this.user', this.user)
+    return this.http.post(`${this.BASE_URL}/api/users/${this.user._id}`, this.user/*, options*/)
+      .map((res) => res.json());
   }
 }

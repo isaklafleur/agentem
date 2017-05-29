@@ -10,8 +10,10 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  user = {};
-  userProfile = this.userservice.getUser(this.userservice.activeUserId);
+  userProfile = {};
+  submittedInvalid = false;
+  submitError: string;
+  submitSuccess: string;
 
   constructor(public dialog: MdDialog, private userservice: UserService) { }
 
@@ -24,14 +26,26 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  saveProfile(myForm) {
-    console.log('myform', myForm);
-    console.log('this.userservice.activeUserId', this.userservice.activeUserId);
-    console.log('user from dashboard: ', this.userProfile);
-    console.log('test');
-    console.log('userprofile', this.userservice.user);
+  saveProfile(formValid) {
+    if (!formValid) {
+      this.submitError = 'Please fill out the form';
+      this.submittedInvalid = true;
+    } else {
+    // console.log('myform', myForm);
+    this.userservice.updateUser().subscribe(result => {
+      if (result.error) {
+        console.log('error:', result.err);
+      } else {
+        this.submitSuccess = 'Updates where stored successfully.'
+      }
+    })
   }
-
+}
   ngOnInit() {
+    this.userProfile = this.userservice.getUser(this.userservice.activeUserId).subscribe((user) => {
+        this.userProfile = user;
+        this.userservice.user = this.userProfile;
+      });
+    // console.log('userProfile: ', this.userProfile)
   }
 }

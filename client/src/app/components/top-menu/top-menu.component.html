@@ -1,4 +1,4 @@
-<nav class="navbar fixed-top navbar-toggleable-md navbar-light bg-faded" style="height:50px">
+<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-info text-white">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -8,25 +8,6 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" routerLink="/search" routerLinkActive="active">Search</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/#" routerLinkActive="active">Sell</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buy</a>
-        <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Rent</a>
-        <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
       </li>
     </ul>
 <a *ngIf="isAuth" class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard <i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
