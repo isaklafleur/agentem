@@ -1,0 +1,22 @@
+.font-large {
+  font-size: larger;
+}
+.details-list {
+  width:100%; 
+  margin:auto;
+}
+
+@media (max-width: 576px) {
+  .details-list {
+    width:100%; 
+    margin:0;
+  }
+}
+
+.details-icon {
+  height: 21px;
+  padding-right:10px;
+}
+.details-map-property {
+
+}

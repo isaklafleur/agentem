@@ -1,6 +1,8 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { DrawingManager } from '@ngui/map';
+import { MdDialog } from '@angular/material';
 import { ListingService } from '../../../services/listing.service';
+import { DetailsComponent } from '../../list/details/details.component'
 declare var $: any;
 
 
@@ -28,27 +30,7 @@ export class MapComponent implements OnInit {
   @ViewChild(DrawingManager) drawingManager: DrawingManager;
   @ViewChild('map') mapElement;
   @ViewChild('markerDetails') markerDetails;
-  constructor(private listingService: ListingService) { }
-
-  getElement(target) {
-    // let mapWidth = this.mapElement.elementRef.nativeElement.clientWidth;
-    // console.log('mapWidth: ', mapWidth);
-    // let mapHeight =  this.mapElement.elementRef.nativeElement.clientHeight;
-    // console.log('mapHeight: ', mapHeight);
-    // console.log(target)
-    // let markerTop = (event.target as any).offsetParent.offsetTop;
-    // console.log('markerTop: ', markerTop);
-    // let markerLeft = (event.target as any).offsetParent.offsetLeft;
-    // console.log('markerLeft: ', markerLeft);
-
-
-
-    //marker.nativeElement.offsetLeft;
-    //console.log('marker.nativeElement.offsetLeft: ', marker.nativeElement.offsetLeft);
-
-    // var target = event.target || event.srcElement || event.currentTarget;
-    //console.log(target);
-  }
+  constructor(private listingService: ListingService, public dialog: MdDialog) { }
 
   markerMouseOver(event, i) {
     this.showMapDetails[i] = !this.showMapDetails[i];
@@ -64,8 +46,6 @@ export class MapComponent implements OnInit {
       let markerWidth = $('#markerDetails' + i).width();
 
       let markerHeight = $('#markerDetails' + i).height();
-
-   //   $('#markerDetails' + i).offset({ left: offset.left - markerWidth / 2 + 20 });
 
       if (mapHeight - markerTop < 166) {
         $("#markerDetails" + i).offset({ top: offset.top - 215 });
@@ -193,7 +173,15 @@ export class MapComponent implements OnInit {
 
     }
   }
-
+  openDetails(i) {
+    this.listingService.detailsIndex = i;
+    const dialogRef = this.dialog.open(DetailsComponent, {width: '80%', height: '100%', position:"right"});
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'submitted') {
+        console.log('form ok')
+      }
+    });
+  }
 }
 
 //noinspection TypeScriptCheckImport
