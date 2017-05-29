@@ -7,7 +7,7 @@ const userSchema = new Schema({
   password: String,
   role: {
     type: String,
-    enum: ['home_seller', 'both_buyer_and_seller', 'renter', 'home_owner', 'renter_rentee', 'real_estate_pro'],
+    enum: ['home_seller', 'both_buyer_and_seller', 'renter', 'home_owner', 'renter_rentee', 'real_estate_pro', 'other'],
   },
   fullName: String,
   phoneNumber: Number,

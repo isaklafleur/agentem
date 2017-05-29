@@ -6,8 +6,8 @@ import { TestComponent } from './components/test/test.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UserService } from './services/user.service';
 export const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home',  component: HomeComponent },
+  { path: '', component: HomeComponent },
+/*  { path: 'home',  component: HomeComponent },*/
   { path: 'panel/form',  component: PropertyFormComponent },
   { path: 'search',  component: SearchComponent },
   { path: 'test',  component: TestComponent },

@@ -1,34 +1,34 @@
 <div class="container-fluid">
   <h1>DashBoard</h1>
   <md-tab-group>
-
     <md-tab label="My Profile">
-      <!--<i class="fa fa-user" aria-hidden="true"></i>-->
-      <br>
-      <h5>My Profile</h5><br>
-      <form #myForm="ngForm">
-        <p>Email: isak.engdahl@gmail.com <a href="#">Edit</a></p>
+      <div class="main">
+      <form #myForm="ngForm" novalidate>
+        <p>Email: xxxxx@xxxxx.com <a href="#">Edit</a></p>
         <p>Password: ******** <a href="#">Edit</a></p>
         <md-input-container>
-          <input mdInput type="text" placeholder="Your Full Name" [(ngModel)]="user.fullName" name="fullName">
+          <input mdInput type="text" placeholder="Your Full Name" [(ngModel)]="userProfile.fullName" name="fullName">
         </md-input-container><br>
         <md-input-container>
-          <input mdInput type="text" placeholder="Phone" [(ngModel)]="user.phoneNumber" name="phoneNumber">
+          <input mdInput type="text" pattern="\d+" placeholder="Phone" [(ngModel)]="userProfile.phoneNumber" name="phoneNumber">
+          <md-error>Please enter only digits</md-error>
         </md-input-container><br>
-  <md-select placeholder="User Type" [(ngModel)]="user.role" name="role">
+  <md-select placeholder="User Type" [(ngModel)]="userProfile.role" name="role">
     <md-option value="home_seller">Home Seller</md-option>
     <md-option value="both_buyer_and_seller">Both Buyer and Seller</md-option>
     <md-option value="renter">Renter</md-option>
     <md-option value="home_owner">Home Owner</md-option>
-    <md-option value="renter_Rentee">Other/Just Looking</md-option>
-    <md-option value="real_estate_pro">Real Estate Pro</md-option>
     <md-option value="renter_rentee">Renter/Rentee</md-option>
+    <md-option value="real_estate_pro">Real Estate Pro</md-option>
+    <md-option value="other">Other/Just Looking</md-option>
   </md-select><br><br>
-        <button md-raised-button color="accent" (click)="saveProfile(myForm)">Save Profile</button> <!-- Should be disabled, only enabled when user start to edit something -->
-        <button md-raised-button color="accent" (click)="cancel()">Cancel</button> <!-- Should only be displayed if user start changing anything. -->
-        <md-error>{{ error }}</md-error>
+        <button [disabled]="!myForm.dirty" md-raised-button color="accent" (click)="saveProfile(myForm.form.valid)">Save Profile</button>
+        <button *ngIf="myForm.dirty" md-raised-button color="accent" routerLink="/dashboard">Cancel</button>
+              <div class="alert alert-danger" role="alert" [hidden]="!submittedInvalid || (myForm.form.valid)">{{submitError}}</div>
+              <div class="alert alert-success" role="alert" *ngIf="submitSuccess">{{submitSuccess}}</div>
 
       </form><br>
+      </div>
     </md-tab>
 
     <md-tab label="My Listings">
