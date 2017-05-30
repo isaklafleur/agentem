@@ -48,7 +48,8 @@
                   <span *ngIf="search.maxPrice">Max.price: {{search.maxPrice}}<br></span>
                   <span *ngIf="search.maxPrice">Max.price: {{search.maxPrice}}<br></span>  
                   <span *ngIf="search.bedrooms">Bedrooms: {{search.bedrooms}}<br></span>   
-                  <span *ngIf="search.propertyType">Property types: {{formatPropertyTypes(search.propertyType)}}<br></span>   
+                  <span *ngIf="search.propertyType">Property types: {{formatPropertyTypes(search.propertyType)}}<br></span> 
+                  <span *ngIf="search.polygon">Search area<br></span>    
                 </td>
                 <td>{{search.time | date:'short'}}</td>
                 <td><i (click)="openSearch(search)" class="fa fa-search fa-2x" style="cursor:pointer"></i></td>

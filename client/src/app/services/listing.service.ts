@@ -17,6 +17,7 @@ export class ListingService {
   center: any = 'Rio de Janeiro, Brazil';
   detailsListing: any;
   loadSearchBounds: any;
+  loadSearchPolygon: any;
   listHoverItem: number;
 
   constructor( public http: Http, public userService: UserService ) { }

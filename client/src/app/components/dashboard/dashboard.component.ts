@@ -73,6 +73,9 @@ export class DashboardComponent implements OnInit {
   openSearch(search) {
     this.listingService.filter = search;
     this.listingService.loadSearchBounds = search.bounds;
+    if(search.polygon) {
+      this.listingService.loadSearchPolygon = search.polygon;
+    }
     this.router.navigate(['/search']);
     
   }
