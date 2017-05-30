@@ -16,6 +16,7 @@ export class ListingService {
   zoom = 13;
   center: any = 'Rio de Janeiro, Brazil';
   detailsListing: any;
+  loadSearchBounds: any;
   listHoverItem: number;
 
   constructor( public http: Http, public userService: UserService ) { }
@@ -32,7 +33,9 @@ export class ListingService {
           this.listingCount = res.count;
           this.isLoading = false;
           this.mapFavorites();
-          $('#left').trigger('click')
+
+         // $("#left").trigger("click")
+
           callback(res.listings);
         });
   }
@@ -40,7 +43,9 @@ export class ListingService {
     this.offset += this.limit;
     this.getList(callback);
   }
-
+  setSearchLoaded(search) {
+    this.loadSearchBounds = search.bounds;
+  }
   getNew() {
     this.offset = 0;
     this.listings = [];
@@ -105,7 +110,6 @@ export class ListingService {
   }
 
   getQuery() {
-    // console.log(this.filter);
 
     let query = `?limit=${this.limit}&offset=${this.offset}`;
 

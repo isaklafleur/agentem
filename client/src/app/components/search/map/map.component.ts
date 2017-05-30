@@ -30,7 +30,9 @@ export class MapComponent implements OnInit {
   @ViewChild(DrawingManager) drawingManager: DrawingManager;
   @ViewChild('map') mapElement;
   @ViewChild('markerDetails') markerDetails;
+  
   constructor(public listingService: ListingService, public dialog: MdDialog) { }
+
 
   markerMouseOver(event, i) {
     this.showMapDetails[i] = !this.showMapDetails[i];
@@ -121,10 +123,13 @@ export class MapComponent implements OnInit {
   }
 
   onMapReady(map) {
-    $("#test").offset({ top: 500, left: 800 });
+
     this.map = map;
-    this.getBounds();
-    console.log(this.bounds);
+    if(this.listingService.loadSearchBounds) {
+      this.setBounds(this.listingService.loadSearchBounds)
+    } else {
+      this.getBounds();
+    }
     this.listingService.updateFilter();
     map.addListener('bounds_changed', () => {
       if (Date.now() - this.lastDebounce > this.DEBOUNCE_TIME) {
@@ -143,7 +148,16 @@ export class MapComponent implements OnInit {
       lngSW: this.map.getBounds().getSouthWest().lng(),
     }
   }
-
+  setBounds(bounds) {
+    const boundsLiteral = {     
+      east: bounds.lngNE,
+      north: bounds.latNE,
+      south: bounds.latSW,
+      west: bounds.lngSW
+    }
+    console.log('bounds: ', bounds);
+    this.map.fitBounds(boundsLiteral);
+  }
   getPolygonRemovePosition(polygon) {
     let coordinates = polygon.getPath().getArray()
     this.polygonRemovePosition = [coordinates[0].lat(), coordinates[0].lng()]

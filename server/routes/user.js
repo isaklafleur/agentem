@@ -93,7 +93,7 @@ router.put("/:userId/search", (req,res)=>{
 router.delete("/:userId/search/:time", (req,res)=>{
   console.log('req.params.time: ', req.params.time);
   User.findOneAndUpdate({"_id":req.params.userId}, 
-  {$pull:{savedSearches:{$elemMatch: {time: req.params.time}}}}, 
+  {$pull:{savedSearches:{time: +req.params.time}}}, 
   err=>{
     if (err) {
       res.status(400).json({error:err});

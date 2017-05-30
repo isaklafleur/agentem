@@ -59,7 +59,6 @@ export class DashboardComponent implements OnInit {
           this.userservice.saveSearch(this.userservice.searchAfterLogin)
         }
       });
-    // console.log('userProfile: ', this.userProfile)
   }
 
   deleteFavorite($event, listing) {
@@ -73,11 +72,12 @@ export class DashboardComponent implements OnInit {
 
   openSearch(search) {
     this.listingService.filter = search;
+    this.listingService.loadSearchBounds = search.bounds;
     this.router.navigate(['/search']);
+    
   }
 
   openDetails(i) {
-
     this.listingService.detailsListing = this.userservice.user.favorites[i];
     const dialogRef = this.dialog.open(DetailsComponent, {width: '80%', height: '100%', position: 'right'});
     dialogRef.afterClosed().subscribe(result => {

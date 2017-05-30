@@ -13,21 +13,23 @@ export class TopMenuComponent implements OnInit {
   isAuth: boolean;
 
   constructor(public dialog: MdDialog, public userservice: UserService) {
+  
     this.userservice.doSignIn$.subscribe(item => this.openDialog());
-    this.userservice.isAuth
-        .subscribe((isAuth: boolean) => {
-        // user will be false if logged out
-        // or user object if logged in.
-          this.isAuth = isAuth;
-        });
-    if (this.userservice.token) {
-      this.isAuth = true;
-    } else {
-      this.isAuth = false;
-    }
+      this.userservice.isAuth
+          .subscribe((isAuth: boolean) => {
+          // user will be false if logged out
+          // or user object if logged in.
+            this.isAuth = isAuth;
+          });
+      if (this.userservice.token) {
+        this.isAuth = true;
+      } else {
+        this.isAuth = false;
+      }
   }
 
   ngOnInit() {
+    
   }
 
   logout() {

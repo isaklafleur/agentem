@@ -100,9 +100,11 @@ router.get('/', (req, res, next) => {
         }
     }
   }
+ 
   var queryBounds;
   if(req.query.bounds) {
     let bounds = JSON.parse(req.query.bounds)
+
 
     queryBounds = { location : {
         $geoWithin: {
@@ -144,6 +146,7 @@ router.get('/', (req, res, next) => {
 
 //  query = {bedrooms:{$gte:2}};
   Listing.find().count(query).exec((err,count)=>{
+    console.log('count: ', count);
     Listing.find(query).skip(+req.query.offset).limit(+req.query.limit).exec((err, listingList) => {
       if (err) {
         res.status(500).json(err);
