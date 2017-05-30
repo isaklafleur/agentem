@@ -18,7 +18,8 @@ export class DashboardComponent implements OnInit {
   submittedInvalid = false;
   submitError: string;
   submitSuccess: string;
-
+  userListings: any[];
+  
   constructor(public dialog: MdDialog,
     public userservice: UserService,
     public listingService: ListingService,
@@ -28,7 +29,7 @@ export class DashboardComponent implements OnInit {
     const dialogRef = this.dialog.open(PropertyFormComponent, { width: '80%', height: '100%', position: 'right' });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'submitted') {
-        console.log('form ok')
+        this.getUserListings();
       }
     });
   }
@@ -58,9 +59,19 @@ export class DashboardComponent implements OnInit {
       if (this.userservice.searchAfterLogin) {
         this.userservice.saveSearch(this.userservice.searchAfterLogin)
       }
+      console.log("subscribe")
+      this.getUserListings();
     });
+
+
   }
 
+  getUserListings() {
+      this.listingService.getUserListings().subscribe(listings=>{
+        this.userListings = listings.listings;
+        console.log('this.userListings: ', this.userListings);
+      });
+  }
   deleteFavorite($event, listing) {
     $event.stopPropagation();
     this.userservice.deleteFavorite(listing);
@@ -84,8 +95,25 @@ export class DashboardComponent implements OnInit {
         console.log('form ok')
       }
     });
-
   }
+
+  openUserDetails(i) {
+    this.listingService.detailsListing = this.userListings[i];
+    const dialogRef = this.dialog.open(DetailsComponent, { width: '80%', height: '100%', position: 'right' });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'submitted') {
+        console.log('form ok')
+      }
+    });
+  }
+
+  deleteUserListing($event, listing) {
+    $event.stopPropagation();
+    this.listingService.deleteListing(listing._id).subscribe(res=>{
+      this.getUserListings();
+    })
+  }
+
   formatPropertyTypes(propertyType) {
     let types = [];
     for (let k in propertyType) {

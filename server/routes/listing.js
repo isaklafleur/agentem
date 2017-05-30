@@ -37,12 +37,11 @@ router.post('/:userId', upload.any(), function(req, res, next) {
     
       property.uploadToken = req.body.token;
       
-      property.photos = [req.files[0].filename];
+      property.photos = [process.env.BASE_URL+'/uploads/'+req.files[0].filename];
       property.manual = true;
       property.userId = req.params.userId;
 
       property.location = {type:'Point',coordinates: [-43.172896, -22.906847]};
-      console.log('property: ', property);
 
       const listing = new Listing(property);
       listing.save(err=>{
@@ -54,7 +53,7 @@ router.post('/:userId', upload.any(), function(req, res, next) {
         }
       })
     } else {
-      Listing.findOneAndUpdate({"uploadToken":req.body.token}, {$push:{photos:req.files[0].filename}}, err=>{
+      Listing.findOneAndUpdate({"uploadToken":req.body.token}, {$push:{photos:process.env.BASE_URL+'/uploads/'+req.files[0].filename}}, err=>{
         if(err) {
           res.status(500).json({error: err})
         } else {
@@ -134,13 +133,7 @@ router.get('/', (req, res, next) => {
     query.street = { $regex : req.query.street, $options : "-i" }
   }
 
-   // query.location = query.location ? {$and:[ { location: query.location }, {location: queryPolygon} ]} : queryPolygon;
-    
-    console.log(query);
-
-//  query = {bedrooms:{$gte:2}};
   Listing.find().count(query).exec((err,count)=>{
-    console.log('count: ', count);
     Listing.find(query).skip(+req.query.offset).limit(+req.query.limit).exec((err, listingList) => {
       if (err) {
         res.status(500).json(err);
@@ -158,7 +151,7 @@ router.get('/', (req, res, next) => {
 
 
 router.get("/:userId", (req,res)=>{
-  if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
+  if(!mongoose.Types.ObjectId.isValid(req.params.userId)) {
     res.status(400).json({ message: 'Specified id is not valid' });
     return;
   }
@@ -210,7 +203,7 @@ router.put('/:id', (req, res) => {
   });
 })
 
-/* DELETE a Phone. */
+
 router.delete('/:id', (req, res) => {
   if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
     res.status(400).json({ message: 'Specified id is not valid' });
