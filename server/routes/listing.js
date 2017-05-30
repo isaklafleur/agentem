@@ -30,50 +30,44 @@ router.get('/api', function(req, res) {
       res.end('file catcher example');
 });
 
-router.post('/', upload.any(), function(req, res, next) {
-        // req.body contains the text fields
+router.post('/:userId', upload.any(), function(req, res, next) {
+    if(req.body.newListing) {
 
-        if(req.body.newListing) {
+      let property = JSON.parse(req.body.property);
+    
+      property.uploadToken = req.body.token;
+      
+      property.photos = [req.files[0].filename];
+      property.manual = true;
+      property.userId = req.params.userId;
 
-          let property = JSON.parse(req.body.property);
-        
-          property.uploadToken = req.body.token;
-          
-          property.photos = [req.files[0].filename];
-          property.manual = true;
-          const listing = new Listing(property);
-          listing.save(err=>{
-            if(err) {
-              console.log(err);
-              res.status(500).json({error: err})
-            } else {
-              res.status(200).json({message: "Listing saved"})
-            }
-          })
+      property.location = {type:'Point',coordinates: [-43.172896, -22.906847]};
+      console.log('property: ', property);
+
+      const listing = new Listing(property);
+      listing.save(err=>{
+        if(err) {
+          console.log(err);
+          res.status(500).json({error: err})
         } else {
-          Listing.findOneAndUpdate({"uploadToken":req.body.token}, {$push:{photos:req.files[0].filename}}, err=>{
-            if(err) {
-              res.status(500).json({error: err})
-            } else {
-              res.status(200).json({message: "Photo saved"})
-            }
-          })
+          res.status(200).json({message: "Listing saved"})
         }
+      })
+    } else {
+      Listing.findOneAndUpdate({"uploadToken":req.body.token}, {$push:{photos:req.files[0].filename}}, err=>{
+        if(err) {
+          res.status(500).json({error: err})
+        } else {
+          res.status(200).json({message: "Photo saved"})
+        }
+      })
+    }
 });
+
 
 
 router.get('/', (req, res, next) => {
 
-//latitude=-22.917499
-//longitude=-43.174357799999996
-//radians 0.00126294518
-
-
-// "location" : {
-//         $geoWithin : {
-//             $centerSphere : [[-43.174357799999996, -22.917499], 0.00126294518 ]
-//         }
-//     }
 
   let query = "{";
   query+= req.query.typesBRN ? `"listingType":"${req.query.typesBRN}",` : "";
@@ -159,28 +153,41 @@ router.get('/', (req, res, next) => {
       });
       res.status(200).json({ listings: listingList, count: count });
     });
-
   });
-
 });
 
-router.get('/:id', (req, res) => {
+
+router.get("/:userId", (req,res)=>{
   if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
     res.status(400).json({ message: 'Specified id is not valid' });
     return;
   }
+  Listing.find({userId: req.params.userId}, (err, listings)=>{
+    if (err) {
+      res.status(500).json(err);
+      return;
+    }
+    res.status(200).json({ listings });
+  })
+})
+
+// router.get('/:id', (req, res) => {
+  // if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
+  //   res.status(400).json({ message: 'Specified id is not valid' });
+  //   return;
+  // }
   
-  Listing.findById(req.params.id, (err, listing) => {
-      if (err) {
-        res.json(err);
-        return;
-      }
-      if(listing.image.split('/')[1]==="uploads") {
-        listing.image = "http://localhost:3000"+listing.image;
-      }
-      res.json(listing);
-    });
-});
+//   Listing.findById(req.params.id, (err, listing) => {
+//       if (err) {
+//         res.json(err);
+//         return;
+//       }
+//       if(listing.image.split('/')[1]==="uploads") {
+//         listing.image = "http://localhost:3000"+listing.image;
+//       }
+//       res.json(listing);
+//     });
+// });
 
 
 router.put('/:id', (req, res) => {

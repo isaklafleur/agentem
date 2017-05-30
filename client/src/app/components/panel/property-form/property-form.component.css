@@ -78,3 +78,7 @@
 .description {
     width: 100%;
 }
+
+.offset-top {
+    margin-top:50px;
+}

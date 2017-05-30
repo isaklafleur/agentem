@@ -21,6 +21,7 @@ export class FilterListComponent implements OnInit {
   minPriceControl = new FormControl();
   public searchControl: FormControl;
   public zoom: number;
+  saveSearchButton: string = "Save search";
   RADIUS = 10;
 
   @ViewChild('addressSearchBox')
@@ -37,10 +38,11 @@ export class FilterListComponent implements OnInit {
 
     // create search FormControl
     this.searchControl = new FormControl();
-
-    this.newSearch = this.listingService.filter;
     this.newSearch.coordinates = {}
     this.newSearch.propertyType = {}
+
+    this.newSearch = this.listingService.filter;
+
 
     this.minPriceControl.valueChanges
       .debounceTime(1000)
@@ -107,7 +109,15 @@ export class FilterListComponent implements OnInit {
 
   saveSearch() {
     this.userService.saveSearch(this.listingService.filter);
+    if(this.userService.user) {
+      this.saveSearchButton = "Saved";
+      setTimeout(()=>{
+        this.saveSearchButton = "Save search";
+      }, 1000)
+    }
   }
+
+
   adjustMargin() {
     $('#search-listings').css('margin-top', '170px');
     $('#left').css('margin-top', '100px');
