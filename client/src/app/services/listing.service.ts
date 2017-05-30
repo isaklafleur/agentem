@@ -21,13 +21,14 @@ export class ListingService {
   loadSearchPolygon: any;
   listHoverItem: number;
 
+
   constructor( public http: Http, public userService: UserService ) { }
 
   getList( callback?) {
     // let headers = new Headers({ 'Authorization': 'JWT ' + this.SessionService.token });
     // let options = new RequestOptions({ headers: headers });
     this.isLoading = true;
-
+    
     this.http.get(`${this.BASE_URL}/api/listings${this.getQuery()}`)// , options)
       .map((res) => res.json()).subscribe((res) => {
 
@@ -54,12 +55,20 @@ export class ListingService {
     this.getList();
   }
 
-  get(id) {
-    // let headers = new Headers({ 'Authorization': 'JWT ' + this.SessionService.token });
-    // let options = new RequestOptions({ headers: headers });
-    return this.http.get(`${this.BASE_URL}/${id}`)// , options)
-      .map((res) => res.json());
+  getUserListings() {
+    return this.http.get(`${this.BASE_URL}/api/listings/${this.userService.user._id}`).map(res=>res.json());
   }
+
+  deleteListing(listingId) {
+    return this.http.delete(`${this.BASE_URL}/api/listings/${listingId}`).map(res=>res.json());
+  }
+
+  // get(id) {
+  //   // let headers = new Headers({ 'Authorization': 'JWT ' + this.SessionService.token });
+  //   // let options = new RequestOptions({ headers: headers });
+  //   return this.http.get(`${this.BASE_URL}/${id}`)// , options)
+  //     .map((res) => res.json());
+  // }
   // from filter
   updateFilter() {
      this.getNew();

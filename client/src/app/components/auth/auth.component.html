@@ -29,7 +29,6 @@
           Already have an an account? <button md-raised-button color="primary" (click)="DisplayLoginDialog()">Login</button>
   </div>
 </div>
-
 <!--Login Form-->
 <div *ngIf="loginDialog">
   <div class="modal-header">
@@ -38,14 +37,13 @@
         <span aria-hidden="true">&times;</span>
       </button>
   </div>
-
   <div class='container'>
     <div class='row'>
       <div class="col-md-7">
         <div class="modal-body">
           <form #myForm="ngForm">
             <md-input-container>
-              <input mdInput type="email" placeholder="Email" [(ngModel)]="user.username" name="username" required>
+              <input mdInput type="email" placeholder="Email" [(ngModel)]="user.username" name="username" autofocus required>
             </md-input-container>
             <md-input-container>
               <input mdInput type="password" placeholder="Password" [(ngModel)]="user.password" name="password" required>

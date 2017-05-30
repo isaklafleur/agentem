@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, ViewChild, ElementRef, EventEmitter, AfterViewInit } from '@angular/core';
 import { MdDialog, MdDialogRef, MdInputModule, MdRadioModule } from '@angular/material';
 import { UserService } from '../../../services/user.service';
+import { ListingService } from '../../../services/listing.service';
 import { FileUploader, FileSelectDirective } from 'ng2-file-upload';
 import { environment } from '../../../../environments/environment';
 declare var $: any;
@@ -33,7 +34,11 @@ export class PropertyFormComponent implements OnInit {
     this.hasBaseDropZoneOver = e;
   }
 
-  constructor(public dialogRef: MdDialogRef<PropertyFormComponent>, public dialog: MdDialog, public userService: UserService) {
+  constructor(public dialogRef: MdDialogRef<PropertyFormComponent>, 
+              public dialog: MdDialog,
+              public userService: UserService,
+              public listingService: ListingService
+              ) {
                 this.uploader = new FileUploader({url: `${environment.BASE_URL}/api/listings/${this.userService.user._id}`});
                }
 
@@ -47,6 +52,7 @@ export class PropertyFormComponent implements OnInit {
         }
         this.filesSent++;
       };
+
   }
   doSubmit(formValid) {
     if (!formValid) {
