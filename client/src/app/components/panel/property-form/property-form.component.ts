@@ -1,11 +1,9 @@
 import { Component, OnInit, Input, Output, ViewChild, ElementRef, EventEmitter, AfterViewInit } from '@angular/core';
 
 import { MdDialog, MdDialogRef, MdInputModule, MdRadioModule } from '@angular/material';
-
+import { UserService } from '../../../services/user.service';
 import { FileUploader, FileSelectDirective } from 'ng2-file-upload';
 declare var $: any;
-
-const URL = 'http://localhost:3000/api/listings';
 
 @Component({
   selector: 'app-property-form',
@@ -22,26 +20,31 @@ export class PropertyFormComponent implements OnInit {
   loginForm: any;
   submittedInvalid = false;
   submitError: string;
+  URL:string;
 
   showFile(item, index) {
     readURL(item, index);
   }
 
-
-  public uploader:FileUploader = new FileUploader({url: URL});
+  public uploader:FileUploader;
   public hasBaseDropZoneOver: boolean = false;
   public hasAnotherDropZoneOver: boolean = false;
-
 
   public fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
   }
 
-  constructor(public dialogRef: MdDialogRef<PropertyFormComponent>, public dialog: MdDialog) { }
+  constructor(public dialogRef: MdDialogRef<PropertyFormComponent>, 
+              public dialog: MdDialog,
+              public userService: UserService
+              ) {
+                this.URL = `http://localhost:3000/api/listings/${this.userService.user._id}`;
+                this.uploader = new FileUploader({url: this.URL});
+               }
 
   ngOnInit() {
      this.uploader.onBuildItemForm = (item, form) => {
-       console.log('onBuildItemForm');
+        console.log("onBuildItemForm");
         form.append('token', this.token);
         if (this.filesSent === 0) {
           form.append('newListing', true)
@@ -67,22 +70,9 @@ export class PropertyFormComponent implements OnInit {
         });
       }
     }
-    // this.uploader.getNotUploadedItems().length
   }
 }
-function readURL(input, index) {
 
-    if ($('#fileImage' + index).attr('src') === '#') {
-      const reader = new FileReader();
-
-      reader.onload = function (e) {
-          $('#fileImage' + index).attr('src', (e.target as any).result);
-      }
-      console.log('read');
-      $('#fileImage' + index).attr('src', '##')
-      reader.readAsDataURL(input._file);
-    }
-}
 
 @Component({
   selector: 'app-dialog-result-example-dialog',
@@ -95,4 +85,18 @@ export class DialogCreateNewPropertyComponent implements OnInit {
   ngOnInit() {
      setTimeout( () => this.dialogRef.close('submitted'), 1000);
   }
+}
+
+function readURL(input, index) {
+
+    if ($('#fileImage' + index).attr('src') === '#') {
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+          $('#fileImage' + index).attr('src', (e.target as any).result);
+      }
+      console.log('read');
+      $('#fileImage' + index).attr('src', '##')
+      reader.readAsDataURL(input._file);
+    }
 }
