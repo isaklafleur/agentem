@@ -7,18 +7,10 @@
     (mouseout)="listingService.listHoverItem=-1"
     (click)="openDetails(i)"
     >
-    <!--    <md-card-header>
-      <div md-card-avatar class="property-{{listing.propertyType}}"></div>
-      <md-card-title><span class="no-break"> {{listing.name}}</span></md-card-title>
-      <md-card-subtitle><span class="no-break">{{listing.city}}</span></md-card-subtitle>
-    </md-card-header>
--->
 
-<!--    <a href="#" (click)="$event.preventDefault();openDetails(i)">-->
       <img class="photo" [src]="listing.photos[0]" alt="Card image">
       <h4 class=" photo-text">R$ {{listing.price | largeNumber}}</h4>
       <div class="photo-description">
-        <!--card-img-overlay-->
         <div style="float:left; padding:5px">
           <img style="height:20px" src="/assets/{{listing.propertyType}}.svg"> {{listing.listingType}} <br>
 
@@ -28,30 +20,14 @@
             style="width:19px;margin-bottom:8px"> {{listing.bathrooms}}
         </div>
         <div class="heart">
-          <span class="fa-stack icon-stack" id="heart{{i}}" (click)="clickHeart($event, i)">
-              <i class="fa fa-lg fa-heart fa-stack-1x icon-a"></i>
+          <span class="fa-stack icon-stack" id="heart{{i}}" (click)="clickHeart($event, listing)">
+              <i class="fa fa-lg fa-heart fa-stack-1x icon-a" [class.icon-a-selected]="listing.isFavorite"></i>
               <i class="fa fa-lg fa-heart-o fa-stack-1x icon-b"></i>
           </span>
         </div>
       </div>
- <!--   </a>-->
+
   </div>
-
-  <!--
-      <h2 class="photo-text">
-        {{listing.listingType}} | {{listing.propertyType}}
-        <br>R$ {{listing.price | largeNumber}}
-      </h2>
-      <div class="heart">
-        <span class="fa-stack icon-stack" id="heart{{i}}" (click)="clickHeart(i)">
-          <i class="fa fa-2x fa-heart fa-stack-1x icon-a"></i>
-          <i class="fa fa-2x fa-heart-o fa-stack-1x icon-b"></i>
-        </span>
-      </div>
--->
-
-
-
 
   <div [hidden]="!listingService.isLoading" class="loader">
     <p>&nbsp;

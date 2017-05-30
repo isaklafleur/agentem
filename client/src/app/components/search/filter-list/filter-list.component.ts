@@ -1,6 +1,7 @@
 import { Component, OnInit, NgZone, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { MdRadioModule, MdButtonModule, MdInputModule, MdCheckboxModule } from '@angular/material';
 import { ListingService } from '../../../services/listing.service';
+import { UserService } from '../../../services/user.service';
 import {FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
 // import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import 'rxjs/add/operator/debounceTime';
@@ -29,12 +30,12 @@ export class FilterListComponent implements OnInit {
   constructor(
     private ref: ChangeDetectorRef,
     private listingService: ListingService,
- //   private mapsAPILoader: MapsAPILoader,
+    private userService: UserService,
     private ngZone: NgZone,
     ) { }
 
   ngOnInit() {
-  //  this.listingService.getNew();
+
     // create search FormControl
     this.searchControl = new FormControl();
 
@@ -108,7 +109,14 @@ breadCrumbs(level) {
     // console.log(myForm);
     // console.log(this.newSearch)
   }
-  adjustMargin() {
+
+  saveSearch() {
+    this.userService.saveSearch(this.listingService.filter);
+  }
+
+
+
+    adjustMargin() {
     $('#search-listings').css('margin-top', '170px');
     $('#left').css('margin-top', '100px');
   }

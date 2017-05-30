@@ -13,7 +13,7 @@ export class DetailsComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.listing = this.listingService.listings[this.listingService.detailsIndex];
+    this.listing = this.listingService.detailsListing;
   }
   saveToFavorites() {
   }

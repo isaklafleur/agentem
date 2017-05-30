@@ -61,11 +61,11 @@ router.post('/signup', (req, res) => {
     const salt = bcrypt.genSaltSync(bcryptSalt);
     const hashPass = bcrypt.hashSync(password, salt);
 
-    const newUser = User({
+    const newUser = new User({  
       username,
       password: hashPass,
     });
-
+   console.log('newUser: ', newUser);
     newUser.save((err, user) => {
       if (err) {
         res.status(400).json({ message: err });
