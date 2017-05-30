@@ -23,17 +23,13 @@
           <ngui-map #map 
             [zoom]="17" 
             center="{{listing.location.coordinates[1]}}, {{listing.location.coordinates[0]}}" 
-            class="details-map-property"
-          >
-          <marker 
-            position="{{listing.location.coordinates[1]}}, {{listing.location.coordinates[0]}}" 
-          >
+            class="details-map-property">
+          <marker position="{{listing.location.coordinates[1]}}, {{listing.location.coordinates[0]}}">
           </marker>
           </ngui-map>
         </div>
       </div>
     </div>
-
 
     <ul class="list-group details-list">
       <li class="list-group-item ">
@@ -43,10 +39,13 @@
               <img style="height:40px" src="/assets/{{listing.propertyType}}.svg">
               <span class="font-large">{{listing.propertyType}}</span> for
               <span class="font-large">{{listing.listingType}}</span>
+                              <button md-raised-button color="accent" (click)="saveToFavorites()">
+    <span class="glyphicon glyphicon-upload"></span> Save to favorites
+  </button>
             </div>
             <div class="col-md-6">
-              <span class="font-large">$R {{listing.price | largeNumber}} </span>
-              <br> {{listing.size}} m&#178; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $R {{listing.priceSqm | largeNumber}} / m&#178;
+              <span class="font-large">R$ {{listing.price | largeNumber}} </span>
+              <br> {{listing.size}} m&#178; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; R$ {{listing.priceSqm | largeNumber}} / m&#178;
             </div>
           </div>
         </div>
@@ -58,10 +57,10 @@
               <table class="table table-striped">
                 <tr>
                   <td>City</td>
-                  <td>{{listing.city}}&nbsp;&nbsp;&nbsp;{{listing.state}}</td>
+                  <td>{{listing.city}}, {{listing.state}}</td>
                 </tr>
                 <tr>
-                  <td>Barrio</td>
+                  <td>Neighborhood</td>
                   <td>{{listing.neighbourhood}}</td>
                 </tr>
                 <tr>
@@ -77,7 +76,7 @@
             <div class="col-md-6">
               <table class="table table-striped">
                 <tr>
-                  <td>Suites</td>
+                  <td><img src="/assets/bed.svg" class="details-icon"> +  <img src="/assets/bath.svg" class="details-icon"> Suites</td>
                   <td>{{listing.suites}}</td>
                 </tr>
                 <tr>
@@ -97,13 +96,8 @@
           </div>
         </div>
       </li>
-
     </ul>
 
   <div class="modal-footer">
-
-  <button md-raised-button class="background-primary-color white-text" (click)="saveToFavorites()">
-    <span class="glyphicon glyphicon-upload"></span> Save to favorites
-  </button>
-  <button md-raised-button (click)="dialogRef.close('Option 1')">Close</button>
+  <button md-raised-button color="primary" (click)="dialogRef.close('Option 1')">Close</button>
 </div>

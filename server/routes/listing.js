@@ -154,7 +154,7 @@ router.get('/', (req, res, next) => {
             return photo.split(":")[0]==="https" ? photo : "http://localhost:3000/uploads/"+photo;
         });
       });
-      res.status(200).json({listings:listingList, count:count});
+      res.status(200).json({ listings: listingList, count: count });
     });
 
   });

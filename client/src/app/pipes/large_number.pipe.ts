@@ -8,7 +8,6 @@ export class LargeNumberPipe implements PipeTransform {
         if (!input) {
             return '';
         }
-      
-        return input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
 }

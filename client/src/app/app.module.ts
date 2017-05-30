@@ -1,4 +1,4 @@
-//native
+// Native
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -7,19 +7,28 @@ import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-//modules
+// Modules
 import { NguiMapModule} from '@ngui/map';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FileUploadModule } from 'ng2-file-upload';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import 'hammerjs';
 
 // Services
 import { ListingService } from './services/listing.service';
 import { UserService } from './services/user.service';
+import { StatsService } from './services/stats.service';
 
 // Pipes
 import { LargeNumberPipe } from './pipes/large_number.pipe';
+
+// Directives
+import { MouseWheelDirective } from './directives/mouse_wheel.directive';
+import {GetEleDirective} from './directives/ref.directive';
+
+import { routes } from './routes';
+
 
 // Custom Components
 import { MapComponent } from './components/search/map/map.component';
@@ -35,16 +44,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TestComponent } from './components/test/test.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AuthComponent } from './components/auth/auth.component';
-
-//directives
-import { MouseWheelDirective } from './directives/mouse_wheel.directive';
-import {GetEleDirective} from './directives/ref.directive';
-
-import { routes } from './routes';
 import { DetailsComponent } from './components/list/details/details.component';
 import { CarouselComponent } from './components/list/details/carousel/carousel.component';
-
-
+import { StatsBarChartComponent } from './components/stats-bar-chart/stats-bar-chart.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +67,8 @@ import { CarouselComponent } from './components/list/details/carousel/carousel.c
     GetEleDirective,
     MouseWheelDirective,
     DetailsComponent,
-    CarouselComponent
+    CarouselComponent,
+    StatsBarChartComponent
   ],
   entryComponents: [DialogCreateNewPropertyComponent, AuthComponent, DetailsComponent],
   imports: [
@@ -79,11 +82,12 @@ import { CarouselComponent } from './components/list/details/carousel/carousel.c
     FileUploadModule,
     ReactiveFormsModule,
     InfiniteScrollModule,
+    NgxChartsModule,
     NguiMapModule.forRoot({
       apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyBoio8nEHTzRvPgWo3ObzLRxDubIQebLrM&libraries=visualization,places,drawing'
     })
   ],
-  providers: [ListingService, UserService],
+  providers: [ListingService, UserService, StatsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
