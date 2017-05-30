@@ -9,8 +9,8 @@ export class ListingService {
   BASE_URL = environment.BASE_URL;
   listings: any[] = [];
   filter: any = {};
-  limit = 50;
-  offset = 0;
+  limit:number = 50;
+  offset:number = 0;
   isLoading = true;
   listingCount: number;
   addressComponents: string[] = [];
@@ -18,11 +18,12 @@ export class ListingService {
   center: any = 'Rio de Janeiro, Brazil';
   detailsListing: any;
   loadSearchBounds: any;
+  loadSearchPolygon: any;
   listHoverItem: number;
 
   constructor( public http: Http, public userService: UserService ) { }
 
-  getList( callback) {
+  getList( callback?) {
     // let headers = new Headers({ 'Authorization': 'JWT ' + this.SessionService.token });
     // let options = new RequestOptions({ headers: headers });
     this.isLoading = true;
@@ -36,8 +37,8 @@ export class ListingService {
           this.mapFavorites();
 
          // $("#left").trigger("click")
-
-          callback(res.listings);
+          if(callback)
+            callback(res.listings);
         });
   }
   getMore(callback) {
@@ -50,7 +51,7 @@ export class ListingService {
   getNew() {
     this.offset = 0;
     this.listings = [];
-    this.getList(() => {});
+    this.getList();
   }
 
   get(id) {
@@ -61,13 +62,7 @@ export class ListingService {
   }
   // from filter
   updateFilter() {
-
-    // if (!isNaN(this.filter.maxPrice) && !isNaN(this.filter.minPrice) && ( +this.filter.maxPrice < +this.filter.minPrice)) {
-    //   return;
-    // }
-   // if ((this.filter.maxPrice && !isNaN(this.filter.maxPrice)) || (this.filter.minPrice && !isNaN(this.filter.minPrice)) ) {
-      this.getNew();
-   // }
+     this.getNew();
   }
 
   readSearchPlace(place) {
@@ -109,7 +104,19 @@ export class ListingService {
       })
     }
   }
+  loadSearch(search) {
+    this.filter = search;
+    this.loadSearchBounds = search.bounds;
+    
+    this.addressComponents = [];
+    if(search.city) this.addressComponents.push(search.city);
+    if(search.neighbourhood) this.addressComponents.push(search.neighbourhood);
+    if(search.street) this.addressComponents.push(search.street);
 
+    if(search.polygon) {
+      this.loadSearchPolygon = search.polygon;
+    }
+  }
   getQuery() {
 
     let query = `?limit=${this.limit}&offset=${this.offset}`;
@@ -138,4 +145,5 @@ export class ListingService {
     }
     return query;
   }
+
 }

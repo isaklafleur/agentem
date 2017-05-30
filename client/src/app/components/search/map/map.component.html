@@ -1,8 +1,21 @@
-<ngui-map #map [zoom]="listingService.zoom" [center]="listingService.center" (mouseover)="listingService.listHoverItem=-1" (mapReady$)="onMapReady($event)"
-  style="height:100%">
-  <drawing-manager #drawing  [drawingControl]="true" [drawingControlOptions]="{
+<button md-raised-button color="accent" class="draw-button" (click)="drawOnMap()">Draw on map</button> 
+
+<ngui-map #map 
+        [zoom]="listingService.zoom" 
+        [center]="listingService.center" 
+        (mouseover)="listingService.listHoverItem=-1" 
+        (mapReady$)="onMapReady($event)"
+        style="height:100%"
+        [mapTypeControl] ="false"
+        >
+
+
+
+  <drawing-manager #drawing  [drawingControl]="false" [drawingControlOptions]="{
       drawingModes: ['polygon']
-      }" [polygonOptions]="{
+      }" 
+      [drawingMode]="drawingMode"
+      [polygonOptions]="{
       strokeColor: 'red',
       fillColor: 'red',
       strokeWeight: 2,
@@ -55,7 +68,3 @@
 </ngui-map>
 
 
-<div style="position:absolute;z-index:1000;display:none; background-color:red" id="test">HERE!!
-
-
-</div>

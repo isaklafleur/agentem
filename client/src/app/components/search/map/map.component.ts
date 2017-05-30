@@ -27,6 +27,9 @@ export class MapComponent implements OnInit {
   markerDetailsOffetLeft: number;
   markerDetailsOffetTop: number;
 
+  drawingMode:string = '';
+  dm: any;
+
   @ViewChild(DrawingManager) drawingManager: DrawingManager;
   @ViewChild('map') mapElement;
   @ViewChild('markerDetails') markerDetails;
@@ -66,8 +69,9 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    
     this.drawingManager['initialized$'].subscribe(dm => {
+      this.dm = dm;
       dm.setOptions({
         drawingControlOptions: {
           position: google.maps.ControlPosition.TOP_RIGHT,
@@ -80,17 +84,7 @@ export class MapComponent implements OnInit {
         this.getPolygonRemovePosition(polygon);
         this.getPolygonAndUpdate(polygon);
 
-        google.maps.event.addListener(polygon.getPath(), 'insert_at', () => {
-          this.getPolygonAndUpdate(polygon);
-        });
-
-        google.maps.event.addListener(polygon.getPath(), 'set_at', () => {
-          this.getPolygonAndUpdate(polygon);
-        });
-        google.maps.event.addListener(polygon.getPath(), 'remove_at', () => {
-          this.getPolygonAndUpdate(polygon);
-        });
-
+        this.setPolygonEvents(polygon);
       });
 
       google.maps.event.addListener(dm, 'overlaycomplete', event => {
@@ -111,6 +105,20 @@ export class MapComponent implements OnInit {
     });
   }
 
+  setPolygonEvents(polygon) {
+    google.maps.event.addListener(polygon.getPath(), 'insert_at', () => {
+      this.getPolygonAndUpdate(polygon);
+    });
+
+    google.maps.event.addListener(polygon.getPath(), 'set_at', () => {
+      this.getPolygonAndUpdate(polygon);
+    });
+    google.maps.event.addListener(polygon.getPath(), 'remove_at', () => {
+      this.getPolygonAndUpdate(polygon);
+    });
+
+  }
+
   toThousand(x) {
     let addK = '';
     if (x > 9999) {
@@ -123,10 +131,15 @@ export class MapComponent implements OnInit {
   }
 
   onMapReady(map) {
-
     this.map = map;
     if(this.listingService.loadSearchBounds) {
+      if(this.listingService.loadSearchPolygon) {
+        this.loadPolygon(this.listingService.loadSearchPolygon)
+        delete this.listingService.loadSearchPolygon;
+      }
       this.setBounds(this.listingService.loadSearchBounds)
+      delete this.listingService.loadSearchBounds;     
+     
     } else {
       this.getBounds();
     }
@@ -155,8 +168,26 @@ export class MapComponent implements OnInit {
       south: bounds.latSW,
       west: bounds.lngSW
     }
-    console.log('bounds: ', bounds);
     this.map.fitBounds(boundsLiteral);
+  }
+  loadPolygon(polygon) { 
+    let llPolygon = polygon.map(lngLatPoint=> new google.maps.LatLng(lngLatPoint[1],lngLatPoint[0]))
+    
+
+    var searchPolygon = new google.maps.Polygon({
+      paths: llPolygon,
+      editable: true,
+      strokeColor: '#FF0000',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: '#FF0000',
+      fillOpacity: 0.35
+    });
+    this.isPolygon = true;
+    this.getPolygonRemovePosition(searchPolygon);
+    this.setPolygonEvents(searchPolygon);
+    searchPolygon.setMap(this.map);
+    this.selectedOverlay = searchPolygon;
   }
   getPolygonRemovePosition(polygon) {
     let coordinates = polygon.getPath().getArray()
@@ -200,6 +231,10 @@ export class MapComponent implements OnInit {
         console.log('form ok')
       }
     });
+  }
+  drawOnMap() {
+    this.dm.setDrawingMode(google.maps.drawing.OverlayType.POLYGON);
+
   }
 }
 

@@ -52,3 +52,11 @@
   overflow: hidden;
  /* padding:20px 0;*/
 }
+
+.draw-button {
+  position:absolute;
+  margin-left:10px;
+  margin-top:10px;
+  z-index: 2000;
+
+}
