@@ -16,10 +16,10 @@ export class HomeComponent implements OnInit {
   ];
   selectedValue: String = this.typeOffer[0].value;
 
-  constructor(private listingService:ListingService, private router:Router) { }
-  
+  constructor(public listingService: ListingService, public router: Router) { }
+
   placeChanged(place) {
-    if(place.name) {
+    if (place.name) {
       this.listingService.readSearchPlace(place);
       this.router.navigate(['/search']);
     }

@@ -3,7 +3,6 @@ import { MdRadioModule, MdButtonModule, MdInputModule, MdCheckboxModule } from '
 import { ListingService } from '../../../services/listing.service';
 import { UserService } from '../../../services/user.service';
 import {FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
-// import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import 'rxjs/add/operator/debounceTime';
 import {} from '@types/googlemaps';
 
@@ -28,10 +27,10 @@ export class FilterListComponent implements OnInit {
   public searchElementRef: ElementRef;
 
   constructor(
-    private ref: ChangeDetectorRef,
-    private listingService: ListingService,
-    private userService: UserService,
-    private ngZone: NgZone,
+    public ref: ChangeDetectorRef,
+    public listingService: ListingService,
+    public userService: UserService,
+    public ngZone: NgZone,
     ) { }
 
   ngOnInit() {
@@ -74,27 +73,26 @@ export class FilterListComponent implements OnInit {
     }
     this.ref.detectChanges();
   }
-
-breadCrumbs(level) {
-  if (level < this.listingService.addressComponents.length - 1) {
-    switch (level) {
-      case 0:
-        this.newSearch.street = '';
-        this.newSearch.neighbourhood = '';
-        this.listingService.addressComponents.splice(1);
-        this.listingService.zoom = 13;
-        break;
-      case 1:
-        this.newSearch.street = '';
-        this.listingService.addressComponents.splice(2);
-        this.listingService.zoom = 14;
-        break;
+  breadCrumbs(level) {
+    if (level < this.listingService.addressComponents.length - 1) {
+      switch (level) {
+        case 0:
+          this.newSearch.street = '';
+          this.newSearch.neighbourhood = '';
+          this.listingService.addressComponents.splice(1);
+          this.listingService.zoom = 13;
+          break;
+        case 1:
+          this.newSearch.street = '';
+          this.listingService.addressComponents.splice(2);
+          this.listingService.zoom = 14;
+          break;
+      }
+      this.listingService.updateFilter();
     }
-    this.listingService.updateFilter();
   }
-}
 
-  private setCurrentPosition() {
+  public setCurrentPosition() {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.newSearch.coordinates.latitude = position.coords.latitude;
@@ -105,18 +103,12 @@ breadCrumbs(level) {
   }
 
   submitForm(myForm) {
-  //  this.listingService.update();
-    // console.log(myForm);
-    // console.log(this.newSearch)
   }
 
   saveSearch() {
     this.userService.saveSearch(this.listingService.filter);
   }
-
-
-
-    adjustMargin() {
+  adjustMargin() {
     $('#search-listings').css('margin-top', '170px');
     $('#left').css('margin-top', '100px');
   }
