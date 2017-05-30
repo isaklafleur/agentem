@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, ViewChild, ElementRef, EventEmitter, 
 import { MdDialog, MdDialogRef, MdInputModule, MdRadioModule } from '@angular/material';
 import { UserService } from '../../../services/user.service';
 import { FileUploader, FileSelectDirective } from 'ng2-file-upload';
-import { environment } from '../../../../environments/environment.prod';
+import { environment } from '../../../../environments/environment';
 declare var $: any;
 
 @Component({
@@ -21,28 +21,25 @@ export class PropertyFormComponent implements OnInit {
   submittedInvalid = false;
   submitError: string;
 
+  public uploader: FileUploader;
+  public hasBaseDropZoneOver = false;
+  public hasAnotherDropZoneOver = false;
+
   showFile(item, index) {
     readURL(item, index);
   }
-
-  public uploader:FileUploader;
-  public hasBaseDropZoneOver: boolean = false;
-  public hasAnotherDropZoneOver: boolean = false;
 
   public fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
   }
 
-  constructor(public dialogRef: MdDialogRef<PropertyFormComponent>, 
-              public dialog: MdDialog,
-              public userService: UserService
-              ) {
-                this.uploader = new FileUploader({url: `${environment.BASE_URL}/api/listings/${this.userService.user._id`});
+  constructor(public dialogRef: MdDialogRef<PropertyFormComponent>, public dialog: MdDialog, public userService: UserService) {
+                this.uploader = new FileUploader({url: `${environment.BASE_URL}/api/listings/${this.userService.user._id}`});
                }
 
   ngOnInit() {
      this.uploader.onBuildItemForm = (item, form) => {
-        console.log("onBuildItemForm");
+        console.log('onBuildItemForm');
         form.append('token', this.token);
         if (this.filesSent === 0) {
           form.append('newListing', true)
@@ -70,7 +67,6 @@ export class PropertyFormComponent implements OnInit {
     }
   }
 }
-
 
 @Component({
   selector: 'app-dialog-result-example-dialog',
