@@ -1,31 +1,27 @@
 <div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500" (scrolled)="onScroll()"
   [scrollWindow]="true">
 
-  <div *ngFor="let listing of listingService.listings; let i = index" 
-    class="list-card  card" 
-    (mouseover)="listingService.listHoverItem=i"
-    (mouseout)="listingService.listHoverItem=-1"
-    (click)="openDetails(i)"
-    >
+  <div *ngFor="let listing of listingService.listings; let i = index" class="list-card  card" (mouseover)="listingService.listHoverItem=i"
+    (mouseout)="listingService.listHoverItem=-1" (click)="openDetails(i)">
 
-      <img class="photo" [src]="listing.photos[0]" alt="Card image">
-      <h4 class=" photo-text">R$ {{listing.price | largeNumber}}</h4>
-      <div class="photo-description">
-        <div style="float:left; padding:5px">
-          <img style="height:20px" src="/assets/{{listing.propertyType}}.svg"> {{listing.listingType}} <br>
+    <img class="photo" [src]="listing.photos[0]" alt="Card image">
+    <h4 class=" photo-text">R$ {{listing.price | largeNumber}}</h4>
+    <div class="photo-description">
+      <div style="float:left; padding:5px">
+        <img style="height:20px" src="/assets/{{listing.propertyType}}.svg"> {{listing.listingType}} <br>
 
-        </div>
-        <div style="float:right;padding:5px">
-          <img src="/assets/bed.svg" style="width:19px;margin-bottom:8px"> {{listing.bedrooms}} <img src="/assets/bath.svg"
-            style="width:19px;margin-bottom:8px"> {{listing.bathrooms}}
-        </div>
-        <div class="heart">
-          <span class="fa-stack icon-stack" id="heart{{i}}" (click)="clickHeart($event, listing)">
+      </div>
+      <div style="float:right;padding:5px">
+        <img src="/assets/bed.svg" style="width:19px;margin-bottom:8px"> {{listing.bedrooms}} <img src="/assets/bath.svg"
+          style="width:19px;margin-bottom:8px"> {{listing.bathrooms}}
+      </div>
+      <div class="heart">
+        <span class="fa-stack icon-stack" id="heart{{i}}" (click)="clickHeart($event, listing)">
               <i class="fa fa-lg fa-heart fa-stack-1x icon-a" [class.icon-a-selected]="listing.isFavorite"></i>
               <i class="fa fa-lg fa-heart-o fa-stack-1x icon-b"></i>
           </span>
-        </div>
       </div>
+    </div>
 
   </div>
 

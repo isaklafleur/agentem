@@ -7,7 +7,7 @@ export class StatsService {
   filter: any = {};
   BASE_URL = 'http://localhost:3000/api/stats';
 
-  constructor(private http: Http) { }
+  constructor(public http: Http) { }
 
   getStreetData() {
     this.filter.neighbourhood = 'Copacabana';

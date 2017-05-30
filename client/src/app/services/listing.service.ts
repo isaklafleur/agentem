@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { UserService } from "./user.service";
-declare var $:any;
+import { UserService } from './user.service';
+declare var $: any;
 @Injectable()
 export class ListingService {
   BASE_URL = 'http://localhost:3000/api/listings';
@@ -14,10 +14,11 @@ export class ListingService {
   listingCount: number;
   addressComponents: string[] = [];
   zoom = 13;
-  center: any = "Rio de Janeiro, Brazil";
+  center: any = 'Rio de Janeiro, Brazil';
   detailsListing: any;
+  listHoverItem: number;
 
-  constructor( private http: Http, private userService: UserService ) { }
+  constructor( public http: Http, public userService: UserService ) { }
 
   getList( callback) {
     // let headers = new Headers({ 'Authorization': 'JWT ' + this.SessionService.token });
@@ -31,7 +32,7 @@ export class ListingService {
           this.listingCount = res.count;
           this.isLoading = false;
           this.mapFavorites();
-          $("#left").trigger("click")
+          $('#left').trigger('click')
           callback(res.listings);
         });
   }
@@ -65,26 +66,26 @@ export class ListingService {
 
   readSearchPlace(place) {
     this.addressComponents = [];
-    this.filter.street = "";
-    this.filter.neighbourhood = "";
-    this.filter.city = "";
-    this.filter.address="";
-    
+    this.filter.street = '';
+    this.filter.neighbourhood = '';
+    this.filter.city = '';
+    this.filter.address = '';
+
     let newZoom = 13;
-    place.address_components.forEach(component=>{
-      switch(component.types[0]) {
-        case "route": 
-          this.filter.street = component.long_name; 
+    place.address_components.forEach(component => {
+      switch (component.types[0]) {
+        case 'route':
+          this.filter.street = component.long_name;
           newZoom = 15;
-          this.addressComponents.unshift(component.long_name); 
-          break;
-        case "sublocality_level_1": 
-          this.filter.neighbourhood = component.long_name; 
           this.addressComponents.unshift(component.long_name);
-          newZoom = newZoom<14 ? 14 : newZoom;
           break;
-        case "locality": 
-          this.filter.city = component.long_name; 
+        case 'sublocality_level_1':
+          this.filter.neighbourhood = component.long_name;
+          this.addressComponents.unshift(component.long_name);
+          newZoom = newZoom < 14 ? 14 : newZoom;
+          break;
+        case 'locality':
+          this.filter.city = component.long_name;
           this.addressComponents.unshift(component.long_name);
           break;
       }
@@ -95,10 +96,10 @@ export class ListingService {
   }
 
   mapFavorites() {
-    if(this.userService.user) {
-      this.userService.user.favorites.forEach(fav=>{
-        let favListing = this.listings.find(listing=>listing._id===fav._id)
-        if(favListing)  favListing.isFavorite = true;
+    if (this.userService.user) {
+      this.userService.user.favorites.forEach(fav => {
+        const favListing = this.listings.find(listing => listing._id === fav._id)
+        if (favListing)  favListing.isFavorite = true;
       })
     }
   }
@@ -123,15 +124,13 @@ export class ListingService {
  //   query += this.filter.coordinates && this.filter.coordinates.latitude ? '&latitude=' + this.filter.coordinates.latitude : '';
  //   query += this.filter.coordinates && this.filter.coordinates.longitude ? '&longitude=' + this.filter.coordinates.longitude : '';
   //  query += this.filter.coordinates && this.filter.coordinates.latitude ? '&radius=' + this.filter.coordinates.radius : '';
-    if(this.filter.bounds) {
-      query += "&bounds=" + encodeURI(JSON.stringify(this.filter.bounds));
+    if (this.filter.bounds) {
+      query += '&bounds=' + encodeURI(JSON.stringify(this.filter.bounds));
     }
 
-    if(this.filter.polygon) {
-      query += "&polygon=" + encodeURI(JSON.stringify(this.filter.polygon));
+    if (this.filter.polygon) {
+      query += '&polygon=' + encodeURI(JSON.stringify(this.filter.polygon));
     }
-
     return query;
   }
-
 }

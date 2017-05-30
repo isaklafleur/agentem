@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { single, multi } from './data';
 import { StatsService } from './../../services/stats.service'
 import * as _ from 'lodash';
 
@@ -15,9 +14,8 @@ export class StatsBarChartComponent implements OnInit {
   sortedDataPoints: any[];
   dataPointsArray = [];
 
-/*  view: any[] = [800, ];*/
-
   // options
+  view: number[];
   showXAxis = true;
   showYAxis = true;
   gradient = false;
@@ -35,7 +33,7 @@ export class StatsBarChartComponent implements OnInit {
   // line, area
   autoScale = true;
 
-  constructor(private statsService: StatsService) {
+  constructor(public statsService: StatsService) {
 
   }
 
@@ -61,8 +59,8 @@ export class StatsBarChartComponent implements OnInit {
       return a.value - b.value;
     });
 
-    /* Then find a generous IQR. This is generous because if (values.length / 4) 
-     * is not an int, then really you should average the two elements on either 
+    /* Then find a generous IQR. This is generous because if (values.length / 4)
+     * is not an int, then really you should average the two elements on either
      * side to find q1.
      */
     const q1 = values[Math.floor((values.length / 4))].value;
@@ -99,14 +97,7 @@ export class StatsBarChartComponent implements OnInit {
           });
         }
       }
-
       this.dataPointsArray = this.filterOutliers(averages);
-      // console.log(averages);
-      // this.sortedDataPoints = _.sortBy(averages, 'value');
-
-      // console.log(this.median(this.sortedDataPoints));
-      // console.log(this.sortedDataPoints);
-      // console.log(this.sortedDataPoints);
       Object.assign(this, {single: this.dataPointsArray});
     });
   }

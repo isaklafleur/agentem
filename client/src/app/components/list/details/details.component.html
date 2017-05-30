@@ -20,12 +20,9 @@
           </div>
         </div>
         <div class="col-md-6">
-          <ngui-map #map 
-            [zoom]="17" 
-            center="{{listing.location.coordinates[1]}}, {{listing.location.coordinates[0]}}" 
-            class="details-map-property">
-          <marker position="{{listing.location.coordinates[1]}}, {{listing.location.coordinates[0]}}">
-          </marker>
+          <ngui-map #map [zoom]="17" center="{{listing.location.coordinates[1]}}, {{listing.location.coordinates[0]}}" class="details-map-property">
+            <marker position="{{listing.location.coordinates[1]}}, {{listing.location.coordinates[0]}}">
+            </marker>
           </ngui-map>
         </div>
       </div>
@@ -39,7 +36,7 @@
               <img style="height:40px" src="/assets/{{listing.propertyType}}.svg">
               <span class="font-large">{{listing.propertyType}}</span> for
               <span class="font-large">{{listing.listingType}}</span>
-                              <button md-raised-button color="accent" (click)="saveToFavorites()">
+              <button md-raised-button color="accent" (click)="saveToFavorites()">
     <span class="glyphicon glyphicon-upload"></span> Save to favorites
   </button>
             </div>
@@ -76,7 +73,7 @@
             <div class="col-md-6">
               <table class="table table-striped">
                 <tr>
-                  <td><img src="/assets/bed.svg" class="details-icon"> +  <img src="/assets/bath.svg" class="details-icon"> Suites</td>
+                  <td><img src="/assets/bed.svg" class="details-icon"> + <img src="/assets/bath.svg" class="details-icon"> Suites</td>
                   <td>{{listing.suites}}</td>
                 </tr>
                 <tr>
@@ -98,6 +95,6 @@
       </li>
     </ul>
 
-  <div class="modal-footer">
-  <button md-raised-button color="primary" (click)="dialogRef.close('Option 1')">Close</button>
-</div>
+    <div class="modal-footer">
+      <button md-raised-button color="primary" (click)="dialogRef.close('Option 1')">Close</button>
+    </div>
