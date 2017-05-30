@@ -29,7 +29,7 @@ const app = express();
 mongoose.connect(process.env.MONGODB_URI);
 
 // view engine setup
-app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static(path.join(__dirname, '/public/dist')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
