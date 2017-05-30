@@ -56,6 +56,7 @@ router.post('/:id', (req, res) => {
 
 router.put("/:userId/favorite/:listingId", (req,res)=>{
   User.findOneAndUpdate({"_id":req.params.userId}, {$addToSet:{favorites:req.params.listingId}}, err=>{
+    
     if (err) {
       res.status(400).json({error:err});
       return;
@@ -74,5 +75,32 @@ router.delete("/:userId/favorite/:listingId", (req,res)=>{
   })
 })
 
+router.put("/:userId/search", (req,res)=>{
+//  let search = JSON.stringify(req.body.search);
+  let search = req.body.search;
+
+
+  User.findOneAndUpdate({"_id":req.params.userId}, {$addToSet:{savedSearches:search}}, err=>{
+    if (err) {
+      console.log('err: ', err);
+      res.status(400).json({error:err});
+      return;
+    }
+    res.status(200).json({ message: 'ok' });
+  })
+})
+  
+router.delete("/:userId/search/:time", (req,res)=>{
+  console.log('req.params.time: ', req.params.time);
+  User.findOneAndUpdate({"_id":req.params.userId}, 
+  {$pull:{savedSearches:{$elemMatch: {time: req.params.time}}}}, 
+  err=>{
+    if (err) {
+      res.status(400).json({error:err});
+      return;
+    }
+    res.status(200).json({ message: 'ok' });
+  })
+})
 
 module.exports = router;

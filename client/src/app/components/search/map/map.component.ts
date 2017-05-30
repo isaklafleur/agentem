@@ -179,7 +179,7 @@ export class MapComponent implements OnInit {
     }
   }
   openDetails(i) {
-    this.listingService.detailsIndex = i;
+    this.listingService.detailsListing= this.listingService.listings[i];
     const dialogRef = this.dialog.open(DetailsComponent, {width: '80%', height: '100%', position:"right"});
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'submitted') {
@@ -188,6 +188,7 @@ export class MapComponent implements OnInit {
     });
   }
 }
+
 
 //noinspection TypeScriptCheckImport
 

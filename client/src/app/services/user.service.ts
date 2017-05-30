@@ -12,6 +12,7 @@ export class UserService implements CanActivate {
   isAuth: EventEmitter<any> = new EventEmitter();
   activeUserId = '';
   favoriteAfterLogin: string;
+  searchAfterLogin: any;
   public doSignIn$: EventEmitter<any>; 
   BASE_URL = 'http://localhost:3000';
 
@@ -59,6 +60,8 @@ export class UserService implements CanActivate {
         // store username and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('token', token);
         this.isAuth.emit(true);
+        this.user = response.user;
+        console.log('response: ', response);
         // return true to indicate successful login
         return true;
       } else {
@@ -132,6 +135,27 @@ export class UserService implements CanActivate {
     this.http.delete(`${this.BASE_URL}/api/users/${this.user._id}/favorite/${listing._id}`)
       .map((res) => res.json()).subscribe(res=>{
         console.log("Favorite deleted");
+      })
+  }
+  saveSearch(search) {
+    search.time = Date.now()
+    if(!this.user) {
+      this.searchAfterLogin = search;
+      this.doSignIn$.emit(true);
+    } else {
+      this.user.savedSearches.push(search);
+    
+      this.http.put(`${this.BASE_URL}/api/users/${this.user._id}/search`, {search})
+        .map(res=>res.json()).subscribe(res=> {
+          console.log('Search saved');
+        })
+    }
+  }
+  deleteSavedSearch(time) {
+    this.user.savedSearches = this.user.savedSearches.filter(ss=>ss.time!==time);
+    this.http.delete(`${this.BASE_URL}/api/users/${this.user._id}/search/${time}` )
+      .map(res=>res.json()).subscribe(res=> {
+        console.log('Saved search deleted');
       })
   }
 }

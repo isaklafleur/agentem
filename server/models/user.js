@@ -13,8 +13,8 @@ const userSchema = new Schema({
   phoneNumber: Number,
   location: String,
   favorites: [{type: mongoose.Schema.Types.ObjectId, ref:'Listing'}],
-  savedSearches: [Object],
-  recentSearches: [Object]
+  savedSearches: Array,
+  recentSearches: Array
 });
 
 const User = mongoose.model('User', userSchema);
