@@ -1,12 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "test123"
+    "name": "agentem"
   },
   "apps": [
     {
       "root": "src",
-      "outDir": "dist",
+      "outDir": "../server/public/dist",
       "assets": [
         "assets",
         "favicon.ico"
