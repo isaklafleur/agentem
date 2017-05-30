@@ -27,6 +27,9 @@ export class MapComponent implements OnInit {
   markerDetailsOffetLeft: number;
   markerDetailsOffetTop: number;
 
+  drawingMode:string = '';
+  dm: any;
+
   @ViewChild(DrawingManager) drawingManager: DrawingManager;
   @ViewChild('map') mapElement;
   @ViewChild('markerDetails') markerDetails;
@@ -66,8 +69,9 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    
     this.drawingManager['initialized$'].subscribe(dm => {
+      this.dm = dm;
       dm.setOptions({
         drawingControlOptions: {
           position: google.maps.ControlPosition.TOP_RIGHT,
@@ -127,7 +131,6 @@ export class MapComponent implements OnInit {
   }
 
   onMapReady(map) {
-
     this.map = map;
     if(this.listingService.loadSearchBounds) {
       if(this.listingService.loadSearchPolygon) {
@@ -228,6 +231,10 @@ export class MapComponent implements OnInit {
         console.log('form ok')
       }
     });
+  }
+  drawOnMap() {
+    this.dm.setDrawingMode(google.maps.drawing.OverlayType.POLYGON);
+
   }
 }
 
