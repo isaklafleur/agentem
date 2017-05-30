@@ -39,10 +39,14 @@ export class FilterListComponent implements OnInit {
     // create search FormControl
     this.searchControl = new FormControl();
     this.newSearch.coordinates = {}
-    this.newSearch.propertyType = {}
-
+    
     this.newSearch = this.listingService.filter;
 
+    if(!this.newSearch.propertyType) 
+      this.newSearch.propertyType = {};
+
+    if(!this.newSearch.coordinates) 
+      this.newSearch.coordinates  = {};
 
     this.minPriceControl.valueChanges
       .debounceTime(1000)
