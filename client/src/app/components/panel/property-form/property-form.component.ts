@@ -1,11 +1,10 @@
 import { Component, OnInit, Input, Output, ViewChild, ElementRef, EventEmitter, AfterViewInit } from '@angular/core';
-
 import { MdDialog, MdDialogRef, MdInputModule, MdRadioModule } from '@angular/material';
-
 import { FileUploader, FileSelectDirective } from 'ng2-file-upload';
+import { environment } from '../../../../environments/environment.prod';
 declare var $: any;
 
-const URL = 'http://localhost:3000/api/listings';
+const BASE_URL = environment.BASE_URL;
 
 @Component({
   selector: 'app-property-form',
@@ -28,7 +27,7 @@ export class PropertyFormComponent implements OnInit {
   }
 
 
-  public uploader:FileUploader = new FileUploader({url: URL});
+  public uploader:FileUploader = new FileUploader({url: `${BASE_URL}/api/listings`});
   public hasBaseDropZoneOver: boolean = false;
   public hasAnotherDropZoneOver: boolean = false;
 

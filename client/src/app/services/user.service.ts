@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Router, CanActivate } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
+import { environment } from '../../environments/environment'
 
 @Injectable()
 export class UserService implements CanActivate {
@@ -14,7 +15,7 @@ export class UserService implements CanActivate {
   favoriteAfterLogin: string;
   searchAfterLogin: any;
   public doSignIn$: EventEmitter<any>;
-  BASE_URL = 'http://localhost:3000';
+  BASE_URL = environment.BASE_URL;
 
   constructor(
     public router: Router,
