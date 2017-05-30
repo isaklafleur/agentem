@@ -1,15 +1,15 @@
 const express = require('express');
+require('dotenv').config();
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const portDB = require('./config/db').portDB;
-const databaseName = require('./config/db').databaseName;
 const passport = require('./config/passport');
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
+
 
 const listingRoutes = require('./routes/listing');
 const authRoutes = require('./routes/auth');
@@ -26,7 +26,7 @@ const upload = multer({ dest: DIR });
 
 const app = express();
 
-mongoose.connect(`mongodb://localhost:${portDB}/${databaseName}`);
+mongoose.connect(process.env.MONGODB_URI);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
