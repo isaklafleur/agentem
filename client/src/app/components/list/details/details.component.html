@@ -8,7 +8,7 @@
     </div>
 
     <!--<app-carousel [photos]="listing.photos"></app-carousel>-->
-    <div class="container-fluid w-100">
+    <div class="container-fluid w-100" style="padding: 0;">
       <div class="row">
         <div class="col-md-6">
           <div style="height:300px;width:400px; margin:auto">
@@ -33,7 +33,7 @@
         <div class="container-fluid w-100">
           <div class="row">
             <div class="col-md-6">
-              <img style="height:40px" src="/assets/{{listing.propertyType}}.svg">
+              <i class="fa fa-building-o fa-3x" aria-hidden="true"></i>
               <span class="font-large">{{listing.propertyType}}</span> for
               <span class="font-large">{{listing.listingType}}</span>
               <button md-raised-button color="accent" (click)="saveToFavorites()">
@@ -73,19 +73,19 @@
             <div class="col-md-6">
               <table class="table table-striped">
                 <tr>
-                  <td><img src="/assets/bed.svg" class="details-icon"> + <img src="/assets/bath.svg" class="details-icon"> Suites</td>
+                  <td>Suites <i class="fa fa-bed" aria-hidden="true"></i> + <i class="fa fa-bath" aria-hidden="true"></i></td>
                   <td>{{listing.suites}}</td>
                 </tr>
                 <tr>
-                  <td><img src="/assets/bed.svg" class="details-icon">Bedrooms</td>
+                  <td>Bedrooms <i class="fa fa-bed" aria-hidden="true"></i></td>
                   <td>{{listing.bedrooms}}</td>
                 </tr>
                 <tr>
-                  <td><img src="/assets/bath.svg" class="details-icon">Bathrooms</td>
+                  <td>Bathrooms <i class="fa fa-bath" aria-hidden="true"></i></td>
                   <td>{{listing.bathrooms}}</td>
                 </tr>
                 <tr>
-                  <td><img src="/assets/parking.svg" class="details-icon">Parking</td>
+                  <td>Parking <i class="fa fa-car" aria-hidden="true"></i></td>
                   <td>{{listing.parking}}</td>
                 </tr>
               </table>
@@ -94,7 +94,6 @@
         </div>
       </li>
     </ul>
-
     <div class="modal-footer">
       <button md-raised-button color="primary" (click)="dialogRef.close('Option 1')">Close</button>
     </div>
