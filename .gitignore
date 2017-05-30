@@ -59,6 +59,4 @@ typings/
 
 # dotenv environment variables file
 .env
-
-server/public
 .vscode
