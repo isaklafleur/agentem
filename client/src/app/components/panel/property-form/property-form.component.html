@@ -1,55 +1,19 @@
-<p>&nbsp;<p>
 <div class="modal-header">
-  <h4 class="modal-title" >Create listing</h4>
-  <button type="button" class="close" aria-label="Close" (click)="dialogRef.close('Option 1')"> <!--(click)="activeModal.dismiss('Cross click')">-->
+  <h4 class="modal-title">Create listing</h4>
+  <button type="button" class="close" aria-label="Close" (click)="dialogRef.close('Option 1')">
         <span aria-hidden="true">&times;</span>
       </button>
 </div>
-
 <div class='containter'>
   <div class='row'>
-
     <div class="col-md-7">
-
       <div class="modal-body">
         <form #myForm="ngForm">
-          <!--       <h4 class="modal-title">Listing information</h4>-->
           <md-input-container class="fullWidth">
             <input mdInput placeholder="Name" name="propertyName" [(ngModel)]="newProperty.name" required>
             <md-error>Please enter the listing name</md-error>
           </md-input-container>
-
-          <!--
-
-<md-input-container>
-  <input placeholder="Email address"
-    #email="ngModel"
-    name="email"
-    type="text"
-    fullWidth={true}
-    [(ngModel)]="model.email"
-    required
-    email
-    dividerColor="accent"
-    dividerColor="{{ !email.valid ? 'warn' : 'primary' }}" />
-    <md-hint [hidden]="email.pristine || email.valid">
-        <span [hidden]="email.errors?.required || !email.errors?.email">
-            This doesn't appear to be a valid email address.
-        </span>
-        <span [hidden]="!email.errors?.required">Email address is required.</span>
-    </md-hint>
-</md-input-container>
-
--->
-
-
           <div class="form-group">
-
-
-
-
-
-
             <md-select placeholder="Listing type" required style="width:200px; margin-top:3%" [(ngModel)]="newProperty.listingType" name="listingTypes">
               <md-option value='rental'>
                 Rental
@@ -61,8 +25,6 @@
                 New construction
               </md-option>
             </md-select>
-
-
             <md-select style="width:200px" required placeholder="Property type" [(ngModel)]="newProperty.propertyType" name="propertyTypes">
               <md-option value='apartment'>
                 Apartment &nbsp; &nbsp; &nbsp;
@@ -74,16 +36,12 @@
                 Villa
               </md-option>
             </md-select>
-
-
           </div>
-
           $
           <md-input-container>
             <input mdInput price="ngModel" pattern="\d+" placeholder="Price" size="15" name="price" [(ngModel)]="newProperty.price" required>
             <md-error>Please enter correct price</md-error>
           </md-input-container>
-
           $
           <md-input-container>
             <input mdInput placeholder="Condo" pattern="\d+" size="15" name="condo" [(ngModel)]="newProperty.condo">
@@ -94,24 +52,19 @@
             <input mdInput placeholder="Square meters" size="14" required name="size" [(ngModel)]="newProperty.size">
             <md-error>Please enter correct size</md-error>
           </md-input-container>
-
           <md-input-container>
             <input mdInput placeholder="Suites" pattern="\d+" size="10" name="suites" [(ngModel)]="newProperty.suites">
             <md-error>Please enter number</md-error>
           </md-input-container>
-
           <md-input-container>
             <input mdInput placeholder="Bedrooms" pattern="\d+" size="10" name="bedrooms" [(ngModel)]="newProperty.bedrooms">
             <md-error>Please enter number</md-error>
           </md-input-container>
-
           <md-input-container>
             <input mdInput placeholder="Parking spots" pattern="\d+" size="10" name="parking" [(ngModel)]="newProperty.parking">
             <md-error>Please enter number</md-error>
           </md-input-container>
-
           <br>
-
           <table cellspacing="0">
             <tr>
               <td>
@@ -149,36 +102,25 @@
               </td>
             </tr>
           </table>
-
           <md-input-container class="description">
             <textarea rows="4" mdInput placeholder="Description" name="description" [(ngModel)]="newProperty.description"></textarea>
           </md-input-container>
-
-
         </form>
       </div>
-
     </div>
-
-
     <div class="col-md-5">
       <div class="container modal-body">
         <div class="row">
           <div class="col-md-12">
-
             <h4 class="modal-title">Drag files</h4>
-
             <div ng2FileDrop style="height: 100px" [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)"
               [uploader]="uploader" class="well my-drop-zone">
             </div>
-
             <input #selectElem type="file" id="fileUpload" name="fileUpload" class="inputfile" ng2FileSelect [uploader]="uploader" multiple
             />
             <label for="fileUpload" class="btn btn-primary">Choose files...</label>
-            <!-- class="btn btn-primary"-->
           </div>
         </div>
-
         <div class="row">
           <div class="col-md-12" style="margin-bottom: 40px">
             <table class="table">
@@ -197,7 +139,6 @@
                     <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
                   </td>
                   <td nowrap>
-
                     <button type="button" md-raised-button (click)="item.remove()">
                             <span class="glyphicon glyphicon-trash"></span> Remove
                         </button>
@@ -205,7 +146,6 @@
                 </tr>
               </tbody>
             </table>
-
             <div>
               <div>
                 Queue progress:
@@ -213,25 +153,16 @@
                   <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
                 </div>
               </div>
-
             </div>
-
           </div>
-
         </div>
-
       </div>
-
-
     </div>
-
   </div>
 </div>
-<!-- [disabled]="!myForm.form.valid" -->
 <div class="modal-footer">
-  <span [hidden]="!submittedInvalid || (myForm.form.valid && uploader.queue.length)" style="color:red">{{submitError}}
+<span [hidden]="!submittedInvalid || (myForm.form.valid && uploader.queue.length !== 0)" style="color:red">{{submitError}}
             </span>
-
   <button md-raised-button class="background-primary-color white-text" (click)="doSubmit(myForm.form.valid)">
                     <span class="glyphicon glyphicon-upload"></span> Submit
           </button>

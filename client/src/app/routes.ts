@@ -8,7 +8,6 @@ import { StatsBarChartComponent } from './components/stats-bar-chart/stats-bar-c
 import { UserService } from './services/user.service';
 export const routes: Routes = [
   { path: '', component: HomeComponent },
-/*  { path: 'home',  component: HomeComponent },*/
   { path: 'panel/form',  component: PropertyFormComponent },
   { path: 'search',  component: SearchComponent },
   { path: 'test',  component: TestComponent },

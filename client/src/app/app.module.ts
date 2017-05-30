@@ -1,11 +1,11 @@
 // Native
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Modules
 import { NguiMapModule} from '@ngui/map';
@@ -15,7 +15,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import 'hammerjs';
 
-// Services
+// Service
 import { ListingService } from './services/listing.service';
 import { UserService } from './services/user.service';
 import { StatsService } from './services/stats.service';
@@ -27,12 +27,13 @@ import { LargeNumberPipe } from './pipes/large_number.pipe';
 import { MouseWheelDirective } from './directives/mouse_wheel.directive';
 import {GetEleDirective} from './directives/ref.directive';
 
+// Routes
 import { routes } from './routes';
 
 
 // Custom Components
-import { MapComponent } from './components/search/map/map.component';
 import { AppComponent } from './app.component';
+import { MapComponent } from './components/search/map/map.component';
 import { HomeComponent } from './components/home/home.component';
 import { HomeRightComponent} from './components/home/home-right/home-right.component';
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -40,7 +41,6 @@ import { PropertyFormComponent,  DialogCreateNewPropertyComponent  } from './com
 import { ListComponent } from './components/list/list.component';
 import { SearchComponent } from './components/search/search.component';
 import { FilterListComponent } from './components/search/filter-list/filter-list.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { TestComponent } from './components/test/test.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AuthComponent } from './components/auth/auth.component';

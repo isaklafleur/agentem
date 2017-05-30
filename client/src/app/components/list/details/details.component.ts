@@ -9,7 +9,7 @@ import { MdDialogRef } from '@angular/material';
 export class DetailsComponent implements OnInit {
   listing: any;
 
-  constructor(private listingService: ListingService, public dialogRef: MdDialogRef<DetailsComponent>) {
+  constructor(public listingService: ListingService, public dialogRef: MdDialogRef<DetailsComponent>) {
    }
 
   ngOnInit() {

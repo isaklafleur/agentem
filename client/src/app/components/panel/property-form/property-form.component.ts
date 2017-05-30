@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, ViewChild, ElementRef, EventEmitter, AfterViewInit } from '@angular/core';
-//import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { MdDialog, MdDialogRef, MdInputModule, MdRadioModule } from '@angular/material';
 
@@ -30,15 +29,15 @@ export class PropertyFormComponent implements OnInit {
 
 
   public uploader:FileUploader = new FileUploader({url: URL});
-  public hasBaseDropZoneOver:boolean = false;
-  public hasAnotherDropZoneOver:boolean = false;
+  public hasBaseDropZoneOver: boolean = false;
+  public hasAnotherDropZoneOver: boolean = false;
 
 
   public fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
   }
 
-  constructor( public dialogRef: MdDialogRef<PropertyFormComponent>, public dialog: MdDialog) { }
+  constructor(public dialogRef: MdDialogRef<PropertyFormComponent>, public dialog: MdDialog) { }
 
   ngOnInit() {
      this.uploader.onBuildItemForm = (item, form) => {

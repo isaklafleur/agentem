@@ -5,10 +5,7 @@
         value="Copacabana, Rio de Janeiro, RJ">-->
       <input places-auto-complete type="text" autocorrect="off" autocapitalize="off" spellcheck="off" #addressSearchBox [(ngModel)]="newSearch.address"
         id="addressSearchBox" name="address" (click)="this.addressSearchBox.value = ''" mdInput placeholder="Search by Street, Neighborhood or City"
-        (place_changed)="placeChanged($event)" 
-        [types]="['geocode']" 
-        [componentRestrictions]='{country: "br"}'
-        />
+        (place_changed)="placeChanged($event)" [types]="['geocode']" [componentRestrictions]='{country: "br"}' />
 
     </md-input-container>
 
@@ -32,22 +29,22 @@
 
 
     <ng-template #priceRange>
-        <table class="example-full-width" cellspacing="0" (click)="$event.stopPropagation()">
-          <tr>
-            <td>
-              <md-input-container class="example-full-width">
-                <input mdInput placeholder="Min Price" [(ngModel)]="newSearch.minPrice" [formControl]="minPriceControl" pattern="\d+" name="minPrice">
-                <md-error>Please enter number</md-error>
-              </md-input-container>
-            </td>
-            <td>
-              <md-input-container class="example-full-width">
-                <input mdInput placeholder="Max Price" [(ngModel)]="newSearch.maxPrice" [formControl]="maxPriceControl" pattern="\d+" name="maxPrice">
-                <md-error>Please enter number</md-error>
-              </md-input-container>
-            </td>
-          </tr>
-        </table>
+      <table class="example-full-width" cellspacing="0" (click)="$event.stopPropagation()">
+        <tr>
+          <td>
+            <md-input-container class="example-full-width">
+              <input mdInput placeholder="Min Price" [(ngModel)]="newSearch.minPrice" [formControl]="minPriceControl" pattern="\d+" name="minPrice">
+              <md-error>Please enter number</md-error>
+            </md-input-container>
+          </td>
+          <td>
+            <md-input-container class="example-full-width">
+              <input mdInput placeholder="Max Price" [(ngModel)]="newSearch.maxPrice" [formControl]="maxPriceControl" pattern="\d+" name="maxPrice">
+              <md-error>Please enter number</md-error>
+            </md-input-container>
+          </td>
+        </tr>
+      </table>
     </ng-template>
 
     <button md-raised-button placement="bottom" #p1="ngbPopover" (document:click)="p1.close()" (click)="$event.stopPropagation();p2.close();p3.close();p4.close()"
@@ -89,16 +86,14 @@
     <button md-raised-button placement="bottom" #p3="ngbPopover" (document:click)="p3.close()" (click)="$event.stopPropagation();p1.close();p2.close();p4.close()"
       [ngbPopover]="propertyType">Home Types <i class="material-icons">expand_more</i>
     </button>
-     <button md-raised-button color="accent" (click)="saveSearch()">Save search</button>
-    Found: {{listingService.listingCount}} matches
+    <button md-raised-button color="accent" (click)="saveSearch()">Save search</button> Found: {{listingService.listingCount}}
+    matches
     <div *ngIf="listingService.isLoading" style="float:right; padding-top:10px">
       <i class="fa fa-cog fa-spin fa-2x fa-fw spin-cog"></i>
     </div>
 
     <div *ngIf="listingService.addressComponents.length" style="padding-bottom:5px">
-      <span *ngFor="let component of listingService.addressComponents; let j = index; let isLast = last"
-        style = "font-size:smaller; margin-bottom:50px"
-      >
+      <span *ngFor="let component of listingService.addressComponents; let j = index; let isLast = last" style="font-size:smaller; margin-bottom:50px">
       <a  href="#"
         (click)="$event.preventDefault(); breadCrumbs(j)"
       >
@@ -107,8 +102,5 @@
         <i class='fa fa-caret-right' *ngIf="!isLast"></i>
       </span>
     </div>
-    
-    
-
   </form>
 </div>

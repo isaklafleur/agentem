@@ -13,12 +13,12 @@ export class UserService implements CanActivate {
   activeUserId = '';
   favoriteAfterLogin: string;
   searchAfterLogin: any;
-  public doSignIn$: EventEmitter<any>; 
+  public doSignIn$: EventEmitter<any>;
   BASE_URL = 'http://localhost:3000';
 
   constructor(
-    private router: Router,
-    private http: Http
+    public router: Router,
+    public http: Http
   ) {
       this.doSignIn$ = new EventEmitter();
       // set token if saved in local storage
@@ -121,43 +121,44 @@ export class UserService implements CanActivate {
       .map((res) => res.json());
   }
   saveFavorite(listing) {
-    if(!this.user) {
+    if (!this.user) {
       this.favoriteAfterLogin = listing;
       this.doSignIn$.emit(true);
     } else {
     this.user.favorites.push(listing);
       this.http.put(`${this.BASE_URL}/api/users/${this.user._id}/favorite/${listing._id}`, true)
-        .map((res) => res.json()).subscribe(res=>{
-          console.log("Favorite saved");
+        .map((res) => res.json()).subscribe(res => {
+          console.log('Favorite saved');
         })
     }
   }
   deleteFavorite(listing) {
-    this.user.favorites = this.user.favorites.filter(fav=>fav._id!==listing._id);
+    this.user.favorites = this.user.favorites.filter(fav => fav._id !== listing._id);
     this.http.delete(`${this.BASE_URL}/api/users/${this.user._id}/favorite/${listing._id}`)
-      .map((res) => res.json()).subscribe(res=>{
-        console.log("Favorite deleted");
+      .map((res) => res.json()).subscribe(res => {
+        console.log('Favorite deleted');
       })
   }
   saveSearch(search) {
     search.time = Date.now()
-    if(!this.user) {
+    if (!this.user) {
       this.searchAfterLogin = search;
       this.doSignIn$.emit(true);
     } else {
       this.user.savedSearches.push(search);
+
       console.log('search: ', search);
-      
+
       this.http.put(`${this.BASE_URL}/api/users/${this.user._id}/search`, {search})
-        .map(res=>res.json()).subscribe(res=> {
+        .map(res => res.json()).subscribe(res => {
           console.log('Search saved');
         })
     }
   }
   deleteSavedSearch(time) {
-    this.user.savedSearches = this.user.savedSearches.filter(ss=>ss.time!==time);
+    this.user.savedSearches = this.user.savedSearches.filter(ss => ss.time !== time);
     this.http.delete(`${this.BASE_URL}/api/users/${this.user._id}/search/${time}` )
-      .map(res=>res.json()).subscribe(res=> {
+      .map(res => res.json()).subscribe(res => {
         console.log('Saved search deleted');
       })
   }

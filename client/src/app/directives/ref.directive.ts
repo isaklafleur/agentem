@@ -1,18 +1,17 @@
-import { Directive,Input,Output,ElementRef,Renderer} from '@angular/core';
+import { Directive, Input, Output, ElementRef, Renderer} from '@angular/core';
 
 @Directive({
-  selector:"[getRef]",
-  host:{
-    '(click)':"show()"
+  selector:'[getRef]',
+  host: {
+    '(click)':'show()'
   }
 })
-export class GetEleDirective{
+export class GetEleDirective {
 
-  constructor(private el:ElementRef){ }
-  show(){
+  constructor(public el: ElementRef) { }
+  show() {
     alert();
     console.log(this.el.nativeElement);
-    console.log(this.el.nativeElement.offsetLeft);   
+    console.log(this.el.nativeElement.offsetLeft);
   }
-
 }

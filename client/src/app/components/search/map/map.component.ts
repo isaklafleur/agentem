@@ -30,9 +30,9 @@ export class MapComponent implements OnInit {
   @ViewChild(DrawingManager) drawingManager: DrawingManager;
   @ViewChild('map') mapElement;
   @ViewChild('markerDetails') markerDetails;
-  constructor(private listingService: ListingService, public dialog: MdDialog) {
+  
+  constructor(public listingService: ListingService, public dialog: MdDialog) { }
 
-   }
 
   markerMouseOver(event, i) {
     this.showMapDetails[i] = !this.showMapDetails[i];
