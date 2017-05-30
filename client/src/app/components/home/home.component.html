@@ -10,7 +10,7 @@
           </md-select><br><br>
           <md-input-container>
   
-          <input places-auto-complete type="text" autocorrect="off" autocapitalize="off" spellcheck="off" #addressSearchBox 
+          <input places-auto-complete autofocus type="text" autocorrect="off" autocapitalize="off" spellcheck="off" #addressSearchBox 
               id="addressSearchBox" name="address" (click)="this.addressSearchBox.value = ''" mdInput placeholder="Search by Street, Neighborhood or City"
               (place_changed)="placeChanged($event)" 
               [types]="['geocode']"

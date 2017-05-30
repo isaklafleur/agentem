@@ -22,14 +22,13 @@ export class PropertyFormComponent implements OnInit {
   submittedInvalid = false;
   submitError: string;
 
+  public uploader: FileUploader;
+  public hasBaseDropZoneOver = false;
+  public hasAnotherDropZoneOver = false;
 
   showFile(item, index) {
     readURL(item, index);
   }
-
-  public uploader:FileUploader;
-  public hasBaseDropZoneOver: boolean = false;
-  public hasAnotherDropZoneOver: boolean = false;
 
   public fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
@@ -45,7 +44,7 @@ export class PropertyFormComponent implements OnInit {
 
   ngOnInit() {
      this.uploader.onBuildItemForm = (item, form) => {
-        console.log("onBuildItemForm");
+        console.log('onBuildItemForm');
         form.append('token', this.token);
         if (this.filesSent === 0) {
           form.append('newListing', true)
@@ -74,7 +73,6 @@ export class PropertyFormComponent implements OnInit {
     }
   }
 }
-
 
 @Component({
   selector: 'app-dialog-result-example-dialog',
