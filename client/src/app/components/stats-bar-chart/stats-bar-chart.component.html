@@ -1,4 +1,5 @@
 <div class="container-fluid">
+  <h3>Average SQM Price by Street</h3>
     <ngx-charts-bar-vertical
       [view]="view"
       [scheme]="colorScheme"
@@ -11,6 +12,8 @@
       [showYAxisLabel]="showYAxisLabel"
       [xAxisLabel]="xAxisLabel"
       [yAxisLabel]="yAxisLabel"
+      [barPadding]='padding'
+      [legendTitle] = "legendTitle"
       (select)="onSelect($event)">
     </ngx-charts-bar-vertical>
 </div>
