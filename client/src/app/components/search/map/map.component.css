@@ -1,0 +1,54 @@
+.custom-icon {
+  border: 1px solid white;
+  background-color: green;
+  border-radius: 4px;
+  color:white;
+  padding: 1px 3px ;
+  cursor: pointer;
+}
+
+.over {
+  background-color: red;
+  z-index: 2000;
+}
+
+.list-card-small {
+  position:absolute;
+  width:200px;
+  float:left;
+  margin:1%;
+
+}
+.photo {
+  height:160px;
+}
+.photo-text {
+   position: absolute; 
+   top: 60%; 
+   left: 0px; 
+   width: 100%; 
+   color: white;
+
+   font: bold 20px Helvetica, Sans-Serif; 
+   letter-spacing: -1px;  
+   background: rgb(0, 0, 0); /* fallback color */
+   background: rgba(0, 0, 0, 0.5);
+   padding: 10px; 
+}
+
+
+.photo-description {
+ 
+  color:black;
+  background-color:white;
+}
+.list-card {
+  min-width:205px;
+  
+  width:32%;
+  float:left;
+  border-radius: 8px 8px 0 0;
+  margin:3px;
+  overflow: hidden;
+ /* padding:20px 0;*/
+}

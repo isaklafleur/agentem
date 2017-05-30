@@ -1,0 +1,170 @@
+<div class="modal-header">
+  <h4 class="modal-title">Create listing</h4>
+  <button type="button" class="close" aria-label="Close" (click)="dialogRef.close('Option 1')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+</div>
+<div class='containter'>
+  <div class='row'>
+    <div class="col-md-7">
+      <div class="modal-body">
+        <form #myForm="ngForm">
+          <md-input-container class="fullWidth">
+            <input mdInput placeholder="Name" name="propertyName" [(ngModel)]="newProperty.name" required>
+            <md-error>Please enter the listing name</md-error>
+          </md-input-container>
+          <div class="form-group">
+            <md-select placeholder="Listing type" required style="width:200px; margin-top:3%" [(ngModel)]="newProperty.listingType" name="listingTypes">
+              <md-option value='rental'>
+                Rental
+              </md-option>
+              <md-option value='sale'>
+                Sale
+              </md-option>
+              <md-option value='new'>
+                New construction
+              </md-option>
+            </md-select>
+            <md-select style="width:200px" required placeholder="Property type" [(ngModel)]="newProperty.propertyType" name="propertyTypes">
+              <md-option value='apartment'>
+                Apartment &nbsp; &nbsp; &nbsp;
+              </md-option>
+              <md-option value='house'>
+                House
+              </md-option>
+              <md-option value='villa'>
+                Villa
+              </md-option>
+            </md-select>
+          </div>
+          $
+          <md-input-container>
+            <input mdInput price="ngModel" pattern="\d+" placeholder="Price" size="15" name="price" [(ngModel)]="newProperty.price" required>
+            <md-error>Please enter correct price</md-error>
+          </md-input-container>
+          $
+          <md-input-container>
+            <input mdInput placeholder="Condo" pattern="\d+" size="15" name="condo" [(ngModel)]="newProperty.condo">
+            <md-error>Please enter correct price</md-error>
+          </md-input-container>
+          <br>
+          <md-input-container>
+            <input mdInput placeholder="Square meters" size="14" required name="size" [(ngModel)]="newProperty.size">
+            <md-error>Please enter correct size</md-error>
+          </md-input-container>
+          <md-input-container>
+            <input mdInput placeholder="Suites" pattern="\d+" size="10" name="suites" [(ngModel)]="newProperty.suites">
+            <md-error>Please enter number</md-error>
+          </md-input-container>
+          <md-input-container>
+            <input mdInput placeholder="Bedrooms" pattern="\d+" size="10" name="bedrooms" [(ngModel)]="newProperty.bedrooms">
+            <md-error>Please enter number</md-error>
+          </md-input-container>
+          <md-input-container>
+            <input mdInput placeholder="Parking spots" pattern="\d+" size="10" name="parking" [(ngModel)]="newProperty.parking">
+            <md-error>Please enter number</md-error>
+          </md-input-container>
+          <br>
+          <table cellspacing="0">
+            <tr>
+              <td>
+                <md-input-container>
+                  <input mdInput placeholder="City" name="city" [(ngModel)]="newProperty.city">
+                </md-input-container>
+              </td>
+              <td>
+                <md-input-container class="example-full-width">
+                  <input mdInput #postalCode maxlength="8" size="8" placeholder="Zip">
+                  <md-hint align="end">{{postalCode.value.length}} / 8</md-hint>
+                </md-input-container>
+              </td>
+              <td>
+                <md-input-container>
+                  <input mdInput placeholder="Neighbourhood" name="neighbourhood" [(ngModel)]="newProperty.neighbourhood">
+                </md-input-container>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <md-input-container>
+                  <input mdInput placeholder="Street" name="street" [(ngModel)]="newProperty.street">
+                </md-input-container>
+              </td>
+              <td>
+                <md-input-container>
+                  <input mdInput placeholder="Number" size="8" name="streetNumber" [(ngModel)]="newProperty.streetNumber">
+                </md-input-container>
+              </td>
+              <td style="text-align: right">
+                <md-input-container>
+                  <input mdInput placeholder="Broker ID" size="10" name="broker" [(ngModel)]="newProperty.brokerId">
+                </md-input-container>
+              </td>
+            </tr>
+          </table>
+          <md-input-container class="description">
+            <textarea rows="4" mdInput placeholder="Description" name="description" [(ngModel)]="newProperty.description"></textarea>
+          </md-input-container>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="container modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <h4 class="modal-title">Drag files</h4>
+            <div ng2FileDrop style="height: 100px" [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)"
+              [uploader]="uploader" class="well my-drop-zone">
+            </div>
+            <input #selectElem type="file" id="fileUpload" name="fileUpload" class="inputfile" ng2FileSelect [uploader]="uploader" multiple
+            />
+            <label for="fileUpload" class="btn btn-primary">Choose files...</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12" style="margin-bottom: 40px">
+            <table class="table">
+              <tbody>
+                <tr *ngFor="let item of uploader.queue; let i = index">
+                  <img src="#" class="file-image" id="fileImage{{i}}">{{showFile(item, i)}}
+
+                  <td *ngIf="uploader.isHTML5">
+                    <div class="progress" style="margin-bottom: 0;">
+                      <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                    </div>
+                  </td>
+                  <td class="text-center">
+                    <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                    <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                    <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                  </td>
+                  <td nowrap>
+                    <button type="button" md-raised-button (click)="item.remove()">
+                            <span class="glyphicon glyphicon-trash"></span> Remove
+                        </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div>
+              <div>
+                Queue progress:
+                <div class="progress" style="">
+                  <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+<span [hidden]="!submittedInvalid || (myForm.form.valid && uploader.queue.length !== 0)" style="color:red">{{submitError}}
+            </span>
+  <button md-raised-button class="background-primary-color white-text" (click)="doSubmit(myForm.form.valid)">
+                    <span class="glyphicon glyphicon-upload"></span> Submit
+          </button>
+  <button md-raised-button (click)="dialogRef.close('Option 1')">Close</button>
+</div>

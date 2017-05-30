@@ -1,0 +1,100 @@
+<p>&nbsp;
+  <p>
+    <div class="modal-header">
+      <h4 class="modal-title">Listing details</h4>
+      <button type="button" class="close" aria-label="Close" (click)="dialogRef.close('Option 1')"> <!--(click)="activeModal.dismiss('Cross click')">-->
+        <span aria-hidden="true">&times;</span>
+  </button>
+    </div>
+
+    <!--<app-carousel [photos]="listing.photos"></app-carousel>-->
+    <div class="container-fluid w-100">
+      <div class="row">
+        <div class="col-md-6">
+          <div style="height:300px;width:400px; margin:auto">
+            <ngb-carousel>
+              <ng-template ngbSlide *ngFor="let photo of listing.photos">
+                <img style="width:100%;" [src]="photo" alt="Property photo">
+              </ng-template>
+            </ngb-carousel>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <ngui-map #map [zoom]="17" center="{{listing.location.coordinates[1]}}, {{listing.location.coordinates[0]}}" class="details-map-property">
+            <marker position="{{listing.location.coordinates[1]}}, {{listing.location.coordinates[0]}}">
+            </marker>
+          </ngui-map>
+        </div>
+      </div>
+    </div>
+
+    <ul class="list-group details-list">
+      <li class="list-group-item ">
+        <div class="container-fluid w-100">
+          <div class="row">
+            <div class="col-md-6">
+              <img style="height:40px" src="/assets/{{listing.propertyType}}.svg">
+              <span class="font-large">{{listing.propertyType}}</span> for
+              <span class="font-large">{{listing.listingType}}</span>
+              <button md-raised-button color="accent" (click)="saveToFavorites()">
+    <span class="glyphicon glyphicon-upload"></span> Save to favorites
+  </button>
+            </div>
+            <div class="col-md-6">
+              <span class="font-large">R$ {{listing.price | largeNumber}} </span>
+              <br> {{listing.size}} m&#178; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; R$ {{listing.priceSqm | largeNumber}} / m&#178;
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="container-fluid w-100">
+          <div class="row">
+            <div class="col-md-6">
+              <table class="table table-striped">
+                <tr>
+                  <td>City</td>
+                  <td>{{listing.city}}, {{listing.state}}</td>
+                </tr>
+                <tr>
+                  <td>Neighborhood</td>
+                  <td>{{listing.neighbourhood}}</td>
+                </tr>
+                <tr>
+                  <td>Street</td>
+                  <td>{{listing.street}} {{listing.streetNumber}}</td>
+                </tr>
+                <tr>
+                  <td>Zip</td>
+                  <td>{{listing.zip}}</td>
+                </tr>
+              </table>
+            </div>
+            <div class="col-md-6">
+              <table class="table table-striped">
+                <tr>
+                  <td><img src="/assets/bed.svg" class="details-icon"> + <img src="/assets/bath.svg" class="details-icon"> Suites</td>
+                  <td>{{listing.suites}}</td>
+                </tr>
+                <tr>
+                  <td><img src="/assets/bed.svg" class="details-icon">Bedrooms</td>
+                  <td>{{listing.bedrooms}}</td>
+                </tr>
+                <tr>
+                  <td><img src="/assets/bath.svg" class="details-icon">Bathrooms</td>
+                  <td>{{listing.bathrooms}}</td>
+                </tr>
+                <tr>
+                  <td><img src="/assets/parking.svg" class="details-icon">Parking</td>
+                  <td>{{listing.parking}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+
+    <div class="modal-footer">
+      <button md-raised-button color="primary" (click)="dialogRef.close('Option 1')">Close</button>
+    </div>

@@ -1,0 +1,96 @@
+<div class="container-fluid">
+<!--  <h1>DashBoard</h1>-->
+  <md-tab-group>
+     <md-tab label="Favorites">
+      <h5>Saved Listings</h5>
+
+      <div *ngFor="let listing of userProfile.favorites; let i = index" class="list-card  card" (click)="openDetails(i)">
+
+        <img class="photo" [src]="listing.photos[0]" alt="Card image">
+        <h4 class=" photo-text">R$ {{listing.price | largeNumber}}</h4>
+        <div class="photo-description">
+          <div style="float:left; padding:5px">
+            <img style="height:20px" src="/assets/{{listing.propertyType}}.svg"> {{listing.listingType}} <br>
+
+          </div>
+          <div style="float:right;padding:5px">
+            <img src="/assets/bed.svg" style="width:19px;margin-bottom:8px"> {{listing.bedrooms}} <img src="/assets/bath.svg"
+              style="width:19px;margin-bottom:8px"> {{listing.bathrooms}}
+          </div>
+          <div class="delete-fav">
+            <span class="fa-stack fa-lg" (click)="deleteFavorite($event, listing)" style="z-index: 100">
+            <i class="fa fa-circle fa-stack-2x" style="color:red"></i>
+            <i class="fa fa-close fa-stack-1x" style="color:white"></i>
+          </span>
+          </div>
+        </div>
+        
+      </div>
+        <div style="clear:left">
+          <p>
+          <h5>Saved Searches</h5>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Search</th>
+                <th>Time</th>
+                <th>Open</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let search of userProfile.savedSearches">
+                <td>
+                  <span *ngIf="search.city">City: {{search.city}}<br></span>
+                  <span *ngIf="search.neighbourhood">Neighbourhood: {{search.neighbourhood}}<br></span>
+                  <span *ngIf="search.street">Street: {{search.street}}<br></span>
+                  <span *ngIf="search.typesBRN">Type: {{search.typesBRN}}<br></span>
+                  <span *ngIf="search.maxPrice">Max.price: {{search.maxPrice}}<br></span>
+                  <span *ngIf="search.maxPrice">Max.price: {{search.maxPrice}}<br></span>  
+                  <span *ngIf="search.bedrooms">Bedrooms: {{search.bedrooms}}<br></span>   
+                  <span *ngIf="search.propertyType">Property types: {{formatPropertyTypes(search.propertyType)}}<br></span>   
+                </td>
+                <td>{{search.time | date:'short'}}</td>
+                <td><i (click)="openSearch(search)" class="fa fa-search fa-2x" style="cursor:pointer"></i></td>
+                <td><i (click)="deleteSavedSearch(search.time)" class="fa fa-trash-o fa-2x" style="cursor:pointer"></i> </td>
+              </tr> 
+            </tbody>
+          </table>
+        </div>
+    </md-tab>
+
+  <md-tab label="My Listings">
+      <!--<i class="fa fa-files-o" aria-hidden="true"></i>-->
+      <h5>My Listings</h5>
+      <button md-raised-button color="primary" (click)="openDialog()">Add a new Listing!</button>
+  </md-tab>
+
+    <md-tab label="My Profile">
+      <div class="main">
+        <form #myForm="ngForm" novalidate>
+          <md-input-container>
+            <input mdInput type="text" placeholder="Your Full Name" [(ngModel)]="userProfile.fullName" name="fullName">
+          </md-input-container><br>
+          <md-input-container>
+            <input mdInput type="text" pattern="\d+" placeholder="Phone" [(ngModel)]="userProfile.phoneNumber" name="phoneNumber">
+            <md-error>Please enter only digits</md-error>
+          </md-input-container><br>
+          <md-select placeholder="User Type" [(ngModel)]="userProfile.role" name="role">
+            <md-option value="home_seller">Home Seller</md-option>
+            <md-option value="both_buyer_and_seller">Both Buyer and Seller</md-option>
+            <md-option value="renter">Renter</md-option>
+            <md-option value="home_owner">Home Owner</md-option>
+            <md-option value="renter_rentee">Renter/Rentee</md-option>
+            <md-option value="real_estate_pro">Real Estate Pro</md-option>
+            <md-option value="other">Other/Just Looking</md-option>
+          </md-select><br><br>
+          <button [disabled]="!myForm.dirty" md-raised-button color="accent" (click)="saveProfile(myForm.form.valid)">Save Profile</button>
+          <div class="alert alert-danger" role="alert" [hidden]="!submittedInvalid || (myForm.form.valid)">{{submitError}}</div>
+          <div class="alert alert-success" role="alert" *ngIf="submitSuccess">{{submitSuccess}}</div>
+
+        </form><br>
+      </div>
+    </md-tab>
+   
+  </md-tab-group>
+</div>
