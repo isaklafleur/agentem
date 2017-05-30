@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { UserService } from './user.service';
+import { environment } from '../../environments/environment';
 declare var $: any;
 @Injectable()
 export class ListingService {
-  BASE_URL = 'http://localhost:3000/api/listings';
+  BASE_URL = environment.BASE_URL;
   listings: any[] = [];
   filter: any = {};
   limit:number = 50;
@@ -27,7 +28,7 @@ export class ListingService {
     // let options = new RequestOptions({ headers: headers });
     this.isLoading = true;
 
-    this.http.get(`${this.BASE_URL}${this.getQuery()}`)// , options)
+    this.http.get(`${this.BASE_URL}/api/listings${this.getQuery()}`)// , options)
       .map((res) => res.json()).subscribe((res) => {
 
           this.listings = this.listings.concat(res.listings);

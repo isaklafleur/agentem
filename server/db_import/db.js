@@ -1,28 +1,25 @@
-
-const portDB         = require('../config/db').portDB;
-const databaseName   = require('../config/db').databaseName;
 const mongoose = require('mongoose');
 const Listing = require('../models/listing');
 
-mongoose.connect(`mongodb://localhost:${portDB}/${databaseName}`);
+mongoose.connect('mongodb://heroku_cg23fj6g:fk35kvicjlju7t2mk6kotf2g07@ds157521.mlab.com:57521/heroku_cg23fj6g');
 
 
-var lineReader = require('readline').createInterface({
-  //input: require('fs').createReadStream('./sample.csv')
-  input: require('fs').createReadStream('./SampleDataRio.csv')
+const lineReader = require('readline').createInterface({
+  // input: require('fs').createReadStream('./sample.csv')
+  input: require('fs').createReadStream('./SampleDataRio.csv'),
 });
 
-lineReader.on('line', function (line) {
+lineReader.on('line', (line) => {
   console.log('Line from file:', line);
-  let l = line.split(',');
-  let r = {};
+  const l = line.split(',');
+  const r = {};
 // id,  0
 // ad_code, 1
 // type_id, 2
 // type, 3
-  switch(l[3]) {
-    case "Apartamento": r.propertyType = 'apartment'; break;
-    case "Casa": r.propertyType = 'house'; break;
+  switch (l[3]) {
+    case 'Apartamento': r.propertyType = 'apartment'; break;
+    case 'Casa': r.propertyType = 'house'; break;
     default: r.propertyType = 'villa';
   }
 
@@ -44,12 +41,12 @@ lineReader.on('line', function (line) {
   // price, 12
   r.price = l[12];
   // pricesqm, 13
-  if(r.price < 100000) {
-    r.listingType = 'rental'
+  if (r.price < 100000) {
+    r.listingType = 'rental';
   } else {
-    switch (Math.floor(Math.random()*2)) {
-      case 0: r.listingType = "sale"; break;
-      case 1: r.listingType = "new"; break;
+    switch (Math.floor(Math.random() * 2)) {
+      case 0: r.listingType = 'sale'; break;
+      case 1: r.listingType = 'new'; break;
     }
   }
 
@@ -67,19 +64,18 @@ lineReader.on('line', function (line) {
   // longitude, 20
   r.location = {
     type: 'Point',
-    coordinates: [l[20], l[19]]
+    coordinates: [l[20], l[19]],
   };
 
   // accuracy, 21
   r.accuracy = l[21];
   // image_name 22
 
-  r.photos = ["https://media.agenteimovel.com.br/images/"+l[22]];
+  r.photos = [`https://media.agenteimovel.com.br/images/${l[22]}`];
 
- let listing = new Listing(r);
+  const listing = new Listing(r);
 
- listing.save(err=>{
-   if (err) console.log(err);
- });
-
+  listing.save((err) => {
+    if (err) console.log(err);
+  });
 });

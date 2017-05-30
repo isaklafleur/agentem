@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, ViewChild, ElementRef, EventEmitter, AfterViewInit } from '@angular/core';
-
 import { MdDialog, MdDialogRef, MdInputModule, MdRadioModule } from '@angular/material';
 import { UserService } from '../../../services/user.service';
 import { FileUploader, FileSelectDirective } from 'ng2-file-upload';
+import { environment } from '../../../../environments/environment.prod';
 declare var $: any;
 
 @Component({
@@ -20,7 +20,6 @@ export class PropertyFormComponent implements OnInit {
   loginForm: any;
   submittedInvalid = false;
   submitError: string;
-  URL:string;
 
   showFile(item, index) {
     readURL(item, index);
@@ -38,8 +37,7 @@ export class PropertyFormComponent implements OnInit {
               public dialog: MdDialog,
               public userService: UserService
               ) {
-                this.URL = `http://localhost:3000/api/listings/${this.userService.user._id}`;
-                this.uploader = new FileUploader({url: this.URL});
+                this.uploader = new FileUploader({url: `${environment.BASE_URL}/api/listings/${this.userService.user._id`});
                }
 
   ngOnInit() {
