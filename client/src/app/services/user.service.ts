@@ -22,12 +22,14 @@ export class UserService implements CanActivate {
   ) {
       this.doSignIn$ = new EventEmitter();
       // set token if saved in local storage
-      this.token = localStorage.getItem('token');
-      if (this.token != null) {
-        this.isAuth.emit(true);
-      } else {
-        this.isAuth.emit(false);
-      }
+     //  this.token = localStorage.getItem('token');
+     localStorage.removeItem('token');
+     this.isAuth.emit(false);
+      // if (this.token != null) {
+      //   this.isAuth.emit(true);
+      // } else {
+      //   this.isAuth.emit(false);
+      // }
   }
 
   canActivate(): Observable<boolean> | Promise<boolean> | boolean {
@@ -39,7 +41,7 @@ export class UserService implements CanActivate {
     }
     // not logged in so redirect to login page
     this.router.navigate(['/']);
-    this.isAuth.emit(true);
+    this.isAuth.emit(false);
     return false;
   }
 
@@ -144,7 +146,8 @@ export class UserService implements CanActivate {
       this.doSignIn$.emit(true);
     } else {
       this.user.savedSearches.push(search);
-    
+      console.log('search: ', search);
+      
       this.http.put(`${this.BASE_URL}/api/users/${this.user._id}/search`, {search})
         .map(res=>res.json()).subscribe(res=> {
           console.log('Search saved');

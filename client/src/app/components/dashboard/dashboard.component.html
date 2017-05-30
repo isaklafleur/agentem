@@ -1,40 +1,7 @@
 <div class="container-fluid">
-  <h1>DashBoard</h1>
+<!--  <h1>DashBoard</h1>-->
   <md-tab-group>
-    <md-tab label="My Profile">
-      <div class="main">
-        <form #myForm="ngForm" novalidate>
-          <md-input-container>
-            <input mdInput type="text" placeholder="Your Full Name" [(ngModel)]="userProfile.fullName" name="fullName">
-          </md-input-container><br>
-          <md-input-container>
-            <input mdInput type="text" pattern="\d+" placeholder="Phone" [(ngModel)]="userProfile.phoneNumber" name="phoneNumber">
-            <md-error>Please enter only digits</md-error>
-          </md-input-container><br>
-          <md-select placeholder="User Type" [(ngModel)]="userProfile.role" name="role">
-            <md-option value="home_seller">Home Seller</md-option>
-            <md-option value="both_buyer_and_seller">Both Buyer and Seller</md-option>
-            <md-option value="renter">Renter</md-option>
-            <md-option value="home_owner">Home Owner</md-option>
-            <md-option value="renter_rentee">Renter/Rentee</md-option>
-            <md-option value="real_estate_pro">Real Estate Pro</md-option>
-            <md-option value="other">Other/Just Looking</md-option>
-          </md-select><br><br>
-          <button [disabled]="!myForm.dirty" md-raised-button color="accent" (click)="saveProfile(myForm.form.valid)">Save Profile</button>
-          <div class="alert alert-danger" role="alert" [hidden]="!submittedInvalid || (myForm.form.valid)">{{submitError}}</div>
-          <div class="alert alert-success" role="alert" *ngIf="submitSuccess">{{submitSuccess}}</div>
-
-        </form><br>
-      </div>
-    </md-tab>
-
-    <md-tab label="My Listings">
-      <!--<i class="fa fa-files-o" aria-hidden="true"></i>-->
-      <h5>My Listings</h5>
-      <button md-raised-button color="primary" (click)="openDialog()">Add a new Listing!</button>
-    </md-tab>
-
-    <md-tab label="Favorites">
+     <md-tab label="Favorites">
       <h5>Saved Listings</h5>
 
       <div *ngFor="let listing of userProfile.favorites; let i = index" class="list-card  card" (click)="openDetails(i)">
@@ -84,12 +51,46 @@
                   <span *ngIf="search.propertyType">Property types: {{formatPropertyTypes(search.propertyType)}}<br></span>   
                 </td>
                 <td>{{search.time | date:'short'}}</td>
-                <td><i (click)="openSearch(search)" class="fa fa-search fa-2x"></i></td>
-                <td><i (click)="deleteSavedSearch(search.time)" class="fa fa-trash-o fa-2x"></i> </td>
+                <td><i (click)="openSearch(search)" class="fa fa-search fa-2x" style="cursor:pointer"></i></td>
+                <td><i (click)="deleteSavedSearch(search.time)" class="fa fa-trash-o fa-2x" style="cursor:pointer"></i> </td>
               </tr> 
             </tbody>
           </table>
         </div>
     </md-tab>
+
+  <md-tab label="My Listings">
+      <!--<i class="fa fa-files-o" aria-hidden="true"></i>-->
+      <h5>My Listings</h5>
+      <button md-raised-button color="primary" (click)="openDialog()">Add a new Listing!</button>
+  </md-tab>
+
+    <md-tab label="My Profile">
+      <div class="main">
+        <form #myForm="ngForm" novalidate>
+          <md-input-container>
+            <input mdInput type="text" placeholder="Your Full Name" [(ngModel)]="userProfile.fullName" name="fullName">
+          </md-input-container><br>
+          <md-input-container>
+            <input mdInput type="text" pattern="\d+" placeholder="Phone" [(ngModel)]="userProfile.phoneNumber" name="phoneNumber">
+            <md-error>Please enter only digits</md-error>
+          </md-input-container><br>
+          <md-select placeholder="User Type" [(ngModel)]="userProfile.role" name="role">
+            <md-option value="home_seller">Home Seller</md-option>
+            <md-option value="both_buyer_and_seller">Both Buyer and Seller</md-option>
+            <md-option value="renter">Renter</md-option>
+            <md-option value="home_owner">Home Owner</md-option>
+            <md-option value="renter_rentee">Renter/Rentee</md-option>
+            <md-option value="real_estate_pro">Real Estate Pro</md-option>
+            <md-option value="other">Other/Just Looking</md-option>
+          </md-select><br><br>
+          <button [disabled]="!myForm.dirty" md-raised-button color="accent" (click)="saveProfile(myForm.form.valid)">Save Profile</button>
+          <div class="alert alert-danger" role="alert" [hidden]="!submittedInvalid || (myForm.form.valid)">{{submitError}}</div>
+          <div class="alert alert-success" role="alert" *ngIf="submitSuccess">{{submitSuccess}}</div>
+
+        </form><br>
+      </div>
+    </md-tab>
+   
   </md-tab-group>
 </div>
