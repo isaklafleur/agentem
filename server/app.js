@@ -14,6 +14,7 @@ mongoose.Promise = require('bluebird');
 const listingRoutes = require('./routes/listing');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
+const statRoutes = require('./routes/stats');
 
 const fs = require('fs');
 
@@ -45,7 +46,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/listings', listingRoutes);
 app.use('/api/users', /*passport.authenticate('jwt', { session: false }),*/ userRoutes);
+app.use('/api/stats', statRoutes);
 app.use('/', authRoutes);
+
 
 
 // catch 404 and forward to error handler

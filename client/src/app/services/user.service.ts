@@ -100,8 +100,8 @@ export class UserService implements CanActivate {
       this.router.navigate(['/']);
   }
 
-    getUser(id) {
-/*    let headers = new Headers({ 'Authorization': 'JWT ' + this.userservice.token });
+  getUser(id) {
+/* let headers = new Headers({ 'Authorization': 'JWT ' + this.userservice.token });
     let options = new RequestOptions({ headers: headers });*/
     return this.http.get(`${this.BASE_URL}/api/users/${id}`/*, options*/)
       .map((res) => res.json());
