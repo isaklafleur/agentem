@@ -4,7 +4,6 @@ import { ListingService } from '../../services/listing.service';
 import { UserService } from '../../services/user.service';
 import { DetailsComponent } from './details/details.component'
 import { ListingComponent } from './listing/listing.component'
-declare var $: any;
 
 @Component({
   selector: 'app-list',
@@ -29,7 +28,6 @@ export class ListComponent implements OnInit {
     this.listingService.onListingsLoaded$.subscribe( (newListings) => {
       this.isEndResults = newListings.length === 0
     })
-
   }
 
   onScroll () {
