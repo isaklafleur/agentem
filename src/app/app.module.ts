@@ -47,6 +47,7 @@ import { AuthComponent } from './components/auth/auth.component';
 import { DetailsComponent } from './components/list/details/details.component';
 import { CarouselComponent } from './components/list/details/carousel/carousel.component';
 import { StatsBarChartComponent } from './components/stats-bar-chart/stats-bar-chart.component';
+import { ListingComponent } from './components/list/listing/listing.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { StatsBarChartComponent } from './components/stats-bar-chart/stats-bar-c
     MouseWheelDirective,
     DetailsComponent,
     CarouselComponent,
-    StatsBarChartComponent
+    StatsBarChartComponent,
+    ListingComponent
   ],
   entryComponents: [DialogCreateNewPropertyComponent, AuthComponent, DetailsComponent],
   imports: [
