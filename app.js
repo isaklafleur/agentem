@@ -27,6 +27,12 @@ const app = express();
 
 mongoose.connect(process.env.MONGODB_URI);
 
+
+app.get('/*', function(req, res, next){ 
+  res.setHeader('Last-Modified', (new Date()).toUTCString());
+  next(); 
+});
+
 // view engine setup
 app.use(express.static(path.join(__dirname, '/dist')));
 app.set('views', path.join(__dirname, 'views'));
@@ -41,6 +47,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 
 app.use('/api/listings', listingRoutes);
 app.use('/api/users', /* passport.authenticate('jwt', { session: false }),*/ userRoutes);

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { ListingService } from '../../services/listing.service';
 import { UserService } from '../../services/user.service';
 import { MdDialog } from '@angular/material';
@@ -16,13 +16,20 @@ export class ListComponent implements OnInit {
 
   isEndResults = false;
 
-  constructor(public listingService: ListingService, public userService: UserService, public dialog: MdDialog) {
+  constructor(public listingService: ListingService, 
+              public userService: UserService, 
+              public dialog: MdDialog,
+              private ref: ChangeDetectorRef,) {
   }
 
   ngOnInit() {
     if (this.populateOnInit) {
       this.listingService.getNew();
     }
+    this.listingService.onListingsLoaded$.subscribe( (newListings) => {
+      this.isEndResults = newListings.length === 0
+    })
+
   }
 
   openDetails(i) {
@@ -37,12 +44,9 @@ export class ListComponent implements OnInit {
 
   onScroll () {
     if(this.listingService.isLoading || this.isEndResults) return;
-      this.listingService.getMore( (newListings) => {
-        if (newListings.length === 0) {
-            this.isEndResults = true;
-          }
-      })
-    }
+      this.listingService.getMore();
+  }
+
   clickHeart($event, listing) {
     $event.stopPropagation();
     if (listing.isFavorite) {
@@ -52,6 +56,5 @@ export class ListComponent implements OnInit {
       listing.isFavorite = true;
       this.userService.saveFavorite(listing)
     }
-   // this.listingService.mapFavorites();
   }
 }
