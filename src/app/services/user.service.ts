@@ -64,7 +64,7 @@ export class UserService implements CanActivate {
         localStorage.setItem('token', token);
         this.isAuth.emit(true);
         this.user = response.user;
-        console.log('response: ', response);
+        // onsole.log('response: ', response);
         // return true to indicate successful login
         return true;
       } else {
@@ -129,7 +129,7 @@ export class UserService implements CanActivate {
     this.user.favorites.push(listing);
       this.http.put(`${this.BASE_URL}/api/users/${this.user._id}/favorite/${listing._id}`, true)
         .map((res) => res.json()).subscribe(res => {
-          console.log('Favorite saved');
+          // console.log('Favorite saved');
         })
     }
   }
@@ -137,7 +137,7 @@ export class UserService implements CanActivate {
     this.user.favorites = this.user.favorites.filter(fav => fav._id !== listing._id);
     this.http.delete(`${this.BASE_URL}/api/users/${this.user._id}/favorite/${listing._id}`)
       .map((res) => res.json()).subscribe(res => {
-        console.log('Favorite deleted');
+        // console.log('Favorite deleted');
       })
   }
   saveSearch(search) {
@@ -148,11 +148,11 @@ export class UserService implements CanActivate {
     } else {
       this.user.savedSearches.push(search);
 
-      console.log('search: ', search);
+      // console.log('search: ', search);
 
       this.http.put(`${this.BASE_URL}/api/users/${this.user._id}/search`, {search})
         .map(res => res.json()).subscribe(res => {
-          console.log('Search saved');
+          // console.log('Search saved');
         })
     }
   }
@@ -160,7 +160,7 @@ export class UserService implements CanActivate {
     this.user.savedSearches = this.user.savedSearches.filter(ss => ss.time !== time);
     this.http.delete(`${this.BASE_URL}/api/users/${this.user._id}/search/${time}` )
       .map(res => res.json()).subscribe(res => {
-        console.log('Saved search deleted');
+        // console.log('Saved search deleted');
       })
   }
 }
