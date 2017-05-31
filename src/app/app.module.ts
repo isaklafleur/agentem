@@ -38,13 +38,14 @@ import { PropertyFormComponent,  DialogCreateNewPropertyComponent  } from './com
 import { ListComponent } from './components/list/list.component';
 import { SearchComponent } from './components/search/search.component';
 import { FilterListComponent } from './components/search/filter-list/filter-list.component';
-import { TestComponent } from './components/test/test.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { DetailsComponent } from './components/list/details/details.component';
 import { CarouselComponent } from './components/list/details/carousel/carousel.component';
 import { StatsBarChartComponent } from './components/stats-bar-chart/stats-bar-chart.component';
 import { ListingComponent } from './components/list/listing/listing.component';
+
+import { routes } from './routes';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,6 @@ import { ListingComponent } from './components/list/listing/listing.component';
     ListComponent,
     SearchComponent,
     FilterListComponent,
-    TestComponent,
     AuthComponent,
     DashboardComponent,
     LargeNumberPipe,
@@ -75,16 +75,7 @@ import { ListingComponent } from './components/list/listing/listing.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent },
-      { path: 'panel/form',  component: PropertyFormComponent },
-      { path: 'search',  component: SearchComponent },
-      { path: 'test',  component: TestComponent },
-      { path: 'dashboard',  component: DashboardComponent, canActivate: [UserService]},
-      { path: 'stats',  component: StatsBarChartComponent },
-      // otherwise redirect to home
-      { path: '**', redirectTo: '' },
-      ]),
+    RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     MdButtonModule, MdCheckboxModule, MdDialogModule, MdInputModule, MdRadioModule, MdSelectModule, MdTabsModule,
     NgbModule.forRoot(),
