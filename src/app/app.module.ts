@@ -28,7 +28,7 @@ import { MouseWheelDirective } from './directives/mouse_wheel.directive';
 import {GetEleDirective} from './directives/ref.directive';
 
 // Routes
-import { routes } from './routes';
+// import { routes } from './routes';
 
 
 // Custom Components
@@ -47,6 +47,19 @@ import { AuthComponent } from './components/auth/auth.component';
 import { DetailsComponent } from './components/list/details/details.component';
 import { CarouselComponent } from './components/list/details/carousel/carousel.component';
 import { StatsBarChartComponent } from './components/stats-bar-chart/stats-bar-chart.component';
+
+RouterModule.forRoot([
+  { path: '', pathMatch: 'full', component: HomeComponent },
+  { path: 'panel/form',  component: PropertyFormComponent },
+  { path: 'search',  component: SearchComponent },
+  { path: 'test',  component: TestComponent },
+  { path: 'dashboard',  component: DashboardComponent, canActivate: [UserService]},
+  { path: 'stats',  component: StatsBarChartComponent },
+
+  // otherwise redirect to home
+  { path: '**', redirectTo: '' }
+]);
+
 
 @NgModule({
   declarations: [
@@ -75,7 +88,16 @@ import { StatsBarChartComponent } from './components/stats-bar-chart/stats-bar-c
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot([
+      { path: '', component: HomeComponent },
+      { path: 'panel/form',  component: PropertyFormComponent },
+      { path: 'search',  component: SearchComponent },
+      { path: 'test',  component: TestComponent },
+      { path: 'dashboard',  component: DashboardComponent, canActivate: [UserService]},
+      { path: 'stats',  component: StatsBarChartComponent },
+      // otherwise redirect to home
+      { path: '**', redirectTo: '' },
+      ]),
     BrowserAnimationsModule,
     MaterialModule,
     NgbModule.forRoot(),

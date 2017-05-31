@@ -1,4 +1,5 @@
 const express = require('express');
+const compression = require('compression');
 require('dotenv').config();
 const path = require('path');
 const favicon = require('serve-favicon');
@@ -24,13 +25,13 @@ const DIR = './public/uploads/';
 const upload = multer({ dest: DIR });
 
 const app = express();
-
+app.use(compression());
 mongoose.connect(process.env.MONGODB_URI);
 
 
-app.get('/*', function(req, res, next){ 
+app.get('/*', (req, res, next) => {
   res.setHeader('Last-Modified', (new Date()).toUTCString());
-  next(); 
+  next();
 });
 
 // view engine setup
