@@ -2,6 +2,12 @@
   width: 80%
 }
 
+md-card {
+  border-radius: 8px;
+  padding: 10px;
+  color: black;
+}
+
 md-input-container {
   width: 300px;
 }

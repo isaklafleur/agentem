@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
   submitError: string;
   submitSuccess: string;
   userListings: any[];
-  
+
   constructor(public dialog: MdDialog,
     public userservice: UserService,
     public listingService: ListingService,
