@@ -11,7 +11,7 @@ export class GetEleDirective {
   constructor(public el: ElementRef) { }
   show() {
     alert();
-    console.log(this.el.nativeElement);
-    console.log(this.el.nativeElement.offsetLeft);
+    // console.log(this.el.nativeElement);
+    // console.log(this.el.nativeElement.offsetLeft);
   }
 }

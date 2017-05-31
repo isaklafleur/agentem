@@ -59,7 +59,7 @@ export class DashboardComponent implements OnInit {
       if (this.userservice.searchAfterLogin) {
         this.userservice.saveSearch(this.userservice.searchAfterLogin)
       }
-      console.log("subscribe")
+      // console.log("subscribe")
       this.getUserListings();
     });
 
@@ -69,7 +69,7 @@ export class DashboardComponent implements OnInit {
   getUserListings() {
       this.listingService.getUserListings().subscribe(listings=>{
         this.userListings = listings.listings;
-        console.log('this.userListings: ', this.userListings);
+        // console.log('this.userListings: ', this.userListings);
       });
   }
   deleteFavorite($event, listing) {
@@ -92,7 +92,7 @@ export class DashboardComponent implements OnInit {
     const dialogRef = this.dialog.open(DetailsComponent, { width: '80%', height: '100%', position: 'right' });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'submitted') {
-        console.log('form ok')
+        // console.log('form ok')
       }
     });
   }
@@ -102,7 +102,7 @@ export class DashboardComponent implements OnInit {
     const dialogRef = this.dialog.open(DetailsComponent, { width: '80%', height: '100%', position: 'right' });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'submitted') {
-        console.log('form ok')
+        // console.log('form ok')
       }
     });
   }
