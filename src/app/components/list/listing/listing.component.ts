@@ -3,7 +3,7 @@ import { MdDialog } from '@angular/material';
 import { ListingService } from '../../../services/listing.service';
 import { UserService } from '../../../services/user.service';
 import { DetailsComponent } from '../details/details.component';
-declare var $:any;
+declare var $: any;
 
 @Component({
   selector: 'app-listing',
@@ -19,8 +19,8 @@ export class ListingComponent implements AfterViewInit {
   @Output() onDelete = new EventEmitter();
   @ViewChild('container') containerElement;
 
-  constructor(public listingService: ListingService, 
-              public userService: UserService, 
+  constructor(public listingService: ListingService,
+              public userService: UserService,
               public dialog: MdDialog,
               ) { }
 
@@ -51,10 +51,10 @@ export class ListingComponent implements AfterViewInit {
   }
 
   setHoverIndex() {
-    this.listingService.listHoverItem=this.index;
+    this.listingService.listHoverItem = this.index;
   }
-  
+
   removeHoverIndex() {
-    this.listingService.listHoverItem=-1;
+    this.listingService.listHoverItem = -1;
   }
 }
