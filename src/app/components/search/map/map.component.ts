@@ -50,10 +50,10 @@ export class MapComponent implements OnInit {
       let offset = $('#markerDetails' + i).offset();
       let markerWidth = $('#markerDetails' + i).width();
 
-      let markerHeight = $('#markerDetails' + i).height();
+      const markerHeight = $('#markerDetails' + i).height();
 
       if (mapHeight - markerTop < 166) {
-        $("#markerDetails" + i).offset({ top: offset.top - 215 });
+        $('#markerDetails' + i).offset({ top: offset.top - 215 });
       }
 
 
@@ -104,7 +104,7 @@ export class MapComponent implements OnInit {
       });
     });
     this.onListingLoadedSubscription = this.listingService.onListingsLoaded$.subscribe(()=>{
-      $("#left").trigger('click');
+      $('#left').trigger('click');
       this.onListingLoadedSubscription.unsubscribe();
     })
   }
@@ -142,14 +142,12 @@ export class MapComponent implements OnInit {
         delete this.listingService.loadSearchPolygon;
       }
       this.setBounds(this.listingService.loadSearchBounds)
-      delete this.listingService.loadSearchBounds;     
-     
+      delete this.listingService.loadSearchBounds;
+
     } else {
       this.getBounds();
     }
-    this.listingService.updateFilter(()=>{
-        
-    });
+    this.listingService.updateFilter();
     map.addListener('bounds_changed', () => {
       if (Date.now() - this.lastDebounce > this.DEBOUNCE_TIME) {
         this.getBounds();
@@ -168,7 +166,7 @@ export class MapComponent implements OnInit {
     }
   }
   setBounds(bounds) {
-    const boundsLiteral = {     
+    const boundsLiteral = {
       east: bounds.lngNE,
       north: bounds.latNE,
       south: bounds.latSW,
@@ -176,11 +174,10 @@ export class MapComponent implements OnInit {
     }
     this.map.fitBounds(boundsLiteral);
   }
-  loadPolygon(polygon) { 
-    let llPolygon = polygon.map(lngLatPoint=> new google.maps.LatLng(lngLatPoint[1],lngLatPoint[0]))
-    
+  loadPolygon(polygon) {
+    const llPolygon = polygon.map(lngLatPoint => new google.maps.LatLng(lngLatPoint[1],lngLatPoint[0]))
 
-    var searchPolygon = new google.maps.Polygon({
+    const searchPolygon = new google.maps.Polygon({
       paths: llPolygon,
       editable: true,
       strokeColor: '#FF0000',
@@ -196,22 +193,22 @@ export class MapComponent implements OnInit {
     this.selectedOverlay = searchPolygon;
   }
   getPolygonRemovePosition(polygon) {
-    let coordinates = polygon.getPath().getArray()
+    const coordinates = polygon.getPath().getArray()
     this.polygonRemovePosition = [coordinates[0].lat(), coordinates[0].lng()]
   }
 
   getPolygonAndUpdate(polygon) {
     //  let coordinates = (polygon.getPath().getArray());
 
-    let len = polygon.getPath().getLength();
+    const len = polygon.getPath().getLength();
 
     this.listingService.filter.polygon = [];
 
     for (let i = 0; i < len; i++) {
-      let latLng = polygon.getPath().getAt(i).toUrlValue(20).split(",");
+      const latLng = polygon.getPath().getAt(i).toUrlValue(20).split(',');
       this.listingService.filter.polygon.push([latLng[1], latLng[0]]);
 
-      //Use this one instead if you want to get rid of the wrap > new google.maps.LatLng(),
+      // Use this one instead if you want to get rid of the wrap > new google.maps.LatLng(),
     }
     this.listingService.updateFilter();
 
@@ -230,8 +227,8 @@ export class MapComponent implements OnInit {
     }
   }
   openDetails(i) {
-    this.listingService.detailsListing= this.listingService.listings[i];
-    const dialogRef = this.dialog.open(DetailsComponent, {width: '80%', height: '100%', position:"right"});
+    this.listingService.detailsListing = this.listingService.listings[i];
+    const dialogRef = this.dialog.open(DetailsComponent, {width: '80%', height: '100%', position: 'right'});
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'submitted') {
         console.log('form ok')
@@ -243,11 +240,4 @@ export class MapComponent implements OnInit {
 
   }
 }
-
-
 //noinspection TypeScriptCheckImport
-
-
-
-
-
