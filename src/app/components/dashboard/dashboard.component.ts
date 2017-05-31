@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
   submitError: string;
   submitSuccess: string;
   userListings: any[];
-  
+
   constructor(public dialog: MdDialog,
     public userservice: UserService,
     public listingService: ListingService,
@@ -49,6 +49,7 @@ export class DashboardComponent implements OnInit {
       })
     }
   }
+
   ngOnInit() {
     this.userProfile = this.userservice.getUser(this.userservice.activeUserId).subscribe((user) => {
       this.userProfile = user;
@@ -59,21 +60,19 @@ export class DashboardComponent implements OnInit {
       if (this.userservice.searchAfterLogin) {
         this.userservice.saveSearch(this.userservice.searchAfterLogin)
       }
-      // console.log("subscribe")
+
       this.getUserListings();
     });
-
-
   }
 
   getUserListings() {
-      this.listingService.getUserListings().subscribe(listings=>{
-        this.userListings = listings.listings;
-        // console.log('this.userListings: ', this.userListings);
-      });
+    this.listingService.getUserListings().subscribe(listings => {
+      this.userListings = listings.listings;
+      // console.log('this.userListings: ', this.userListings);
+    });
   }
-  deleteFavorite($event, listing) {
-    $event.stopPropagation();
+
+  deleteFavorite(listing) {
     this.userservice.deleteFavorite(listing);
   }
 
@@ -84,32 +83,10 @@ export class DashboardComponent implements OnInit {
   openSearch(search) {
     this.listingService.loadSearch(search)
     this.router.navigate(['/search']);
-
   }
 
-  openDetails(i) {
-    this.listingService.detailsListing = this.userservice.user.favorites[i];
-    const dialogRef = this.dialog.open(DetailsComponent, { width: '80%', height: '100%', position: 'right' });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === 'submitted') {
-        // console.log('form ok')
-      }
-    });
-  }
-
-  openUserDetails(i) {
-    this.listingService.detailsListing = this.userListings[i];
-    const dialogRef = this.dialog.open(DetailsComponent, { width: '80%', height: '100%', position: 'right' });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === 'submitted') {
-        // console.log('form ok')
-      }
-    });
-  }
-
-  deleteUserListing($event, listing) {
-    $event.stopPropagation();
-    this.listingService.deleteListing(listing._id).subscribe(res=>{
+  deleteUserListing(listing) {
+    this.listingService.deleteListing(listing._id).subscribe(res => {
       this.getUserListings();
     })
   }

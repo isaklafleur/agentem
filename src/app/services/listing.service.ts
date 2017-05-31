@@ -68,7 +68,6 @@ export class ListingService {
     return this.http.delete(`${this.BASE_URL}/api/listings/${listingId}`).map(res=>res.json());
   }
 
-
   updateFilter() {
      this.getNew();
   }
@@ -101,7 +100,6 @@ export class ListingService {
     })
     this.zoom = newZoom;
     this.center = place.geometry.location;
-    // console.log('place.geometry.location: ', place.geometry.location);
   }
 
   mapFavorites() {
@@ -125,6 +123,7 @@ export class ListingService {
       this.loadSearchPolygon = search.polygon;
     }
   }
+
   getQuery() {
     let query = `?limit=${this.limit}&offset=${this.offset}`;
 
