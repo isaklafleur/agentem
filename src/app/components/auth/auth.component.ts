@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MdDialog, MdDialogRef, MdInputModule } from '@angular/material';
+import { MdDialogModule, MdDialogRef, MdInputModule } from '@angular/material';
 
 import { UserService } from '../../services/user.service';
 
@@ -23,7 +23,7 @@ export class AuthComponent implements OnInit {
 
   constructor(
     public dialogRef: MdDialogRef<AuthComponent>,
-    public dialog: MdDialog,
+    public dialog: MdDialogModule,
     public userservice: UserService,
     public router: Router) { }
 

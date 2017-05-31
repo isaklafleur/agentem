@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
-import { MaterialModule } from '@angular/material';
+import { MdButtonModule, MdCheckboxModule, MdDialogModule, MdInputModule, MdRadioModule, MdSelectModule, MdTabsModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -84,7 +84,7 @@ import { ListingComponent } from './components/list/listing/listing.component';
       { path: '**', redirectTo: '' },
       ]),
     BrowserAnimationsModule,
-    MaterialModule,
+    MdButtonModule, MdCheckboxModule, MdDialogModule, MdInputModule, MdRadioModule, MdSelectModule, MdTabsModule,
     NgbModule.forRoot(),
     FileUploadModule,
     ReactiveFormsModule,

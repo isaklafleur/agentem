@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { MdDialog } from '@angular/material';
+
 import { ListingService } from '../../services/listing.service';
 import { UserService } from '../../services/user.service';
-import { MdDialog } from '@angular/material';
 import { DetailsComponent } from './details/details.component'
 declare var $: any;
 
