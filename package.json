@@ -9,9 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "start": "node ./bin/www",
-    "start-dev": "nodemon ./bin/www",
-    "preinstall": "npm install -g @angular/cli",
-    "postinstall": "ng build --prod"
+    "start-dev": "nodemon ./bin/www"
   },
   "private": true,
   "dependencies": {
@@ -30,10 +28,6 @@
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.26",
     "@ngui/map": "^0.18.1",
     "@swimlane/ngx-charts": "^5.3.1",
-    "@types/d3": "^4.9.0",
-    "@types/googlemaps": "^3.26.11",
-    "@types/jquery": "^2.0.45",
-    "@types/lodash": "^4.14.64",
     "bootstrap": "^4.0.0-alpha.6",
     "bootstrap-daterangepicker": "^2.1.25",
     "core-js": "^2.4.1",
@@ -73,6 +67,9 @@
     "@types/d3": "^4.9.0",
     "@types/jasmine": "2.5.38",
     "@types/node": "~6.0.60",
+    "@types/googlemaps": "^3.26.11",
+    "@types/jquery": "^2.0.45",
+    "@types/lodash": "^4.14.64",
     "codelyzer": "^3.0.1",
     "jasmine-core": "~2.5.2",
     "jasmine-spec-reporter": "~3.2.0",
