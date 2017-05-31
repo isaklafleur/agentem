@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { UserService } from './user.service';
@@ -20,15 +20,18 @@ export class ListingService {
   loadSearchBounds: any;
   loadSearchPolygon: any;
   listHoverItem: number;
+  onListingsLoaded$: EventEmitter<any>
 
 
-  constructor( public http: Http, public userService: UserService ) { }
+  constructor( public http: Http, public userService: UserService ) {
+    this.onListingsLoaded$ = new EventEmitter(); 
+   }
 
-  getList( callback?) {
+  getList() {
     // let headers = new Headers({ 'Authorization': 'JWT ' + this.SessionService.token });
     // let options = new RequestOptions({ headers: headers });
     this.isLoading = true;
-    
+
     this.http.get(`${this.BASE_URL}/api/listings${this.getQuery()}`)// , options)
       .map((res) => res.json()).subscribe((res) => {
 
@@ -37,18 +40,19 @@ export class ListingService {
           this.isLoading = false;
           this.mapFavorites();
 
-         // $("#left").trigger("click")
-          if(callback)
-            callback(res.listings);
+          this.onListingsLoaded$.emit(res.listings)
         });
   }
-  getMore(callback) {
+
+  getMore() {
     this.offset += this.limit;
-    this.getList(callback);
+    this.getList();
   }
+
   setSearchLoaded(search) {
     this.loadSearchBounds = search.bounds;
   }
+
   getNew() {
     this.offset = 0;
     this.listings = [];
@@ -63,13 +67,7 @@ export class ListingService {
     return this.http.delete(`${this.BASE_URL}/api/listings/${listingId}`).map(res=>res.json());
   }
 
-  // get(id) {
-  //   // let headers = new Headers({ 'Authorization': 'JWT ' + this.SessionService.token });
-  //   // let options = new RequestOptions({ headers: headers });
-  //   return this.http.get(`${this.BASE_URL}/${id}`)// , options)
-  //     .map((res) => res.json());
-  // }
-  // from filter
+
   updateFilter() {
      this.getNew();
   }
@@ -113,6 +111,7 @@ export class ListingService {
       })
     }
   }
+
   loadSearch(search) {
     this.filter = search;
     this.loadSearchBounds = search.bounds;
@@ -126,6 +125,7 @@ export class ListingService {
       this.loadSearchPolygon = search.polygon;
     }
   }
+  
   getQuery() {
 
     let query = `?limit=${this.limit}&offset=${this.offset}`;
