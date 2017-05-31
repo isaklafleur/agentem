@@ -20,11 +20,15 @@ export class HomeComponent implements OnInit {
 
   placeChanged(place) {
     if (place.name) {
-      this.listingService.readSearchPlace(place);
-      this.router.navigate(['/search']);
+        this.listingService.readSearchPlace(place);
+       // this.router.navigate(['/search']);   
+       //this.navigate();
     }
   }
-
+  navigate() {
+    console.log("here");
+    this.router.navigate(['/search'])
+  }
   ngOnInit() {
   }
   }

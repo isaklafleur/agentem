@@ -23,7 +23,7 @@ export class MapComponent implements OnInit {
   polygonRemovePosition: number[] = [];
   showMapDetails: any[] = [];
   hideDetails: boolean = true;
-
+  onListingLoadedSubscription: any;
   markerDetailsOffetLeft: number;
   markerDetailsOffetTop: number;
 
@@ -34,7 +34,7 @@ export class MapComponent implements OnInit {
   @ViewChild('map') mapElement;
   @ViewChild('markerDetails') markerDetails;
   
-  constructor(public listingService: ListingService, public dialog: MdDialog) { }
+  constructor(public listingService: ListingService, public dialog: MdDialog ) { }
 
 
   markerMouseOver(event, i) {
@@ -69,7 +69,7 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
     this.drawingManager['initialized$'].subscribe(dm => {
       this.dm = dm;
       dm.setOptions({
@@ -103,6 +103,10 @@ export class MapComponent implements OnInit {
         }
       });
     });
+    this.onListingLoadedSubscription = this.listingService.onListingsLoaded$.subscribe(()=>{
+      $("#left").trigger('click');
+      this.onListingLoadedSubscription.unsubscribe();
+    })
   }
 
   setPolygonEvents(polygon) {
@@ -143,7 +147,9 @@ export class MapComponent implements OnInit {
     } else {
       this.getBounds();
     }
-    this.listingService.updateFilter();
+    this.listingService.updateFilter(()=>{
+        
+    });
     map.addListener('bounds_changed', () => {
       if (Date.now() - this.lastDebounce > this.DEBOUNCE_TIME) {
         this.getBounds();
