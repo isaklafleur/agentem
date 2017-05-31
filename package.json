@@ -1,5 +1,5 @@
 {
-  "name": "test123",
+  "name": "agentem",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -10,15 +10,14 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "start": "node ./bin/www",
-    "bundle-report": "webpack-bundle-analyzer dist/stats.json",
-    "start-dev": "nodemon ./bin/www"
+    "start-dev": "nodemon ./bin/www",
+    "bundle-report": "webpack-bundle-analyzer dist/stats.json"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^4.1.3",
     "@angular/common": "^4.1.3",
     "@angular/compiler": "^4.1.3",
-    "@angular/compiler-cli": "^4.1.3",
     "@angular/core": "^4.1.3",
     "@angular/forms": "^4.1.3",
     "@angular/http": "^4.1.3",
@@ -34,7 +33,6 @@
     "bluebird": "^3.5.0",
     "body-parser": "~1.17.1",
     "bootstrap": "^4.0.0-alpha.6",
-    "bootstrap-daterangepicker": "^2.1.25",
     "compression": "^1.6.2",
     "cookie-parser": "~1.4.3",
     "core-js": "^2.4.1",
@@ -60,7 +58,6 @@
     "path": "^0.12.7",
     "rxjs": "^5.1.0",
     "serve-favicon": "~2.4.2",
-    "slick-carousel": "^1.6.0",
     "typescript": "^2.3.2",
     "zone.js": "^0.8.4"
   },

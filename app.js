@@ -29,10 +29,10 @@ app.use(compression());
 mongoose.connect(process.env.MONGODB_URI);
 
 
-app.get('/*', (req, res, next) => {
+/*app.get('/*', (req, res, next) => {
   res.setHeader('Last-Modified', (new Date()).toUTCString());
   next();
-});
+});*/
 
 // view engine setup
 app.use(express.static(path.join(__dirname, '/dist')));
