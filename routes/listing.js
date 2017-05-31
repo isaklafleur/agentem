@@ -24,7 +24,6 @@ var upload = multer({ storage: storage });
 
 router.options('/api'); // enable pre-flight request for DELETE request
 
-
 router.post('/:userId', upload.any(), function (req, res, next) {
   if (req.body.newListing) {
     let property = JSON.parse(req.body.property);
@@ -59,7 +58,7 @@ router.post('/:userId', upload.any(), function (req, res, next) {
 });
 
 router.get('/', (req, res, next) => {
-  let query = getQuery(JSON.parse(req.query.filter));
+  let query = req.query.filter ? getQuery(JSON.parse(req.query.filter)) : {};
 
   Listing.find().count(query).exec((err, count) => {
     Listing.find(query).skip(+req.query.offset).limit(+req.query.limit).exec((err, listingList) => {
@@ -67,11 +66,11 @@ router.get('/', (req, res, next) => {
         res.status(500).json(err);
         return;
       }
-      listingList.forEach(listing => {
-        listing.photos = listing.photos.map(photo => {
-          return photo.split(":")[0] === "https" ? photo : "http://localhost:3000/uploads/" + photo;
-        });
-      });
+      // listingList.forEach(listing => {
+      //   listing.photos = listing.photos.map(photo => {
+      //     return photo.split(":")[0] === "https" ? photo : "http://localhost:3000/uploads/" + photo;
+      //   });
+      // });
       res.status(200).json({ listings: listingList, count: count });
     });
   });

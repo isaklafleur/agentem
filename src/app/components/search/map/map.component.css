@@ -60,3 +60,8 @@
   z-index: 2000;
 
 }
+
+.listing-details {
+  z-index: 1000; 
+  margin:0 -80px;
+}

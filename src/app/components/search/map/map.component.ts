@@ -3,6 +3,7 @@ import { DrawingManager } from '@ngui/map';
 import { MdDialog } from '@angular/material';
 import { ListingService } from '../../../services/listing.service';
 import { DetailsComponent } from '../../list/details/details.component'
+import { ListingComponent } from '../../list/listing/listing.component'
 declare var $: any;
 
 
@@ -13,7 +14,6 @@ declare var $: any;
   providers: []
 })
 export class MapComponent implements OnInit {
-
   selectedOverlay: any;
   map: any;
   DEBOUNCE_TIME = 1000;
@@ -26,7 +26,6 @@ export class MapComponent implements OnInit {
   onListingLoadedSubscription: any;
   markerDetailsOffetLeft: number;
   markerDetailsOffetTop: number;
-
   drawingMode = '';
   dm: any;
 
@@ -35,38 +34,6 @@ export class MapComponent implements OnInit {
   @ViewChild('markerDetails') markerDetails;
 
   constructor(public listingService: ListingService, public dialog: MdDialog ) { }
-
-
-  markerMouseOver(event, i) {
-    this.showMapDetails[i] = !this.showMapDetails[i];
-
-
-    setTimeout(() => {
-      let mapWidth = this.mapElement.elementRef.nativeElement.clientWidth;
-      let mapHeight = this.mapElement.elementRef.nativeElement.clientHeight;
-      let markerTop = (event.target as any).offsetParent.offsetTop;
-      let markerLeft = (event.target as any).offsetParent.offsetLeft;
-
-      let offset = $('#markerDetails' + i).offset();
-      let markerWidth = $('#markerDetails' + i).width();
-
-      const markerHeight = $('#markerDetails' + i).height();
-
-      if (mapHeight - markerTop < 166) {
-        $('#markerDetails' + i).offset({ top: offset.top - 215 });
-      }
-
-
-      this.hideDetails = false;
-
-    })
-
-
-  }
-
-  moveImg() {
-
-  }
 
   ngOnInit() {
 
@@ -78,6 +45,7 @@ export class MapComponent implements OnInit {
           drawingModes: ['polygon']
         }
       });
+
       google.maps.event.addListener(dm, 'polygoncomplete', (polygon) => {
         this.isPolygon = true;
 
@@ -103,10 +71,7 @@ export class MapComponent implements OnInit {
         }
       });
     });
-    this.onListingLoadedSubscription = this.listingService.onListingsLoaded$.subscribe(()=>{
-      $('#left').trigger('click');
-      this.onListingLoadedSubscription.unsubscribe();
-    })
+    this.subscribeListingLoad();
   }
 
   setPolygonEvents(polygon) {
@@ -121,17 +86,6 @@ export class MapComponent implements OnInit {
       this.getPolygonAndUpdate(polygon);
     });
 
-  }
-
-  toThousand(x) {
-    let addK = '';
-    if (x > 9999) {
-      x = (x / 1000).toFixed(1)
-      addK = 'K';
-    }
-    x = x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-    x = x.substr(0, x.length - 2);
-    return x + addK;
   }
 
   onMapReady(map) {
@@ -158,6 +112,7 @@ export class MapComponent implements OnInit {
       }
     })
   }
+
   getBounds() {
     this.listingService.filter.bounds = {
       latNE: this.map.getBounds().getNorthEast().lat(),
@@ -166,6 +121,7 @@ export class MapComponent implements OnInit {
       lngSW: this.map.getBounds().getSouthWest().lng(),
     }
   }
+
   setBounds(bounds) {
     const boundsLiteral = {
       east: bounds.lngNE,
@@ -175,6 +131,7 @@ export class MapComponent implements OnInit {
     }
     this.map.fitBounds(boundsLiteral);
   }
+
   loadPolygon(polygon) {
     const llPolygon = polygon.map(lngLatPoint => new google.maps.LatLng(lngLatPoint[1],lngLatPoint[0]))
 
@@ -193,14 +150,13 @@ export class MapComponent implements OnInit {
     searchPolygon.setMap(this.map);
     this.selectedOverlay = searchPolygon;
   }
+
   getPolygonRemovePosition(polygon) {
     const coordinates = polygon.getPath().getArray()
     this.polygonRemovePosition = [coordinates[0].lat(), coordinates[0].lng()]
   }
 
   getPolygonAndUpdate(polygon) {
-    //  let coordinates = (polygon.getPath().getArray());
-
     const len = polygon.getPath().getLength();
 
     this.listingService.filter.polygon = [];
@@ -208,7 +164,6 @@ export class MapComponent implements OnInit {
     for (let i = 0; i < len; i++) {
       const latLng = polygon.getPath().getAt(i).toUrlValue(20).split(',');
       this.listingService.filter.polygon.push([latLng[1], latLng[0]]);
-      // Use this one instead if you want to get rid of the wrap > new google.maps.LatLng(),
     }
     this.listingService.updateFilter();
   }
@@ -217,13 +172,12 @@ export class MapComponent implements OnInit {
     if (this.selectedOverlay) {
       this.selectedOverlay.setMap(null);
       delete this.selectedOverlay;
-
       delete this.listingService.filter.polygon
-
       this.isPolygon = false;
       this.listingService.updateFilter();
     }
   }
+
   openDetails(i) {
     this.listingService.detailsListing = this.listingService.listings[i];
     const dialogRef = this.dialog.open(DetailsComponent, {width: '80%', height: '100%', position: 'right'});
@@ -233,8 +187,36 @@ export class MapComponent implements OnInit {
       }
     });
   }
+
   drawOnMap() {
     this.dm.setDrawingMode(google.maps.drawing.OverlayType.POLYGON);
   }
+
+  subscribeListingLoad() {
+    this.onListingLoadedSubscription = this.listingService.onListingsLoaded$.subscribe(()=>{
+      $('#left').trigger('click');
+      this.onListingLoadedSubscription.unsubscribe();
+    });
+  }
+
+  markerMouseOver(event, i) {
+    this.showMapDetails[i] = !this.showMapDetails[i];
+    setTimeout(() => {
+      let mapWidth = this.mapElement.elementRef.nativeElement.clientWidth;
+      let mapHeight = this.mapElement.elementRef.nativeElement.clientHeight;
+      let markerTop = (event.target as any).offsetParent.offsetTop;
+      let markerLeft = (event.target as any).offsetParent.offsetLeft;
+
+      let offset = $('#markerDetails' + i).offset();
+      let markerWidth = $('#markerDetails' + i).width();
+
+      const markerHeight = $('#markerDetails' + i).height();
+
+      if (mapHeight - markerTop < 166) {
+        $('#markerDetails' + i).offset({ top: offset.top - 215 });
+      }
+      this.hideDetails = false;
+    })
+  }
 }
-//noinspection TypeScriptCheckImport
+

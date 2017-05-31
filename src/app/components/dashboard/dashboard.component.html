@@ -1,10 +1,11 @@
 <div class="container-fluid">
-<!--  <h1>DashBoard</h1>-->
   <md-tab-group>
      <md-tab label="Favorites">
       <h5>Saved Listings</h5>
 
-      <div *ngFor="let listing of userProfile.favorites; let i = index" class="list-card  card" (click)="openDetails(i)">
+      <app-listing *ngFor="let listing of userProfile.favorites; let i = index" [fixedWidth]="true" [listing]="listing" [index]="i" [hasDelete]="true" (onDelete)="deleteFavorite($event)"></app-listing>
+
+<!--      <div *ngFor="let listing of userProfile.favorites; let i = index" class="list-card  card" (click)="openDetails(i)">
 
         <img class="photo" [src]="listing.photos[0]" alt="Card image">
         <h4 class=" photo-text">R$ {{listing.price | largeNumber}}</h4>
@@ -24,7 +25,8 @@
           </div>
         </div>
         
-      </div>
+      </div>-->
+
         <div style="clear:left">
           <p>
           <h5>Saved Searches</h5>

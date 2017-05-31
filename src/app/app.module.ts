@@ -22,6 +22,7 @@ import { StatsService } from './services/stats.service';
 
 // Pipes
 import { LargeNumberPipe } from './pipes/large_number.pipe';
+import { RoundKPipe } from './pipes/round_k.pipe';
 
 // Directives
 import { MouseWheelDirective } from './directives/mouse_wheel.directive';
@@ -60,6 +61,7 @@ import { ListingComponent } from './components/list/listing/listing.component';
     AuthComponent,
     DashboardComponent,
     LargeNumberPipe,
+    RoundKPipe,
     MapComponent,
     GetEleDirective,
     MouseWheelDirective,
