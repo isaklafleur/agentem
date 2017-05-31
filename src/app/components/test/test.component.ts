@@ -46,7 +46,7 @@ export class TestComponent implements OnInit {
      latSW : this.map.getBounds().getSouthWest().lat(),
      lngSW : this.map.getBounds().getSouthWest().lng(),
     }
-    console.log(this.bounds);
+    // console.log(this.bounds);
   }
   ngOnInit() {
     this.drawingManager['initialized$'].subscribe(dm => {

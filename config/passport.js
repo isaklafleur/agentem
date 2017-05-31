@@ -6,11 +6,11 @@ const User = require('../models/user');
 const JwtStrategy = passportJWT.Strategy;
 
 const strategy = new JwtStrategy(jwtOptions, (jwt_payload, done) => {
-  console.log('payload received', jwt_payload);
+  // console.log('payload received', jwt_payload);
   // usually this would be a database call:
   User.findById(jwt_payload.id, (err, user) => {
     // var user = users[_.findIndex(users, {id: jwt_payload.id})];
-    console.log('passportStrategy user:', user);
+    // console.log('passportStrategy user:', user);
     if (err) {
       return done(err, false);
     }

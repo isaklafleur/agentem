@@ -101,7 +101,7 @@ export class ListingService {
     })
     this.zoom = newZoom;
     this.center = place.geometry.location;
-    console.log('place.geometry.location: ', place.geometry.location);
+    // console.log('place.geometry.location: ', place.geometry.location);
   }
 
   mapFavorites() {
@@ -116,17 +116,15 @@ export class ListingService {
   loadSearch(search) {
     this.filter = search;
     this.loadSearchBounds = search.bounds;
-    
     this.addressComponents = [];
     if(search.city) this.addressComponents.push(search.city);
     if(search.neighbourhood) this.addressComponents.push(search.neighbourhood);
     if(search.street) this.addressComponents.push(search.street);
 
-    if(search.polygon) {
+    if (search.polygon) {
       this.loadSearchPolygon = search.polygon;
     }
   }
-  
   getQuery() {
     let query = `?limit=${this.limit}&offset=${this.offset}`;
 

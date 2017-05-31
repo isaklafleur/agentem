@@ -44,7 +44,7 @@ export class PropertyFormComponent implements OnInit {
 
   ngOnInit() {
      this.uploader.onBuildItemForm = (item, form) => {
-        console.log('onBuildItemForm');
+        // console.log('onBuildItemForm');
         form.append('token', this.token);
         if (this.filesSent === 0) {
           form.append('newListing', true)
@@ -95,7 +95,7 @@ function readURL(input, index) {
       reader.onload = function (e) {
           $('#fileImage' + index).attr('src', (e.target as any).result);
       }
-      console.log('read');
+      // console.log('read');
       $('#fileImage' + index).attr('src', '##')
       reader.readAsDataURL(input._file);
     }

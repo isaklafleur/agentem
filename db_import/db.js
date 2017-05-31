@@ -10,7 +10,7 @@ const lineReader = require('readline').createInterface({
 });
 
 lineReader.on('line', (line) => {
-  console.log('Line from file:', line);
+  // console.log('Line from file:', line);
   const l = line.split(',');
   const r = {};
 // id,  0

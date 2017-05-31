@@ -1,7 +1,8 @@
 const express = require('express');
+const compression = require('compression');
 require('dotenv').config();
 const path = require('path');
-const favicon = require('serve-favicon');
+// const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -24,13 +25,13 @@ const DIR = './public/uploads/';
 const upload = multer({ dest: DIR });
 
 const app = express();
-
+app.use(compression());
 mongoose.connect(process.env.MONGODB_URI);
 
 
-app.get('/*', function(req, res, next){ 
+app.get('/*', (req, res, next) => {
   res.setHeader('Last-Modified', (new Date()).toUTCString());
-  next(); 
+  next();
 });
 
 // view engine setup
@@ -42,7 +43,7 @@ const corsOptions = { credentials: true, origin: 'http://localhost:4200' };
 app.options('*', cors(corsOptions));
 app.use(cors(corsOptions));
 
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -54,9 +55,9 @@ app.use('/api/users', /* passport.authenticate('jwt', { session: false }),*/ use
 app.use('/api/stats', statRoutes);
 app.use('/', authRoutes);
 
-/*app.get('/*', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(path.join('/dist/index.html'));
-});*/
+});
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
