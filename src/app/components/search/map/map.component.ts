@@ -16,24 +16,24 @@ export class MapComponent implements OnInit {
 
   selectedOverlay: any;
   map: any;
-  DEBOUNCE_TIME: number = 1000;
+  DEBOUNCE_TIME = 1000;
   lastDebounce: number = Date.now();
   bounds: any;
-  isPolygon: boolean = false;
+  isPolygon = false;
   polygonRemovePosition: number[] = [];
   showMapDetails: any[] = [];
-  hideDetails: boolean = true;
+  hideDetails = true;
   onListingLoadedSubscription: any;
   markerDetailsOffetLeft: number;
   markerDetailsOffetTop: number;
 
-  drawingMode:string = '';
+  drawingMode = '';
   dm: any;
 
   @ViewChild(DrawingManager) drawingManager: DrawingManager;
   @ViewChild('map') mapElement;
   @ViewChild('markerDetails') markerDetails;
-  
+
   constructor(public listingService: ListingService, public dialog: MdDialog ) { }
 
 
@@ -136,8 +136,8 @@ export class MapComponent implements OnInit {
 
   onMapReady(map) {
     this.map = map;
-    if(this.listingService.loadSearchBounds) {
-      if(this.listingService.loadSearchPolygon) {
+    if (this.listingService.loadSearchBounds) {
+      if (this.listingService.loadSearchPolygon) {
         this.loadPolygon(this.listingService.loadSearchPolygon)
         delete this.listingService.loadSearchPolygon;
       }
@@ -155,7 +155,6 @@ export class MapComponent implements OnInit {
         this.lastDebounce = Date.now();
       }
     })
-
   }
   getBounds() {
     this.listingService.filter.bounds = {
@@ -207,11 +206,9 @@ export class MapComponent implements OnInit {
     for (let i = 0; i < len; i++) {
       const latLng = polygon.getPath().getAt(i).toUrlValue(20).split(',');
       this.listingService.filter.polygon.push([latLng[1], latLng[0]]);
-
       // Use this one instead if you want to get rid of the wrap > new google.maps.LatLng(),
     }
     this.listingService.updateFilter();
-
   }
 
   deleteSelectedOverlay() {
@@ -223,7 +220,6 @@ export class MapComponent implements OnInit {
 
       this.isPolygon = false;
       this.listingService.updateFilter();
-
     }
   }
   openDetails(i) {
@@ -237,7 +233,6 @@ export class MapComponent implements OnInit {
   }
   drawOnMap() {
     this.dm.setDrawingMode(google.maps.drawing.OverlayType.POLYGON);
-
   }
 }
 //noinspection TypeScriptCheckImport

@@ -54,9 +54,9 @@ app.use('/api/users', /* passport.authenticate('jwt', { session: false }),*/ use
 app.use('/api/stats', statRoutes);
 app.use('/', authRoutes);
 
-/*app.get('/*', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(path.join('/dist/index.html'));
-});*/
+});
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
