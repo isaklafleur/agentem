@@ -1,7 +1,7 @@
 const express       = require('express');
 const router        = express.Router();
-const Listing     = require('../models/listing');
-const mongoose    = require('mongoose');
+const Listing       = require('../models/listing');
+const mongoose      = require('mongoose');
 const crypto        = require("crypto");
 const multer        = require('multer');
 
@@ -23,21 +23,16 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 
 router.options('/api'); // enable pre-flight request for DELETE request
-// router.get('/api', function (req, res) {
-//   res.end('file catcher example');
-// });
+
 
 router.post('/:userId', upload.any(), function (req, res, next) {
   if (req.body.newListing) {
-
     let property = JSON.parse(req.body.property);
 
     property.uploadToken = req.body.token;
-
     property.photos = [process.env.BASE_URL + '/uploads/' + req.files[0].filename];
     property.manual = true;
     property.userId = req.params.userId;
-
     property.location = { type: 'Point', coordinates: [-43.172896, -22.906847] };
 
     const listing = new Listing(property);
@@ -64,7 +59,6 @@ router.post('/:userId', upload.any(), function (req, res, next) {
 });
 
 router.get('/', (req, res, next) => {
-
   let query = getQuery(JSON.parse(req.query.filter));
 
   Listing.find().count(query).exec((err, count) => {
@@ -83,7 +77,6 @@ router.get('/', (req, res, next) => {
   });
 });
 
-
 router.get("/:userId", (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.userId)) {
     res.status(400).json({ message: 'Specified id is not valid' });
@@ -98,22 +91,17 @@ router.get("/:userId", (req, res) => {
   });
 });
 
-
-
 router.put('/:id', (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     res.status(400).json({ message: 'Specified id is not valid' });
     return;
   }
-
   const updates = req.body;
-
   Listing.findByIdAndUpdate(req.params.id, updates, (err) => {
     if (err) {
       res.json(err);
       return;
     }
-
     res.json({
       message: 'Listing updated successfully'
     });
@@ -131,7 +119,6 @@ router.delete('/:id', (req, res) => {
       res.json(err);
       return;
     }
-
     return res.json({
       message: 'Listing has been removed!'
     });
@@ -147,28 +134,22 @@ function getQuery(filter) {
   if (filter.minPrice) query.$and.push({ price: { $gte: filter.minPrice } });
   if (filter.maxPrice) query.$and.push({ price: { $lte: filter.maxPrice } });
   if (filter.bedrooms) query.bedrooms = { $gte: filter.bedrooms };
+
   if (filter.propertyType.house || filter.propertyType.apartment || filter.propertyType.villa) {
     query.$or = [];
     if (filter.propertyType.house) query.$or.push({ propertyType: "house" });
     if (filter.propertyType.apartment) query.$or.push({ propertyType: "apartment" });
     if (filter.propertyType.villa) query.$or.push({ propertyType: "villa" });
   }
-  if (filter.longitude) {
-    query.location = {
-      $geoWithin: {
-        $centerSphere: [[filter.longitude, filter.latitude], filter.radius / 6371]
-      }
-    };
-  }
 
   if (filter.bounds) {
     query.$and.push({
       location: {
         $geoWithin: {
-          $polygon: [[filter.bounds.lngSW, filter.bounds.latSW],
-          [filter.bounds.lngSW, filter.bounds.latNE],
-          [filter.bounds.lngNE, filter.bounds.latNE],
-          [filter.bounds.lngNE, filter.bounds.latSW]]
+          $polygon: [ [filter.bounds.lngSW, filter.bounds.latSW],
+                      [filter.bounds.lngSW, filter.bounds.latNE],
+                      [filter.bounds.lngNE, filter.bounds.latNE],
+                      [filter.bounds.lngNE, filter.bounds.latSW] ]
         }
       }
     });
@@ -184,7 +165,6 @@ function getQuery(filter) {
     });
   }
 
-
   if (filter.city) {
     query.city = { $regex: filter.city, $options: "-i" };
   }
@@ -196,8 +176,8 @@ function getQuery(filter) {
   }
 
   if (query.$and.length === 0) delete query.$and;
-  return query;
   
+  return query;
 }
 
 module.exports = router;
