@@ -1,21 +1,10 @@
-<button md-raised-button color="accent" class="draw-button" (click)="drawOnMap()">Draw on map</button> 
+<button md-raised-button color="accent" class="draw-button" (click)="drawOnMap()">Draw on map</button>
 
-<ngui-map #map 
-        [zoom]="listingService.zoom" 
-        [center]="listingService.center" 
-        (mouseover)="listingService.listHoverItem=-1" 
-        (mapReady$)="onMapReady($event)"
-        style="height:100%"
-        [mapTypeControl] ="false"
-        >
-
-
-
-  <drawing-manager #drawing  [drawingControl]="false" [drawingControlOptions]="{
+<ngui-map #map [zoom]="listingService.zoom" [center]="listingService.center" (mouseover)="listingService.listHoverItem=-1"
+  (mapReady$)="onMapReady($event)" style="height:100%" [mapTypeControl]="false">
+  <drawing-manager #drawing [drawingControl]="false" [drawingControlOptions]="{
       drawingModes: ['polygon']
-      }" 
-      [drawingMode]="drawingMode"
-      [polygonOptions]="{
+      }" [drawingMode]="drawingMode" [polygonOptions]="{
       strokeColor: 'red',
       fillColor: 'red',
       strokeWeight: 2,
@@ -24,21 +13,13 @@
     }"></drawing-manager>
   <custom-marker (click)="openDetails(i)" *ngFor="let listing of listingService?.listings; let i=index" [position]="[listing.location.coordinates[1], listing.location.coordinates[0]]">
     <div>
-      <span 
-        mouseWheel
-        [class.over]="showMapDetails[i] || listingService.listHoverItem===i" 
-        (mouseover)="markerMouseOver($event, i)" 
-        (mouseout)="showMapDetails[i]=false"  
-        (mouseWheelUp)="showMapDetails[i]=false"
-        (mouseWheelDown)="showMapDetails[i]=false"
+      <span mouseWheel [class.over]="showMapDetails[i] || listingService.listHoverItem===i" (mouseover)="markerMouseOver($event, i)"
+        (mouseout)="showMapDetails[i]=false" (mouseWheelUp)="showMapDetails[i]=false" (mouseWheelDown)="showMapDetails[i]=false"
         class="custom-icon">
-        {{toThousand(listing.price)}}
-        
+        {{toThousand(listing.price)}} 
       </span>
     </div>
-    <div #markerDetails id="markerDetails{{i}}" style="z-index: 1000; margin:0 -80px" 
-      *ngIf="(showMapDetails[i] || listingService.listHoverItem===i)"
-      
+    <div #markerDetails id="markerDetails{{i}}" style="z-index: 1000; margin:0 -80px" *ngIf="(showMapDetails[i] || listingService.listHoverItem===i)"
       class="card list-card">
 
       <img class="photo" [src]="listing.photos[0]" alt="Card image">
@@ -66,5 +47,3 @@
       </span> </custom-marker>
 
 </ngui-map>
-
-

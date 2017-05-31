@@ -10,7 +10,6 @@ const passport = require('./config/passport');
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 
-
 const listingRoutes = require('./routes/listing');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
@@ -51,8 +50,6 @@ app.use('/', authRoutes);
 app.get('/*', (req, res) => {
   res.sendFile(path.join(`${__dirname}/public/index.html`));
 });
-
-
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
