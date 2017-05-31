@@ -25,7 +25,7 @@ const DIR = './public/uploads/';
 const upload = multer({ dest: DIR });
 
 const app = express();
-app.use(compression());
+app.use(compression(9));
 mongoose.connect(process.env.MONGODB_URI);
 
 
