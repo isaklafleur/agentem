@@ -10,8 +10,8 @@ export class ListingService {
   BASE_URL = environment.BASE_URL;
   listings: any[] = [];
   filter: any = {};
-  limit:number = 50;
-  offset:number = 0;
+  limit = 20;
+  offset = 0;
   isLoading = true;
   listingCount: number;
   addressComponents: string[] = [];
@@ -25,7 +25,7 @@ export class ListingService {
 
 
   constructor( public http: Http, public userService: UserService ) {
-    this.onListingsLoaded$ = new EventEmitter(); 
+    this.onListingsLoaded$ = new EventEmitter();
    }
 
   getList() {
@@ -108,7 +108,7 @@ export class ListingService {
     if (this.userService.user) {
       this.userService.user.favorites.forEach(fav => {
         const favListing = this.listings.find(listing => listing._id === fav._id)
-        if (favListing)  favListing.isFavorite = true;
+        if (favListing) favListing.isFavorite = true;
       })
     }
   }
@@ -133,5 +133,4 @@ export class ListingService {
 
     return query;
   }
-
 }
