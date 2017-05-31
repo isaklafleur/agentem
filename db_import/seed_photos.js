@@ -17,7 +17,7 @@ Listing.find({}, (err, res)=>{
       photos.push(allPhotos[Math.floor(Math.random()*allPhotos.length)])
     }
      Listing.findOneAndUpdate({"_id":listing._id}, {$push:{photos:{$each:photos}}}, (err)=>{
-       console.log("pushed: ", listing.id)
+       // console.log("pushed: ", listing.id)
      })
   })
 })
