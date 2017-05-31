@@ -4,11 +4,12 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "start": "node ./bin/www",
+    "start-dev": "nodemon ./bin/www"
   },
   "private": true,
   "dependencies": {
@@ -27,10 +28,6 @@
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.26",
     "@ngui/map": "^0.18.1",
     "@swimlane/ngx-charts": "^5.3.1",
-    "@types/d3": "^4.9.0",
-    "@types/googlemaps": "^3.26.11",
-    "@types/jquery": "^2.0.45",
-    "@types/lodash": "^4.14.64",
     "bootstrap": "^4.0.0-alpha.6",
     "bootstrap-daterangepicker": "^2.1.25",
     "core-js": "^2.4.1",
@@ -46,7 +43,23 @@
     "rxjs": "^5.1.0",
     "slick-carousel": "^1.6.0",
     "typescript": "^2.3.2",
-    "zone.js": "^0.8.4"
+    "zone.js": "^0.8.4",
+    "bcrypt": "^1.0.2",
+    "bluebird": "^3.5.0",
+    "body-parser": "~1.17.1",
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.3",
+    "debug": "^2.6.8",
+    "dotenv": "^4.0.0",
+    "ejs": "~2.5.6",
+    "express": "~4.15.2",
+    "jsonwebtoken": "^7.4.1",
+    "mongoose": "^4.10.0",
+    "morgan": "^1.8.2",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.2.1",
+    "path": "^0.12.7",
+    "serve-favicon": "~2.4.2"
   },
   "devDependencies": {
     "@angular/cli": "^1.0.6",
@@ -54,6 +67,9 @@
     "@types/d3": "^4.9.0",
     "@types/jasmine": "2.5.38",
     "@types/node": "~6.0.60",
+    "@types/googlemaps": "^3.26.11",
+    "@types/jquery": "^2.0.45",
+    "@types/lodash": "^4.14.64",
     "codelyzer": "^3.0.1",
     "jasmine-core": "~2.5.2",
     "jasmine-spec-reporter": "~3.2.0",
@@ -66,6 +82,14 @@
     "protractor": "~5.1.0",
     "ts-node": "~2.0.0",
     "tslint": "^5.2.0",
-    "typescript": "^2.3.2"
+    "typescript": "^2.3.2",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-import": "^2.3.0",
+    "nodemon": "^1.11.0"
+  },
+  "engines": {
+    "node": "6.10.1",
+    "npm": "3.10.10"
   }
 }
