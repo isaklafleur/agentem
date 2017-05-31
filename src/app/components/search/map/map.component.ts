@@ -147,9 +147,9 @@ export class MapComponent implements OnInit {
     } else {
       this.getBounds();
     }
-    this.listingService.updateFilter(()=>{
-        
-    });
+
+    this.listingService.updateFilter();
+    
     map.addListener('bounds_changed', () => {
       if (Date.now() - this.lastDebounce > this.DEBOUNCE_TIME) {
         this.getBounds();

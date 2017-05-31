@@ -4,6 +4,8 @@ import 'rxjs/add/operator/map';
 import { UserService } from './user.service';
 import { environment } from '../../environments/environment';
 declare var $: any;
+import * as _ from 'lodash';
+
 @Injectable()
 export class ListingService {
   BASE_URL = environment.BASE_URL;
@@ -129,29 +131,32 @@ export class ListingService {
   getQuery() {
 
     let query = `?limit=${this.limit}&offset=${this.offset}`;
+    console.log('this.filter: ', this.filter);
+    if(!_.isEmpty(this.filter))
+      query += '&filter='+encodeURI(JSON.stringify(this.filter));
+    
+//     query += this.filter.typesBRN ? '&typesBRN=' + this.filter.typesBRN : '';
+//     query += this.filter.maxPrice && !isNaN(this.filter.maxPrice) ? '&maxPrice=' + this.filter.maxPrice : '';
+//     query += this.filter.minPrice && !isNaN(this.filter.minPrice) ? '&minPrice=' + this.filter.minPrice : '';
+//     query += this.filter.bedrooms ? '&bedrooms=' + this.filter.bedrooms : '';
 
-    query += this.filter.typesBRN ? '&typesBRN=' + this.filter.typesBRN : '';
-    query += this.filter.maxPrice && !isNaN(this.filter.maxPrice) ? '&maxPrice=' + this.filter.maxPrice : '';
-    query += this.filter.minPrice && !isNaN(this.filter.minPrice) ? '&minPrice=' + this.filter.minPrice : '';
-    query += this.filter.bedrooms ? '&bedrooms=' + this.filter.bedrooms : '';
+//     query += this.filter.street ? '&street=' + this.filter.street : '';
+//     query += this.filter.neighbourhood ? '&neighbourhood=' + this.filter.neighbourhood : '';
+//     query += this.filter.city ? '&city=' + this.filter.city : '';
 
-    query += this.filter.street ? '&street=' + this.filter.street : '';
-    query += this.filter.neighbourhood ? '&neighbourhood=' + this.filter.neighbourhood : '';
-    query += this.filter.city ? '&city=' + this.filter.city : '';
+//     query += this.filter.propertyType && this.filter.propertyType.house ? '&house=true' : '';
+//     query += this.filter.propertyType && this.filter.propertyType.apartment ? '&apartment=true' : '';
+//     query += this.filter.propertyType && this.filter.propertyType.villa ? '&villa=true' : '';
+//  //   query += this.filter.coordinates && this.filter.coordinates.latitude ? '&latitude=' + this.filter.coordinates.latitude : '';
+//  //   query += this.filter.coordinates && this.filter.coordinates.longitude ? '&longitude=' + this.filter.coordinates.longitude : '';
+//   //  query += this.filter.coordinates && this.filter.coordinates.latitude ? '&radius=' + this.filter.coordinates.radius : '';
+//     if (this.filter.bounds) {
+//       query += '&bounds=' + encodeURI(JSON.stringify(this.filter.bounds));
+//     }
 
-    query += this.filter.propertyType && this.filter.propertyType.house ? '&house=true' : '';
-    query += this.filter.propertyType && this.filter.propertyType.apartment ? '&apartment=true' : '';
-    query += this.filter.propertyType && this.filter.propertyType.villa ? '&villa=true' : '';
- //   query += this.filter.coordinates && this.filter.coordinates.latitude ? '&latitude=' + this.filter.coordinates.latitude : '';
- //   query += this.filter.coordinates && this.filter.coordinates.longitude ? '&longitude=' + this.filter.coordinates.longitude : '';
-  //  query += this.filter.coordinates && this.filter.coordinates.latitude ? '&radius=' + this.filter.coordinates.radius : '';
-    if (this.filter.bounds) {
-      query += '&bounds=' + encodeURI(JSON.stringify(this.filter.bounds));
-    }
-
-    if (this.filter.polygon) {
-      query += '&polygon=' + encodeURI(JSON.stringify(this.filter.polygon));
-    }
+//     if (this.filter.polygon) {
+//       query += '&polygon=' + encodeURI(JSON.stringify(this.filter.polygon));
+//     }
     return query;
   }
 
