@@ -20,7 +20,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 1. Generate a fresh set of the latest docs `npm run compodoc`
 2. Start a local server to open the docs `compodoc -s`
 
-Or see the latest generated docs [here](https://isaklafleur.github.io/agentem/docs/).
+Or see the latest generated docs [here](https://isaklafleur.github.io/agentem/documentation/).
 
 ## Bundle stats
 
