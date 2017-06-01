@@ -67,7 +67,8 @@
       <button md-raised-button color="primary" (click)="openDialog()">Add a new Listing!</button>
       </div>
       <p>
-     <div *ngFor="let listing of userListings; let i = index" class="list-card  card" (click)="openUserDetails(i)">
+    <app-listing *ngFor="let listing of userListings; let i = index" [isUserListing]="true" [fixedWidth]="true" [listing]="listing" [index]="i" [hasDelete]="true" (onDelete)="deleteUserListing($event)"></app-listing>
+    <!-- <div *ngFor="let listing of userListings; let i = index" class="list-card  card" (click)="openUserDetails(i)">
 
         <img class="photo" [src]="listing.photos[0]" alt="Card image">
         <h4 class=" photo-text">R$ {{listing.price | largeNumber}}</h4>
@@ -88,7 +89,7 @@
           </div>
         </div>
         
-      </div>
+      </div>-->
 
 
 

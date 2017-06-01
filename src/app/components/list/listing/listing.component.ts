@@ -16,6 +16,8 @@ export class ListingComponent implements AfterViewInit {
   @Input() hasFavorite: boolean;
   @Input() hasDelete: boolean;
   @Input() fixedWidth: boolean;
+  @Input() zIndex: boolean;
+  @Input() isUserListing: boolean;
   @Output() onDelete = new EventEmitter();
   @ViewChild('container') containerElement;
 

@@ -21,7 +21,7 @@
     </div>
     <div #markerDetails style="margin:0 -85px;">
       <app-listing *ngIf="(showMapDetails[i] || listingService.listHoverItem===i)" id="markerDetails{{i}}" [listing]="listing"
-        [index]="i" [hasFavorite]="false" style="z-index: 1000;margin:0 -80px;" class="listing-details"></app-listing>
+        [index]="i" [hasFavorite]="false" [zIndex]="true" class="listing-details"></app-listing>
     </div>
   </custom-marker>
 

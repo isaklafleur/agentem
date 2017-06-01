@@ -70,7 +70,7 @@ import { routes } from './routes';
     StatsBarChartComponent,
     ListingComponent
   ],
-  entryComponents: [DialogCreateNewPropertyComponent, AuthComponent, DetailsComponent],
+  entryComponents: [DialogCreateNewPropertyComponent, PropertyFormComponent, AuthComponent, DetailsComponent],
   imports: [
     BrowserModule,
     FormsModule,

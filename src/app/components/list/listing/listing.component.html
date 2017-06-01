@@ -1,4 +1,4 @@
-<div #container class="list-card card" [class.flexWidth]="!fixedWidth" [class.fixedWidth]="fixedWidth" (mouseover)="setHoverIndex()" (mouseout)="removeHoverIndex()" (click)="openDetails()">
+<div #container class="list-card card" [class.zIndex]="zIndex" [class.flexWidth]="!fixedWidth" [class.fixedWidth]="fixedWidth" (mouseover)="setHoverIndex()" (mouseout)="removeHoverIndex()" (click)="openDetails()">
 
   <img class="photo" [src]="listing.photos[0]" alt="Card image">
   <h4 class=" photo-text">R$ {{listing.price | largeNumber}}</h4>
