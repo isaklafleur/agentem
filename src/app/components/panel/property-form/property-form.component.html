@@ -42,16 +42,11 @@
             <input mdInput price="ngModel" pattern="\d+" placeholder="Price" size="15" name="price" [(ngModel)]="newProperty.price" required>
             <md-error>Please enter correct price</md-error>
           </md-input-container>
-          $
-          <md-input-container>
-            <input mdInput placeholder="Condo" pattern="\d+" size="15" name="condo" [(ngModel)]="newProperty.condo">
-            <md-error>Please enter correct price</md-error>
-          </md-input-container>
-          <br>
           <md-input-container>
             <input mdInput placeholder="Square meters" size="14" required name="size" [(ngModel)]="newProperty.size">
             <md-error>Please enter correct size</md-error>
           </md-input-container>
+          <br>          
           <md-input-container>
             <input mdInput placeholder="Suites" pattern="\d+" size="10" name="suites" [(ngModel)]="newProperty.suites">
             <md-error>Please enter number</md-error>
@@ -60,6 +55,10 @@
             <input mdInput placeholder="Bedrooms" pattern="\d+" size="10" name="bedrooms" [(ngModel)]="newProperty.bedrooms">
             <md-error>Please enter number</md-error>
           </md-input-container>
+          <md-input-container>
+            <input mdInput placeholder="Bathrooms" pattern="\d+" size="10" name="bathrooms" [(ngModel)]="newProperty.bathrooms">
+            <md-error>Please enter number</md-error>
+          </md-input-container>          
           <md-input-container>
             <input mdInput placeholder="Parking spots" pattern="\d+" size="10" name="parking" [(ngModel)]="newProperty.parking">
             <md-error>Please enter number</md-error>
@@ -74,7 +73,7 @@
               </td>
               <td>
                 <md-input-container class="example-full-width">
-                  <input mdInput #postalCode maxlength="8" size="8" placeholder="Zip">
+                  <input mdInput #postalCode maxlength="8" size="8" placeholder="Zip" [(ngModel)]="newProperty.zip">
                   <md-hint align="end">{{postalCode.value.length}} / 8</md-hint>
                 </md-input-container>
               </td>

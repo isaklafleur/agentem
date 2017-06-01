@@ -22,23 +22,14 @@ export class UserService implements CanActivate {
     public http: Http
   ) {
       this.doSignIn$ = new EventEmitter();
-      // set token if saved in local storage
-     //  this.token = localStorage.getItem('token');
-     localStorage.removeItem('token');
-     this.isAuth.emit(false);
-      // if (this.token != null) {
-      //   this.isAuth.emit(true);
-      // } else {
-      //   this.isAuth.emit(false);
-      // }
+      localStorage.removeItem('token');
+      this.isAuth.emit(false);
   }
 
   canActivate(): Observable<boolean> | Promise<boolean> | boolean {
     if (localStorage.getItem('token')) {
-      // logged in so return true\
       return true;
     }
-    // not logged in so redirect to login page
     this.router.navigate(['/']);
     this.isAuth.emit(false);
     return false;
@@ -54,17 +45,13 @@ export class UserService implements CanActivate {
     .map((response) => {
       const token = response.token;
       if (token) {
-        // set token property
         this.token = token;
 
-        // store username and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('token', token);
         this.isAuth.emit(true);
         this.user = response.user;
-        // return true to indicate successful login
         return true;
       } else {
-        // return false to indicate failed login
         return false;
       }
     })
@@ -74,28 +61,21 @@ export class UserService implements CanActivate {
   login(user) {
     return this.http.post(`${this.BASE_URL}/login`, user)
         .map((response: Response) => {
-            // login successful if there's a jwt token in the response
             const token = response.json() && response.json().token;
             this.activeUserId = response.json() && response.json().payload.id;
 
             if (token) {
-              // set token property
               this.token = token;
               this.isAuth.emit(true);
-              // store username and jwt token in local storage to keep user logged in between page refreshes
               localStorage.setItem('token', token);
-
-              // return true to indicate successful login
               return true;
             } else {
-              // return false to indicate failed login
               return false;
             }
         });
   }
 
   logout() {
-      // clear token remove user from local storage to log user out
       this.token = null;
       this.activeUserId = null;
       this.isAuth.emit(false);
@@ -124,6 +104,7 @@ export class UserService implements CanActivate {
       this.doSignIn$.emit(true);
     } else {
     this.user.favorites.push(listing);
+    listing.isFavorite = true;
       this.http.put(`${this.BASE_URL}/api/users/${this.user._id}/favorite/${listing._id}`, true, this.getOptions())
         .map((res) => res.json()).subscribe(res => {
           // console.log('Favorite saved');
