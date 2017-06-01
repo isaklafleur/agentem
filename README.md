@@ -1,7 +1,7 @@
 ## Agente Imovel Demo SPA
 
 <h1 align=center>
-<img alt="Agente Imovel" src="https://raw.githubusercontent.com/isaklafleur/agentem/master/readmeimages/agenteimovel.png">
+<img alt="Agente Imovel" src="https://raw.githubusercontent.com/isaklafleur/agentem/master/images/agenteimovel.png">
   <br>
   AgenteImovel SPA DEMO</h1>
 
@@ -24,7 +24,7 @@ Or see the latest generated docs [here](https://isaklafleur.github.io/agentem/do
 
 ## Bundle stats
 
-<img alt="Bundle Stats" src="https://raw.githubusercontent.com/isaklafleur/agentem/dev/readmeimages/bundle-stats.png">
+<img alt="Bundle Stats" src="https://raw.githubusercontent.com/isaklafleur/agentem/master/images/bundle-stats.png">
 
 ## Demo
 
