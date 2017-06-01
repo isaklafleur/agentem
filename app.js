@@ -27,7 +27,6 @@ const app = express();
 app.use(compression(9));
 mongoose.connect(process.env.MONGODB_URI);
 
-<<<<<<< HEAD
 if(process.env.BASE_URL!=="http://localhost:3000") {
   app.get('*', (req, res, next) => {
     if (req.headers['x-forwarded-proto'] !== 'https') {
@@ -37,16 +36,6 @@ if(process.env.BASE_URL!=="http://localhost:3000") {
     } /* Continue to other routes if we're not redirecting */
   });
 }
-=======
-
-app.get('*', (req, res, next) => {
-  if (req.headers['x-forwarded-proto'] !== 'https') {
-    res.redirect('https://agentem.herokuapp.com');
-  } else {
-    next();
-  }
-});
->>>>>>> a48d37ebb76b9e0d24770e2c5acccb93095b5f3f
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
