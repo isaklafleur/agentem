@@ -37,6 +37,7 @@ const corsOptions = { credentials: true, origin: 'http://localhost:4200' };
 app.options('*', cors(corsOptions));
 app.use(cors(corsOptions));
 
+app.use(passport.initialize());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -44,7 +45,7 @@ app.use(cookieParser());
 
 
 app.use('/api/listings', listingRoutes);
-app.use('/api/users', /* passport.authenticate('jwt', { session: false }),*/ userRoutes);
+app.use('/api/users',  passport.authenticate('jwt', { session: false }), userRoutes);
 app.use('/api/stats', statRoutes);
 app.use('/', authRoutes);
 

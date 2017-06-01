@@ -53,12 +53,15 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.userProfile = this.userservice.getUser(this.userservice.activeUserId).subscribe((user) => {
       this.userProfile = user;
+      this.userProfile.favorites.forEach(fav=>fav.isFavorite = true);
       this.userservice.user = this.userProfile;
       if (this.userservice.favoriteAfterLogin) {
         this.userservice.saveFavorite(this.userservice.favoriteAfterLogin)
+        delete this.userservice.favoriteAfterLogin
       }
       if (this.userservice.searchAfterLogin) {
         this.userservice.saveSearch(this.userservice.searchAfterLogin)
+        delete this.userservice.searchAfterLogin;
       }
 
       this.getUserListings();

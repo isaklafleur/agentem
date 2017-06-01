@@ -5,27 +5,6 @@
 
       <app-listing *ngFor="let listing of userProfile.favorites; let i = index" [fixedWidth]="true" [listing]="listing" [index]="i" [hasDelete]="true" (onDelete)="deleteFavorite($event)"></app-listing>
 
-<!--      <div *ngFor="let listing of userProfile.favorites; let i = index" class="list-card  card" (click)="openDetails(i)">
-
-        <img class="photo" [src]="listing.photos[0]" alt="Card image">
-        <h4 class=" photo-text">R$ {{listing.price | largeNumber}}</h4>
-        <div class="photo-description">
-          <div style="float:left; padding:5px">
-            <img style="height:20px" src="/assets/{{listing.propertyType}}.svg"> {{listing.listingType}} <br>
-          </div>
-          <div style="float:right;padding:5px">
-            <img src="/assets/bed.svg" style="width:19px;margin-bottom:8px"> {{listing.bedrooms}} <img src="/assets/bath.svg"
-              style="width:19px;margin-bottom:8px"> {{listing.bathrooms}}
-          </div>
-          <div class="delete-fav">
-            <span class="fa-stack fa-lg" (click)="deleteFavorite($event, listing)" style="z-index: 100">
-            <i class="fa fa-circle fa-stack-2x" style="color:red"></i>
-            <i class="fa fa-close fa-stack-1x" style="color:white"></i>
-          </span>
-          </div>
-        </div>
-        
-      </div>-->
 
         <div style="clear:left">
           <p>
@@ -68,28 +47,6 @@
       </div>
       <p>
     <app-listing *ngFor="let listing of userListings; let i = index" [isUserListing]="true" [fixedWidth]="true" [listing]="listing" [index]="i" [hasDelete]="true" (onDelete)="deleteUserListing($event)"></app-listing>
-    <!-- <div *ngFor="let listing of userListings; let i = index" class="list-card  card" (click)="openUserDetails(i)">
-
-        <img class="photo" [src]="listing.photos[0]" alt="Card image">
-        <h4 class=" photo-text">R$ {{listing.price | largeNumber}}</h4>
-        <div class="photo-description">
-          <div style="float:left; padding:5px">
-            <img style="height:20px" src="/assets/{{listing.propertyType}}.svg"> {{listing.listingType}} <br>
-
-          </div>
-          <div style="float:right;padding:5px">
-            <img src="/assets/bed.svg" style="width:19px;margin-bottom:8px"> {{listing.bedrooms}} <img src="/assets/bath.svg"
-              style="width:19px;margin-bottom:8px"> {{listing.bathrooms}}
-          </div>
-          <div class="delete-fav">
-            <span class="fa-stack fa-lg" (click)="deleteUserListing($event, listing)" style="z-index: 100">
-            <i class="fa fa-circle fa-stack-2x" style="color:red"></i>
-            <i class="fa fa-close fa-stack-1x" style="color:white"></i>
-          </span>
-          </div>
-        </div>
-        
-      </div>-->
 
 
 

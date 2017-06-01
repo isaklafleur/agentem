@@ -52,13 +52,12 @@ export class PropertyFormComponent implements OnInit {
         }
         this.filesSent++;
       };
-
   }
+
   doSubmit(formValid) {
     if (!formValid) {
       this.submitError = 'Please fill out the form';
       this.submittedInvalid = true;
-
     } else {
       if (this.uploader.queue.length === 0) {
         this.submitError = 'Please upload photos';
@@ -80,6 +79,7 @@ export class PropertyFormComponent implements OnInit {
 <div md-dialog-content>Listing has been created...</div>
 `,
 })
+
 export class DialogCreateNewPropertyComponent implements OnInit {
   constructor(public dialogRef: MdDialogRef<DialogCreateNewPropertyComponent>) {}
   ngOnInit() {
@@ -88,14 +88,11 @@ export class DialogCreateNewPropertyComponent implements OnInit {
 }
 
 function readURL(input, index) {
-
     if ($('#fileImage' + index).attr('src') === '#') {
       const reader = new FileReader();
-
       reader.onload = function (e) {
           $('#fileImage' + index).attr('src', (e.target as any).result);
       }
-      // console.log('read');
       $('#fileImage' + index).attr('src', '##')
       reader.readAsDataURL(input._file);
     }
