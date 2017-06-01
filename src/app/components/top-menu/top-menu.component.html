@@ -13,7 +13,7 @@
         <a class="nav-link" routerLink="/stats" routerLinkActive="active">Stats</a>
       </li>
     </ul>
-    <a *ngIf="isAuth" class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard <i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+    <a *ngIf="this.userService?.user" class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard <i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
     <button *ngIf="!isAuth" md-raised-button (click)="openDialog()" color="accent">Sign In</button>
     <button *ngIf="isAuth" md-raised-button (click)="logout()" color="accent">Sign Out</button>
   </div>

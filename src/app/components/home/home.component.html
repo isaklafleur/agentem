@@ -4,7 +4,7 @@
     <div class="col-sm-6 col-12 text-white py-2 d-flex align-items-center justify-content-center" id="left">
       <md-card class="background-white-opaque">
         <form>
-          <md-select color="primary" [(ngModel)]="selectedValue" name="typeOfSearch">
+          <md-select color="primary" name="typeOfSearch" [(ngModel)]="selectedValue" >
             <md-option *ngFor="let type of typeOffer" [value]="type.value">
               {{ type.viewValue }}
             </md-option>

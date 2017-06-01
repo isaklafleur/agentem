@@ -31,9 +31,10 @@ button {
   margin-top: 3px;
 }
 
-.container-fluid {
+.filter-container {
   margin-top: 10px;
   margin-bottom: 0px;
+  float:left;
 }
 
 md-card {
@@ -72,6 +73,11 @@ md-card {
 
 .font-smaller {
   font-size:smaller;
+}
+
+.spinner-container {
+  float:right; 
+  padding-top:10px;
 }
 
 .filter-button {
