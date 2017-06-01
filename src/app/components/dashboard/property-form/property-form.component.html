@@ -9,10 +9,6 @@
     <div class="col-md-7">
       <div class="modal-body">
         <form #myForm="ngForm">
-<!--          <md-input-container class="fullWidth">
-            <input mdInput placeholder="Name" name="propertyName" [(ngModel)]="newProperty.name" required>
-            <md-error>Please enter the listing name</md-error>
-          </md-input-container>-->
           <div class="form-group">
             <md-select placeholder="Listing type" required style="width:200px; margin-top:3%" [(ngModel)]="newProperty.listingType" name="listingTypes">
               <md-option value='rental'>
@@ -73,7 +69,7 @@
               </td>
               <td>
                 <md-input-container class="example-full-width">
-                  <input mdInput #postalCode maxlength="8" size="8" placeholder="Zip" [(ngModel)]="newProperty.zip">
+                  <input mdInput #postalCode maxlength="8" size="8" placeholder="Zip" [(ngModel)]="newProperty.zip" name="zip">
                   <md-hint align="end">{{postalCode.value.length}} / 8</md-hint>
                 </md-input-container>
               </td>
