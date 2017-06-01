@@ -41,8 +41,8 @@ const forceSSL = function () {
 app.use(forceSSL());
 
 // view engine setup
-app.use(express.static(path.join(__dirname, 'dist')));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(`${__dirname}/dist`)));
+app.use(express.static(path.join(`${__dirname}/public`)));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
