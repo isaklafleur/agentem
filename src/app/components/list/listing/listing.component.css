@@ -1,14 +1,5 @@
-@media (max-width: 768px) {
-  .list-card {
-    width: 100%;
-  }
-  .photo-text {
-    top: 75%;
-  }  
-  .photo {
-    height:200px;
-  }
-}
+
+
 
 .list-card {
   cursor:pointer;
@@ -30,6 +21,30 @@
 .flexWidth {
   width:32%;
   min-width:205px;
+}
+
+@media (max-width: 1200px) {
+  .flexWidth {
+    width: 48%;
+  }
+  .photo-text {
+    top: 75%;
+  }  
+  .photo {
+    height:200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .flexWidth {
+    width: 100%;
+  }
+  .photo-text {
+    top: 75%;
+  }  
+  .photo {
+    height:200px;
+  }
 }
 
 .photo {

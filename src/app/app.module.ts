@@ -46,6 +46,7 @@ import { StatsBarChartComponent } from './components/stats-bar-chart/stats-bar-c
 import { ListingComponent } from './components/list/listing/listing.component';
 
 import { routes } from './routes';
+import { DetailsModalComponent } from './components/list/details-modal/details-modal.component';
 
 @NgModule({
   declarations: [
@@ -68,9 +69,10 @@ import { routes } from './routes';
     DetailsComponent,
     CarouselComponent,
     StatsBarChartComponent,
-    ListingComponent
+    ListingComponent,
+    DetailsModalComponent
   ],
-  entryComponents: [DialogCreateNewPropertyComponent, PropertyFormComponent, AuthComponent, DetailsComponent],
+  entryComponents: [DialogCreateNewPropertyComponent, PropertyFormComponent, AuthComponent, DetailsModalComponent],
   imports: [
     BrowserModule,
     FormsModule,
