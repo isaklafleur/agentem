@@ -28,14 +28,9 @@ const app = express();
 app.use(compression());
 mongoose.connect(process.env.MONGODB_URI);
 
-
-/*app.get('/*', (req, res, next) => {
-  res.setHeader('Last-Modified', (new Date()).toUTCString());
-  next();
-});*/
-
 // view engine setup
 app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
