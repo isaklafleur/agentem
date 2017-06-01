@@ -27,14 +27,15 @@ const app = express();
 app.use(compression(9));
 mongoose.connect(process.env.MONGODB_URI);
 
-
-app.get('*', (req, res, next) => {
-  if (req.headers['x-forwarded-proto'] !== 'https') {
-    res.redirect('https://agentem.herokuapp.com');
-  } else {
-    next();
-  } /* Continue to other routes if we're not redirecting */
-});
+if(process.env.BASE_URL!=="http://localhost:3000") {
+  app.get('*', (req, res, next) => {
+    if (req.headers['x-forwarded-proto'] !== 'https') {
+      res.redirect('https://agentem.herokuapp.com');
+    } else {
+      next();
+    } /* Continue to other routes if we're not redirecting */
+  });
+}
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
