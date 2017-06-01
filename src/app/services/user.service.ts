@@ -11,6 +11,7 @@ export class UserService implements CanActivate {
   user: any;
   public token: string;
   isAuth: EventEmitter<any> = new EventEmitter();
+
   activeUserId = '';
   favoriteAfterLogin: string;
   searchAfterLogin: any;

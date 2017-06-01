@@ -10,13 +10,15 @@ import {Router} from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   typeOffer = [
-    {value: 'buy', viewValue: 'Buy'},
-    {value: 'rent', viewValue: 'Rent'},
-    {value: 'new-dev', viewValue: 'New Development'}
+    {value: 'sale', viewValue: 'Buy'},
+    {value: 'rental', viewValue: 'Rent'},
+    {value: 'new', viewValue: 'New Development'}
   ];
   selectedValue: String = this.typeOffer[0].value;
 
-  constructor(public listingService: ListingService, public router: Router) { }
+  constructor(public listingService: ListingService, public router: Router) {
+    
+   }
 
   placeChanged(place) {
     if (place.name) {
@@ -25,7 +27,7 @@ export class HomeComponent implements OnInit {
   }
 
   navigate() {
-    console.log("here");
+    this.listingService.typesBRNHome = this.selectedValue
     this.router.navigate(['/search'])
   }
 

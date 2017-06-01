@@ -45,6 +45,10 @@ export class FilterListComponent implements OnInit {
 
   initFilter() {
     this.filter = this.listingService.filter;
+    if(this.listingService.typesBRNHome) {
+      this.filter.typesBRN = this.listingService.typesBRNHome;
+      delete this.listingService.typesBRNHome;
+    }
     if (!this.filter.propertyType) this.filter.propertyType = {};
   }
 
@@ -98,6 +102,6 @@ export class FilterListComponent implements OnInit {
 
   adjustMargin() {
     $('#search-listings').css('margin-top', '170px');
-    $('#left').css('margin-top', '100px');
+    $('#left').css('margin-top', '105px');
   }
 }
