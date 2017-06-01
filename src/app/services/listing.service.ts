@@ -21,7 +21,8 @@ export class ListingService {
   loadSearchBounds: any;
   loadSearchPolygon: any;
   listHoverItem: number;
-  onListingsLoaded$: EventEmitter<any>
+  onListingsLoaded$: EventEmitter<any>;
+  typesBRNHome:any;
 
 
   constructor( public http: Http, public userService: UserService ) {

@@ -9,16 +9,15 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./top-menu.component.css']
 })
 export class TopMenuComponent implements OnInit {
-  isAuth = this.userservice.token;
-  constructor(public dialog: MdDialog, public userservice: UserService) {
-    this.userservice.doSignIn$.subscribe(item => this.openDialog());
+  constructor(public dialog: MdDialog, public userService: UserService) {
+    this.userService.doSignIn$.subscribe(item => this.openDialog());
   }
 
   ngOnInit() {
   }
 
   logout() {
-    this.userservice.logout();
+    this.userService.logout();
   }
 
   openDialog() {
