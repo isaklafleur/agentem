@@ -550,12 +550,12 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <code>constructor(dialog: MdDialog, userservice: <a href="../injectables/UserService.html">UserService</a>)</code>
+                            <code>constructor(dialog: MdDialog, userService: <a href="../injectables/UserService.html">UserService</a>)</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/components/top-menu/top-menu.component.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/components/top-menu/top-menu.component.ts:11</a></div>
                             </td>
                         </tr>
     
@@ -584,7 +584,7 @@
     
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/components/top-menu/top-menu.component.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/components/top-menu/top-menu.component.ts:16</a></div>
                             </td>
                         </tr>
     
@@ -615,7 +615,7 @@
     
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/components/top-menu/top-menu.component.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/components/top-menu/top-menu.component.ts:19</a></div>
                             </td>
                         </tr>
     
@@ -646,7 +646,7 @@
     
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/components/top-menu/top-menu.component.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/components/top-menu/top-menu.component.ts:23</a></div>
                             </td>
                         </tr>
     
@@ -687,32 +687,12 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b> isAuth</b>
+                            <b> userService</b>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>isAuth:     <code>string</code>
-    </bcode>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/components/top-menu/top-menu.component.ts:12</a></div>
-                            </td>
-                        </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b> userservice</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <code>userservice:     <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
+                            <code>userService:     <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
     </bcode>
                         </td>
                     </tr>
@@ -734,16 +714,15 @@ import { UserService } from &#x27;../../services/user.service&#x27;;
   styleUrls: [&#x27;./top-menu.component.css&#x27;]
 })
 export class TopMenuComponent implements OnInit {
-  isAuth &#x3D; this.userservice.token;
-  constructor(public dialog: MdDialog, public userservice: UserService) {
-    this.userservice.doSignIn$.subscribe(item &#x3D;&gt; this.openDialog());
+  constructor(public dialog: MdDialog, public userService: UserService) {
+    this.userService.doSignIn$.subscribe(item &#x3D;&gt; this.openDialog());
   }
 
   ngOnInit() {
   }
 
   logout() {
-    this.userservice.logout();
+    this.userService.logout();
   }
 
   openDialog() {
@@ -769,9 +748,9 @@ export class TopMenuComponent implements OnInit {
         &lt;a class&#x3D;&quot;nav-link&quot; routerLink&#x3D;&quot;/stats&quot; routerLinkActive&#x3D;&quot;active&quot;&gt;Stats&lt;/a&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
-    &lt;a *ngIf&#x3D;&quot;isAuth&quot; class&#x3D;&quot;nav-link&quot; routerLink&#x3D;&quot;/dashboard&quot; routerLinkActive&#x3D;&quot;active&quot;&gt;Dashboard &lt;i class&#x3D;&quot;fa fa-user-circle-o&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;
-    &lt;button *ngIf&#x3D;&quot;!isAuth&quot; md-raised-button (click)&#x3D;&quot;openDialog()&quot; color&#x3D;&quot;accent&quot;&gt;Sign In&lt;/button&gt;
-    &lt;button *ngIf&#x3D;&quot;isAuth&quot; md-raised-button (click)&#x3D;&quot;logout()&quot; color&#x3D;&quot;accent&quot;&gt;Sign Out&lt;/button&gt;
+    &lt;a *ngIf&#x3D;&quot;this.userService?.user&quot; class&#x3D;&quot;nav-link&quot; routerLink&#x3D;&quot;/dashboard&quot; routerLinkActive&#x3D;&quot;active&quot;&gt;Dashboard &lt;i class&#x3D;&quot;fa fa-user-circle-o&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;button *ngIf&#x3D;&quot;!this.userService?.user&quot; md-raised-button (click)&#x3D;&quot;openDialog()&quot; color&#x3D;&quot;accent&quot;&gt;Sign In&lt;/button&gt;
+    &lt;button *ngIf&#x3D;&quot;this.userService?.user&quot; md-raised-button (click)&#x3D;&quot;logout()&quot; color&#x3D;&quot;accent&quot;&gt;Sign Out&lt;/button&gt;
   &lt;/div&gt;
 &lt;/nav&gt;</code></pre>
     </div>
@@ -799,7 +778,7 @@ export class TopMenuComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-info text-white">  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">    <span class="navbar-toggler-icon"></span>  </button>  <a class="navbar-brand" routerLink="/"><img class="logo" src="assets/AI_logo_2015.png" alt="Agente Imovel logo"></a>  <div class="collapse navbar-collapse" id="navbarSupportedContent">    <ul class="navbar-nav mr-auto">      <li class="nav-item">        <a class="nav-link" routerLink="/search" routerLinkActive="active">Search</a>      </li>            <li class="nav-item">        <a class="nav-link" routerLink="/stats" routerLinkActive="active">Stats</a>      </li>    </ul>    <a *ngIf="isAuth" class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard <i class="fa fa-user-circle-o" aria-hidden="true"></i></a>    <button *ngIf="!isAuth" md-raised-button (click)="openDialog()" color="accent">Sign In</button>    <button *ngIf="isAuth" md-raised-button (click)="logout()" color="accent">Sign Out</button>  </div></nav></div>'
+        var COMPONENT_TEMPLATE = '<div><nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-info text-white">  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">    <span class="navbar-toggler-icon"></span>  </button>  <a class="navbar-brand" routerLink="/"><img class="logo" src="assets/AI_logo_2015.png" alt="Agente Imovel logo"></a>  <div class="collapse navbar-collapse" id="navbarSupportedContent">    <ul class="navbar-nav mr-auto">      <li class="nav-item">        <a class="nav-link" routerLink="/search" routerLinkActive="active">Search</a>      </li>            <li class="nav-item">        <a class="nav-link" routerLink="/stats" routerLinkActive="active">Stats</a>      </li>    </ul>    <a *ngIf="this.userService?.user" class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard <i class="fa fa-user-circle-o" aria-hidden="true"></i></a>    <button *ngIf="!this.userService?.user" md-raised-button (click)="openDialog()" color="accent">Sign In</button>    <button *ngIf="this.userService?.user" md-raised-button (click)="logout()" color="accent">Sign Out</button>  </div></nav></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DetailsComponent', 'selector': 'app-details'},{'name': 'DetailsModalComponent', 'selector': 'app-details-modal'},{'name': 'DialogCreateNewPropertyComponent', 'selector': 'app-dialog-result-example-dialog'},{'name': 'FilterListComponent', 'selector': 'app-filter-list'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HomeRightComponent', 'selector': 'app-home-right'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListingComponent', 'selector': 'app-listing'},{'name': 'MapComponent', 'selector': 'app-map'},{'name': 'PropertyFormComponent', 'selector': 'app-property-form'},{'name': 'SearchComponent', 'selector': 'app-search'},{'name': 'StatsBarChartComponent', 'selector': 'app-stats-bar-chart'},{'name': 'TopMenuComponent', 'selector': 'app-top-menu'}];
     var DIRECTIVES = [{'name': 'GetEleDirective', 'selector': '[getRef]'},{'name': 'MouseWheelDirective', 'selector': '[mouseWheel]'}];
     var ACTUAL_COMPONENT = {'name': 'TopMenuComponent'};

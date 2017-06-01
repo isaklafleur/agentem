@@ -1,7 +1,7 @@
 ## Agente Imovel Demo SPA
 
 <h1 align=center>
-<img alt="Agente Imovel" src="https://raw.githubusercontent.com/isaklafleur/agentem/dev/public/agenteimovel.png">
+<img alt="Agente Imovel" src="https://raw.githubusercontent.com/isaklafleur/agentem/master/images/agenteimovel.png">
   <br>
   AgenteImovel SPA DEMO</h1>
 
@@ -20,11 +20,11 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 1. Generate a fresh set of the latest docs `npm run compodoc`
 2. Start a local server to open the docs `compodoc -s`
 
-Or see the latest generated docs [here](https://isaklafleur.github.io/agentem/docs/).
+Or see the latest generated docs [here](https://isaklafleur.github.io/agentem/documentation/).
 
 ## Bundle stats
 
-<img alt="Bundle Stats" src="https://raw.githubusercontent.com/isaklafleur/agentem/dev/public/bundle-stats.png">
+<img alt="Bundle Stats" src="https://raw.githubusercontent.com/isaklafleur/agentem/master/images/bundle-stats.png">
 
 ## Demo
 

@@ -86,7 +86,7 @@
                                     <a href="../components/AuthComponent.html" >AuthComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/DashboardComponent.html"  data-type="entity-link" class="active" >DashboardComponent</a>
+                                    <a href="../components/DashboardComponent.html" >DashboardComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/DetailsComponent.html" >DetailsComponent</a>
@@ -116,7 +116,7 @@
                                     <a href="../components/MapComponent.html" >MapComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/PropertyFormComponent.html" >PropertyFormComponent</a>
+                                    <a href="../components/PropertyFormComponent.html"  data-type="entity-link" class="active" >PropertyFormComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/SearchComponent.html" >SearchComponent</a>
@@ -309,7 +309,7 @@
                                            <a href="../components/AuthComponent.html" >AuthComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/DashboardComponent.html"  data-type="entity-link" class="active" >DashboardComponent</a>
+                                           <a href="../components/DashboardComponent.html" >DashboardComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/DetailsComponent.html" >DetailsComponent</a>
@@ -339,7 +339,7 @@
                                            <a href="../components/MapComponent.html" >MapComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/PropertyFormComponent.html" >PropertyFormComponent</a>
+                                           <a href="../components/PropertyFormComponent.html"  data-type="entity-link" class="active" >PropertyFormComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/SearchComponent.html" >SearchComponent</a>
@@ -466,7 +466,7 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>DashboardComponent</li>
+  <li>PropertyFormComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -491,7 +491,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/components/dashboard/dashboard.component.ts</code>
+    <code>src/app/components/dashboard/property-form/property-form.component.ts</code>
 </p>
 
 
@@ -510,10 +510,6 @@
         <tbody>
 
 
-            <tr>
-                <td class="col-md-3">encapsulation</td>
-                <td class="col-md-9"><code>ViewEncapsulation.None</code></td>
-            </tr>
 
 
 
@@ -526,19 +522,19 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>app-dashboard</code></td>
+                <td class="col-md-9"><code>app-property-form</code></td>
             </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>dashboard.component.css</code></td>
+                <td class="col-md-9"><code>property-form.component.css</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./dashboard.component.html</code></td>
+                <td class="col-md-9"><code>./property-form.component.html</code></td>
             </tr>
 
 
@@ -546,6 +542,25 @@
     </table>
 </section>
 
+    <section>
+        <h3 id="inputs">Inputs</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>name</code>
+                        </td>
+                        <td class="col-md-10">
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/components/dashboard/property-form/property-form.component.ts:15</a></div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+    </section>
 
 
     <section>
@@ -554,12 +569,12 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <code>constructor(dialog: MdDialog, userservice: <a href="../injectables/UserService.html">UserService</a>, listingService: <a href="../injectables/ListingService.html">ListingService</a>, router: <a href="https://angular.io/docs/ts/latest/api/router/index/Router-class.html" target="_blank">Router</a>)</code>
+                            <code>constructor(dialogRef: <a href="../components/PropertyFormComponent.html">MdDialogRef<PropertyFormComponent></a>, dialog: MdDialog, userService: <a href="../injectables/UserService.html">UserService</a>, listingService: <a href="../injectables/ListingService.html">ListingService</a>)</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:21</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/components/dashboard/property-form/property-form.component.ts:35</a></div>
                             </td>
                         </tr>
     
@@ -576,19 +591,19 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b> openDialog</b>
+                            <b> showFile</b>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-    <code>openDialog()</code>
+    <code>showFile(item: any, index: any)</code>
                         </td>
                     </tr>
     
     
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/components/dashboard/property-form/property-form.component.ts:29</a></div>
                             </td>
                         </tr>
     
@@ -607,19 +622,22 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b> saveProfile</b>
+                            <b><span class="modifier">Static</span> fileOverBase</b>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-    <code>saveProfile(formValid: any)</code>
+                                <span class="modifier-icon method fa fa-play export">
+                                    <span class="fa fa-export"></span>
+                                </span>
+                            <code>fileOverBase(e: any)</code>
                         </td>
                     </tr>
     
     
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/components/dashboard/property-form/property-form.component.ts:33</a></div>
                             </td>
                         </tr>
     
@@ -650,7 +668,7 @@
     
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:53</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/components/dashboard/property-form/property-form.component.ts:45</a></div>
                             </td>
                         </tr>
     
@@ -669,205 +687,19 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b> loadUser</b>
+                            <b> doSubmit</b>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-    <code>loadUser(user: any)</code>
+    <code>doSubmit(formValid: any)</code>
                         </td>
                     </tr>
     
     
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:61</a></div>
-                            </td>
-                        </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-    
-                                <div class="io-description">
-                                    <b>Returns : </b>    <code>void</code>
-    
-                                </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b> doPreLogin</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-    <code>doPreLogin()</code>
-                        </td>
-                    </tr>
-    
-    
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:67</a></div>
-                            </td>
-                        </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-    
-                                <div class="io-description">
-                                    <b>Returns : </b>    <code>void</code>
-    
-                                </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b> getUserListings</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-    <code>getUserListings()</code>
-                        </td>
-                    </tr>
-    
-    
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:78</a></div>
-                            </td>
-                        </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-    
-                                <div class="io-description">
-                                    <b>Returns : </b>    <code>void</code>
-    
-                                </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b> deleteFavorite</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-    <code>deleteFavorite(listing: any)</code>
-                        </td>
-                    </tr>
-    
-    
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:84</a></div>
-                            </td>
-                        </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-    
-                                <div class="io-description">
-                                    <b>Returns : </b>    <code>void</code>
-    
-                                </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b> deleteSavedSearch</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-    <code>deleteSavedSearch(time: any)</code>
-                        </td>
-                    </tr>
-    
-    
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:88</a></div>
-                            </td>
-                        </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-    
-                                <div class="io-description">
-                                    <b>Returns : </b>    <code>void</code>
-    
-                                </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b> openSearch</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-    <code>openSearch(search: any)</code>
-                        </td>
-                    </tr>
-    
-    
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:92</a></div>
-                            </td>
-                        </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-    
-                                <div class="io-description">
-                                    <b>Returns : </b>    <code>void</code>
-    
-                                </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b> deleteUserListing</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-    <code>deleteUserListing(listing: any)</code>
-                        </td>
-                    </tr>
-    
-    
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:97</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/components/dashboard/property-form/property-form.component.ts:57</a></div>
                             </td>
                         </tr>
     
@@ -908,6 +740,121 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
+                            <b> dialogRef</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>dialogRef:     <code><a href="../components/PropertyFormComponent.html" target="_self" >MdDialogRef&lt;PropertyFormComponent&gt;</a></code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> el</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>el:     <code><a href="https://angular.io/docs/ts/latest/api/core/index/ElementRef-class.html" target="_blank" >ElementRef</a></code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Decorators : </i><code>ViewChild</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/components/dashboard/property-form/property-form.component.ts:16</a></div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> filesSent</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>filesSent:     <code>number</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>0</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/components/dashboard/property-form/property-form.component.ts:20</a></div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b><span class="modifier">Static</span> hasAnotherDropZoneOver</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-export"></span><code>hasAnotherDropZoneOver:     <code>boolean</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>false</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/components/dashboard/property-form/property-form.component.ts:27</a></div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b><span class="modifier">Static</span> hasBaseDropZoneOver</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-export"></span><code>hasBaseDropZoneOver:     <code>boolean</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>false</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/components/dashboard/property-form/property-form.component.ts:26</a></div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
                             <b> listingService</b>
                         </td>
                     </tr>
@@ -923,15 +870,40 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b> router</b>
+                            <b> loginForm</b>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>router:     <code><a href="https://angular.io/docs/ts/latest/api/router/index/Router-class.html" target="_blank" >Router</a></code>
+                            <code>loginForm:     <code>any</code>
     </bcode>
                         </td>
                     </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/components/dashboard/property-form/property-form.component.ts:21</a></div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> newProperty</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>newProperty:     <code>any</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/components/dashboard/property-form/property-form.component.ts:18</a></div>
+                            </td>
+                        </tr>
                 </tbody>
             </table>
             <table class="table table-sm table-bordered">
@@ -949,27 +921,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:19</a></div>
-                            </td>
-                        </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b> submitSuccess</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <code>submitSuccess:     <code>string</code>
-    </bcode>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/components/dashboard/property-form/property-form.component.ts:23</a></div>
                             </td>
                         </tr>
                 </tbody>
@@ -994,7 +946,7 @@
                         </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/components/dashboard/property-form/property-form.component.ts:22</a></div>
                             </td>
                         </tr>
                 </tbody>
@@ -1003,18 +955,18 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b> userListings</b>
+                            <b> token</b>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>userListings:     <code>any[]</code>
+                            <code>token:     <code>number</code>
     </bcode>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:21</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/components/dashboard/property-form/property-form.component.ts:19</a></div>
                             </td>
                         </tr>
                 </tbody>
@@ -1023,18 +975,18 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b> userProfile</b>
+                            <b><span class="modifier">Static</span> uploader</b>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>userProfile:     <code>any</code>
+                            <span class="modifier-icon fa fa-export"></span><code>uploader:     <code>FileUploader</code>
     </bcode>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/components/dashboard/dashboard.component.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/dashboard/property-form/property-form.component.ts:25</a></div>
                             </td>
                         </tr>
                 </tbody>
@@ -1043,12 +995,12 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b> userservice</b>
+                            <b> userService</b>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>userservice:     <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
+                            <code>userService:     <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
     </bcode>
                         </td>
                     </tr>
@@ -1059,202 +1011,275 @@
 
 
     <div class="tab-pane fade tab-source-code" id="source">
-        <pre class="line-numbers"><code class="language-typescript">import { Component, OnInit, ViewEncapsulation } from &#x27;@angular/core&#x27;;
-import { Router } from &#x27;@angular/router&#x27;;
-import { MdTabsModule, MdInputModule, MdSelectModule, MdDialog } from &#x27;@angular/material&#x27;;
-
-import { PropertyFormComponent } from &#x27;./property-form/property-form.component&#x27;;
-import { UserService } from &#x27;../../services/user.service&#x27;;
-import { ListingService } from &#x27;../../services/listing.service&#x27;;
-import { DetailsComponent } from &#x27;../list/details/details.component&#x27;;
+        <pre class="line-numbers"><code class="language-typescript">import { Component, OnInit, Input, Output, ViewChild, ElementRef, EventEmitter, AfterViewInit } from &#x27;@angular/core&#x27;;
+import { MdDialog, MdDialogRef, MdInputModule, MdRadioModule } from &#x27;@angular/material&#x27;;
+import { UserService } from &#x27;../../../services/user.service&#x27;;
+import { ListingService } from &#x27;../../../services/listing.service&#x27;;
+import { FileUploader, FileSelectDirective } from &#x27;ng2-file-upload&#x27;;
+import { environment } from &#x27;../../../../environments/environment&#x27;;
+declare var $: any;
 
 @Component({
-  selector: &#x27;app-dashboard&#x27;,
-  templateUrl: &#x27;./dashboard.component.html&#x27;,
-  encapsulation: ViewEncapsulation.None,
-  styleUrls: [&#x27;./dashboard.component.css&#x27;]
+  selector: &#x27;app-property-form&#x27;,
+  templateUrl: &#x27;./property-form.component.html&#x27;,
+  styleUrls: [&#x27;./property-form.component.css&#x27;]
 })
-export class DashboardComponent implements OnInit {
-  userProfile: any &#x3D; {};
+export class PropertyFormComponent implements OnInit {
+  @Input() name;
+  @ViewChild(&#x27;selectElem&#x27;) el: ElementRef;
+
+  newProperty: any &#x3D; {};
+  token: number &#x3D; Date.now();
+  filesSent &#x3D; 0;
+  loginForm: any;
   submittedInvalid &#x3D; false;
   submitError: string;
-  submitSuccess: string;
-  userListings: any[];
 
-  constructor(public dialog: MdDialog,
-    public userservice: UserService,
-    public listingService: ListingService,
-    public router: Router) { }
+  public uploader: FileUploader;
+  public hasBaseDropZoneOver &#x3D; false;
+  public hasAnotherDropZoneOver &#x3D; false;
 
-  openDialog() {
-    const dialogRef &#x3D; this.dialog.open(PropertyFormComponent, { width: &#x27;80%&#x27;, height: &#x27;100%&#x27;, position: &#x27;right&#x27; });
-    dialogRef.afterClosed().subscribe(result &#x3D;&gt; {
-      if (result &#x3D;&#x3D;&#x3D; &#x27;submitted&#x27;) {
-        this.getUserListings();
-      }
-    });
+  showFile(item, index) {
+    readURL(item, index);
   }
 
-  saveProfile(formValid) {
+  public fileOverBase(e: any): void {
+    this.hasBaseDropZoneOver &#x3D; e;
+  }
+
+  constructor(public dialogRef: MdDialogRef&lt;PropertyFormComponent&gt;, 
+              public dialog: MdDialog,
+              public userService: UserService,
+              public listingService: ListingService
+              ) {
+                this.uploader &#x3D; new FileUploader({url: &#x60;${environment.BASE_URL}/api/listings/${this.userService.user._id}&#x60;});
+               }
+
+  ngOnInit() {
+     this.uploader.onBuildItemForm &#x3D; (item, form) &#x3D;&gt; {
+        // console.log(&#x27;onBuildItemForm&#x27;);
+        form.append(&#x27;token&#x27;, this.token);
+        if (this.filesSent &#x3D;&#x3D;&#x3D; 0) {
+          form.append(&#x27;newListing&#x27;, true)
+          form.append(&#x27;property&#x27;, JSON.stringify(this.newProperty));
+        }
+        this.filesSent++;
+      };
+  }
+
+  doSubmit(formValid) {
     if (!formValid) {
       this.submitError &#x3D; &#x27;Please fill out the form&#x27;;
       this.submittedInvalid &#x3D; true;
     } else {
-      // console.log(&#x27;myform&#x27;, myForm);
-      this.userservice.updateUser().subscribe(result &#x3D;&gt; {
-        if (result.error) {
-          console.log(&#x27;error:&#x27;, result.err);
-        } else {
-          this.submitSuccess &#x3D; &#x27;Updates where stored successfully.&#x27;
-        }
-      });
+      if (this.uploader.queue.length &#x3D;&#x3D;&#x3D; 0) {
+        this.submitError &#x3D; &#x27;Please upload photos&#x27;;
+        this.submittedInvalid &#x3D; true;
+      } else {
+        this.uploader.uploadAll();
+        const dialogResult &#x3D; this.dialog.open(DialogCreateNewPropertyComponent, {width: &#x27;30%&#x27;, height: &#x27;16%&#x27;})
+        dialogResult.afterClosed().subscribe(result &#x3D;&gt; {
+          this.dialogRef.close(&#x27;submitted&#x27;)
+        });
+      }
     }
   }
+}
 
+@Component({
+  selector: &#x27;app-dialog-result-example-dialog&#x27;,
+  template: &#x60;
+&lt;div md-dialog-content&gt;Listing has been created...&lt;/div&gt;
+&#x60;,
+})
+
+export class DialogCreateNewPropertyComponent implements OnInit {
+  constructor(public dialogRef: MdDialogRef&lt;DialogCreateNewPropertyComponent&gt;) {}
   ngOnInit() {
-    this.userProfile &#x3D; this.userservice.getUser(this.userservice.activeUserId).subscribe((user) &#x3D;&gt; {
-      this.loadUser(user);
-      this.doPreLogin();
-      this.getUserListings();
-    });
+     setTimeout( () &#x3D;&gt; this.dialogRef.close(&#x27;submitted&#x27;), 1000);
   }
+}
 
-  loadUser(user) {
-    this.userProfile &#x3D; user;
-    this.userProfile.favorites.forEach(fav&#x3D;&gt;fav.isFavorite &#x3D; true);
-    this.userservice.user &#x3D; this.userProfile;
-  }
-  
-  doPreLogin() {
-    if (this.userservice.favoriteAfterLogin) {
-      this.userservice.saveFavorite(this.userservice.favoriteAfterLogin);
-      delete this.userservice.favoriteAfterLogin;
+function readURL(input, index) {
+    if ($(&#x27;#fileImage&#x27; + index).attr(&#x27;src&#x27;) &#x3D;&#x3D;&#x3D; &#x27;#&#x27;) {
+      const reader &#x3D; new FileReader();
+      reader.onload &#x3D; function (e) {
+          $(&#x27;#fileImage&#x27; + index).attr(&#x27;src&#x27;, (e.target as any).result);
+      }
+      $(&#x27;#fileImage&#x27; + index).attr(&#x27;src&#x27;, &#x27;##&#x27;)
+      reader.readAsDataURL(input._file);
     }
-    if (this.userservice.searchAfterLogin) {
-      this.userservice.saveSearch(this.userservice.searchAfterLogin);
-      delete this.userservice.searchAfterLogin;
-    }
-  }
-
-  getUserListings() {
-    this.listingService.getUserListings().subscribe(listings &#x3D;&gt; {
-      this.userListings &#x3D; listings.listings;
-    });
-  }
-
-  deleteFavorite(listing) {
-    this.userservice.deleteFavorite(listing);
-  }
-
-  deleteSavedSearch(time) {
-    this.userservice.deleteSavedSearch(time);
-  }
-
-  openSearch(search) {
-    this.listingService.loadSearch(search);
-    this.router.navigate([&#x27;/search&#x27;]);
-  }
-
-  deleteUserListing(listing) {
-    this.listingService.deleteListing(listing._id).subscribe(res &#x3D;&gt; {
-      this.getUserListings();
-    });
-  }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade" id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container-fluid&quot;&gt;
-  &lt;md-tab-group&gt;
-     &lt;md-tab label&#x3D;&quot;Favorites&quot;&gt;
-      &lt;h5&gt;Saved Listings&lt;/h5&gt;
-
-      &lt;app-listing *ngFor&#x3D;&quot;let listing of userProfile.favorites; let i &#x3D; index&quot; 
-          [fixedWidth]&#x3D;&quot;true&quot; 
-          [listing]&#x3D;&quot;listing&quot; 
-          [index]&#x3D;&quot;i&quot; 
-          [hasDelete]&#x3D;&quot;true&quot; 
-          (onDelete)&#x3D;&quot;deleteFavorite($event)&quot;&gt;
-      &lt;/app-listing&gt;
-
-        &lt;div class&#x3D;&quot;saved-search&quot;&gt;
-          &lt;p&gt;
-          &lt;h5&gt;Saved Searches&lt;/h5&gt;
-          &lt;table class&#x3D;&quot;table table-striped&quot;&gt;
-            &lt;thead&gt;
-              &lt;tr&gt;
-                &lt;th&gt;Search&lt;/th&gt;
-                &lt;th&gt;Time&lt;/th&gt;
-                &lt;th&gt;Open&lt;/th&gt;
-                &lt;th&gt;Delete&lt;/th&gt;
-              &lt;/tr&gt;
-            &lt;/thead&gt;
-            &lt;tbody&gt;
-              &lt;tr *ngFor&#x3D;&quot;let search of userProfile.savedSearches&quot;&gt;
-                &lt;td&gt;
-                  &lt;span *ngIf&#x3D;&quot;search.city&quot;&gt;City: {{search.city}}&lt;br&gt;&lt;/span&gt;
-                  &lt;span *ngIf&#x3D;&quot;search.neighbourhood&quot;&gt;Neighbourhood: {{search.neighbourhood}}&lt;br&gt;&lt;/span&gt;
-                  &lt;span *ngIf&#x3D;&quot;search.street&quot;&gt;Street: {{search.street}}&lt;br&gt;&lt;/span&gt;
-                  &lt;span *ngIf&#x3D;&quot;search.typesBRN&quot;&gt;Type: {{search.typesBRN}}&lt;br&gt;&lt;/span&gt;
-                  &lt;span *ngIf&#x3D;&quot;search.maxPrice&quot;&gt;Max.price: {{search.minPrice}}&lt;br&gt;&lt;/span&gt;
-                  &lt;span *ngIf&#x3D;&quot;search.maxPrice&quot;&gt;Max.price: {{search.maxPrice}}&lt;br&gt;&lt;/span&gt;  
-                  &lt;span *ngIf&#x3D;&quot;search.bedrooms&quot;&gt;Bedrooms: {{search.bedrooms}}&lt;br&gt;&lt;/span&gt;   
-                  &lt;span *ngIf&#x3D;&quot;search.propertyType&quot;&gt;Property types: {{search.propertyType | joinCommaKeys}}&lt;br&gt;&lt;/span&gt; 
-                  &lt;span *ngIf&#x3D;&quot;search.polygon&quot;&gt;Search area&lt;br&gt;&lt;/span&gt;    
-                &lt;/td&gt;
-                &lt;td&gt;{{search.time | date:&#x27;short&#x27;}}&lt;/td&gt;
-                &lt;td&gt;&lt;i (click)&#x3D;&quot;openSearch(search)&quot; class&#x3D;&quot;fa fa-search fa-2x cursor-pointer&quot; &gt;&lt;/i&gt;&lt;/td&gt;
-                &lt;td&gt;&lt;i (click)&#x3D;&quot;deleteSavedSearch(search.time)&quot; class&#x3D;&quot;fa fa-trash-o fa-2x cursor-pointer&quot; &gt;&lt;/i&gt; &lt;/td&gt;
-              &lt;/tr&gt; 
-            &lt;/tbody&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;modal-header offset-top&quot;&gt;
+  &lt;h4 class&#x3D;&quot;modal-title&quot;&gt;Create listing&lt;/h4&gt;
+  &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;close&quot; aria-label&#x3D;&quot;Close&quot; (click)&#x3D;&quot;dialogRef.close(&#x27;Option 1&#x27;)&quot;&gt;
+        &lt;span aria-hidden&#x3D;&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+      &lt;/button&gt;
+&lt;/div&gt;
+&lt;div class&#x3D;&#x27;containter&#x27;&gt;
+  &lt;div class&#x3D;&#x27;row&#x27;&gt;
+    &lt;div class&#x3D;&quot;col-md-7&quot;&gt;
+      &lt;div class&#x3D;&quot;modal-body&quot;&gt;
+        &lt;form #myForm&#x3D;&quot;ngForm&quot;&gt;
+          &lt;div class&#x3D;&quot;form-group&quot;&gt;
+            &lt;md-select placeholder&#x3D;&quot;Listing type&quot; required style&#x3D;&quot;width:200px; margin-top:3%&quot; [(ngModel)]&#x3D;&quot;newProperty.listingType&quot; name&#x3D;&quot;listingTypes&quot;&gt;
+              &lt;md-option value&#x3D;&#x27;rental&#x27;&gt;
+                Rental
+              &lt;/md-option&gt;
+              &lt;md-option value&#x3D;&#x27;sale&#x27;&gt;
+                Sale
+              &lt;/md-option&gt;
+              &lt;md-option value&#x3D;&#x27;new&#x27;&gt;
+                New construction
+              &lt;/md-option&gt;
+            &lt;/md-select&gt;
+            &lt;md-select style&#x3D;&quot;width:200px&quot; required placeholder&#x3D;&quot;Property type&quot; [(ngModel)]&#x3D;&quot;newProperty.propertyType&quot; name&#x3D;&quot;propertyTypes&quot;&gt;
+              &lt;md-option value&#x3D;&#x27;apartment&#x27;&gt;
+                Apartment &amp;nbsp; &amp;nbsp; &amp;nbsp;
+              &lt;/md-option&gt;
+              &lt;md-option value&#x3D;&#x27;house&#x27;&gt;
+                House
+              &lt;/md-option&gt;
+              &lt;md-option value&#x3D;&#x27;villa&#x27;&gt;
+                Villa
+              &lt;/md-option&gt;
+            &lt;/md-select&gt;
+          &lt;/div&gt;
+          $
+          &lt;md-input-container&gt;
+            &lt;input mdInput price&#x3D;&quot;ngModel&quot; pattern&#x3D;&quot;\d+&quot; placeholder&#x3D;&quot;Price&quot; size&#x3D;&quot;15&quot; name&#x3D;&quot;price&quot; [(ngModel)]&#x3D;&quot;newProperty.price&quot; required&gt;
+            &lt;md-error&gt;Please enter correct price&lt;/md-error&gt;
+          &lt;/md-input-container&gt;
+          &lt;md-input-container&gt;
+            &lt;input mdInput placeholder&#x3D;&quot;Square meters&quot; size&#x3D;&quot;14&quot; required name&#x3D;&quot;size&quot; [(ngModel)]&#x3D;&quot;newProperty.size&quot;&gt;
+            &lt;md-error&gt;Please enter correct size&lt;/md-error&gt;
+          &lt;/md-input-container&gt;
+          &lt;br&gt;          
+          &lt;md-input-container&gt;
+            &lt;input mdInput placeholder&#x3D;&quot;Suites&quot; pattern&#x3D;&quot;\d+&quot; size&#x3D;&quot;10&quot; name&#x3D;&quot;suites&quot; [(ngModel)]&#x3D;&quot;newProperty.suites&quot;&gt;
+            &lt;md-error&gt;Please enter number&lt;/md-error&gt;
+          &lt;/md-input-container&gt;
+          &lt;md-input-container&gt;
+            &lt;input mdInput placeholder&#x3D;&quot;Bedrooms&quot; pattern&#x3D;&quot;\d+&quot; size&#x3D;&quot;10&quot; name&#x3D;&quot;bedrooms&quot; [(ngModel)]&#x3D;&quot;newProperty.bedrooms&quot;&gt;
+            &lt;md-error&gt;Please enter number&lt;/md-error&gt;
+          &lt;/md-input-container&gt;
+          &lt;md-input-container&gt;
+            &lt;input mdInput placeholder&#x3D;&quot;Bathrooms&quot; pattern&#x3D;&quot;\d+&quot; size&#x3D;&quot;10&quot; name&#x3D;&quot;bathrooms&quot; [(ngModel)]&#x3D;&quot;newProperty.bathrooms&quot;&gt;
+            &lt;md-error&gt;Please enter number&lt;/md-error&gt;
+          &lt;/md-input-container&gt;          
+          &lt;md-input-container&gt;
+            &lt;input mdInput placeholder&#x3D;&quot;Parking spots&quot; pattern&#x3D;&quot;\d+&quot; size&#x3D;&quot;10&quot; name&#x3D;&quot;parking&quot; [(ngModel)]&#x3D;&quot;newProperty.parking&quot;&gt;
+            &lt;md-error&gt;Please enter number&lt;/md-error&gt;
+          &lt;/md-input-container&gt;
+          &lt;br&gt;
+          &lt;table cellspacing&#x3D;&quot;0&quot;&gt;
+            &lt;tr&gt;
+              &lt;td&gt;
+                &lt;md-input-container&gt;
+                  &lt;input mdInput placeholder&#x3D;&quot;City&quot; name&#x3D;&quot;city&quot; [(ngModel)]&#x3D;&quot;newProperty.city&quot;&gt;
+                &lt;/md-input-container&gt;
+              &lt;/td&gt;
+              &lt;td&gt;
+                &lt;md-input-container class&#x3D;&quot;example-full-width&quot;&gt;
+                  &lt;input mdInput #postalCode maxlength&#x3D;&quot;8&quot; size&#x3D;&quot;8&quot; placeholder&#x3D;&quot;Zip&quot; [(ngModel)]&#x3D;&quot;newProperty.zip&quot; name&#x3D;&quot;zip&quot;&gt;
+                  &lt;md-hint align&#x3D;&quot;end&quot;&gt;{{postalCode.value.length}} / 8&lt;/md-hint&gt;
+                &lt;/md-input-container&gt;
+              &lt;/td&gt;
+              &lt;td&gt;
+                &lt;md-input-container&gt;
+                  &lt;input mdInput placeholder&#x3D;&quot;Neighbourhood&quot; name&#x3D;&quot;neighbourhood&quot; [(ngModel)]&#x3D;&quot;newProperty.neighbourhood&quot;&gt;
+                &lt;/md-input-container&gt;
+              &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;
+                &lt;md-input-container&gt;
+                  &lt;input mdInput placeholder&#x3D;&quot;Street&quot; name&#x3D;&quot;street&quot; [(ngModel)]&#x3D;&quot;newProperty.street&quot;&gt;
+                &lt;/md-input-container&gt;
+              &lt;/td&gt;
+              &lt;td&gt;
+                &lt;md-input-container&gt;
+                  &lt;input mdInput placeholder&#x3D;&quot;Number&quot; size&#x3D;&quot;8&quot; name&#x3D;&quot;streetNumber&quot; [(ngModel)]&#x3D;&quot;newProperty.streetNumber&quot;&gt;
+                &lt;/md-input-container&gt;
+              &lt;/td&gt;
+              &lt;td style&#x3D;&quot;text-align: right&quot;&gt;
+                &lt;md-input-container&gt;
+                  &lt;input mdInput placeholder&#x3D;&quot;Broker ID&quot; size&#x3D;&quot;10&quot; name&#x3D;&quot;broker&quot; [(ngModel)]&#x3D;&quot;newProperty.brokerId&quot;&gt;
+                &lt;/md-input-container&gt;
+              &lt;/td&gt;
+            &lt;/tr&gt;
           &lt;/table&gt;
+          &lt;md-input-container class&#x3D;&quot;description&quot;&gt;
+            &lt;textarea rows&#x3D;&quot;4&quot; mdInput placeholder&#x3D;&quot;Description&quot; name&#x3D;&quot;description&quot; [(ngModel)]&#x3D;&quot;newProperty.description&quot;&gt;&lt;/textarea&gt;
+          &lt;/md-input-container&gt;
+        &lt;/form&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;col-md-5&quot;&gt;
+      &lt;div class&#x3D;&quot;container modal-body&quot;&gt;
+        &lt;div class&#x3D;&quot;row&quot;&gt;
+          &lt;div class&#x3D;&quot;col-md-12&quot;&gt;
+            &lt;h4 class&#x3D;&quot;modal-title&quot;&gt;Drag files&lt;/h4&gt;
+            &lt;div ng2FileDrop style&#x3D;&quot;height: 100px&quot; [ngClass]&#x3D;&quot;{&#x27;nv-file-over&#x27;: hasBaseDropZoneOver}&quot; (fileOver)&#x3D;&quot;fileOverBase($event)&quot;
+              [uploader]&#x3D;&quot;uploader&quot; class&#x3D;&quot;well my-drop-zone&quot;&gt;
+            &lt;/div&gt;
+            &lt;input #selectElem type&#x3D;&quot;file&quot; id&#x3D;&quot;fileUpload&quot; name&#x3D;&quot;fileUpload&quot; class&#x3D;&quot;inputfile&quot; ng2FileSelect [uploader]&#x3D;&quot;uploader&quot; multiple
+            /&gt;
+            &lt;label for&#x3D;&quot;fileUpload&quot; class&#x3D;&quot;btn btn-primary&quot;&gt;Choose files...&lt;/label&gt;
+          &lt;/div&gt;
         &lt;/div&gt;
-    &lt;/md-tab&gt;
+        &lt;div class&#x3D;&quot;row&quot;&gt;
+          &lt;div class&#x3D;&quot;col-md-12&quot; style&#x3D;&quot;margin-bottom: 40px&quot;&gt;
+            &lt;table class&#x3D;&quot;table&quot;&gt;
+              &lt;tbody&gt;
+                &lt;tr *ngFor&#x3D;&quot;let item of uploader.queue; let i &#x3D; index&quot;&gt;
+                  &lt;img src&#x3D;&quot;#&quot; class&#x3D;&quot;file-image&quot; id&#x3D;&quot;fileImage{{i}}&quot;&gt;{{showFile(item, i)}}
 
-  &lt;md-tab label&#x3D;&quot;My Listings&quot;&gt;
-      &lt;div&gt;
-      &lt;button md-raised-button color&#x3D;&quot;primary&quot; (click)&#x3D;&quot;openDialog()&quot;&gt;Add a new Listing!&lt;/button&gt;
+                  &lt;td *ngIf&#x3D;&quot;uploader.isHTML5&quot;&gt;
+                    &lt;div class&#x3D;&quot;progress&quot; style&#x3D;&quot;margin-bottom: 0;&quot;&gt;
+                      &lt;div class&#x3D;&quot;progress-bar&quot; role&#x3D;&quot;progressbar&quot; [ngStyle]&#x3D;&quot;{ &#x27;width&#x27;: item.progress + &#x27;%&#x27; }&quot;&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                  &lt;/td&gt;
+                  &lt;td class&#x3D;&quot;text-center&quot;&gt;
+                    &lt;span *ngIf&#x3D;&quot;item.isSuccess&quot;&gt;&lt;i class&#x3D;&quot;glyphicon glyphicon-ok&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+                    &lt;span *ngIf&#x3D;&quot;item.isCancel&quot;&gt;&lt;i class&#x3D;&quot;glyphicon glyphicon-ban-circle&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+                    &lt;span *ngIf&#x3D;&quot;item.isError&quot;&gt;&lt;i class&#x3D;&quot;glyphicon glyphicon-remove&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+                  &lt;/td&gt;
+                  &lt;td nowrap&gt;
+                    &lt;button type&#x3D;&quot;button&quot; md-raised-button (click)&#x3D;&quot;item.remove()&quot;&gt;
+                            &lt;span class&#x3D;&quot;glyphicon glyphicon-trash&quot;&gt;&lt;/span&gt; Remove
+                        &lt;/button&gt;
+                  &lt;/td&gt;
+                &lt;/tr&gt;
+              &lt;/tbody&gt;
+            &lt;/table&gt;
+            &lt;div&gt;
+              &lt;div&gt;
+                Queue progress:
+                &lt;div class&#x3D;&quot;progress&quot; style&#x3D;&quot;&quot;&gt;
+                  &lt;div class&#x3D;&quot;progress-bar&quot; role&#x3D;&quot;progressbar&quot; [ngStyle]&#x3D;&quot;{ &#x27;width&#x27;: uploader.progress + &#x27;%&#x27; }&quot;&gt;&lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
       &lt;/div&gt;
-      &lt;p&gt;
-    &lt;app-listing *ngFor&#x3D;&quot;let listing of userListings; let i &#x3D; index&quot; 
-        [isUserListing]&#x3D;&quot;true&quot; 
-        [fixedWidth]&#x3D;&quot;true&quot; 
-        [listing]&#x3D;&quot;listing&quot; 
-        [index]&#x3D;&quot;i&quot; 
-        [hasDelete]&#x3D;&quot;true&quot; 
-        (onDelete)&#x3D;&quot;deleteUserListing($event)&quot;&gt;
-    &lt;/app-listing&gt;
-  &lt;/md-tab&gt;
-
-    &lt;md-tab label&#x3D;&quot;My Profile&quot;&gt;
-      &lt;div class&#x3D;&quot;main&quot;&gt;
-        &lt;form #myForm&#x3D;&quot;ngForm&quot; novalidate&gt;
-          &lt;md-input-container&gt;
-            &lt;input mdInput type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Your Full Name&quot; [(ngModel)]&#x3D;&quot;userProfile.fullName&quot; name&#x3D;&quot;fullName&quot;&gt;
-          &lt;/md-input-container&gt;&lt;br&gt;
-          &lt;md-input-container&gt;
-            &lt;input mdInput type&#x3D;&quot;text&quot; pattern&#x3D;&quot;\d+&quot; placeholder&#x3D;&quot;Phone&quot; [(ngModel)]&#x3D;&quot;userProfile.phoneNumber&quot; name&#x3D;&quot;phoneNumber&quot;&gt;
-            &lt;md-error&gt;Please enter only digits&lt;/md-error&gt;
-          &lt;/md-input-container&gt;&lt;br&gt;
-          &lt;md-select placeholder&#x3D;&quot;User Type&quot; [(ngModel)]&#x3D;&quot;userProfile.role&quot; name&#x3D;&quot;role&quot;&gt;
-            &lt;md-option value&#x3D;&quot;home_seller&quot;&gt;Home Seller&lt;/md-option&gt;
-            &lt;md-option value&#x3D;&quot;both_buyer_and_seller&quot;&gt;Both Buyer and Seller&lt;/md-option&gt;
-            &lt;md-option value&#x3D;&quot;renter&quot;&gt;Renter&lt;/md-option&gt;
-            &lt;md-option value&#x3D;&quot;home_owner&quot;&gt;Home Owner&lt;/md-option&gt;
-            &lt;md-option value&#x3D;&quot;renter_rentee&quot;&gt;Renter/Rentee&lt;/md-option&gt;
-            &lt;md-option value&#x3D;&quot;real_estate_pro&quot;&gt;Real Estate Pro&lt;/md-option&gt;
-            &lt;md-option value&#x3D;&quot;other&quot;&gt;Other/Just Looking&lt;/md-option&gt;
-          &lt;/md-select&gt;&lt;br&gt;&lt;br&gt;
-          &lt;button [disabled]&#x3D;&quot;!myForm.dirty&quot; md-raised-button color&#x3D;&quot;accent&quot; (click)&#x3D;&quot;saveProfile(myForm.form.valid)&quot;&gt;Save Profile&lt;/button&gt;
-          &lt;div class&#x3D;&quot;alert alert-danger&quot; role&#x3D;&quot;alert&quot; [hidden]&#x3D;&quot;!submittedInvalid || (myForm.form.valid)&quot;&gt;{{submitError}}&lt;/div&gt;
-          &lt;div class&#x3D;&quot;alert alert-success&quot; role&#x3D;&quot;alert&quot; *ngIf&#x3D;&quot;submitSuccess&quot;&gt;{{submitSuccess}}&lt;/div&gt;
-        &lt;/form&gt;&lt;br&gt;
-      &lt;/div&gt;
-    &lt;/md-tab&gt;
-   
-  &lt;/md-tab-group&gt;
-&lt;/div&gt;</code></pre>
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class&#x3D;&quot;modal-footer&quot;&gt;
+&lt;span [hidden]&#x3D;&quot;!submittedInvalid || (myForm.form.valid &amp;&amp; uploader.queue.length !&#x3D;&#x3D; 0)&quot; style&#x3D;&quot;color:red&quot;&gt;{{submitError}}
+            &lt;/span&gt;
+  &lt;button md-raised-button class&#x3D;&quot;background-primary-color white-text&quot; (click)&#x3D;&quot;doSubmit(myForm.form.valid)&quot;&gt;
+                    &lt;span class&#x3D;&quot;glyphicon glyphicon-upload&quot;&gt;&lt;/span&gt; Submit
+          &lt;/button&gt;
+  &lt;button md-raised-button (click)&#x3D;&quot;dialogRef.close(&#x27;Option 1&#x27;)&quot;&gt;Close&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
     </div>
 
     <div class="tab-pane fade" id="tree">
@@ -1280,10 +1305,10 @@ export class DashboardComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container-fluid">  <md-tab-group>     <md-tab label="Favorites">      <h5>Saved Listings</h5>      <app-listing *ngFor="let listing of userProfile.favorites; let i = index"           [fixedWidth]="true"           [listing]="listing"           [index]="i"           [hasDelete]="true"           (onDelete)="deleteFavorite($event)">      </app-listing>        <div class="saved-search">          <p>          <h5>Saved Searches</h5>          <table class="table table-striped">            <thead>              <tr>                <th>Search</th>                <th>Time</th>                <th>Open</th>                <th>Delete</th>              </tr>            </thead>            <tbody>              <tr *ngFor="let search of userProfile.savedSearches">                <td>                  <span *ngIf="search.city">City: {{search.city}}<br></span>                  <span *ngIf="search.neighbourhood">Neighbourhood: {{search.neighbourhood}}<br></span>                  <span *ngIf="search.street">Street: {{search.street}}<br></span>                  <span *ngIf="search.typesBRN">Type: {{search.typesBRN}}<br></span>                  <span *ngIf="search.maxPrice">Max.price: {{search.minPrice}}<br></span>                  <span *ngIf="search.maxPrice">Max.price: {{search.maxPrice}}<br></span>                    <span *ngIf="search.bedrooms">Bedrooms: {{search.bedrooms}}<br></span>                     <span *ngIf="search.propertyType">Property types: {{search.propertyType | joinCommaKeys}}<br></span>                   <span *ngIf="search.polygon">Search area<br></span>                    </td>                <td>{{search.time | date:\'short\'}}</td>                <td><i (click)="openSearch(search)" class="fa fa-search fa-2x cursor-pointer" ></i></td>                <td><i (click)="deleteSavedSearch(search.time)" class="fa fa-trash-o fa-2x cursor-pointer" ></i> </td>              </tr>             </tbody>          </table>        </div>    </md-tab>  <md-tab label="My Listings">      <div>      <button md-raised-button color="primary" (click)="openDialog()">Add a new Listing!</button>      </div>      <p>    <app-listing *ngFor="let listing of userListings; let i = index"         [isUserListing]="true"         [fixedWidth]="true"         [listing]="listing"         [index]="i"         [hasDelete]="true"         (onDelete)="deleteUserListing($event)">    </app-listing>  </md-tab>    <md-tab label="My Profile">      <div class="main">        <form #myForm="ngForm" novalidate>          <md-input-container>            <input mdInput type="text" placeholder="Your Full Name" [(ngModel)]="userProfile.fullName" name="fullName">          </md-input-container><br>          <md-input-container>            <input mdInput type="text" pattern="\d+" placeholder="Phone" [(ngModel)]="userProfile.phoneNumber" name="phoneNumber">            <md-error>Please enter only digits</md-error>          </md-input-container><br>          <md-select placeholder="User Type" [(ngModel)]="userProfile.role" name="role">            <md-option value="home_seller">Home Seller</md-option>            <md-option value="both_buyer_and_seller">Both Buyer and Seller</md-option>            <md-option value="renter">Renter</md-option>            <md-option value="home_owner">Home Owner</md-option>            <md-option value="renter_rentee">Renter/Rentee</md-option>            <md-option value="real_estate_pro">Real Estate Pro</md-option>            <md-option value="other">Other/Just Looking</md-option>          </md-select><br><br>          <button [disabled]="!myForm.dirty" md-raised-button color="accent" (click)="saveProfile(myForm.form.valid)">Save Profile</button>          <div class="alert alert-danger" role="alert" [hidden]="!submittedInvalid || (myForm.form.valid)">{{submitError}}</div>          <div class="alert alert-success" role="alert" *ngIf="submitSuccess">{{submitSuccess}}</div>        </form><br>      </div>    </md-tab>     </md-tab-group></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="modal-header offset-top">  <h4 class="modal-title">Create listing</h4>  <button type="button" class="close" aria-label="Close" (click)="dialogRef.close(\'Option 1\')">        <span aria-hidden="true">&times;</span>      </button></div><div class=\'containter\'>  <div class=\'row\'>    <div class="col-md-7">      <div class="modal-body">        <form #myForm="ngForm">          <div class="form-group">            <md-select placeholder="Listing type" required style="width:200px; margin-top:3%" [(ngModel)]="newProperty.listingType" name="listingTypes">              <md-option value=\'rental\'>                Rental              </md-option>              <md-option value=\'sale\'>                Sale              </md-option>              <md-option value=\'new\'>                New construction              </md-option>            </md-select>            <md-select style="width:200px" required placeholder="Property type" [(ngModel)]="newProperty.propertyType" name="propertyTypes">              <md-option value=\'apartment\'>                Apartment &nbsp; &nbsp; &nbsp;              </md-option>              <md-option value=\'house\'>                House              </md-option>              <md-option value=\'villa\'>                Villa              </md-option>            </md-select>          </div>          $          <md-input-container>            <input mdInput price="ngModel" pattern="\d+" placeholder="Price" size="15" name="price" [(ngModel)]="newProperty.price" required>            <md-error>Please enter correct price</md-error>          </md-input-container>          <md-input-container>            <input mdInput placeholder="Square meters" size="14" required name="size" [(ngModel)]="newProperty.size">            <md-error>Please enter correct size</md-error>          </md-input-container>          <br>                    <md-input-container>            <input mdInput placeholder="Suites" pattern="\d+" size="10" name="suites" [(ngModel)]="newProperty.suites">            <md-error>Please enter number</md-error>          </md-input-container>          <md-input-container>            <input mdInput placeholder="Bedrooms" pattern="\d+" size="10" name="bedrooms" [(ngModel)]="newProperty.bedrooms">            <md-error>Please enter number</md-error>          </md-input-container>          <md-input-container>            <input mdInput placeholder="Bathrooms" pattern="\d+" size="10" name="bathrooms" [(ngModel)]="newProperty.bathrooms">            <md-error>Please enter number</md-error>          </md-input-container>                    <md-input-container>            <input mdInput placeholder="Parking spots" pattern="\d+" size="10" name="parking" [(ngModel)]="newProperty.parking">            <md-error>Please enter number</md-error>          </md-input-container>          <br>          <table cellspacing="0">            <tr>              <td>                <md-input-container>                  <input mdInput placeholder="City" name="city" [(ngModel)]="newProperty.city">                </md-input-container>              </td>              <td>                <md-input-container class="example-full-width">                  <input mdInput #postalCode maxlength="8" size="8" placeholder="Zip" [(ngModel)]="newProperty.zip" name="zip">                  <md-hint align="end">{{postalCode.value.length}} / 8</md-hint>                </md-input-container>              </td>              <td>                <md-input-container>                  <input mdInput placeholder="Neighbourhood" name="neighbourhood" [(ngModel)]="newProperty.neighbourhood">                </md-input-container>              </td>            </tr>            <tr>              <td>                <md-input-container>                  <input mdInput placeholder="Street" name="street" [(ngModel)]="newProperty.street">                </md-input-container>              </td>              <td>                <md-input-container>                  <input mdInput placeholder="Number" size="8" name="streetNumber" [(ngModel)]="newProperty.streetNumber">                </md-input-container>              </td>              <td style="text-align: right">                <md-input-container>                  <input mdInput placeholder="Broker ID" size="10" name="broker" [(ngModel)]="newProperty.brokerId">                </md-input-container>              </td>            </tr>          </table>          <md-input-container class="description">            <textarea rows="4" mdInput placeholder="Description" name="description" [(ngModel)]="newProperty.description"></textarea>          </md-input-container>        </form>      </div>    </div>    <div class="col-md-5">      <div class="container modal-body">        <div class="row">          <div class="col-md-12">            <h4 class="modal-title">Drag files</h4>            <div ng2FileDrop style="height: 100px" [ngClass]="{\'nv-file-over\': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)"              [uploader]="uploader" class="well my-drop-zone">            </div>            <input #selectElem type="file" id="fileUpload" name="fileUpload" class="inputfile" ng2FileSelect [uploader]="uploader" multiple            />            <label for="fileUpload" class="btn btn-primary">Choose files...</label>          </div>        </div>        <div class="row">          <div class="col-md-12" style="margin-bottom: 40px">            <table class="table">              <tbody>                <tr *ngFor="let item of uploader.queue; let i = index">                  <img src="#" class="file-image" id="fileImage{{i}}">{{showFile(item, i)}}                  <td *ngIf="uploader.isHTML5">                    <div class="progress" style="margin-bottom: 0;">                      <div class="progress-bar" role="progressbar" [ngStyle]="{ \'width\': item.progress + \'%\' }"></div>                    </div>                  </td>                  <td class="text-center">                    <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>                    <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>                    <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>                  </td>                  <td nowrap>                    <button type="button" md-raised-button (click)="item.remove()">                            <span class="glyphicon glyphicon-trash"></span> Remove                        </button>                  </td>                </tr>              </tbody>            </table>            <div>              <div>                Queue progress:                <div class="progress" style="">                  <div class="progress-bar" role="progressbar" [ngStyle]="{ \'width\': uploader.progress + \'%\' }"></div>                </div>              </div>            </div>          </div>        </div>      </div>    </div>  </div></div><div class="modal-footer"><span [hidden]="!submittedInvalid || (myForm.form.valid && uploader.queue.length !== 0)" style="color:red">{{submitError}}            </span>  <button md-raised-button class="background-primary-color white-text" (click)="doSubmit(myForm.form.valid)">                    <span class="glyphicon glyphicon-upload"></span> Submit          </button>  <button md-raised-button (click)="dialogRef.close(\'Option 1\')">Close</button></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DetailsComponent', 'selector': 'app-details'},{'name': 'DetailsModalComponent', 'selector': 'app-details-modal'},{'name': 'DialogCreateNewPropertyComponent', 'selector': 'app-dialog-result-example-dialog'},{'name': 'FilterListComponent', 'selector': 'app-filter-list'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HomeRightComponent', 'selector': 'app-home-right'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListingComponent', 'selector': 'app-listing'},{'name': 'MapComponent', 'selector': 'app-map'},{'name': 'PropertyFormComponent', 'selector': 'app-property-form'},{'name': 'SearchComponent', 'selector': 'app-search'},{'name': 'StatsBarChartComponent', 'selector': 'app-stats-bar-chart'},{'name': 'TopMenuComponent', 'selector': 'app-top-menu'}];
     var DIRECTIVES = [{'name': 'GetEleDirective', 'selector': '[getRef]'},{'name': 'MouseWheelDirective', 'selector': '[mouseWheel]'}];
-    var ACTUAL_COMPONENT = {'name': 'DashboardComponent'};
+    var ACTUAL_COMPONENT = {'name': 'PropertyFormComponent'};
 </script>
 <script src="../js/tree.js"></script>
 
