@@ -45,7 +45,7 @@ app.use(cookieParser());
 
 
 app.use('/api/listings', listingRoutes);
-app.use('/api/users',  passport.authenticate('jwt', { session: false }), userRoutes);
+app.use('/api/users', passport.authenticate('jwt', { session: false }), userRoutes);
 app.use('/api/stats', statRoutes);
 app.use('/', authRoutes);
 
