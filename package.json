@@ -10,7 +10,6 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "start": "node ./bin/www",
-    "postinstall": "ng build --prod",
     "start-dev": "nodemon ./bin/www",
     "bundle-report": "webpack-bundle-analyzer dist/stats.json"
   },
