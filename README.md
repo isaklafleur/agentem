@@ -1,7 +1,7 @@
 # Agente Imovel Demo SPA
 
 <h1 align=center>
-<img alt="Agente Imovel" src="https://github.com/isaklafleur/project1-whac-a-mole/blob/master/images/guacamole-whack-a-mole-game.png">
+<img alt="Agente Imovel" src="https://github.com/isaklafleur/agentem/blob/dev/public/agenteimovel.png">
   <br>
   AgenteImovel SPA DEMO</h1>
 
