@@ -14,12 +14,11 @@ import { ListingComponent } from './listing/listing.component'
 export class ListComponent implements OnInit {
   @Input() populateOnInit: boolean;
 
-  isEndResults:boolean = false;
+  isEndResults: boolean = false;
 
-  constructor(public listingService: ListingService, 
-              public userService: UserService, 
-              ) {
-  }
+  constructor(public listingService: ListingService,
+              public userService: UserService,
+              ) {}
 
   ngOnInit() {
     if (this.populateOnInit) {
