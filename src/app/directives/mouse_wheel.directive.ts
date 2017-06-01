@@ -20,16 +20,16 @@ export class MouseWheelDirective {
   mouseWheelFunc(event: any) {
     var event = window.event || event; // old IE support
     var delta = Math.max(-1, Math.min(1, (event.wheelDelta || -event.detail)));
-    if(delta > 0) {
+    if (delta > 0) {
         this.mouseWheelUp.emit(event);
-    } else if(delta < 0) {
+    } else if (delta < 0) {
         this.mouseWheelDown.emit(event);
     }
     // for IE
     event.returnValue = false;
     // for Chrome and Firefox
-    if(event.preventDefault) {
+    if (event.preventDefault) {
         event.preventDefault();
     }
   }
-} 
+}
