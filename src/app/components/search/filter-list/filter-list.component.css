@@ -19,7 +19,7 @@ example-radio-group {
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
-  font-size: 24px;  /* Preferred icon size */
+  font-size: 24px; 
   display: inline-block;
   line-height: 1;
   text-transform: none;
@@ -27,15 +27,12 @@ example-radio-group {
   word-wrap: normal;
   white-space: nowrap;
   direction: ltr;
-
   /* Support for all WebKit browsers. */
   -webkit-font-smoothing: antialiased;
   /* Support for Safari and Chrome. */
   text-rendering: optimizeLegibility;
-
   /* Support for Firefox. */
   -moz-osx-font-smoothing: grayscale;
-
   /* Support for IE. */
   font-feature-settings: 'liga';
 }
@@ -59,4 +56,17 @@ example-radio-group {
 
 .spin-cog {
   color: #00bcd4;
+}
+
+.spinner-container {
+  float:right; 
+  padding-top:10px;
+}
+
+#address-breadcrumbs {
+  padding-bottom:5px;
+}
+
+.font-smaller {
+  font-size:smaller;
 }

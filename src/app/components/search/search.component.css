@@ -5,6 +5,7 @@
 md-input-container {
   width: 300px;
 }
+
 body,
 html {
   height: 100%;
@@ -25,6 +26,18 @@ html {
   }
 }
 
-  #wrap2 {
-    margin: auto;
-  }
+#wrap2 {
+  margin: auto;
+}
+
+#search-listings {
+  margin-top: 140px; 
+  margin-right: 0; 
+  padding: 0;
+}
+
+#left {
+  margin-top: 80px; 
+  margin-bottom: 0; 
+  padding:0;
+}

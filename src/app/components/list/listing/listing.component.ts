@@ -4,7 +4,6 @@ import { MdDialog } from '@angular/material';
 import { ListingService } from '../../../services/listing.service';
 import { UserService } from '../../../services/user.service';
 import { DetailsModalComponent } from '../details-modal/details-modal.component';
-declare var $: any;
 
 @Component({
   selector: 'app-listing',

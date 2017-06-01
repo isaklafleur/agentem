@@ -1,10 +1,10 @@
-    <div class="container-fluid w-100" style="padding: 0;">
+    <div class="container-fluid w-100 no-padding">
       <div class="row">
         <div class="col-md-6">
-          <div style="height:300px;width:400px; margin:auto">
+          <div id="top-container">
             <ngb-carousel>
               <ng-template ngbSlide *ngFor="let photo of listing.photos">
-                <img style="width:100%;" [src]="photo" alt="Property photo">
+                <img class="w-100" [src]="photo" alt="Property photo">
               </ng-template>
             </ngb-carousel>
           </div>

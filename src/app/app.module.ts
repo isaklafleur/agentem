@@ -21,9 +21,9 @@ import { UserService } from './services/user.service';
 import { StatsService } from './services/stats.service';
 
 // Pipes
-import { LargeNumberPipe } from './pipes/large_number.pipe';
-import { RoundKPipe } from './pipes/round_k.pipe';
-
+import { LargeNumberPipe } from './pipes/large-number.pipe';
+import { RoundKPipe } from './pipes/round-k.pipe';
+import { JoinCommaKeysPipe } from './pipes/join-comma-keys.pipe';
 // Directives
 import { MouseWheelDirective } from './directives/mouse_wheel.directive';
 import {GetEleDirective} from './directives/ref.directive';
@@ -34,14 +34,13 @@ import { MapComponent } from './components/search/map/map.component';
 import { HomeComponent } from './components/home/home.component';
 import { HomeRightComponent} from './components/home/home-right/home-right.component';
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
-import { PropertyFormComponent,  DialogCreateNewPropertyComponent  } from './components/panel/property-form/property-form.component';
+import { PropertyFormComponent,  DialogCreateNewPropertyComponent  } from './components/dashboard/property-form/property-form.component';
 import { ListComponent } from './components/list/list.component';
 import { SearchComponent } from './components/search/search.component';
 import { FilterListComponent } from './components/search/filter-list/filter-list.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { DetailsComponent } from './components/list/details/details.component';
-import { CarouselComponent } from './components/list/details/carousel/carousel.component';
 import { StatsBarChartComponent } from './components/stats-bar-chart/stats-bar-chart.component';
 import { ListingComponent } from './components/list/listing/listing.component';
 
@@ -63,11 +62,11 @@ import { DetailsModalComponent } from './components/list/details-modal/details-m
     DashboardComponent,
     LargeNumberPipe,
     RoundKPipe,
+    JoinCommaKeysPipe,
     MapComponent,
     GetEleDirective,
     MouseWheelDirective,
     DetailsComponent,
-    CarouselComponent,
     StatsBarChartComponent,
     ListingComponent,
     DetailsModalComponent

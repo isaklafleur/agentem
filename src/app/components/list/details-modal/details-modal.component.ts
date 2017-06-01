@@ -9,14 +9,12 @@ import { MdDialogRef } from '@angular/material';
 })
 export class DetailsModalComponent implements OnInit {
 
-  constructor(public dialogRef: MdDialogRef<DetailsModalComponent>,
-              public userService: UserService) { 
-      this.userService.doSignIn$.subscribe(()=>{
-        this.dialogRef.close();
-      })
+  constructor(public dialogRef: MdDialogRef<DetailsModalComponent>, public userService: UserService) { 
+    this.userService.doSignIn$.subscribe(()=>{
+      this.dialogRef.close();
+    })
   }
 
   ngOnInit() {
   }
-
 }

@@ -1,11 +1,10 @@
-import { Component, OnInit, NgZone, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MdRadioModule, MdButtonModule, MdInputModule, MdCheckboxModule } from '@angular/material';
 import { ListingService } from '../../../services/listing.service';
 import { UserService } from '../../../services/user.service';
 import {FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 import {} from '@types/googlemaps';
-
 declare var $: any;
 
 @Component({
@@ -14,101 +13,69 @@ declare var $: any;
   styleUrls: ['./filter-list.component.css']
 })
 export class FilterListComponent implements OnInit {
-  autocomplete: any;
+  filter: any = {};
   address: any = {};
-  newSearch: any = {};
+  zoom: number;
+  saveSearchButton = 'Save search';
   maxPriceControl = new FormControl();
   minPriceControl = new FormControl();
-  public searchControl: FormControl;
-  public zoom: number;
-  saveSearchButton = 'Save search';
-  RADIUS = 10;
 
   @ViewChild('addressSearchBox')
   public searchElementRef: ElementRef;
 
   constructor(
-    public ref: ChangeDetectorRef,
     public listingService: ListingService,
     public userService: UserService,
-    public ngZone: NgZone,
     ) { }
 
   ngOnInit() {
+    this.initFilter();
+    this.debounceInput(this.minPriceControl, 1000);
+    this.debounceInput(this.maxPriceControl, 1000);
 
-    // create search FormControl
-    this.searchControl = new FormControl();
-    this.newSearch.coordinates = {}
-    this.newSearch = this.listingService.filter;
-
-    if (!this.newSearch.propertyType) {
-      this.newSearch.propertyType = {};
-    }
-
-    if (!this.newSearch.coordinates)
-      this.newSearch.coordinates  = {};
-
-    this.minPriceControl.valueChanges
-      .debounceTime(1000)
-      .subscribe(newValue => {
-        if (newValue) {
-          this.listingService.updateFilter()
-        }
-      });
-    this.maxPriceControl.valueChanges
-      .debounceTime(1000)
-      .subscribe(newValue => {
-        if (newValue) {
-          this.listingService.updateFilter()
-        }
-      });
-      if (this.listingService.addressComponents.length) {
-        this.adjustMargin();
-      }
+    if (this.listingService.addressComponents.length) this.adjustMargin();
   }
 
-  initialized(autocomplete: any) {
-    this.autocomplete = autocomplete;
+  debounceInput(inputControl, time) {
+    inputControl.valueChanges
+      .debounceTime(time).subscribe(newValue => {
+        if (newValue) this.filterChanged()
+      });
   }
+
+  initFilter() {
+    this.filter = this.listingService.filter;
+    if (!this.filter.propertyType) this.filter.propertyType = {};
+  }
+
+  filterChanged() {
+    this.listingService.updateFilter();
+  }
+
   placeChanged(place) {
     if (place.name) {
       this.listingService.readSearchPlace(place);
-
-      this.listingService.updateFilter();
+      this.filterChanged();
       this.adjustMargin();
     }
-    this.ref.detectChanges();
   }
-  breadCrumbs(level) {
+
+  clickBreadCrumbs(level) {
     if (level < this.listingService.addressComponents.length - 1) {
       switch (level) {
         case 0:
-          this.newSearch.street = '';
-          this.newSearch.neighbourhood = '';
+          this.filter.street = this.filter.neighbourhood = '';
           this.listingService.addressComponents.splice(1);
           this.listingService.zoom = 13;
           break;
         case 1:
-          this.newSearch.street = '';
+          this.filter.street = '';
           this.listingService.addressComponents.splice(2);
           this.listingService.zoom = 14;
           break;
       }
-      this.listingService.updateFilter();
+      this.filterChanged();
     }
-  }
-
-  public setCurrentPosition() {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.newSearch.coordinates.latitude = position.coords.latitude;
-        this.newSearch.coordinates.longitude = position.coords.longitude;
-        this.zoom = 19;
-      });
-    }
-  }
-
-  submitForm(myForm) {
   }
 
   saveSearch() {
@@ -120,7 +87,6 @@ export class FilterListComponent implements OnInit {
       }, 1000)
     }
   }
-
 
   adjustMargin() {
     $('#search-listings').css('margin-top', '170px');

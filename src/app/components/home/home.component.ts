@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild }  from '@angular/core';
 import { MdInputModule, MdSelectModule } from '@angular/material';
 import { ListingService } from '../../services/listing.service';
 import {Router} from '@angular/router';
@@ -21,14 +21,13 @@ export class HomeComponent implements OnInit {
   placeChanged(place) {
     if (place.name) {
         this.listingService.readSearchPlace(place);
-       // this.router.navigate(['/search']);   
-       //this.navigate();
     }
   }
+
   navigate() {
     console.log("here");
     this.router.navigate(['/search'])
   }
-  ngOnInit() {
-  }
-  }
+
+  ngOnInit() {}
+}

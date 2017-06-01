@@ -1,34 +1,45 @@
 <button md-raised-button color="accent" class="draw-button" (click)="drawOnMap()">Draw on map</button>
 
-<ngui-map #map [zoom]="listingService.zoom" [center]="listingService.center" (mouseover)="listingService.listHoverItem=-1"
-  (mapReady$)="onMapReady($event)" style="height:100%" [mapTypeControl]="false">
-  <drawing-manager #drawing [drawingControl]="false" [drawingControlOptions]="{
-      drawingModes: ['polygon']
-      }" [drawingMode]="drawingMode" [polygonOptions]="{
-      strokeColor: 'red',
-      fillColor: 'red',
-      strokeWeight: 2,
-      editable: true,
-      zIndex: 1
-    }"></drawing-manager>
+<ngui-map #map class="h-100"
+  [zoom]="listingService.zoom" 
+  [center]="listingService.center" 
+  (mouseover)="listingService.listHoverItem=-1"
+  (mapReady$)="onMapReady($event)"  
+  [mapTypeControl]="false">
+  <drawing-manager #drawing 
+      [drawingControl]="false" 
+      [drawingControlOptions]="{ drawingModes: ['polygon'] }" 
+      [drawingMode]="drawingMode" 
+      [polygonOptions]="{
+          strokeColor: 'red',
+          fillColor: 'red',
+          strokeWeight: 2,
+          editable: true,
+          zIndex: 1
+        }">
+  </drawing-manager>
   <custom-marker (click)="openDetails(i)" *ngFor="let listing of listingService?.listings; let i=index" [position]="[listing.location.coordinates[1], listing.location.coordinates[0]]">
     <div>
-      <span mouseWheel [class.over]="showMapDetails[i] || listingService.listHoverItem===i" (mouseover)="markerMouseOver($event, i)"
-        (mouseout)="showMapDetails[i]=false" (mouseWheelUp)="showMapDetails[i]=false" (mouseWheelDown)="showMapDetails[i]=false"
+      <span mouseWheel 
+        [class.over]="showMapDetails[i] || listingService.listHoverItem===i" 
+        (mouseover)="markerMouseOver($event, i)"
+        (mouseout)="showMapDetails[i]=false" 
+        (mouseWheelUp)="showMapDetails[i]=false" 
+        (mouseWheelDown)="showMapDetails[i]=false"
         class="custom-icon">
         {{listing.price | roundK}} 
       </span>
     </div>
-    <div #markerDetails style="margin:0 -85px;">
+    <div #markerDetails class="marker-details">
       <app-listing *ngIf="(showMapDetails[i] || listingService.listHoverItem===i)" id="markerDetails{{i}}" [listing]="listing"
         [index]="i" [hasFavorite]="false" [zIndex]="true" class="listing-details"></app-listing>
     </div>
   </custom-marker>
 
   <custom-marker *ngIf="isPolygon" [position]="polygonRemovePosition">
-    <span (click)="deleteSelectedOverlay()" class="fa-stack fa-lg" style="z-index: 100">
+    <span (click)="deleteSelectedOverlay()" class="fa-stack fa-lg" class="z-100">
         <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="fa fa-close fa-stack-1x" style="color:white"></i>
+        <i class="fa fa-close fa-stack-1x" class="c-white"></i>
       </span> </custom-marker>
 
 </ngui-map>

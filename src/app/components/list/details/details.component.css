@@ -1,6 +1,7 @@
 .font-large {
   font-size: larger;
 }
+
 .details-list {
   width:100%; 
   margin:auto;
@@ -16,4 +17,14 @@
 .details-icon {
   height: 21px;
   padding-right:10px;
+}
+
+#top-container {
+  height:300px;
+  width:400px; 
+  margin:auto;
+}
+
+.no-padding {
+  padding:0;
 }
