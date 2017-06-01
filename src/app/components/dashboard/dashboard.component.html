@@ -3,10 +3,15 @@
      <md-tab label="Favorites">
       <h5>Saved Listings</h5>
 
-      <app-listing *ngFor="let listing of userProfile.favorites; let i = index" [fixedWidth]="true" [listing]="listing" [index]="i" [hasDelete]="true" (onDelete)="deleteFavorite($event)"></app-listing>
+      <app-listing *ngFor="let listing of userProfile.favorites; let i = index" 
+          [fixedWidth]="true" 
+          [listing]="listing" 
+          [index]="i" 
+          [hasDelete]="true" 
+          (onDelete)="deleteFavorite($event)">
+      </app-listing>
 
-
-        <div style="clear:left">
+        <div class="saved-search">
           <p>
           <h5>Saved Searches</h5>
           <table class="table table-striped">
@@ -28,12 +33,12 @@
                   <span *ngIf="search.maxPrice">Max.price: {{search.minPrice}}<br></span>
                   <span *ngIf="search.maxPrice">Max.price: {{search.maxPrice}}<br></span>  
                   <span *ngIf="search.bedrooms">Bedrooms: {{search.bedrooms}}<br></span>   
-                  <span *ngIf="search.propertyType">Property types: {{formatPropertyTypes(search.propertyType)}}<br></span> 
+                  <span *ngIf="search.propertyType">Property types: {{search.propertyType | joinCommaKeys}}<br></span> 
                   <span *ngIf="search.polygon">Search area<br></span>    
                 </td>
                 <td>{{search.time | date:'short'}}</td>
-                <td><i (click)="openSearch(search)" class="fa fa-search fa-2x" style="cursor:pointer"></i></td>
-                <td><i (click)="deleteSavedSearch(search.time)" class="fa fa-trash-o fa-2x" style="cursor:pointer"></i> </td>
+                <td><i (click)="openSearch(search)" class="fa fa-search fa-2x cursor-pointer" ></i></td>
+                <td><i (click)="deleteSavedSearch(search.time)" class="fa fa-trash-o fa-2x cursor-pointer" ></i> </td>
               </tr> 
             </tbody>
           </table>
@@ -41,15 +46,18 @@
     </md-tab>
 
   <md-tab label="My Listings">
-      <!--<i class="fa fa-files-o" aria-hidden="true"></i>-->
       <div>
       <button md-raised-button color="primary" (click)="openDialog()">Add a new Listing!</button>
       </div>
       <p>
-    <app-listing *ngFor="let listing of userListings; let i = index" [isUserListing]="true" [fixedWidth]="true" [listing]="listing" [index]="i" [hasDelete]="true" (onDelete)="deleteUserListing($event)"></app-listing>
-
-
-
+    <app-listing *ngFor="let listing of userListings; let i = index" 
+        [isUserListing]="true" 
+        [fixedWidth]="true" 
+        [listing]="listing" 
+        [index]="i" 
+        [hasDelete]="true" 
+        (onDelete)="deleteUserListing($event)">
+    </app-listing>
   </md-tab>
 
     <md-tab label="My Profile">
@@ -74,7 +82,6 @@
           <button [disabled]="!myForm.dirty" md-raised-button color="accent" (click)="saveProfile(myForm.form.valid)">Save Profile</button>
           <div class="alert alert-danger" role="alert" [hidden]="!submittedInvalid || (myForm.form.valid)">{{submitError}}</div>
           <div class="alert alert-success" role="alert" *ngIf="submitSuccess">{{submitSuccess}}</div>
-
         </form><br>
       </div>
     </md-tab>

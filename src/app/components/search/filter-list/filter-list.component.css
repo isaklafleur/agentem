@@ -52,6 +52,19 @@ md-card {
   color: #00bcd4;
 }
 
+.spinner-container {
+  float:right; 
+  padding-top:10px;
+}
+
+#address-breadcrumbs {
+  padding-bottom:5px;
+}
+
+.font-smaller {
+  font-size:smaller;
+}
+
 .filter-button {
   display: none;
   }
@@ -97,5 +110,3 @@ md-card {
   right: 25px;
   font-size: 50px;
 }
-
-

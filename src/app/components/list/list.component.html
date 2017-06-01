@@ -1,12 +1,15 @@
 <div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500" (scrolled)="onScroll()"
   [scrollWindow]="true">
 
-  <app-listing *ngFor="let listing of listingService.listings; let i = index" [hasFavorite]="true" [listing]="listing" [index]="i"></app-listing>
+  <app-listing *ngFor="let listing of listingService.listings; let i = index" 
+    [hasFavorite]="true" 
+    [listing]="listing" 
+    [index]="i">
+  </app-listing>
 
   <div [hidden]="!listingService.isLoading" class="loader">
-    <p>&nbsp;
-      <p>
-        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-        <p>
+    <p>
+      <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+    <p>
   </div>
 </div>

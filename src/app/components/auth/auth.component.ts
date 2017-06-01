@@ -15,9 +15,7 @@ export class AuthComponent implements OnInit {
     password: ''
   };
   loading = false;
-
   error: string;
-
   signupDialog = false;
   loginDialog = true;
 
@@ -34,7 +32,6 @@ export class AuthComponent implements OnInit {
     this.userservice.signup(this.user)
     .subscribe(result => {
       if (result === true) {
-        // login successful
         console.log('result ok: ', result);
         this.dialogRef.close('Option 1');
         this.router.navigate(['/dashboard']);
@@ -48,7 +45,6 @@ export class AuthComponent implements OnInit {
     this.userservice.login(this.user)
     .subscribe(result => {
       if (result === true) {
-        // login successful
         this.dialogRef.close('Option 1');
         this.router.navigate(['/dashboard']);
       }
@@ -65,9 +61,5 @@ export class AuthComponent implements OnInit {
   DisplaySignupDialog() {
     this.signupDialog = true;
     this.loginDialog = false;
-  }
-
-  submitForm(myForm) {
-    // console.log(this.email);
   }
 }

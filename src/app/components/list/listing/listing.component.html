@@ -3,11 +3,10 @@
   <img class="photo" [src]="listing.photos[0]" alt="Card image">
   <h4 class=" photo-text">R$ {{listing.price | largeNumber}}</h4>
   <div class="photo-description">
-    <div style="float:left; padding:5px">
+    <div class="listing-type">
       <i class="fa fa-building-o" aria-hidden="true"></i> {{listing.listingType}} <br>
-
     </div>
-    <div style="float:right;padding:5px">
+    <div class="bedrooms-bathrooms">
       <i class="fa fa-bed" aria-hidden="true"></i> {{listing.bedrooms}} <i class="fa fa-bath" aria-hidden="true"></i> {{listing.bathrooms}}
     </div>
     <div *ngIf="hasFavorite" class="heart">
@@ -17,11 +16,11 @@
       </span>
     </div>
     <div *ngIf="hasDelete" class="delete-fav">
-      <span class="fa-stack fa-lg" (click)="clickDelete($event)" style="z-index: 100">
-        <i class="fa fa-circle fa-stack-2x" style="color:red"></i>
-        <i class="fa fa-close fa-stack-1x" style="color:white"></i>
+      <span class="fa-stack fa-lg" (click)="clickDelete($event)" style="z-index:1000">
+        <i class="fa fa-circle fa-stack-1x c-red"></i>
+        <i class="fa fa-close fa-stack-1x c-white" style="font-size:15px"></i>
     </span>
-
-    </div>
   </div>
+  
+</div>
 

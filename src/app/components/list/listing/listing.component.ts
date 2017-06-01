@@ -1,9 +1,9 @@
 import { Component, AfterViewInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { MdDialog } from '@angular/material';
 import { ListingService } from '../../../services/listing.service';
 import { UserService } from '../../../services/user.service';
-import { DetailsComponent } from '../details/details.component';
-declare var $: any;
+import { DetailsModalComponent } from '../details-modal/details-modal.component';
 
 @Component({
   selector: 'app-listing',
@@ -24,16 +24,19 @@ export class ListingComponent implements AfterViewInit {
   constructor(public listingService: ListingService,
               public userService: UserService,
               public dialog: MdDialog,
+              public router: Router
               ) { }
 
   ngAfterViewInit() {
-    // if(this.noStreatch)
-    // $(this.containerElement.nativeElement).css("width", "205px");
   }
 
   openDetails() {
     this.listingService.detailsListing = this.listing; 
-    const dialogRef = this.dialog.open(DetailsComponent, {width: '80%', height: '100%'});
+    if (document.documentElement.clientWidth < 900) {
+      this.router.navigate(['/details']);
+    } else {
+      const dialogRef = this.dialog.open(DetailsModalComponent, {width: '80%', height: '100%'});
+    }
   }
   
   clickFavorite($event) {
