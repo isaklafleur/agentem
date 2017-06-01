@@ -1,20 +1,10 @@
-<p>&nbsp;
-  <p>
-    <div class="modal-header">
-      <h4 class="modal-title">Listing details</h4>
-      <button type="button" class="close" aria-label="Close" (click)="dialogRef.close('Option 1')"> <!--(click)="activeModal.dismiss('Cross click')">-->
-        <span aria-hidden="true">&times;</span>
-  </button>
-    </div>
-
-    <!--<app-carousel [photos]="listing.photos"></app-carousel>-->
-    <div class="container-fluid w-100" style="padding: 0;">
+    <div class="container-fluid w-100 no-padding">
       <div class="row">
         <div class="col-md-6">
-          <div style="height:300px;width:400px; margin:auto">
+          <div id="top-container">
             <ngb-carousel>
               <ng-template ngbSlide *ngFor="let photo of listing.photos">
-                <img style="width:100%;" [src]="photo" alt="Property photo">
+                <img class="w-100" [src]="photo" alt="Property photo">
               </ng-template>
             </ngb-carousel>
           </div>
@@ -36,9 +26,11 @@
               <i class="fa fa-building-o fa-3x" aria-hidden="true"></i>
               <span class="font-large">{{listing.propertyType}}</span> for
               <span class="font-large">{{listing.listingType}}</span>
-              <button md-raised-button color="accent" (click)="saveToFavorites()">
-    <span class="glyphicon glyphicon-upload"></span> Save to favorites
-  </button>
+              <button md-raised-button color="accent" (click)="toggleFavorite()">
+                <span class="glyphicon glyphicon-upload"></span> 
+                <span *ngIf="listing.isFavorite">Delete from favorites</span>
+                <span *ngIf="!listing.isFavorite">Save to favorites</span>
+              </button>
             </div>
             <div class="col-md-6">
               <span class="font-large">R$ {{listing.price | largeNumber}} </span>
@@ -94,6 +86,3 @@
         </div>
       </li>
     </ul>
-    <div class="modal-footer">
-      <button md-raised-button color="primary" (click)="dialogRef.close('Option 1')">Close</button>
-    </div>

@@ -3,31 +3,15 @@
      <md-tab label="Favorites">
       <h5>Saved Listings</h5>
 
-      <app-listing *ngFor="let listing of userProfile.favorites; let i = index" [fixedWidth]="true" [listing]="listing" [index]="i" [hasDelete]="true" (onDelete)="deleteFavorite($event)"></app-listing>
+      <app-listing *ngFor="let listing of userProfile.favorites; let i = index" 
+          [fixedWidth]="true" 
+          [listing]="listing" 
+          [index]="i" 
+          [hasDelete]="true" 
+          (onDelete)="deleteFavorite($event)">
+      </app-listing>
 
-<!--      <div *ngFor="let listing of userProfile.favorites; let i = index" class="list-card  card" (click)="openDetails(i)">
-
-        <img class="photo" [src]="listing.photos[0]" alt="Card image">
-        <h4 class=" photo-text">R$ {{listing.price | largeNumber}}</h4>
-        <div class="photo-description">
-          <div style="float:left; padding:5px">
-            <img style="height:20px" src="/assets/{{listing.propertyType}}.svg"> {{listing.listingType}} <br>
-          </div>
-          <div style="float:right;padding:5px">
-            <img src="/assets/bed.svg" style="width:19px;margin-bottom:8px"> {{listing.bedrooms}} <img src="/assets/bath.svg"
-              style="width:19px;margin-bottom:8px"> {{listing.bathrooms}}
-          </div>
-          <div class="delete-fav">
-            <span class="fa-stack fa-lg" (click)="deleteFavorite($event, listing)" style="z-index: 100">
-            <i class="fa fa-circle fa-stack-2x" style="color:red"></i>
-            <i class="fa fa-close fa-stack-1x" style="color:white"></i>
-          </span>
-          </div>
-        </div>
-        
-      </div>-->
-
-        <div style="clear:left">
+        <div class="saved-search">
           <p>
           <h5>Saved Searches</h5>
           <table class="table table-striped">
@@ -49,12 +33,12 @@
                   <span *ngIf="search.maxPrice">Max.price: {{search.minPrice}}<br></span>
                   <span *ngIf="search.maxPrice">Max.price: {{search.maxPrice}}<br></span>  
                   <span *ngIf="search.bedrooms">Bedrooms: {{search.bedrooms}}<br></span>   
-                  <span *ngIf="search.propertyType">Property types: {{formatPropertyTypes(search.propertyType)}}<br></span> 
+                  <span *ngIf="search.propertyType">Property types: {{search.propertyType | joinCommaKeys}}<br></span> 
                   <span *ngIf="search.polygon">Search area<br></span>    
                 </td>
                 <td>{{search.time | date:'short'}}</td>
-                <td><i (click)="openSearch(search)" class="fa fa-search fa-2x" style="cursor:pointer"></i></td>
-                <td><i (click)="deleteSavedSearch(search.time)" class="fa fa-trash-o fa-2x" style="cursor:pointer"></i> </td>
+                <td><i (click)="openSearch(search)" class="fa fa-search fa-2x cursor-pointer" ></i></td>
+                <td><i (click)="deleteSavedSearch(search.time)" class="fa fa-trash-o fa-2x cursor-pointer" ></i> </td>
               </tr> 
             </tbody>
           </table>
@@ -62,36 +46,18 @@
     </md-tab>
 
   <md-tab label="My Listings">
-      <!--<i class="fa fa-files-o" aria-hidden="true"></i>-->
       <div>
       <button md-raised-button color="primary" (click)="openDialog()">Add a new Listing!</button>
       </div>
       <p>
-     <div *ngFor="let listing of userListings; let i = index" class="list-card  card" (click)="openUserDetails(i)">
-
-        <img class="photo" [src]="listing.photos[0]" alt="Card image">
-        <h4 class=" photo-text">R$ {{listing.price | largeNumber}}</h4>
-        <div class="photo-description">
-          <div style="float:left; padding:5px">
-            <img style="height:20px" src="/assets/{{listing.propertyType}}.svg"> {{listing.listingType}} <br>
-
-          </div>
-          <div style="float:right;padding:5px">
-            <img src="/assets/bed.svg" style="width:19px;margin-bottom:8px"> {{listing.bedrooms}} <img src="/assets/bath.svg"
-              style="width:19px;margin-bottom:8px"> {{listing.bathrooms}}
-          </div>
-          <div class="delete-fav">
-            <span class="fa-stack fa-lg" (click)="deleteUserListing($event, listing)" style="z-index: 100">
-            <i class="fa fa-circle fa-stack-2x" style="color:red"></i>
-            <i class="fa fa-close fa-stack-1x" style="color:white"></i>
-          </span>
-          </div>
-        </div>
-        
-      </div>
-
-
-
+    <app-listing *ngFor="let listing of userListings; let i = index" 
+        [isUserListing]="true" 
+        [fixedWidth]="true" 
+        [listing]="listing" 
+        [index]="i" 
+        [hasDelete]="true" 
+        (onDelete)="deleteUserListing($event)">
+    </app-listing>
   </md-tab>
 
     <md-tab label="My Profile">
@@ -116,7 +82,6 @@
           <button [disabled]="!myForm.dirty" md-raised-button color="accent" (click)="saveProfile(myForm.form.valid)">Save Profile</button>
           <div class="alert alert-danger" role="alert" [hidden]="!submittedInvalid || (myForm.form.valid)">{{submitError}}</div>
           <div class="alert alert-success" role="alert" *ngIf="submitSuccess">{{submitSuccess}}</div>
-
         </form><br>
       </div>
     </md-tab>

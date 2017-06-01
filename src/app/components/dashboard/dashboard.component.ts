@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { MdTabsModule, MdInputModule, MdSelectModule, MdDialog } from '@angular/material';
 
-import { PropertyFormComponent } from '../panel/property-form/property-form.component';
+import { PropertyFormComponent } from './property-form/property-form.component';
 import { UserService } from '../../services/user.service';
 import { ListingService } from '../../services/listing.service';
 import { DetailsComponent } from '../list/details/details.component';
@@ -46,29 +46,38 @@ export class DashboardComponent implements OnInit {
         } else {
           this.submitSuccess = 'Updates where stored successfully.'
         }
-      })
+      });
     }
   }
 
   ngOnInit() {
     this.userProfile = this.userservice.getUser(this.userservice.activeUserId).subscribe((user) => {
-      this.userProfile = user;
-      this.userservice.user = this.userProfile;
-      if (this.userservice.favoriteAfterLogin) {
-        this.userservice.saveFavorite(this.userservice.favoriteAfterLogin)
-      }
-      if (this.userservice.searchAfterLogin) {
-        this.userservice.saveSearch(this.userservice.searchAfterLogin)
-      }
-
+      this.loadUser(user);
+      this.doPreLogin();
       this.getUserListings();
     });
+  }
+
+  loadUser(user) {
+    this.userProfile = user;
+    this.userProfile.favorites.forEach(fav=>fav.isFavorite = true);
+    this.userservice.user = this.userProfile;
+  }
+  
+  doPreLogin() {
+    if (this.userservice.favoriteAfterLogin) {
+      this.userservice.saveFavorite(this.userservice.favoriteAfterLogin);
+      delete this.userservice.favoriteAfterLogin;
+    }
+    if (this.userservice.searchAfterLogin) {
+      this.userservice.saveSearch(this.userservice.searchAfterLogin);
+      delete this.userservice.searchAfterLogin;
+    }
   }
 
   getUserListings() {
     this.listingService.getUserListings().subscribe(listings => {
       this.userListings = listings.listings;
-      // console.log('this.userListings: ', this.userListings);
     });
   }
 
@@ -81,21 +90,13 @@ export class DashboardComponent implements OnInit {
   }
 
   openSearch(search) {
-    this.listingService.loadSearch(search)
+    this.listingService.loadSearch(search);
     this.router.navigate(['/search']);
   }
 
   deleteUserListing(listing) {
     this.listingService.deleteListing(listing._id).subscribe(res => {
       this.getUserListings();
-    })
-  }
-
-  formatPropertyTypes(propertyType) {
-    let types = [];
-    for (let k in propertyType) {
-      types.push(k);
-    }
-    return types.join(',');
+    });
   }
 }

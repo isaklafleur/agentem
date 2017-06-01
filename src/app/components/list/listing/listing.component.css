@@ -1,22 +1,9 @@
-@media (max-width: 768px) {
-  .list-card {
-    width: 100%;
-  }
-  .photo-text {
-    top: 75%;
-  }  
-  .photo {
-    height:200px;
-  }
-}
-
 .list-card {
   cursor:pointer;
   float:left;
-  border-radius: 8px 8px 0 0;
   margin:4px;
   overflow: hidden;
-  z-index: 1000;
+
 }
 
 .fixedWidth {
@@ -26,6 +13,30 @@
 .flexWidth {
   width:32%;
   min-width:205px;
+}
+
+@media (max-width: 1200px) {
+  .flexWidth {
+    width: 48%;
+  }
+  .photo-text {
+    top: 75%;
+  }  
+  .photo {
+    height:200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .flexWidth {
+    width: 100%;
+  }
+  .photo-text {
+    top: 75%;
+  }  
+  .photo {
+    height:200px;
+  }
 }
 
 .photo {
@@ -110,6 +121,32 @@
 
 .delete-fav {
   position: absolute;
-  top: 5%;
+  top: 3%;
   left: 80%;
+}
+
+.zIndex {
+  z-index: 1000;
+}
+
+.listing-type {
+   float:left; 
+   padding:5px;
+}
+
+.bedrooms-bathrooms {
+  float:right;
+  padding:5px;
+}
+
+.z-1000 {
+  z-index: 100;
+}
+
+.c-red {
+  color:red;
+}
+
+.c-white {
+  color:white;
 }

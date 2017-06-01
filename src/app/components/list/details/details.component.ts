@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ListingService } from '../../../services/listing.service';
-import { MdDialogRef } from '@angular/material';
+import { UserService } from '../../../services/user.service';
+
+
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -9,12 +11,20 @@ import { MdDialogRef } from '@angular/material';
 export class DetailsComponent implements OnInit {
   listing: any;
 
-  constructor(public listingService: ListingService, public dialogRef: MdDialogRef<DetailsComponent>) {
+  constructor(public listingService: ListingService, 
+              public userService: UserService) {
    }
 
   ngOnInit() {
     this.listing = this.listingService.detailsListing;
   }
-  saveToFavorites() {
-  }
+
+  toggleFavorite() {
+    if(this.listing.isFavorite) {
+      this.userService.deleteFavorite(this.listing);
+      this.listing.isFavorite = false;
+    } else {
+      this.userService.saveFavorite(this.listing);
+    } 
+  } 
 }

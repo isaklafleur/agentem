@@ -3,7 +3,7 @@ import { DrawingManager } from '@ngui/map';
 import { MdDialog } from '@angular/material';
 import { ListingService } from '../../../services/listing.service';
 import { DetailsComponent } from '../../list/details/details.component'
-import { ListingComponent } from '../../list/listing/listing.component'
+
 declare var $: any;
 
 
@@ -16,8 +16,8 @@ declare var $: any;
 export class MapComponent implements OnInit {
   selectedOverlay: any;
   map: any;
-  DEBOUNCE_TIME = 1000;
-  lastDebounce: number = Date.now();
+  drawingManager: any;
+  lastDebounceBounds: number = Date.now();
   bounds: any;
   isPolygon = false;
   polygonRemovePosition: number[] = [];
@@ -27,69 +27,88 @@ export class MapComponent implements OnInit {
   markerDetailsOffetLeft: number;
   markerDetailsOffetTop: number;
   drawingMode = '';
-  dm: any;
+  
+  DEBOUNCE_TIME = 1000;
 
-  @ViewChild(DrawingManager) drawingManager: DrawingManager;
+  @ViewChild(DrawingManager) drawingManagerElement: DrawingManager;
   @ViewChild('map') mapElement;
   @ViewChild('markerDetails') markerDetails;
 
   constructor(public listingService: ListingService, public dialog: MdDialog ) { }
 
   ngOnInit() {
-
-    this.drawingManager['initialized$'].subscribe(dm => {
-      this.dm = dm;
-      dm.setOptions({
-        drawingControlOptions: {
-          position: google.maps.ControlPosition.TOP_RIGHT,
-          drawingModes: ['polygon']
-        }
-      });
-
-      google.maps.event.addListener(dm, 'polygoncomplete', (polygon) => {
-        this.isPolygon = true;
-
-        this.getPolygonRemovePosition(polygon);
-        this.getPolygonAndUpdate(polygon);
-
-        this.setPolygonEvents(polygon);
-      });
-
-      google.maps.event.addListener(dm, 'overlaycomplete', event => {
-
-        this.selectedOverlay = event.overlay;
-        this.selectedOverlay.setEditable(true);
-        if (event.type !== google.maps.drawing.OverlayType.MARKER) {
-
-          dm.setDrawingMode(null);
-          google.maps.event.addListener(event.overlay, 'click', e => {
-
-            this.selectedOverlay = event.overlay;
-            this.selectedOverlay.setEditable(true);
-          });
-          this.selectedOverlay = event.overlay;
-        }
-      });
+    this.drawingManagerElement['initialized$'].subscribe(dm => {
+      this.drawingManager = dm;
+      this.setDrawingManagerOptions();
+      this.setPolygonCompleteListener();
+      this.setOverlayCompleteListener();    
     });
     this.subscribeListingLoad();
+  }
+
+  setDrawingManagerOptions() {
+    this.drawingManager.setOptions({
+      drawingControlOptions: {
+        position: google.maps.ControlPosition.TOP_RIGHT,
+        drawingModes: ['polygon']
+      }
+    });
+  }
+
+  setPolygonCompleteListener() {
+    google.maps.event.addListener(this.drawingManager, 'polygoncomplete', (polygon) => {
+      this.isPolygon = true;
+      this.getPolygonRemovePosition(polygon);
+      this.getPolygonAndUpdate(polygon);
+      this.setPolygonEvents(polygon);
+    });
+  }
+
+  setOverlayCompleteListener() {
+    google.maps.event.addListener(this.drawingManager, 'overlaycomplete', event => {
+      this.selectedOverlay = event.overlay;
+      this.selectedOverlay.setEditable(true);
+      if (event.type !== google.maps.drawing.OverlayType.MARKER) {
+        this.drawingManager.setDrawingMode(null);
+        google.maps.event.addListener(event.overlay, 'click', e => {
+          this.selectedOverlay = event.overlay;
+          this.selectedOverlay.setEditable(true);
+        });
+        this.selectedOverlay = event.overlay;
+      }
+    });
   }
 
   setPolygonEvents(polygon) {
     google.maps.event.addListener(polygon.getPath(), 'insert_at', () => {
       this.getPolygonAndUpdate(polygon);
     });
-
     google.maps.event.addListener(polygon.getPath(), 'set_at', () => {
       this.getPolygonAndUpdate(polygon);
     });
     google.maps.event.addListener(polygon.getPath(), 'remove_at', () => {
       this.getPolygonAndUpdate(polygon);
     });
-
   }
 
   onMapReady(map) {
     this.map = map;
+    if(!this.loadSavedSearch()) this.getBounds(); 
+    this.listingService.updateFilter();
+    this.debounceBounds();
+  }
+
+  debounceBounds() {
+    this.map.addListener('bounds_changed', () => {
+      if (Date.now() - this.lastDebounceBounds > this.DEBOUNCE_TIME) {
+        this.getBounds();
+        this.listingService.updateFilter();
+        this.lastDebounceBounds = Date.now();
+      }
+    })
+  }
+
+  loadSavedSearch() {
     if (this.listingService.loadSearchBounds) {
       if (this.listingService.loadSearchPolygon) {
         this.loadPolygon(this.listingService.loadSearchPolygon)
@@ -97,22 +116,11 @@ export class MapComponent implements OnInit {
       }
       this.setBounds(this.listingService.loadSearchBounds)
       delete this.listingService.loadSearchBounds;
-
-    } else {
-      this.getBounds();
+      return true;
     }
-    
-    this.listingService.updateFilter();
-
-    map.addListener('bounds_changed', () => {
-      if (Date.now() - this.lastDebounce > this.DEBOUNCE_TIME) {
-        this.getBounds();
-        this.listingService.updateFilter();
-        this.lastDebounce = Date.now();
-      }
-    })
+    return false;
   }
-
+  
   getBounds() {
     this.listingService.filter.bounds = {
       latNE: this.map.getBounds().getNorthEast().lat(),
@@ -134,7 +142,6 @@ export class MapComponent implements OnInit {
 
   loadPolygon(polygon) {
     const llPolygon = polygon.map(lngLatPoint => new google.maps.LatLng(lngLatPoint[1],lngLatPoint[0]))
-
     const searchPolygon = new google.maps.Polygon({
       paths: llPolygon,
       editable: true,
@@ -158,9 +165,7 @@ export class MapComponent implements OnInit {
 
   getPolygonAndUpdate(polygon) {
     const len = polygon.getPath().getLength();
-
     this.listingService.filter.polygon = [];
-
     for (let i = 0; i < len; i++) {
       const latLng = polygon.getPath().getAt(i).toUrlValue(20).split(',');
       this.listingService.filter.polygon.push([latLng[1], latLng[0]]);
@@ -178,18 +183,18 @@ export class MapComponent implements OnInit {
     }
   }
 
-  openDetails(i) {
-    this.listingService.detailsListing = this.listingService.listings[i];
-    const dialogRef = this.dialog.open(DetailsComponent, {width: '80%', height: '100%', position: 'right'});
+  openDetails(listingIndex) {
+    this.listingService.detailsListing = this.listingService.listings[listingIndex];
+    const dialogRef = this.dialog.open(DetailsComponent, {width: '80%', height: '100%'});
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'submitted') {
-        console.log('form ok')
+        // console.log('form ok')
       }
     });
   }
 
   drawOnMap() {
-    this.dm.setDrawingMode(google.maps.drawing.OverlayType.POLYGON);
+    this.drawingManager.setDrawingMode(google.maps.drawing.OverlayType.POLYGON);
   }
 
   subscribeListingLoad() {
@@ -202,15 +207,9 @@ export class MapComponent implements OnInit {
   markerMouseOver(event, i) {
     this.showMapDetails[i] = !this.showMapDetails[i];
     setTimeout(() => {
-      let mapWidth = this.mapElement.elementRef.nativeElement.clientWidth;
       let mapHeight = this.mapElement.elementRef.nativeElement.clientHeight;
       let markerTop = (event.target as any).offsetParent.offsetTop;
-      let markerLeft = (event.target as any).offsetParent.offsetLeft;
-
       let offset = $('#markerDetails' + i).offset();
-      let markerWidth = $('#markerDetails' + i).width();
-
-      const markerHeight = $('#markerDetails' + i).height();
 
       if (mapHeight - markerTop < 166) {
         $('#markerDetails' + i).offset({ top: offset.top - 215 });

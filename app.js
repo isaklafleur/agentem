@@ -2,7 +2,6 @@ const express = require('express');
 const compression = require('compression');
 require('dotenv').config();
 const path = require('path');
-const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -28,14 +27,9 @@ const app = express();
 app.use(compression(9));
 mongoose.connect(process.env.MONGODB_URI);
 
-
-/*app.get('/*', (req, res, next) => {
-  res.setHeader('Last-Modified', (new Date()).toUTCString());
-  next();
-});*/
-
 // view engine setup
 app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -43,7 +37,7 @@ const corsOptions = { credentials: true, origin: 'http://localhost:4200' };
 app.options('*', cors(corsOptions));
 app.use(cors(corsOptions));
 
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(passport.initialize());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -51,7 +45,7 @@ app.use(cookieParser());
 
 
 app.use('/api/listings', listingRoutes);
-app.use('/api/users', /* passport.authenticate('jwt', { session: false }),*/ userRoutes);
+app.use('/api/users', passport.authenticate('jwt', { session: false }), userRoutes);
 app.use('/api/stats', statRoutes);
 app.use('/', authRoutes);
 

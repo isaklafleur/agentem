@@ -1,6 +1,7 @@
 .font-large {
   font-size: larger;
 }
+
 .details-list {
   width:100%; 
   margin:auto;
@@ -17,6 +18,13 @@
   height: 21px;
   padding-right:10px;
 }
-.details-map-property {
 
+#top-container {
+  height:300px;
+  width:400px; 
+  margin:auto;
+}
+
+.no-padding {
+  padding:0;
 }
