@@ -37,9 +37,9 @@
   </custom-marker>
 
   <custom-marker *ngIf="isPolygon" [position]="polygonRemovePosition">
-    <span (click)="deleteSelectedOverlay()" class="fa-stack fa-lg" class="z-100">
+    <span (click)="deleteSelectedOverlay()" class="fa-stack fa-lg" style="z-index: 100">
         <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="fa fa-close fa-stack-1x" class="c-white"></i>
-      </span> </custom-marker>
+        <i class="fa fa-close fa-stack-1x" style="color:white;font-size:10px"></i>
+    </span> </custom-marker>
 
 </ngui-map>
