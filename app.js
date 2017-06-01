@@ -28,13 +28,13 @@ app.use(compression(9));
 mongoose.connect(process.env.MONGODB_URI);
 
 
-/*app.get('*', (req, res, next) => {
+app.get('*', (req, res, next) => {
   if (req.headers['x-forwarded-proto'] !== 'https') {
     res.redirect('https://agentem.herokuapp.com');
   } else {
     next();
   }
-});*/
+});
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
