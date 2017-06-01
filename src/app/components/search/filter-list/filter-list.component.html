@@ -1,105 +1,23 @@
 <div id="filterSearchCard">
-  <form #myForm="ngForm" class="example-form">
-    <md-input-container>
-      <input places-auto-complete autofocus type="text" autocorrect="off" autocapitalize="off" spellcheck="off" #addressSearchBox
-        [(ngModel)]="filter.address" id="addressSearchBox" name="address" (click)="this.addressSearchBox.value = ''" mdInput
-        placeholder="Search by Street, Neighborhood or City" (place_changed)="placeChanged($event)" [types]="['geocode']" [componentRestrictions]='{country: "br"}'
-      />
-    </md-input-container>
+  <form #myForm="ngForm">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-4">
+          <md-input-container>
+            <input places-auto-complete autofocus type="text" autocorrect="off" autocapitalize="off" spellcheck="off" #addressSearchBox
+              [(ngModel)]="filter.address" id="addressSearchBox" name="address" (click)="this.addressSearchBox.value = ''"
+              mdInput placeholder="Search by Street, Neighborhood or City" (place_changed)="placeChanged($event); false" [types]="['geocode']"
+              [componentRestrictions]='{country: "br"}' />
+          </md-input-container>
+        </div>
+        <div class="col-xs-8">
+          <div class="desktop-filters">
 
-    <ng-template #typesBRN>
-      <md-radio-group class="example-radio-group" name="typesBRN" (change)="filterChanged()" (click)="$event.stopPropagation()"
-        [(ngModel)]="filter.typesBRN">
-        <md-radio-button class="example-radio-button" value="sale">
-          Sale
-        </md-radio-button>
-        <md-radio-button class="example-radio-button" value="rental">
-          Rental
-        </md-radio-button>
-        <md-radio-button class="example-radio-button" value="new">
-          New Development
-        </md-radio-button>
-      </md-radio-group>
-    </ng-template>
-
-    <button md-raised-button placement="bottom" #p4="ngbPopover" (document:click)="p4.close()" (click)="$event.stopPropagation();p1.close();p2.close();p3.close()"
-      [ngbPopover]="typesBRN"><i class="fa fa-handshake-o" aria-hidden="true"></i>
-    </button>
-
-    <ng-template #priceRange>
-      <table class="example-full-width" cellspacing="0" (click)="$event.stopPropagation()">
-        <tr>
-          <td>
-            <md-input-container class="example-full-width">
-              <input mdInput placeholder="Min Price" [(ngModel)]="filter.minPrice" [formControl]="minPriceControl" pattern="\d+" name="minPrice">
-              <md-error>Please enter number</md-error>
-            </md-input-container>
-          </td>
-          <td>
-            <md-input-container class="example-full-width">
-              <input mdInput placeholder="Max Price" [(ngModel)]="filter.maxPrice" [formControl]="maxPriceControl" pattern="\d+" name="maxPrice">
-              <md-error>Please enter number</md-error>
-            </md-input-container>
-          </td>
-        </tr>
-      </table>
-    </ng-template>
-
-    <button md-raised-button placement="bottom" #p1="ngbPopover" (document:click)="p1.close()" (click)="$event.stopPropagation();p2.close();p3.close();p4.close()"
-      [ngbPopover]="priceRange">R$
-    </button>
-
-    <ng-template #beds>
-      <md-radio-group class="example-radio-group" name="bedrooms" (change)="filterChanged()" (click)="$event.stopPropagation()"
-        [(ngModel)]="filter.bedrooms">
-        <md-radio-button class="example-radio-button" value="0">
-          Studio+
-        </md-radio-button>
-        <md-radio-button class="example-radio-button" value="1">
-          1+
-        </md-radio-button>
-        <md-radio-button class="example-radio-button" value="2">
-          2+
-        </md-radio-button>
-        <md-radio-button class="example-radio-button" value="3">
-          3+
-        </md-radio-button>
-        <md-radio-button class="example-radio-button" value="4">
-          4+
-        </md-radio-button>
-      </md-radio-group>
-    </ng-template>
-
-    <button md-raised-button placement="bottom" #p2="ngbPopover" (document:click)="p2.close()" (click)="$event.stopPropagation();p1.close();p3.close();p4.close()"
-      [ngbPopover]="beds"><i class="fa fa-bed" aria-hidden="true"></i>
-    </button>
-
-    <ng-template #propertyType>
-      <section class="example-section" (click)="$event.stopPropagation()">
-        <md-checkbox class="example-margin" name="apartment" (change)="filterChanged()" [(ngModel)]="filter.propertyType.apartment">Apartment</md-checkbox>
-        <md-checkbox class="example-margin" name="house" (change)="filterChanged()" [(ngModel)]="filter.propertyType.house">House</md-checkbox>
-        <md-checkbox class="example-margin" name="villa" (change)="filterChanged()" [(ngModel)]="filter.propertyType.villa">Villa</md-checkbox>
-      </section>
-    </ng-template>
-
-    <button md-raised-button placement="bottom" #p3="ngbPopover" (document:click)="p3.close()" (click)="$event.stopPropagation();p1.close();p2.close();p4.close()"
-      [ngbPopover]="propertyType"><i class="fa fa-building-o" aria-hidden="true"></i>
-    </button>
-
-    <button md-raised-button color="primary" (click)="saveSearch()">{{saveSearchButton}}</button> 
-    
-    Found: {{listingService.listingCount}} matches
-
-    <div *ngIf="listingService.isLoading" class="spinner-container">
-      <i class="fa fa-cog fa-spin fa-2x fa-fw spin-cog"></i>
-    </div>
-
-    <div *ngIf="listingService.addressComponents.length" id="address-breadcrumbs ">
-      <span *ngFor="let component of listingService.addressComponents; let j = index; let isLast = last">
-        <a  href="#" (click)="$event.preventDefault(); clickBreadCrumbs(j)" class="font-smaller">
-          {{component}}
-        </a>
- 2
+            <ng-template #typesBRN>
+              <md-radio-group class="example-radio-group" name="typesBRN" (change)="filterChanged()" (click)="$event.stopPropagation()"
+                [(ngModel)]="filter.typesBRN">
+                <md-radio-button class="example-radio-button" value="sale">
+                  Buy
                 </md-radio-button>
                 <md-radio-button class="example-radio-button" value="rental">
                   Rental
@@ -117,13 +35,13 @@
                 <tr>
                   <td>
                     <md-input-container class="example-full-width">
-                      <input mdInput placeholder="Min Price" [(ngModel)]="newSearch.minPrice" [formControl]="minPriceControl" pattern="\d+" name="minPrice">
+                      <input mdInput placeholder="Min Price" [(ngModel)]="filter.minPrice" [formControl]="minPriceControl" pattern="\d+" name="minPrice">
                       <md-error>Please enter number</md-error>
                     </md-input-container>
                   </td>
                   <td>
                     <md-input-container class="example-full-width">
-                      <input mdInput placeholder="Max Price" [(ngModel)]="newSearch.maxPrice" [formControl]="maxPriceControl" pattern="\d+" name="maxPrice">
+                      <input mdInput placeholder="Max Price" [(ngModel)]="filter.maxPrice" [formControl]="maxPriceControl" pattern="\d+" name="maxPrice">
                       <md-error>Please enter number</md-error>
                     </md-input-container>
                   </td>
@@ -135,8 +53,8 @@
               [ngbPopover]="priceRange">R$</button>
 
             <ng-template #beds>
-              <md-radio-group class="example-radio-group" name="bedrooms" (change)="listingService.updateFilter()" (click)="$event.stopPropagation()"
-                [(ngModel)]="newSearch.bedrooms">
+              <md-radio-group class="example-radio-group" name="bedrooms" (change)="filterChanged()" (click)="$event.stopPropagation()"
+                [(ngModel)]="filter.bedrooms">
                 <md-radio-button class="example-radio-button" value="0">
                   Studio+
                 </md-radio-button>
@@ -159,22 +77,19 @@
 
             <ng-template #propertyType>
               <section class="example-section" (click)="$event.stopPropagation()">
-                <md-checkbox class="example-margin" name="apartment" (change)="listingService.updateFilter()" [(ngModel)]="newSearch.propertyType.apartment">Apartment</md-checkbox>
-                <md-checkbox class="example-margin" name="house" (change)="listingService.updateFilter()" [(ngModel)]="newSearch.propertyType.house">House</md-checkbox>
-                <md-checkbox class="example-margin" name="villa" (change)="listingService.updateFilter()" [(ngModel)]="newSearch.propertyType.villa">Villa</md-checkbox>
+                <md-checkbox class="example-margin" name="apartment" (change)="filterChanged()" [(ngModel)]="filter.propertyType.apartment">Apartment</md-checkbox>
+                <md-checkbox class="example-margin" name="house" (change)="filterChanged()" [(ngModel)]="filter.propertyType.house">House</md-checkbox>
+                <md-checkbox class="example-margin" name="villa" (change)="filterChanged()" [(ngModel)]="filter.propertyType.villa">Villa</md-checkbox>
               </section>
             </ng-template>
             <button md-raised-button placement="bottom" #p3="ngbPopover" (document:click)="p3.close()" (click)="$event.stopPropagation();p1.close();p2.close();p4.close()"
               [ngbPopover]="propertyType"><i class="fa fa-building-o" aria-hidden="true"></i></button>
             <button md-raised-button color="primary" (click)="saveSearch()">{{saveSearchButton}}</button>
-            <div *ngIf="listingService.isLoading" style="float:right; padding-top:10px">
-              <i class="fa fa-cog fa-spin fa-2x fa-fw spin-cog"></i>
-            </div>
+
 
             <div *ngIf="listingService.addressComponents.length" style="padding-bottom:5px">
               <span *ngFor="let component of listingService.addressComponents; let j = index; let isLast = last" style="font-size:smaller; margin-bottom:50px">
       <a  href="#" (click)="$event.preventDefault(); breadCrumbs(j)">{{component}}</a>
-
         <i class='fa fa-caret-right' *ngIf="!isLast"></i>
       </span>
             </div>
@@ -182,61 +97,64 @@
         </div>
       </div>
     </div>
+                <div *ngIf="listingService.isLoading" style="float:right; padding-top:10px">
+              <i class="fa fa-cog fa-spin fa-2x fa-fw spin-cog"></i>
+            </div>
 
-      <button class="filter-button" md-raised-button color="primary" (click)="openFilter()">Filter <i class="fa fa-filter" aria-hidden="true"></i></button>
+    <button class="filter-button" md-raised-button color="primary" (click)="openFilter()">Filter <i class="fa fa-filter" aria-hidden="true"></i></button>
 
-      <div id="myNav" class="overlay">
-        <a href="javascript:void(0)" class="closebtn" (click)="closeFilter()">&times;</a>
-        <div class="overlay-content">
-          <label>Type <i class="fa fa-handshake-o" aria-hidden="true"></i></label><br>
-          <md-radio-group name="typesBRN" (change)="listingService.updateFilter()" [(ngModel)]="newSearch.typesBRN">
-            <md-radio-button value="sale">
-              Buy
-            </md-radio-button>
-            <md-radio-button value="rental">
-              Rent
-            </md-radio-button>
-            <md-radio-button value="new">
-              New Development
-            </md-radio-button>
-          </md-radio-group><br>
-          <hr>
-          <label>Price R$</label><br>
-          <md-input-container>
-            <input mdInput placeholder="Min Price" [(ngModel)]="newSearch.minPrice" [formControl]="minPriceControl" pattern="\d+" name="minPrice">
-            <md-error>Please enter number</md-error>
-          </md-input-container>
-          <md-input-container>
-            <input mdInput placeholder="Max Price" [(ngModel)]="newSearch.maxPrice" [formControl]="maxPriceControl" pattern="\d+" name="maxPrice">
-            <md-error>Please enter number</md-error>
-          </md-input-container><br>
-          <hr>
-          <label>Beds <i class="fa fa-bed" aria-hidden="true"></i></label><br>
-          <md-radio-group name="bedrooms" (change)="listingService.updateFilter()" [(ngModel)]="newSearch.bedrooms">
-            <md-radio-button value="0">
-              Studio+
-            </md-radio-button>
-            <md-radio-button value="1">
-              1+
-            </md-radio-button>
-            <md-radio-button value="2">
-              2+
-            </md-radio-button>
-            <md-radio-button value="3">
-              3+
-            </md-radio-button>
-            <md-radio-button value="4">
-              4+
-            </md-radio-button>
-          </md-radio-group><br>
-          <hr>
-          <label>Property Type <i class="fa fa-building-o" aria-hidden="true"></i></label><br>
-          <section class="example-section" (click)="$event.stopPropagation()">
-            <md-checkbox name="apartment" (change)="listingService.updateFilter()" [(ngModel)]="newSearch.propertyType.apartment">Apartment</md-checkbox>
-            <md-checkbox name="house" (change)="listingService.updateFilter()" [(ngModel)]="newSearch.propertyType.house">House</md-checkbox>
-            <md-checkbox name="villa" (change)="listingService.updateFilter()" [(ngModel)]="newSearch.propertyType.villa">Villa</md-checkbox>
-          </section>
-        </div>
+    <div id="myNav" class="overlay">
+      <a href="javascript:void(0)" class="closebtn" (click)="closeFilter()">&times;</a>
+      <div class="overlay-content">
+        <label>Type <i class="fa fa-handshake-o" aria-hidden="true"></i></label><br>
+        <md-radio-group name="typesBRN" (change)="filterChanged()" [(ngModel)]="filter.typesBRN">
+          <md-radio-button value="sale">
+            Buy
+          </md-radio-button>
+          <md-radio-button value="rental">
+            Rent
+          </md-radio-button>
+          <md-radio-button value="new">
+            New Development
+          </md-radio-button>
+        </md-radio-group><br>
+        <hr>
+        <label>Price R$</label><br>
+        <md-input-container>
+          <input mdInput placeholder="Min Price" [(ngModel)]="filter.minPrice" [formControl]="minPriceControl" pattern="\d+" name="minPrice">
+          <md-error>Please enter number</md-error>
+        </md-input-container>
+        <md-input-container>
+          <input mdInput placeholder="Max Price" [(ngModel)]="filter.maxPrice" [formControl]="maxPriceControl" pattern="\d+" name="maxPrice">
+          <md-error>Please enter number</md-error>
+        </md-input-container><br>
+        <hr>
+        <label>Beds <i class="fa fa-bed" aria-hidden="true"></i></label><br>
+        <md-radio-group name="bedrooms" (change)="filterChanged()" [(ngModel)]="filter.bedrooms">
+          <md-radio-button value="0">
+            Studio+
+          </md-radio-button>
+          <md-radio-button value="1">
+            1+
+          </md-radio-button>
+          <md-radio-button value="2">
+            2+
+          </md-radio-button>
+          <md-radio-button value="3">
+            3+
+          </md-radio-button>
+          <md-radio-button value="4">
+            4+
+          </md-radio-button>
+        </md-radio-group><br>
+        <hr>
+        <label>Property Type <i class="fa fa-building-o" aria-hidden="true"></i></label><br>
+        <section class="example-section" (click)="$event.stopPropagation()">
+          <md-checkbox name="apartment" (change)="filterChanged()" [(ngModel)]="filter.propertyType.apartment">Apartment</md-checkbox>
+          <md-checkbox name="house" (change)="filterChanged()" [(ngModel)]="filter.propertyType.house">House</md-checkbox>
+          <md-checkbox name="villa" (change)="filterChanged()" [(ngModel)]="filter.propertyType.villa">Villa</md-checkbox>
+        </section>
       </div>
+    </div>
   </form>
-  </div>
+</div>

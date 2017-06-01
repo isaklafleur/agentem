@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { MdTabsModule, MdInputModule, MdSelectModule, MdDialog } from '@angular/material';
 
-import { PropertyFormComponent } from '../panel/property-form/property-form.component';
+import { PropertyFormComponent } from './property-form/property-form.component';
 import { UserService } from '../../services/user.service';
 import { ListingService } from '../../services/listing.service';
 import { DetailsComponent } from '../list/details/details.component';
