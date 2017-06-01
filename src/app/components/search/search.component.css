@@ -25,6 +25,12 @@ html {
   }
 }
 
+@media screen and (min-width: 0px) and (max-width: 450px) {
+  .filter-and-search {
+    display: none; /* hide it on small screens */
+  }
+}
+
   #wrap2 {
     margin: auto;
   }
