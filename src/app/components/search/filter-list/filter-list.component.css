@@ -9,7 +9,7 @@
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 830px) {
   .desktop-filters {
     display: none;
     /* hide it on small screens */
@@ -21,6 +21,19 @@
   #addressSearchBox {
     width: 200px;
   }
+}
+
+button {
+  margin-left: 5px;
+}
+
+.desktop-filters {
+  margin-top: 3px;
+}
+
+.container-fluid {
+  margin-top: 10px;
+  margin-bottom: 0px;
 }
 
 md-card {

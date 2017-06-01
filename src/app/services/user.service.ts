@@ -50,6 +50,7 @@ export class UserService implements CanActivate {
         localStorage.setItem('token', token);
         this.isAuth.emit(true);
         this.user = response.user;
+        console.log(this.isAuth);
         return true;
       } else {
         return false;
@@ -68,12 +69,13 @@ export class UserService implements CanActivate {
               this.token = token;
               this.isAuth.emit(true);
               localStorage.setItem('token', token);
+              console.log(this.isAuth);
               return true;
             } else {
               return false;
             }
         });
-  }
+      }
 
   logout() {
       this.token = null;
