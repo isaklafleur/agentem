@@ -1,21 +1,21 @@
 {
   "name": "agentem",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
     "build": "ng build",
-    "build prod stats": "ng build --prod --stats-json",
+    "build-prod-bundle-stats": "ng build --prod --stats-json",
+    "bundle-report": "webpack-bundle-analyzer dist/stats.json",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "start": "node ./bin/www",
     "start-dev": "nodemon ./bin/www",
-    "bundle-report": "webpack-bundle-analyzer dist/stats.json"
+    "compodoc": "./node_modules/.bin/compodoc -p tsconfig.json"
   },
   "private": true,
   "dependencies": {
-    "typescript": "^2.3.2",
     "@angular/animations": "^4.1.3",
     "@angular/common": "^4.1.3",
     "@angular/compiler": "^4.1.3",
@@ -61,10 +61,10 @@
     "path": "^0.12.7",
     "rxjs": "^5.1.0",
     "serve-favicon": "~2.4.2",
-    "typescript": "^2.3.2",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
+    "@compodoc/compodoc": "^1.0.0-beta.9",
     "@types/d3": "^4.9.0",
     "@types/googlemaps": "^3.26.11",
     "@types/jasmine": "2.5.38",
@@ -87,6 +87,7 @@
     "protractor": "~5.1.0",
     "ts-node": "~2.0.0",
     "tslint": "^5.2.0",
+    "typescript": "^2.3.2",
     "webpack-bundle-analyzer": "^2.8.2"
   },
   "engines": {

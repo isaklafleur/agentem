@@ -1,28 +1,31 @@
-# Test123
+## Agente Imovel Demo SPA
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.3.
+<h1 align=center>
+<img alt="Agente Imovel" src="https://github.com/isaklafleur/agentem/blob/dev/public/agenteimovel.png">
+  <br>
+  AgenteImovel SPA DEMO</h1>
+
+<p align=center>MEAN Stack Application built under two weeks with a lot of :heart:, :sweat_smile: and little :sleeping:</p>
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
-
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+## Documentation
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Generate a fresh set of the latest docs `npm run compodoc`
+2. Start a local server to open the docs `compodoc -s`
 
-## Running end-to-end tests
+Or see the latest generated docs [here](https://github.com/isaklafleur/agentem/blob/dev/public/documentation/index.html).
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+## Bundle stats
 
-## Further help
+<img alt="Bundle Stats" src="https://github.com/isaklafleur/agentem/blob/dev/public/bundle-stats.png">
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Demo
+
+Run  to execute the unit tests via [AgenteImovel](https://agentem.herokuapp.com).
