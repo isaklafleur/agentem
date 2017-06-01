@@ -2,7 +2,6 @@ const express = require('express');
 const compression = require('compression');
 require('dotenv').config();
 const path = require('path');
-const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -39,8 +38,6 @@ app.options('*', cors(corsOptions));
 app.use(cors(corsOptions));
 
 app.use(passport.initialize());
-
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -48,7 +45,7 @@ app.use(cookieParser());
 
 
 app.use('/api/listings', listingRoutes);
-app.use('/api/users',  passport.authenticate('jwt', { session: false }), userRoutes);
+app.use('/api/users', passport.authenticate('jwt', { session: false }), userRoutes);
 app.use('/api/stats', statRoutes);
 app.use('/', authRoutes);
 

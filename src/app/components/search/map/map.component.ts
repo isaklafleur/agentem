@@ -188,7 +188,7 @@ export class MapComponent implements OnInit {
     const dialogRef = this.dialog.open(DetailsComponent, {width: '80%', height: '100%'});
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'submitted') {
-        console.log('form ok')
+        // console.log('form ok')
       }
     });
   }

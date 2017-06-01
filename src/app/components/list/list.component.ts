@@ -11,7 +11,7 @@ export class ListComponent implements OnInit {
   @Input() populateOnInit: boolean;
   @Input() limitListings: number;
 
-  isEndResults:boolean = false;
+  isEndResults: boolean = false;
 
   constructor(public listingService: ListingService, 
               public userService: UserService, 
@@ -24,9 +24,7 @@ export class ListComponent implements OnInit {
     this.listingService.onListingsLoaded$.subscribe( (newListings) => {
       this.isEndResults = newListings.length === 0;
     })
-
     this.listingService.limit = this.limitListings;
-
   }
 
   onScroll () {

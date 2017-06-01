@@ -19,6 +19,18 @@
   z-index: 2000;
 }
 
+.found-listings {
+  position:absolute;
+  margin-left:140px;
+  margin-top:15px;
+  font-size: 13px;
+  z-index: 2000;
+  color: white;
+  border-radius: 8px;
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
 .listing-details {
   z-index: 1000; 
   margin:0 -80px;

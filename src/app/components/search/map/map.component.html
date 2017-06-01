@@ -1,4 +1,5 @@
 <button md-raised-button color="accent" class="draw-button" (click)="drawOnMap()">Draw on map</button>
+<span class="found-listings">Found: {{listingService.listingCount}} matches</span>
 
 <ngui-map #map class="h-100"
   [zoom]="listingService.zoom" 

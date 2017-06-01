@@ -78,6 +78,14 @@ export class FilterListComponent implements OnInit {
     }
   }
 
+  openFilter() {
+    document.getElementById('myNav').style.width = '100%';
+  }
+
+  closeFilter() {
+    document.getElementById('myNav').style.width = '0%';
+  }
+
   saveSearch() {
     this.userService.saveSearch(this.listingService.filter);
     if (this.userService.user) {

@@ -1,11 +1,20 @@
-.jumbotron {
-  width: 80%
+body,
+html {
+  height: 100%;
+}
+
+@media (min-width: 576px) {
+  #left {
+    position: fixed;
+    top: 50px;
+    bottom: 0;
+  }
 }
 
 md-card {
-  border-radius: 8px;
   padding: 10px;
   color: black;
+  border-radius: 8px;
 }
 
 md-input-container {
@@ -42,3 +51,4 @@ body, html {
 .background-white-opaque {
   background-color: rgba(255, 255, 255, 0.8);
 }
+

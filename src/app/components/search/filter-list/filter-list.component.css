@@ -1,40 +1,34 @@
+@media screen and (max-height: 450px) {
+  .overlay a {
+    font-size: 20px
+  }
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 30px;
+    right: 35px;
+  }
+}
+
+@media (max-width: 800px) {
+  .desktop-filters {
+    display: none;
+    /* hide it on small screens */
+  }
+  .filter-button {
+    display: block!important;
+    margin-bottom: 10px;
+  }
+  #addressSearchBox {
+    width: 200px;
+  }
+}
+
+.container-fluid {
+  vertical-align: middle;
+}
+
 md-card {
   margin-top: 80px;
-}
-
-example-radio-group {
-  display: inline-flex;
-  flex-direction: column;
-}
-
-.example-radio-button {
-  margin: 5px;
-}
-
-.example-selected-value {
-  margin: 15px 0;
-}
-
-.material-icons {
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px; 
-  display: inline-block;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
-  /* Support for all WebKit browsers. */
-  -webkit-font-smoothing: antialiased;
-  /* Support for Safari and Chrome. */
-  text-rendering: optimizeLegibility;
-  /* Support for Firefox. */
-  -moz-osx-font-smoothing: grayscale;
-  /* Support for IE. */
-  font-feature-settings: 'liga';
 }
 
 #filterSearchCard {
@@ -44,9 +38,9 @@ example-radio-group {
   left: 0;
   z-index: 990;
   margin-top: 0;
-  padding-left:10px;
-  padding-top:3px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  padding-left: 10px;
+  padding-top: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   background-color: white;
 }
 
@@ -69,4 +63,50 @@ example-radio-group {
 
 .font-smaller {
   font-size:smaller;
+}
+
+.filter-button {
+  display: none;
+  }
+
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.overlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.overlay * {
+  color: rgba(0,0,0,.54);
+  transition: 0.3s;
+}
+
+.overlay *:hover,
+.overlay *:focus {
+  color: black;
+}
+
+.overlay .closebtn:hover,
+.overlay .closebtn:focus {
+  text-decoration: none;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 50px;
+  right: 25px;
+  font-size: 50px;
 }
