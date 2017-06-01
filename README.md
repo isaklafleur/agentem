@@ -24,7 +24,7 @@ Or see the latest generated docs [here](https://github.com/isaklafleur/agentem/b
 
 ## Bundle stats
 
-<img alt="Bundle Stats" src="https://github.com/isaklafleur/agentem/blob/dev/public/bundle-stats.png.png">
+<img alt="Bundle Stats" src="https://github.com/isaklafleur/agentem/blob/dev/public/bundle-stats.png">
 
 ## Demo
 
