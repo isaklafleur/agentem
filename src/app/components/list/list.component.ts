@@ -11,10 +11,10 @@ export class ListComponent implements OnInit {
   @Input() populateOnInit: boolean;
   @Input() limitListings: number;
 
-  isEndResults: boolean = false;
+  isEndResults = false;
 
-  constructor(public listingService: ListingService, 
-              public userService: UserService, 
+  constructor(public listingService: ListingService,
+              public userService: UserService,
               ) { }
 
   ngOnInit() {
@@ -28,7 +28,7 @@ export class ListComponent implements OnInit {
   }
 
   onScroll () {
-    if(!this.listingService.isLoading && !this.isEndResults) {
+    if (!this.listingService.isLoading && !this.isEndResults) {
       this.listingService.getMore();
     }
   }
