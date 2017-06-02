@@ -11,7 +11,7 @@
           </md-input-container>
           <div *ngIf="listingService.addressComponents.length">
               <span *ngFor="let component of listingService.addressComponents; let j = index; let isLast = last" class="font-smaller">
-                <a  href="#" (click)="$event.preventDefault(); breadCrumbs(j)">{{component}}</a>
+                <a  href="#" (click)="$event.preventDefault(); clickBreadCrumbs(j)">{{component}}</a>
                   <i class='fa fa-caret-right' *ngIf="!isLast"></i>
               </span>
            </div>
