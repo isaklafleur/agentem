@@ -15,19 +15,11 @@ const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const statRoutes = require('./routes/stats');
 
-const fs = require('fs');
-
-const multer = require('multer');
-
-const DIR = './public/uploads/';
-
-const upload = multer({ dest: DIR });
-
 const app = express();
 app.use(compression(9));
 mongoose.connect(process.env.MONGODB_URI);
 
-if(process.env.BASE_URL!=="http://localhost:3000") {
+if (process.env.BASE_URL !== 'http://localhost:3000') {
   app.get('*', (req, res, next) => {
     if (req.headers['x-forwarded-proto'] !== 'https') {
       res.redirect('https://agentem.herokuapp.com');
