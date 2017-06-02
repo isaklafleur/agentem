@@ -82,6 +82,7 @@ export class UserService implements CanActivate {
       this.token = null;
       this.activeUserId = null;
       this.isAuth.emit(false);
+      delete this.user;
       localStorage.removeItem('token');
       this.router.navigate(['/']);
   }
