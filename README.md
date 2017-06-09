@@ -28,4 +28,4 @@ Or see the latest generated docs [here](https://isaklafleur.github.io/agentem/do
 
 ## Demo
 
-Run  to execute the unit tests via [AgenteImovel](https://agentem.herokuapp.com).
+Please follow link to see a demo of the app [AgenteImovel](https://agentem.herokuapp.com).
